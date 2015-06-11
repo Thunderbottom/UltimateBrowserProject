@@ -71,3 +71,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Key Files
+.jks
+
+# Idea Folder
+.idea/
