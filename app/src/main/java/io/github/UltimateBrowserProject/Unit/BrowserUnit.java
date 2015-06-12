@@ -4,8 +4,6 @@ import android.app.DownloadManager;
 import android.content.*;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -16,10 +14,7 @@ import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.Database.RecordAction;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+
 
 import java.io.*;
 import java.net.URLEncoder;
@@ -33,7 +28,6 @@ public class BrowserUnit {
     public static final String SUFFIX_PNG = ".png";
     public static final String SUFFIX_TXT = ".txt";
 
-    // Maybe enum would better.
     public static final int FLAG_BOOKMARKS = 0x100;
     public static final int FLAG_HISTORY = 0x101;
     public static final int FLAG_HOME = 0x102;
@@ -44,11 +38,11 @@ public class BrowserUnit {
     public static final String MIME_TYPE_IMAGE = "image/*";
 
     public static final String BASE_URL = "file:///android_asset/";
-    public static final String UltimateBrowserProject_BOOKMARK_TYPE = "<DT><A HREF=\"{url}\" ADD_DATE=\"{time}\">{title}</A>";
-    public static final String UltimateBrowserProject_BOOKMARK_TITLE = "{title}";
-    public static final String UltimateBrowserProject_BOOKMARK_URL = "{url}";
-    public static final String UltimateBrowserProject_BOOKMARK_TIME = "{time}";
-    public static final String UltimateBrowserProject_INTRODUCTION_EN = "UltimateBrowserProject_introduction_en.html";
+    public static final String BOOKMARK_TYPE = "<DT><A HREF=\"{url}\" ADD_DATE=\"{time}\">{title}</A>";
+    public static final String BOOKMARK_TITLE = "{title}";
+    public static final String BOOKMARK_URL = "{url}";
+    public static final String BOOKMARK_TIME = "{time}";
+    public static final String INTRODUCTION_EN = "UltimateBrowserProject_introduction_en.html";
 
     public static final String SEARCH_ENGINE_GOOGLE = "https://www.google.com/search?q=";
     public static final String SEARCH_ENGINE_DUCKDUCKGO = "https://duckduckgo.com/?q=";
@@ -70,22 +64,13 @@ public class BrowserUnit {
     public static final String URL_PREFIX_GOOGLE_PLUS = "plus.url.google.com/url?q=";
     public static final String URL_SUFFIX_GOOGLE_PLUS = "&rct";
 
-    public static boolean isNetworkAvailable(Context context) {
-        if (context == null) {
-            return false;
-        }
-
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo info = manager.getActiveNetworkInfo();
-        return info != null && info.isAvailable();
-    }
 
     public static boolean isURL(String url) {
         if (url == null) {
             return false;
         }
-        url = url.toLowerCase(Locale.getDefault());
 
+        url = url.toLowerCase(Locale.getDefault());
         if (url.startsWith(URL_ABOUT_BLANK)
                 || url.startsWith(URL_SCHEME_MAIL_TO)
                 || url.startsWith(URL_SCHEME_FILE)) {
@@ -122,6 +107,7 @@ public class BrowserUnit {
             if (!query.contains("://")) {
                 query = URL_SCHEME_HTTP + query;
             }
+
             return query;
         }
 
@@ -154,6 +140,7 @@ public class BrowserUnit {
         if (url == null) {
             return null;
         }
+
         String green500 = "<font color='#4CAF50'>{content}</font>";
         String gray500 = "<font color='#9E9E9E'>{content}</font>";
 
@@ -259,10 +246,10 @@ public class BrowserUnit {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
             for (Record record : list) {
-                String type = UltimateBrowserProject_BOOKMARK_TYPE;
-                type = type.replace(UltimateBrowserProject_BOOKMARK_TITLE, record.getTitle());
-                type = type.replace(UltimateBrowserProject_BOOKMARK_URL, record.getURL());
-                type = type.replace(UltimateBrowserProject_BOOKMARK_TIME, String.valueOf(record.getTime()));
+                String type = BOOKMARK_TYPE;
+                type = type.replace(BOOKMARK_TITLE, record.getTitle());
+                type = type.replace(BOOKMARK_URL, record.getURL());
+                type = type.replace(BOOKMARK_TIME, String.valueOf(record.getTime()));
                 writer.write(type);
                 writer.newLine();
             }
@@ -300,7 +287,6 @@ public class BrowserUnit {
         }
     }
 
-    // TODO: not depended jsoup
     public static int importBookmarks(Context context, File file) {
         if (file == null) {
             return -1;
@@ -311,17 +297,28 @@ public class BrowserUnit {
             RecordAction action = new RecordAction(context);
             action.open(true);
 
-            Document document = Jsoup.parse(file, URL_ENCODING);
-            Elements elements = document.select("a");
-            for (Element element : elements) {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (!((line.startsWith("<dt><a ") && line.endsWith("</a>")) || (line.startsWith("<DT><A ") && line.endsWith("</A>")))) {
+                    continue;
+                }
+                String title = getBookmarkTitle(line);
+                String url = getBookmarkURL(line);
+                if (title.trim().isEmpty() || url.trim().isEmpty()) {
+                    continue;
+                }
+
                 Record record = new Record();
-                record.setTitle(element.text());
-                record.setURL(element.attr("href").trim());
+                record.setTitle(title);
+                record.setURL(url);
                 record.setTime(System.currentTimeMillis());
                 if (!action.checkBookmark(record)) {
                     list.add(record);
                 }
             }
+            reader.close();
 
             Collections.sort(list, new Comparator<Record>() {
                 @Override
@@ -378,6 +375,7 @@ public class BrowserUnit {
             if (dir != null && dir.isDirectory()) {
                 deleteDir(dir);
             }
+
             return true;
         } catch (Exception exception) {
             return false;
@@ -432,6 +430,20 @@ public class BrowserUnit {
                 }
             }
         }
+
         return dir != null && dir.delete();
+    }
+    private static String getBookmarkTitle(String line) {
+        line = line.substring(0, line.length() - 4); // Remove last </a>
+        int index = line.lastIndexOf(">");
+        return line.substring(index + 1, line.length());
+    }
+    private static String getBookmarkURL(String line) {
+        for (String string : line.split(" +")) {
+            if (string.startsWith("href=\"") || string.startsWith("HREF=\"")) {
+                return string.substring(6, string.length() - 1); // Remove href=\" and \"
+            }
+        }
+        return "";
     }
 }

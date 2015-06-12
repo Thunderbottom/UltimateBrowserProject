@@ -71,6 +71,7 @@ public class TokenActivity extends Activity {
             default:
                 break;
         }
+
         return true;
     }
 

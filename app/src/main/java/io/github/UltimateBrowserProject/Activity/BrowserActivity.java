@@ -113,7 +113,6 @@ public class BrowserActivity extends Activity implements BrowserController {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             filePathCallback.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, intent));
-            // filePathCallback = null;
         }
     }
 
@@ -182,10 +181,10 @@ public class BrowserActivity extends Activity implements BrowserController {
     @Override
     public void onResume() {
         super.onResume();
-
         if (create) {
             return;
         }
+
         dispatchIntent(getIntent());
 
         if (IntentUnit.isDBChange()) {
@@ -200,6 +199,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     ((UltimateBrowserProjectWebView) controller).initPreferences();
                 }
             }
+
             IntentUnit.setSPChange(false);
         }
     }
@@ -219,7 +219,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
             if (sp.getBoolean(getString(R.string.sp_first), true)) {
                 String lang;
-                    lang = BrowserUnit.UltimateBrowserProject_INTRODUCTION_EN;
+                    lang = BrowserUnit.INTRODUCTION_EN;
                 pinAlbums(BrowserUnit.BASE_URL + lang);
                 sp.edit().putBoolean(getString(R.string.sp_first), false).commit();
             } else {
@@ -228,7 +228,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
     }
 
-    // TODO: change to onStop()
     @Override
     public void onPause() {
         Intent toHolderService = new Intent(this, HolderService.class);

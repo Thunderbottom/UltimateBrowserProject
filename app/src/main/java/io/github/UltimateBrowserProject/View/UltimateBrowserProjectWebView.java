@@ -138,12 +138,11 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         webSettings.setDomStorageEnabled(true);
         webSettings.setGeolocationDatabasePath(context.getFilesDir().toString());
 
-        webSettings.setDefaultTextEncodingName(BrowserUnit.URL_ENCODING);
-
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDisplayZoomControls(false);
 
+        webSettings.setDefaultTextEncodingName(BrowserUnit.URL_ENCODING);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             webSettings.setLoadsImagesAutomatically(true);
         } else {
@@ -154,6 +153,11 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     public synchronized void initPreferences() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         WebSettings webSettings = getSettings();
+
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setTextZoom(100);
+        webSettings.setUseWideViewPort(true);
 
         webSettings.setBlockNetworkImage(!sp.getBoolean(context.getString(R.string.sp_images), true));
         webSettings.setJavaScriptEnabled(sp.getBoolean(context.getString(R.string.sp_javascript), true));
@@ -182,10 +186,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
         webViewClient.enableAdBlock(sp.getBoolean(context.getString(R.string.sp_ad_block), true));
 
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-        webSettings.setLoadWithOverviewMode(true);
-        webSettings.setTextZoom(100);
-        webSettings.setUseWideViewPort(true);
     }
 
     private synchronized void initAlbum() {
@@ -206,6 +206,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                 matrix.setSaturation(0);
                 ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
                 paint.setColorFilter(filter);
+
                 break;
             } case 2: { // Inverted
                 ColorMatrixColorFilter filter = new ColorMatrixColorFilter(NEGATIVE_COLOR);
@@ -240,12 +241,15 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             UltimateBrowserProjectToast.show(context, R.string.toast_load_error);
             return;
         }
+
+
         url = BrowserUnit.queryWrapper(context, url.trim());
 
         if (url.startsWith(BrowserUnit.URL_SCHEME_MAIL_TO)) {
             Intent intent = IntentUnit.getEmailIntent(MailTo.parse(url));
             context.startActivity(intent);
             reload();
+
             return;
         } else if (url.startsWith(BrowserUnit.URL_SCHEME_INTENT)) {
             Intent intent;
@@ -253,6 +257,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                 intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
                 context.startActivity(intent);
             } catch (URISyntaxException u) {}
+
             return;
         }
 

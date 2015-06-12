@@ -16,6 +16,7 @@ public class BrowserContainer {
         if (list.get(index) instanceof UltimateBrowserProjectWebView) {
             ((UltimateBrowserProjectWebView) list.get(index)).destroy();
         }
+
         list.set(index, controller);
     }
 
@@ -31,6 +32,7 @@ public class BrowserContainer {
         if (list.get(index) instanceof UltimateBrowserProjectWebView) {
             ((UltimateBrowserProjectWebView) list.get(index)).destroy();
         }
+
         list.remove(index);
     }
 
@@ -38,6 +40,7 @@ public class BrowserContainer {
         if (controller instanceof UltimateBrowserProjectWebView) {
             ((UltimateBrowserProjectWebView) controller).destroy();
         }
+
         list.remove(controller);
     }
 
@@ -59,6 +62,7 @@ public class BrowserContainer {
                 ((UltimateBrowserProjectWebView) albumController).destroy();
             }
         }
+
         list.clear();
     }
 }

@@ -53,11 +53,13 @@ public class SwipeToDismissListener implements View.OnTouchListener {
                     velocityTracker = VelocityTracker.obtain();
                     velocityTracker.addMovement(event);
                 }
+
                 return false;
             } case MotionEvent.ACTION_UP: {
                 if (velocityTracker == null) {
                     break;
                 }
+
                 velocityTracker.addMovement(event);
                 velocityTracker.computeCurrentVelocity(1000);
 
@@ -114,6 +116,7 @@ public class SwipeToDismissListener implements View.OnTouchListener {
                 swiping = false;
                 velocityTracker.recycle();
                 velocityTracker = null;
+
                 break;
             } case MotionEvent.ACTION_MOVE: {
                 if (velocityTracker == null) {
@@ -137,8 +140,10 @@ public class SwipeToDismissListener implements View.OnTouchListener {
                     translationY = deltaY;
                     this.view.setTranslationY(deltaY - swipingSlop);
                     this.view.setAlpha(Math.max(0f, Math.min(1f, 1f - 2f * Math.abs(deltaY) / viewHeight)));
+
                     return true;
                 }
+
                 break;
             }
         }
