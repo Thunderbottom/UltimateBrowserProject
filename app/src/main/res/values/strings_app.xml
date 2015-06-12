@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation" >
+
 
     <!-- Scheme -->
     <string name="app_scheme_http">
@@ -15,7 +18,7 @@
         UltimateBrowserProject
     </string>
     <string name="app_version">
-        1.2.3
+        1.2.4
     </string>
 
     <!-- AndroidSlidingUpPanel -->
@@ -74,20 +77,6 @@
         http://git.io/vTHZH
     </string>
 
-    <!-- github-markdown-css -->
-    <string name="license_title_github_markdown_css">
-        github-markdown-css
-    </string>
-    <string name="license_content_github_markdown_css">
-        The MIT License (MIT)
-    </string>
-    <string name="license_author_github_markdown_css">
-        Sindre Sorhus
-    </string>
-    <string name="license_url_github_markdown_css">
-        http://git.io/Gxy92Q
-    </string>
-
     <!-- jsoup -->
     <string name="license_title_jsoup">
         jsoup
@@ -127,7 +116,21 @@
         Chinmay Pai
     </string>
     <string name="license_url_UltimateBrowserProject">
-        http://git.io/vUrEh
+        http://git.io/vIG0r
+    </string>
+
+    <!-- typo.css -->
+    <string name="license_title_typo_css">
+        typo.css
+    </string>
+    <string name="license_content_typo_css">
+        The MIT License (MIT)
+    </string>
+    <string name="license_author_typo_css">
+        Fish
+    </string>
+    <string name="license_url_typo_css">
+        http://git.io/vIyHD
     </string>
 
     <!-- All in one -->
@@ -136,40 +139,40 @@
         <item>@string/license_title_android_swipe_to_dismiss</item>
         <item>@string/license_title_android_ago</item>
         <item>@string/license_title_dynamic_grid</item>
-        <item>@string/license_title_github_markdown_css</item>
+        <item>@string/license_title_jsoup</item>
         <item>@string/license_title_lightning</item>
         <item>@string/license_title_UltimateBrowserProject</item>
-        <item>@string/license_title_jsoup</item>
+        <item>@string/license_title_typo_css</item>
     </string-array>
     <string-array name="license_contents">
         <item>@string/license_content_android_sliding_up_panel</item>
         <item>@string/license_content_android_swipe_to_dismiss</item>
         <item>@string/license_content_android_ago</item>
         <item>@string/license_content_dynamic_grid</item>
-        <item>@string/license_content_github_markdown_css</item>
+        <item>@string/license_content_jsoup</item>
         <item>@string/license_content_lightning</item>
         <item>@string/license_content_UltimateBrowserProject</item>
-        <item>@string/license_content_jsoup</item>
+        <item>@string/license_content_typo_css</item>
     </string-array>
     <string-array name="license_authors">
         <item>@string/license_author_android_sliding_up_panel</item>
         <item>@string/license_author_android_swipe_to_dismiss</item>
         <item>@string/license_author_android_ago</item>
         <item>@string/license_author_dynamic_grid</item>
-        <item>@string/license_author_github_markdown_css</item>
+        <item>@string/license_author_jsoup</item>
         <item>@string/license_author_lightning</item>
         <item>@string/license_author_UltimateBrowserProject</item>
-        <item>@string/license_author_jsoup</item>
+        <item>@string/license_author_typo_css</item>
     </string-array>
     <string-array name="license_urls">
         <item>@string/license_url_android_sliding_up_panel</item>
         <item>@string/license_url_android_swipe_to_dismiss</item>
         <item>@string/license_url_android_ago</item>
         <item>@string/license_url_dynamic_grid</item>
-        <item>@string/license_url_github_markdown_css</item>
+        <item>@string/license_url_jsoup</item>
         <item>@string/license_url_lightning</item>
         <item>@string/license_url_UltimateBrowserProject</item>
-        <item>@string/license_url_jsoup</item>
+        <item>@string/license_url_typo_css</item>
     </string-array>
 
 </resources>

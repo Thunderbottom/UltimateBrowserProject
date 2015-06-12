@@ -131,7 +131,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
         }
-
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         anchor = Integer.valueOf(sp.getString(getString(R.string.sp_anchor), "1"));
         if (anchor == 0) {
@@ -229,6 +228,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
     }
 
+    // TODO: change to onStop()
     @Override
     public void onPause() {
         Intent toHolderService = new Intent(this, HolderService.class);
@@ -267,6 +267,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         BrowserContainer.clear();
         super.onDestroy();
+        System.exit(0); // For remove all WebView thread
     }
 
     @Override
@@ -1411,6 +1412,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     }
 
     private boolean showOverflow() {
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
 
@@ -1425,14 +1427,18 @@ public class BrowserActivity extends Activity implements BrowserController {
             stringList.remove(array[1]); // Add to home
             stringList.remove(array[2]); // Find in page
             stringList.remove(array[3]); // Screenshot
-            stringList.remove(array[4]); // Share
+            stringList.remove(array[4]); // Readability
+            stringList.remove(array[5]); // Share
 
             UltimateBrowserProjectRelativeLayout UltimateBrowserProjectRelativeLayout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
             if (UltimateBrowserProjectRelativeLayout.getFlag() != BrowserUnit.FLAG_HOME) {
-                stringList.remove(array[5]); // Relayout
+                stringList.remove(array[6]); // Relayout
             }
         } else if (currentAlbumController != null && currentAlbumController instanceof UltimateBrowserProjectWebView) {
-            stringList.remove(array[5]); // Relayout
+            if (!sp.getBoolean(getString(R.string.sp_readability), false)) {
+                stringList.remove(array[4]); // Readability
+            }
+            stringList.remove(array[6]); // Relayout
         }
 
         ListView listView = (ListView) layout.findViewById(R.id.dialog_list);
@@ -1479,14 +1485,24 @@ public class BrowserActivity extends Activity implements BrowserController {
                 } else if (s.equals(array[3])) { // Screenshot
                     UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
                     new ScreenshotTask(BrowserActivity.this, UltimateBrowserProjectWebView).execute();
-                } else if (s.equals(array[4])) { // Share
+                } else if (s.equals(array[4])) { // Readability
+                    String token = sp.getString(getString(R.string.sp_readability_token), null);
+                    if (token == null || token.trim().isEmpty()) {
+                        UltimateBrowserProjectToast.show(BrowserActivity.this, R.string.toast_token_empty);
+                    } else {
+                        UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
+                        Intent intent = new Intent(BrowserActivity.this, ReadabilityActivity.class);
+                        intent.putExtra(IntentUnit.URL, UltimateBrowserProjectWebView.getUrl());
+                        startActivity(intent);
+                    }
+                } else if (s.equals(array[5])) { // Share
                     if (!prepareRecord()) {
                         UltimateBrowserProjectToast.show(BrowserActivity.this, R.string.toast_share_failed);
                     } else {
                         UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
                         IntentUnit.share(BrowserActivity.this, UltimateBrowserProjectWebView.getTitle(), UltimateBrowserProjectWebView.getUrl());
                     }
-                } else if (s.equals(array[5])) { // Relayout
+                } else if (s.equals(array[6])) { // Relayout
                     UltimateBrowserProjectRelativeLayout UltimateBrowserProjectRelativeLayout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
                     final DynamicGridView gridView = (DynamicGridView) UltimateBrowserProjectRelativeLayout.findViewById(R.id.home_grid);
                     final List<GridItem> gridList = ((GridAdapter) gridView.getAdapter()).getList();
@@ -1563,7 +1579,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                         }
                     });
                     gridView.startEditMode();
-                } else if (s.equals(array[6])) { // Quit
+                } else if (s.equals(array[7])) { // Quit
                     finish();
                 }
 

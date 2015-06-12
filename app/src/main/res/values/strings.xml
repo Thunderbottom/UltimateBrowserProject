@@ -73,7 +73,7 @@
         Custom
     </string>
     <string name="dialog_title_download">
-       Do you want to download this file?
+        Download
     </string>
     <string name="dialog_title_resubmission">
         Resubmit
@@ -91,10 +91,11 @@
         The certificate of the site is not trusted. Proceed anyway?
     </string>
     <string name="dialog_content_update">
-        Click the link to check for updates -http://bit.ly/UltimateBrowserProject
+        Click the link to check for updates -\n http://bit.ly/UBPUpdate \n
+        Current version is 1.2.4.
     </string>
     <string name="dialog_content_upload">
-        Currently, File upload is only supported in Android 5.0 and above
+        Currently, File upload is only supported on Android 5.0 and above.
     </string>
 
     <!-- List -->
@@ -104,7 +105,7 @@
 
     <!-- Main -->
     <string name="main_menu_new_tab">
-        Open in a New tab
+        Open in a new tab
     </string>
     <string name="main_menu_copy_link">
         Copy link
@@ -125,6 +126,20 @@
     <!-- Notification -->
     <string name="notification_content_holder">
         Click to View Pages
+    </string>
+
+    <!-- Readability -->
+    <string name="readability_label">
+        Readability Mode
+    </string>
+    <string name="readability_menu_background">
+        Background
+    </string>
+    <string name="readability_menu_share">
+        Share
+    </string>
+    <string name="readability_empty">
+        ERROR: Failed to access Readability Server. Please check access token and Internet connection.
     </string>
 
     <!-- Search -->
@@ -235,10 +250,10 @@
     </string>
     <!-- Scroll bar -->
     <string name="setting_title_scroll_bar">
-        Scroll bar
+        Scroll Bar
     </string>
     <string name="setting_summary_scroll_bar">
-        Show/Hide scroll bar on a Webpage
+        Show scroll bar on Webpages
     </string>
     <!-- User Agent -->
     <string name="setting_title_user_agent">
@@ -279,14 +294,27 @@
     <string name="setting_summary_whitelist">
         Allow these sites show ads
     </string>
-    <string name="setting_title_export_whilelist">
+    <string name="setting_title_export_whitelist">
         Export Whitelist
     </string>
-    <string name="setting_title_import_whilelist">
-        Import Whilelist
+    <string name="setting_title_import_whitelist">
+        Import Whitelist
     </string>
-    <string name="whilelist_filename">
+    <string name="whitelist_filename">
         Whitelist
+    </string>
+    <!-- Readability settings -->
+    <string name="setting_title_readability">
+        Readability
+    </string>
+    <string name="setting_title_token">
+        Token
+    </string>
+    <string name="setting_summary_readability">
+        Enable Readability
+    </string>
+    <string name="setting_summary_token">
+        Set Readability Token
     </string>
     <!-- Data setting -->
     <string name="setting_title_data">
@@ -330,23 +358,9 @@
         Check for Updates
     </string>
 
-    <!-- Whitelist -->
-    <string name="whitelist_label">
-        Whitelist
-    </string>
-    <string name="whitelist_menu_clear">
-        Clear
-    </string>
-    <string name="whitelist_edit_hint">
-        Domain
-    </string>
-    <string name="whitelist_add">
-        Add
-    </string>
-
     <!-- Toast -->
     <string name="toast_add_bookmark_successful">
-        Bookmark Successfully added
+        Successfully added to Bookmarks
     </string>
     <string name="toast_add_bookmark_failed">
         Can\'t add this page to Bookmarks
@@ -355,10 +369,13 @@
         Successfully added to Homepage
     </string>
     <string name="toast_add_to_home_failed">
-        Failed to add at Homepage
+        Failed to add to the Homepage
+    </string>
+    <string name="toast_add_token_successful">
+        Successfully added Readability Token
     </string>
     <string name="toast_add_whitelist_successful">
-        Domain Successfully Added
+        Successfully added Domain to Whitelist
     </string>
     <string name="toast_already_at_the_front">
         Already at the front
@@ -376,13 +393,13 @@
         Successfully Copied
     </string>
     <string name="toast_delete_bookmark_successful">
-        Sucessfully Deleted Bookmark
+        Successfully Deleted Bookmark
     </string>
     <string name="toast_delete_successful">
         Successfully Deleted
     </string>
     <string name="toast_domain_already_exists">
-        Domain already exists
+        Domain already exists in the Whitelist
     </string>
     <string name="toast_double_taps_quit">
         Press again to exit
@@ -391,25 +408,25 @@
         Exported Bookmarks file at:&#160;
     </string>
     <string name="toast_export_bookmarks_failed">
-        Failed to Export Bookmarks
+        Failed to export Bookmarks
     </string>
     <string name="toast_export_whitelist_successful">
         Exported Whitelist file at:&#160;
     </string>
     <string name="toast_export_whitelist_failed">
-        Failed to Export Whitelist
+        Failed to export Whitelist
     </string>
     <string name="toast_import_bookmarks_successful">
         Imported Bookmarks count:&#160;
     </string>
     <string name="toast_import_bookmarks_failed">
-        Failed to Import Bookmarks
+        Failed to import Bookmarks
     </string>
     <string name="toast_import_whitelist_successful">
         Imported Domains count:&#160;
     </string>
     <string name="toast_import_whitelist_failed">
-        Failed to Import Whitelist
+        Failed to import Whitelist
     </string>
     <string name="toast_input_empty">
         You haven\'t input anything
@@ -421,19 +438,19 @@
         Can\'t load this URL
     </string>
     <string name="toast_load_in_background">
-        Loading in Background
+        Loading in background
     </string>
     <string name="toast_need_restart">
-        Please restart the application for the changes to take effect
+        Please restart the application for changes to take effect
     </string>
     <string name="toast_new_tab_successful">
-        Successfully opened in a new tab
+        Successfully Opened in a new tab
     </string>
     <string name="toast_open_file_manager_failed">
         Failed to open File Manager
     </string>
     <string name="toast_refresh_failed">
-        Can\'t refresh this Page
+        Can\'t refresh this page
     </string>
     <string name="toast_relayout_successful">
         Successfully Relayout
@@ -442,7 +459,7 @@
         Saved screenshot at:&#160;
     </string>
     <string name="toast_screenshot_failed">
-        Failed to save the screenshot
+        Failed to capture a screenshot
     </string>
     <string name="toast_share_failed">
         Can\'t share this page
@@ -450,8 +467,39 @@
     <string name="toast_start_download">
         Starting download
     </string>
+    <string name="toast_token_empty">
+        Please set Readability token
+    </string>
     <string name="toast_wait_a_minute">
-        Please wait for a moment
+        Wait for a moment
+    </string>
+
+    <!-- Token -->
+    <string name="token_label">
+        Token
+    </string>
+    <string name="token_edit_hint">
+        Readability Token
+    </string>
+    <string name="token_add">
+        Add
+    </string>
+    <string name="token_desc">
+        Go to https://www.readability.com/developers/api to get your own Readability token
+    </string>
+
+    <!-- Whitelist -->
+    <string name="whitelist_label">
+        Whitelist
+    </string>
+    <string name="whitelist_menu_clear">
+        Clear
+    </string>
+    <string name="whitelist_edit_hint">
+        Domain
+    </string>
+    <string name="whitelist_add">
+        Add
     </string>
 
 </resources>

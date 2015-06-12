@@ -38,7 +38,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private int dimen144dp;
     private int dimen108dp;
     private int animTime;
-    private String userAgentOriginal;
 
     private Album album;
     private UltimateBrowserProjectWebViewClient webViewClient;
@@ -55,6 +54,11 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private boolean foreground;
     public boolean isForeground() {
         return foreground;
+    }
+
+    private String userAgentOriginal;
+    public String getUserAgentOriginal() {
+        return userAgentOriginal;
     }
 
     private BrowserController browserController = null;
@@ -351,6 +355,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         resumeTimers();
     }
 
+    @Override
     public synchronized void destroy() {
         stopLoading();
         onPause();
@@ -358,6 +363,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setVisibility(GONE);
         removeAllViews();
         destroyDrawingCache();
+        super.destroy();
     }
 
     public boolean isLoadFinish() {

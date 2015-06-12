@@ -45,6 +45,13 @@ In `Setting/Browser/Volume control` you can set the volume keys behavior to:
 
 Since AdBlock maybe cause some websites display error, you can add them to `Setting/AdBlock/Whitelist`.
 
+## Readability:
+
+UltimateBrowserProject supports Readability mode but it needs the __Readability API Token__.
+
+To get the token you should go to [Readability Developer APIs](https://www.readability.com/developers/api "Readability Developer APIs") and set it in `Setting/Readability/Token`.
+
+
 ## Screenshot:
 
 UltimateBrowserProject can __capture entire webpages!__ .

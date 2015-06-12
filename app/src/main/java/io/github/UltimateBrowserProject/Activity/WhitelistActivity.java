@@ -1,13 +1,13 @@
 package io.github.UltimateBrowserProject.Activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -26,13 +26,8 @@ public class WhitelistActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.whitelist);
-
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         RecordAction action = new RecordAction(this);
@@ -47,8 +42,10 @@ public class WhitelistActivity extends Activity {
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        final EditText editText = (EditText) findViewById(R.id.whilelist_edit);
-        Button button = (Button) findViewById(R.id.whilelist_add);
+        final EditText editText = (EditText) findViewById(R.id.whitelist_edit);
+        showSoftInput(editText);
+
+        Button button = (Button) findViewById(R.id.whitelist_add);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,13 +70,20 @@ public class WhitelistActivity extends Activity {
                 }
             }
         });
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
+        }
     }
 
-
+    @Override
+    public void onPause() {
+        hideSoftInput(findViewById(R.id.whitelist_edit));
+        super.onPause();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.whilelist_menu, menu);
+        getMenuInflater().inflate(R.menu.whitelist_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -99,5 +103,17 @@ public class WhitelistActivity extends Activity {
                 break;
         }
         return true;
+    }
+
+    private void hideSoftInput(View view) {
+        view.clearFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    private void showSoftInput(View view) {
+        view.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 }

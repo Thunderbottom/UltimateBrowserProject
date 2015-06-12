@@ -37,8 +37,8 @@ public class WhitelistAdapter extends ArrayAdapter<String> {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(layoutResId, parent, false);
             holder = new Holder();
-            holder.domain = (TextView) view.findViewById(R.id.whilelist_item_domain);
-            holder.cancel = (ImageButton) view.findViewById(R.id.whilelist_item_cancel);
+            holder.domain = (TextView) view.findViewById(R.id.whitelist_item_domain);
+            holder.cancel = (ImageButton) view.findViewById(R.id.whitelist_item_cancel);
             view.setTag(holder);
         } else {
             holder = (Holder) view.getTag();

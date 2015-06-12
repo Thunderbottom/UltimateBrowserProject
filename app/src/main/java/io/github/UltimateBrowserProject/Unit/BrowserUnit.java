@@ -39,6 +39,7 @@ public class BrowserUnit {
     public static final int FLAG_HOME = 0x102;
     public static final int FLAG_UltimateBrowserProject = 0x103;
 
+    public static final String MIME_TYPE_TEXT_HTML = "text/html";
     public static final String MIME_TYPE_TEXT_PLAIN = "text/plain";
     public static final String MIME_TYPE_IMAGE = "image/*";
 
@@ -278,7 +279,7 @@ public class BrowserUnit {
         List<String> list = action.listDomains();
         action.close();
 
-        String filename = context.getString(R.string.whilelist_filename);
+        String filename = context.getString(R.string.whitelist_filename);
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), filename + SUFFIX_TXT);
         int count = 0;
         while (file.exists()) {
@@ -299,6 +300,7 @@ public class BrowserUnit {
         }
     }
 
+    // TODO: not depended jsoup
     public static int importBookmarks(Context context, File file) {
         if (file == null) {
             return -1;

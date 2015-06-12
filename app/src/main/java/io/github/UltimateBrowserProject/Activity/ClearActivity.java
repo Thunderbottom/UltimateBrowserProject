@@ -10,9 +10,6 @@ import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
-
 import io.github.UltimateBrowserProject.Fragment.ClearFragment;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
@@ -24,17 +21,14 @@ public class ClearActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
         }
-
         super.onCreate(savedInstanceState);
-
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
         getFragmentManager().beginTransaction().replace(android.R.id.content, new ClearFragment()).commit();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

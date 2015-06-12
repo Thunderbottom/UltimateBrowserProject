@@ -8,6 +8,7 @@ import android.preference.*;
 import android.webkit.CookieManager;
 import android.widget.*;
 import io.github.UltimateBrowserProject.Activity.ClearActivity;
+import io.github.UltimateBrowserProject.Activity.TokenActivity;
 import io.github.UltimateBrowserProject.Activity.WhitelistActivity;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Task.*;
@@ -116,14 +117,18 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
                 Intent toWhitelist = new Intent(getActivity(), WhitelistActivity.class);
                 getActivity().startActivity(toWhitelist);
                 break;
-            case R.string.setting_title_export_whilelist:
+            case R.string.setting_title_export_whitelist:
                 new ExportWhitelistTask(getActivity()).execute();
                 break;
-            case R.string.setting_title_import_whilelist:
+            case R.string.setting_title_import_whitelist:
                 Intent importWhitelist = new Intent(Intent.ACTION_GET_CONTENT);
                 importWhitelist.setType(IntentUnit.INTENT_TYPE_TEXT_PLAIN);
                 importWhitelist.addCategory(Intent.CATEGORY_OPENABLE);
                 getActivity().startActivityForResult(importWhitelist, IntentUnit.REQUEST_WHITELIST);
+                break;
+            case R.string.setting_title_token:
+                Intent toToken = new Intent(getActivity(), TokenActivity.class);
+                getActivity().startActivity(toToken);
                 break;
             case R.string.setting_title_export_bookmarks:
                 new ExportBookmarksTask(getActivity()).execute();

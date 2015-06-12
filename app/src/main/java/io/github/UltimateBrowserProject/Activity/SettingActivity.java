@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
-
 import io.github.UltimateBrowserProject.Task.ImportBookmarksTask;
 import io.github.UltimateBrowserProject.Task.ImportWhitelistTask;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
@@ -24,15 +21,14 @@ public class SettingActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
-        }
         super.onCreate(savedInstanceState);
-
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         fragment = new SettingFragment();
         getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
+        }
     }
 
     @Override
