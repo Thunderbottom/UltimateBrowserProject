@@ -18,7 +18,7 @@
         UltimateBrowserProject
     </string>
     <string name="app_version">
-        1.2.4r2
+        1.2.5
     </string>
 
     <!-- AndroidSlidingUpPanel -->
@@ -77,19 +77,6 @@
         http://git.io/vTHZH
     </string>
 
-    <!-- jsoup -->
-    <string name="license_title_jsoup">
-        jsoup
-    </string>
-    <string name="license_content_jsoup">
-        The MIT License (MIT)
-    </string>
-    <string name="license_author_jsoup">
-        Jonathan Hedley
-    </string>
-    <string name="license_url_jsoup">
-        http://git.io/vIz04
-    </string>
 
     <!-- Lightning -->
     <string name="license_title_lightning">
@@ -139,7 +126,6 @@
         <item>@string/license_title_android_swipe_to_dismiss</item>
         <item>@string/license_title_android_ago</item>
         <item>@string/license_title_dynamic_grid</item>
-        <item>@string/license_title_jsoup</item>
         <item>@string/license_title_lightning</item>
         <item>@string/license_title_UltimateBrowserProject</item>
         <item>@string/license_title_typo_css</item>
@@ -149,7 +135,6 @@
         <item>@string/license_content_android_swipe_to_dismiss</item>
         <item>@string/license_content_android_ago</item>
         <item>@string/license_content_dynamic_grid</item>
-        <item>@string/license_content_jsoup</item>
         <item>@string/license_content_lightning</item>
         <item>@string/license_content_UltimateBrowserProject</item>
         <item>@string/license_content_typo_css</item>
@@ -159,7 +144,6 @@
         <item>@string/license_author_android_swipe_to_dismiss</item>
         <item>@string/license_author_android_ago</item>
         <item>@string/license_author_dynamic_grid</item>
-        <item>@string/license_author_jsoup</item>
         <item>@string/license_author_lightning</item>
         <item>@string/license_author_UltimateBrowserProject</item>
         <item>@string/license_author_typo_css</item>
@@ -169,7 +153,6 @@
         <item>@string/license_url_android_swipe_to_dismiss</item>
         <item>@string/license_url_android_ago</item>
         <item>@string/license_url_dynamic_grid</item>
-        <item>@string/license_url_jsoup</item>
         <item>@string/license_url_lightning</item>
         <item>@string/license_url_UltimateBrowserProject</item>
         <item>@string/license_url_typo_css</item>

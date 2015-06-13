@@ -8,6 +8,8 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 import io.github.UltimateBrowserProject.R;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 public class ViewUnit {
     public static void bound(Context context, View view) {
@@ -68,6 +70,14 @@ public class ViewUnit {
         return context.getResources().getDisplayMetrics().density;
     }
 
+    public static Drawable getDrawable(Context context, int id) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return context.getResources().getDrawable(id, null);
+        } else {
+            return context.getResources().getDrawable(id);
+        }
+    }
+
     public static int getStatusBarHeight(Context context) {
         Resources resources = context.getResources();
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
@@ -84,5 +94,10 @@ public class ViewUnit {
 
     public static int getWindowWidth(Context context) {
         return context.getResources().getDisplayMetrics().widthPixels;
+    }
+    public static void setElevation(View view, float elevation) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            view.setElevation(elevation);
+        }
     }
 }
