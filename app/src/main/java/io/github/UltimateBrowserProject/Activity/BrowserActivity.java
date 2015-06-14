@@ -79,8 +79,10 @@ public class BrowserActivity extends Activity implements BrowserController {
     private ImageButton searchDown;
     private ImageButton searchCancel;
 
+
     private Button relayoutOK;
     private FrameLayout contentFrame;
+
 
     private class VideoCompletionListener implements MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener {
         @Override
