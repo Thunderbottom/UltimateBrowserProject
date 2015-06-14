@@ -92,7 +92,7 @@
     </string>
     <string name="dialog_content_update">
         点击链接检查更新 -\n http://bit.ly/UBPUpdate \n
-        目前的版本是1.2.4。
+        目前的版本是1.3.1。
     </string>
     <string name="dialog_content_upload">
         目前，文件上传仅支持在Android5.0及以上。
@@ -451,6 +451,9 @@
     </string>
     <string name="toast_refresh_failed">
         無法刷新此頁面
+    </string>
+    <string name="toast_cannot_forward">
+        不能往前走
     </string>
     <string name="toast_relayout_successful">
         排版成功

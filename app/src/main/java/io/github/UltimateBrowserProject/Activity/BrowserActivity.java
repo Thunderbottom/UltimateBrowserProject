@@ -70,6 +70,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     private AutoCompleteTextView inputBox;
     private ImageButton omniboxBookmark;
     private ImageButton omniboxRefresh;
+    private ImageButton omniboxForward;
     private ImageButton omniboxOverflow;
     private ProgressBar progressBar;
 
@@ -391,6 +392,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         inputBox = (AutoCompleteTextView) findViewById(R.id.main_omnibox_input);
         omniboxBookmark = (ImageButton) findViewById(R.id.main_omnibox_bookmark);
         omniboxRefresh = (ImageButton) findViewById(R.id.main_omnibox_refresh);
+        omniboxForward = (ImageButton) findViewById(R.id.main_omnibox_forward);
         omniboxOverflow = (ImageButton) findViewById(R.id.main_omnibox_overflow);
         progressBar = (ProgressBar) findViewById(R.id.main_progress_bar);
 
@@ -475,6 +477,33 @@ public class BrowserActivity extends Activity implements BrowserController {
             @Override
             public void onClick(View v) {
                 showOverflow();
+            }
+        });
+
+        omniboxForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentAlbumController == null) {
+                    UltimateBrowserProjectToast.show(BrowserActivity.this, R.string.toast_cannot_forward);
+                    return;
+                }
+                if (currentAlbumController instanceof UltimateBrowserProjectWebView) {
+                    UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
+                    if (UltimateBrowserProjectWebView.canGoForward()) {
+                        UltimateBrowserProjectWebView.goForward();
+                    }
+                    else if (currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
+                        final UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
+                        if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
+                            initHomeGrid(layout, true);
+                            return;
+                        }
+                        initBHList(layout, true);
+                    } else {
+                        UltimateBrowserProjectToast.show(BrowserActivity.this, R.string.toast_cannot_forward);
+
+                    }
+                }
             }
         });
     }

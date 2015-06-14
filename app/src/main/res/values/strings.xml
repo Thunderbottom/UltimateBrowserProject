@@ -92,7 +92,7 @@
     </string>
     <string name="dialog_content_update">
         Click the link to check for updates -\n http://bit.ly/UBPUpdate \n
-        Current version is 1.3.0.
+        Current version is 1.3.1.
     </string>
     <string name="dialog_content_upload">
         Currently, File upload is only supported on Android 5.0 and above.
@@ -451,6 +451,9 @@
     </string>
     <string name="toast_refresh_failed">
         Can\'t refresh this page
+    </string>
+    <string name="toast_cannot_forward">
+        Can\'t go forward
     </string>
     <string name="toast_relayout_successful">
         Successfully Relayout
