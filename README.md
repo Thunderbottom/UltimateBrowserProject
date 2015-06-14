@@ -1,4 +1,4 @@
-![Launcher Icon](/app/src/main/res/drawable-xxhdpi/ic_launcher.png)
+![Launcher Icon](/Artworks/UBP Banner.png)
 UltimateBrowserProject
 ===
 Open source, lightweight Android Browser.
