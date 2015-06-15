@@ -51,7 +51,9 @@ import org.apache.http.util.ByteArrayBuffer;
 import org.askerov.dynamicgrid.DynamicGridView;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
@@ -529,20 +531,18 @@ public class BrowserActivity extends Activity implements BrowserController {
                 URL updateURL = new URL("https://raw.githubusercontent.com/balzathor/UltimateBrowserProject/master/Update.txt");
                 URLConnection conn = updateURL.openConnection();
                 InputStream is = conn.getInputStream();
-                BufferedInputStream bis = new BufferedInputStream(is);
-                ByteArrayBuffer baf = new ByteArrayBuffer(50);
-
-                int current = 0;
-                while((current = bis.read()) != -1){
-                    baf.append((byte)current);
+                BufferedReader in = new BufferedReader(new InputStreamReader(updateURL.openStream()));
+                String str;
+                while ((str = in.readLine()) != null) {
+                    // str is one line of text; readLine() strips the newline character(s)
                 }
+                in.close();
 
-                /* Convert the Bytes read to a String. */
-                final String s = new String(baf.toByteArray());
+
 
                 /* Get current Version Number */
                 int curVersion = getPackageManager().getPackageInfo("io.github.UltimateBrowserProject", 0).versionCode;
-                int newVersion = Integer.valueOf(s);
+                int newVersion = Integer.valueOf(str);
 
                 /* Is a higher version than the current already out? */
                 if (newVersion > curVersion) {
