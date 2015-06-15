@@ -534,7 +534,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 while ((str = in.readLine()) != null) {
                 // str is one line of text; readLine() strips the newline character(s)
                 /* Get current Version Number */
-                PackageInfo packageInfo = getPackageManager().getPackageInfo("io.github.UltimateBrowserProject", 0);
+                PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
                 int curVersion = packageInfo.versionCode;
                 int newVersion = Integer.valueOf(str);
 
