@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -148,13 +149,12 @@ public class BrowserActivity extends Activity implements BrowserController {
         anchor = Integer.valueOf(sp.getString(getString(R.string.sp_anchor), "1"));
         if (anchor == 0) {
             setContentView(R.layout.main_top);
-            mHandler = new Handler();
-            checkUpdate.start();
         } else {
             setContentView(R.layout.main_bottom);
-            mHandler = new Handler();
-            checkUpdate.start();
         }
+
+        mHandler = new Handler();
+        checkUpdate.start();
 
         create = true;
         shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
@@ -529,19 +529,16 @@ public class BrowserActivity extends Activity implements BrowserController {
         public void run() {
             try {
                 URL updateURL = new URL("https://raw.githubusercontent.com/balzathor/UltimateBrowserProject/master/Update.txt");
-                URLConnection conn = updateURL.openConnection();
-                InputStream is = conn.getInputStream();
                 BufferedReader in = new BufferedReader(new InputStreamReader(updateURL.openStream()));
                 String str;
                 while ((str = in.readLine()) != null) {
                     // str is one line of text; readLine() strips the newline character(s)
-                }
-                in.close();
 
 
 
                 /* Get current Version Number */
-                int curVersion = getPackageManager().getPackageInfo("io.github.UltimateBrowserProject", 0).versionCode;
+                PackageInfo packageInfo = getPackageManager().getPackageInfo("io.github.UltimateBrowserProject", 0);
+                int curVersion = packageInfo.versionCode;
                 int newVersion = Integer.valueOf(str);
 
                 /* Is a higher version than the current already out? */
@@ -549,9 +546,16 @@ public class BrowserActivity extends Activity implements BrowserController {
                     /* Post a Handler for the UI to pick up and open the Dialog */
                     mHandler.post(showUpdate);
                 }
+                    else{
+                    Toast.makeText(getApplicationContext(), "Application is up to date",
+                            Toast.LENGTH_LONG).show();
+                }
+                }
+                in.close();
             } catch (Exception e) {
             }
         }
+
     };
 
     /* This Runnable creates a Dialog and asks the user to open the Market */
