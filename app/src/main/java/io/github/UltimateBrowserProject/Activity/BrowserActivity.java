@@ -562,7 +562,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             /* User clicked OK so do some stuff */
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com"));
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.3.4/UltimateBrowserProject.v.1.3.4.apk"));
                             startActivity(intent);
                         }
                     })
