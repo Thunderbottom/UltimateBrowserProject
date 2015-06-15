@@ -44,4 +44,8 @@
         <item name="android:drawSelectorOnTop">true</item>
     </style>
 
+    <style name="Theme.Dialog" parent="@android:style/Theme.Dialog"/>
+
+
+
 </resources>

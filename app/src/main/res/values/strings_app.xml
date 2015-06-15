@@ -18,7 +18,7 @@
         UltimateBrowserProject
     </string>
     <string name="app_version">
-        1.3.1
+        1.3.2
     </string>
 
     <!-- AndroidSlidingUpPanel -->
@@ -120,6 +120,20 @@
         http://git.io/vIyHD
     </string>
 
+    <!-- ACRA -->
+    <string name="license_title_acra">
+        ACRA
+    </string>
+    <string name="license_content_acra">
+        Apache License Version 2.0
+    </string>
+    <string name="license_author_acra">
+        Kevin Gaudin
+    </string>
+    <string name="license_url_acra">
+        http://git.io/vLTmX
+    </string>
+
     <!-- All in one -->
     <string-array name="license_titles">
         <item>@string/license_title_android_sliding_up_panel</item>
@@ -129,6 +143,7 @@
         <item>@string/license_title_lightning</item>
         <item>@string/license_title_UltimateBrowserProject</item>
         <item>@string/license_title_typo_css</item>
+        <item>@string/license_title_acra</item>
     </string-array>
     <string-array name="license_contents">
         <item>@string/license_content_android_sliding_up_panel</item>
@@ -138,6 +153,7 @@
         <item>@string/license_content_lightning</item>
         <item>@string/license_content_UltimateBrowserProject</item>
         <item>@string/license_content_typo_css</item>
+        <item>@string/license_content_acra</item>
     </string-array>
     <string-array name="license_authors">
         <item>@string/license_author_android_sliding_up_panel</item>
@@ -147,6 +163,7 @@
         <item>@string/license_author_lightning</item>
         <item>@string/license_author_UltimateBrowserProject</item>
         <item>@string/license_author_typo_css</item>
+        <item>@string/license_author_acra</item>
     </string-array>
     <string-array name="license_urls">
         <item>@string/license_url_android_sliding_up_panel</item>
@@ -156,6 +173,7 @@
         <item>@string/license_url_lightning</item>
         <item>@string/license_url_UltimateBrowserProject</item>
         <item>@string/license_url_typo_css</item>
+        <item>@string/license_url_acra</item>
     </string-array>
 
 </resources>
