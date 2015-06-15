@@ -532,10 +532,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 BufferedReader in = new BufferedReader(new InputStreamReader(updateURL.openStream()));
                 String str;
                 while ((str = in.readLine()) != null) {
-                    // str is one line of text; readLine() strips the newline character(s)
-
-
-
+                // str is one line of text; readLine() strips the newline character(s)
                 /* Get current Version Number */
                 PackageInfo packageInfo = getPackageManager().getPackageInfo("io.github.UltimateBrowserProject", 0);
                 int curVersion = packageInfo.versionCode;
@@ -546,10 +543,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     /* Post a Handler for the UI to pick up and open the Dialog */
                     mHandler.post(showUpdate);
                 }
-                    else{
-                    Toast.makeText(getApplicationContext(), "Application is up to date",
-                            Toast.LENGTH_LONG).show();
-                }
+
                 }
                 in.close();
             } catch (Exception e) {
