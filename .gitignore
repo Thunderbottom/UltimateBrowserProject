@@ -77,3 +77,6 @@ $RECYCLE.BIN/
 
 # Idea Folder
 .idea/
+
+# Release Folder
+Releases/
