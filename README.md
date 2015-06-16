@@ -94,3 +94,5 @@ Some of the TODO items on the list are -
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see [GNU GPLv3](http://opensource.org/licenses/gpl-3.0.html).
 
+
+[Apache License 2.0](http://directory.fsf.org/wiki/License:Apache2.0)
