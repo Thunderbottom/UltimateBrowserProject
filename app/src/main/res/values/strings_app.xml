@@ -106,6 +106,20 @@
         http://git.io/vIG0r
     </string>
 
+    <!-- Ninja -->
+    <string name="license_title_ninja">
+        Ninja
+    </string>
+    <string name="license_content_ninja">
+        Apache License Version 2.0
+    </string>
+    <string name="license_author_ninja">
+        Matthew Lee
+    </string>
+    <string name="license_url_ninja">
+        http://git.io/vUrEh
+    </string>
+    
     <!-- typo.css -->
     <string name="license_title_typo_css">
         typo.css
@@ -142,6 +156,7 @@
         <item>@string/license_title_dynamic_grid</item>
         <item>@string/license_title_lightning</item>
         <item>@string/license_title_UltimateBrowserProject</item>
+        <item>@string/license_title_ninja</item>
         <item>@string/license_title_typo_css</item>
         <item>@string/license_title_acra</item>
     </string-array>
@@ -152,6 +167,7 @@
         <item>@string/license_content_dynamic_grid</item>
         <item>@string/license_content_lightning</item>
         <item>@string/license_content_UltimateBrowserProject</item>
+        <item>@string/license_content_ninja</item>
         <item>@string/license_content_typo_css</item>
         <item>@string/license_content_acra</item>
     </string-array>
@@ -162,6 +178,7 @@
         <item>@string/license_author_dynamic_grid</item>
         <item>@string/license_author_lightning</item>
         <item>@string/license_author_UltimateBrowserProject</item>
+        <item>@string/license_author_ninja</item>
         <item>@string/license_author_typo_css</item>
         <item>@string/license_author_acra</item>
     </string-array>
@@ -172,6 +189,7 @@
         <item>@string/license_url_dynamic_grid</item>
         <item>@string/license_url_lightning</item>
         <item>@string/license_url_UltimateBrowserProject</item>
+        <item>@string/license_url_ninja</item>
         <item>@string/license_url_typo_css</item>
         <item>@string/license_url_acra</item>
     </string-array>
