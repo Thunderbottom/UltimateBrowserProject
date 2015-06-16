@@ -14,6 +14,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
+import android.text.method.KeyListener;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.provider.Browser;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.view.*;
@@ -356,7 +358,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-            int vc = Integer.valueOf(sp.getString(getString(R.string.sp_volume), "0"));
+            int vc = Integer.valueOf(sp.getString(getString(R.string.sp_volume), "1"));
             if (vc != 2) {
                 return true;
             }
@@ -411,6 +413,32 @@ public class BrowserActivity extends Activity implements BrowserController {
         omniboxForward = (ImageButton) findViewById(R.id.main_omnibox_forward);
         omniboxOverflow = (ImageButton) findViewById(R.id.main_omnibox_overflow);
         progressBar = (ProgressBar) findViewById(R.id.main_progress_bar);
+        inputBox.setOnTouchListener(new SwipeToBoundListener(omnibox, new SwipeToBoundListener.BoundCallback() {
+            private KeyListener keyListener = inputBox.getKeyListener();
+
+            @Override
+            public boolean canSwipe() {
+                return !switcherPanel.isKeyBoardShowing();
+            }
+            @Override
+            public void onSwipe() {
+                inputBox.setKeyListener(null);
+                inputBox.setFocusable(false);
+                inputBox.setFocusableInTouchMode(false);
+                inputBox.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+            }
+
+            @Override
+            public void onBound(boolean left) {
+                inputBox.setKeyListener(keyListener);
+                inputBox.setFocusable(true);
+                inputBox.setFocusableInTouchMode(true);
+                inputBox.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+                AlbumController controller = nextAlbumController(left);
+                showAlbum(controller, false, false, true);
+                UltimateBrowserProjectToast.show(BrowserActivity.this, controller.getAlbumTitle());
+            }
+        }));
 
         inputBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -562,7 +590,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             /* User clicked OK so do some stuff */
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.3.4/UltimateBrowserProject.v.1.3.4.apk"));
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.3.5/UltimateBrowserProject.v.1.3.5.apk"));
                             startActivity(intent);
                         }
                     })
@@ -1380,12 +1408,16 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private boolean onKeyCodeVolumeUp() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        int vc = Integer.valueOf(sp.getString(getString(R.string.sp_volume), "0"));
+        int vc = Integer.valueOf(sp.getString(getString(R.string.sp_volume), "1"));
 
         if (vc == 0) { // Switch tabs
+            if (switcherPanel.isKeyBoardShowing()) {
+                return true;
+            }
             AlbumController controller = nextAlbumController(false);
             showAlbum(controller, false, false, true);
             UltimateBrowserProjectToast.show(this, controller.getAlbumTitle());
+
             return true;
         } else if (vc == 1 && currentAlbumController instanceof UltimateBrowserProjectWebView) { // Scroll webpage
             UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
@@ -1404,12 +1436,16 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private boolean onKeyCodeVolumeDown() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        int vc = Integer.valueOf(sp.getString(getString(R.string.sp_volume), "0"));
+        int vc = Integer.valueOf(sp.getString(getString(R.string.sp_volume), "1"));
 
         if (vc == 0) { // Switch tabs
+            if (switcherPanel.isKeyBoardShowing()) {
+                                return true;
+                            }
             AlbumController controller = nextAlbumController(true);
             showAlbum(controller, false, false, true);
             UltimateBrowserProjectToast.show(this, controller.getAlbumTitle());
+
             return true;
         } else if (vc == 1 && currentAlbumController instanceof UltimateBrowserProjectWebView) {
             UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
@@ -1421,6 +1457,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             ObjectAnimator anim = ObjectAnimator.ofInt(UltimateBrowserProjectWebView, "scrollY", scrollY, scrollY + distance);
             anim.setDuration(mediumAnimTime);
             anim.start();
+
             return true;
         }
 

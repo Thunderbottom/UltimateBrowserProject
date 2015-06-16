@@ -23,6 +23,10 @@ UltimateBrowserProject is a browser that aims to do the work unlike any other br
 
 __Remember__ that if the soft keyboard is shown the tab switcher would not display, it's not a bug, but an intended design.
 
+## Swipe to switch tabs:
+
+Now you can swipe the omnibox, aka Address Bar to switch between tabs!
+
 ## Load in background:
 
  1. Set UltimateBrowserProject as your __default browser__.
