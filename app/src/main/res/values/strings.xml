@@ -57,6 +57,9 @@
     <string name="dialog_se_hint">
         https://www.google.com/search?q=
     </string>
+    <string name="dialog_ua_hint">
+        Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+    </string>
     <string name="dialog_sign_in_username">
         Username
     </string>
@@ -92,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Click the link to check for updates -\n http://bit.ly/UBPUpdate \n
-        Current version is 1.3.4.
+        Current version is 1.3.5.
     </string>
     <string name="dialog_content_upload">
         Currently, File upload is only supported on Android 5.0 and above.
@@ -264,6 +267,9 @@
     </string>
     <string name="setting_summary_user_agent_desktop">
         Desktop
+    </string>
+    <string name="setting_summary_user_agent_custom">
+        Custom
     </string>
     <!-- Rendering -->
     <string name="setting_title_rendering">

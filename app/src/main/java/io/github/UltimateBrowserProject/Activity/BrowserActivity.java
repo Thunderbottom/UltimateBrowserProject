@@ -425,7 +425,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 inputBox.setKeyListener(null);
                 inputBox.setFocusable(false);
                 inputBox.setFocusableInTouchMode(false);
-                inputBox.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+                inputBox.clearFocus();
             }
 
             @Override
@@ -434,6 +434,8 @@ public class BrowserActivity extends Activity implements BrowserController {
                 inputBox.setFocusable(true);
                 inputBox.setFocusableInTouchMode(true);
                 inputBox.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+                inputBox.clearFocus();
+
                 AlbumController controller = nextAlbumController(left);
                 showAlbum(controller, false, false, true);
                 UltimateBrowserProjectToast.show(BrowserActivity.this, controller.getAlbumTitle());
