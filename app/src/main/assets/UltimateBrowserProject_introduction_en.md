@@ -13,6 +13,12 @@ UltimateBrowserProject is a browser that aims to do the work unlike any other br
 
  - __Long press__ on a card on the home, and you can edit the title.
 
+## Custom User Agent:
+
+ - Now you can set custom User Agent in Application settings.
+
+ - For a list of user agents, visit [User Agent List](http://www.useragentstring.com/pages/useragentstring.php) and set it in `Setting/User Agent/Custom`.
+
 ## Switch tabs:
 
  - You can set tab switcher position at the __top or bottom of the screen__ at `Setting/Browser/Tab position`.

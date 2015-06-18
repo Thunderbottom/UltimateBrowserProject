@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.provider.Browser;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Html;
@@ -36,6 +35,8 @@ import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.*;
+
+import io.github.UltimateBrowserProject.Application.Changelog;
 import io.github.UltimateBrowserProject.Browser.AlbumController;
 import io.github.UltimateBrowserProject.Browser.BrowserContainer;
 import io.github.UltimateBrowserProject.Browser.BrowserController;
@@ -50,15 +51,11 @@ import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
 import io.github.UltimateBrowserProject.View.*;
 
-import org.apache.http.util.ByteArrayBuffer;
 import org.askerov.dynamicgrid.DynamicGridView;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.*;
 
 public class BrowserActivity extends Activity implements BrowserController {
@@ -155,6 +152,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             setContentView(R.layout.main_bottom);
         }
 
+        new Changelog(this, R.xml.changelog).showWhatsNew();
         mHandler = new Handler();
         checkUpdate.start();
 
@@ -200,6 +198,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public void onResume() {
+        IntentUnit.setContext(this);
         super.onResume();
         if (create) {
             return;
@@ -243,10 +242,11 @@ public class BrowserActivity extends Activity implements BrowserController {
                 pinAlbums(BrowserUnit.BASE_URL + lang);
                 sp.edit().putBoolean(getString(R.string.sp_first), false).commit();
             } else {
-                pinAlbums(null);
+                pinAlbums(null); ///
             }
         }
     }
+
 
     @Override
     public void onPause() {
@@ -269,6 +269,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         }
 
+        IntentUnit.setContext(this);
         super.onPause();
     }
 
@@ -285,6 +286,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
 
         BrowserContainer.clear();
+        IntentUnit.setContext(null);
         super.onDestroy();
         System.exit(0); // For remove all WebView thread
     }
@@ -445,7 +447,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         inputBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (currentAlbumController == null || !(actionId == EditorInfo.IME_ACTION_DONE)) {
+                if (currentAlbumController == null) { // || !(actionId == EditorInfo.IME_ACTION_DONE)) {
                     return false;
                 }
 
@@ -588,11 +590,11 @@ public class BrowserActivity extends Activity implements BrowserController {
             new AlertDialog.Builder(BrowserActivity.this)
                     .setIcon(R.drawable.ic_launcher)
                     .setTitle("Update Available")
-                    .setMessage("An update for is available!\n\nOpen Update page and see the details?")
+                    .setMessage("An update for v.1.4.0 is available!\n\nOpen Update page and download?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             /* User clicked OK so do some stuff */
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.3.5/UltimateBrowserProject.v.1.3.5.apk"));
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.0/UltimateBrowserProject.v.1.4.0.apk"));
                             startActivity(intent);
                         }
                     })
@@ -905,6 +907,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         albumView.startAnimation(animation);
     }
 
+    // TODO: decrease expense when onResume()
     private synchronized void pinAlbums(String url) {
         hideSoftInput(inputBox);
         hideSearchPanel();

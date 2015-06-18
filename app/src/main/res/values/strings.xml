@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Click the link to check for updates -\n http://bit.ly/UBPUpdate \n
-        Current version is 1.3.5.
+        Current version is 1.3.6.
     </string>
     <string name="dialog_content_upload">
         Currently, File upload is only supported on Android 5.0 and above.
@@ -527,5 +527,6 @@
     <string name="crash_dialog_ok_toast">
         Thank for reporting!
     </string>
+
 
 </resources>

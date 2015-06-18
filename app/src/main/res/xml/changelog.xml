@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelog>
+    <release version="1.3.6" versioncode="30" releasedate="June 18th 2015" summary="Major Release">
+        <change type="bug">Added permanent fix for download crash.</change>
+        <change type="bug">Fixed a bug where Scroll bar would display while loading.</change>
+        <change type="improvement">Added support for IME.</change>
+    </release>
+    <release version="1.3.5" versioncode="29" releasedate="June 17th 2015" summary="Major Release">
+        <change>Added Option for Custom User Agent.</change>
+        <change>First OTA released.</change>
+    </release>
+    <release version="1.3.4" versioncode="28" releasedate="June 17th 2015">
+        <change>Added Swipe to Switch Tabs! Swipe Address Bar to switch tabs.</change>
+        <change type="bug">Added temporary fix for download crash.</change>
+    </release>
+</changelog>
