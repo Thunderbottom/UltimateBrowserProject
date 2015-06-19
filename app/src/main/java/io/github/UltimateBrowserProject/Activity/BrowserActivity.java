@@ -59,7 +59,7 @@ import java.net.URL;
 import java.util.*;
 
 public class BrowserActivity extends Activity implements BrowserController {
-    private static final int DOUBLE_TAPS_QUIT_DEFAULT = 512;
+    private static final int DOUBLE_TAPS_QUIT_DEFAULT = 1800;
 
     private SwitcherPanel switcherPanel;
     private int anchor;
