@@ -4,21 +4,29 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.*;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceScreen;
 import android.webkit.CookieManager;
-import android.widget.*;
-import io.github.UltimateBrowserProject.Activity.ClearActivity;
-import io.github.UltimateBrowserProject.Activity.TokenActivity;
-import io.github.UltimateBrowserProject.Activity.WhitelistActivity;
-import io.github.UltimateBrowserProject.R;
-import io.github.UltimateBrowserProject.Task.*;
-import io.github.UltimateBrowserProject.Unit.IntentUnit;
-import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
+import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.github.UltimateBrowserProject.Activity.ClearActivity;
+import io.github.UltimateBrowserProject.Activity.TokenActivity;
+import io.github.UltimateBrowserProject.Activity.WhitelistActivity;
+import io.github.UltimateBrowserProject.R;
+import io.github.UltimateBrowserProject.Task.ExportBookmarksTask;
+import io.github.UltimateBrowserProject.Task.ExportWhitelistTask;
+import io.github.UltimateBrowserProject.Unit.IntentUnit;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 
 public class SettingFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String LICENSE_TITLE = "LICENSE_TITLE";
@@ -151,6 +159,9 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
                 break;
             case R.string.setting_title_license:
                 showLicenseDialog();
+                break;
+            case R.string.setting_title_version:
+                UltimateBrowserProjectToast.show(getActivity(), R.string.toast_emoji);
                 break;
             case R.string.setting_title_update:
                 showUpdateDialog();

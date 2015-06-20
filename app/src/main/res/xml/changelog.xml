@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.4.0" versioncode="31" releasedate="June 20th 2015" summary="Major Release">
+        <change type="bug">Added Omnibox control to enable/disable swipe to switch tabs.</change>
+        <change type="bug">Fixed Google Play linking bug.</change>
+        <change type="bug">Fixed Minor Bugs.</change>
+        <change type="improvement">Increased exit time to 1800 from 512.</change>
+    </release>
     <release version="1.3.6" versioncode="30" releasedate="June 18th 2015" summary="Major Release">
         <change type="bug">Added permanent fix for download crash.</change>
         <change type="bug">Fixed a bug where Scroll bar would display while loading.</change>

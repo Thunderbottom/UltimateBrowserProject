@@ -7,7 +7,7 @@
 
     <!-- TODO: change when new version code -->
     <string name="sp_first">
-        SP_FIRST_30
+        SP_FIRST_31
     </string>
 
     <!-- General -->
@@ -34,6 +34,9 @@
     </string>
     <string name="sp_notification_priority">
         SP_NOTIFICATION_PRIORITY_9
+    </string>
+    <string name="sp_omnibox_control">
+        SP_OMNIBOX_CONTROL_9
     </string>
     <string name="sp_passwords">
         SP_PASSWORDS_9

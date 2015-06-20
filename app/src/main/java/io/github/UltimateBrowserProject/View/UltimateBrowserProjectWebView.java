@@ -12,18 +12,28 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.view.*;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import io.github.UltimateBrowserProject.Browser.*;
+
+import java.net.URISyntaxException;
+
+import io.github.UltimateBrowserProject.Browser.AdBlock;
+import io.github.UltimateBrowserProject.Browser.AlbumController;
+import io.github.UltimateBrowserProject.Browser.BrowserController;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectClickHandler;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectDownloadListener;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectGestureListener;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectWebChromeClient;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectWebViewClient;
 import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.Database.RecordAction;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
-
-import java.net.URISyntaxException;
 
 public class UltimateBrowserProjectWebView extends WebView implements AlbumController {
     private static final float[] NEGATIVE_COLOR = {
@@ -71,8 +81,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     }
 
     public UltimateBrowserProjectWebView(Context context) {
-        // Cannot create a dialog, the WebView context is not an Activity.
-        super(context);
+        super(context); // Cannot create a dialog, the WebView context is not an Activity.
 
         this.context = context;
         this.dimen144dp = getResources().getDimensionPixelSize(R.dimen.layout_width_144dp);
@@ -84,7 +93,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         this.album = new Album(this.context, this, this.browserController);
         this.webViewClient = new UltimateBrowserProjectWebViewClient(this);
         this.webChromeClient = new UltimateBrowserProjectWebChromeClient(this);
-        this.downloadListener = new UltimateBrowserProjectDownloadListener(this.context); //TODO
+        this.downloadListener = new UltimateBrowserProjectDownloadListener(this.context);
         this.clickHandler = new UltimateBrowserProjectClickHandler(this);
         this.gestureDetector = new GestureDetector(context, new UltimateBrowserProjectGestureListener(this));
 

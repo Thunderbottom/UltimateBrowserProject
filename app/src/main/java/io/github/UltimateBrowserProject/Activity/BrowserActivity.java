@@ -14,7 +14,6 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
-import android.text.method.KeyListener;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,10 +21,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.Html;
+import android.text.InputType;
 import android.text.TextWatcher;
-import android.view.*;
+import android.text.method.KeyListener;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -34,29 +38,58 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.*;
-
-import io.github.UltimateBrowserProject.Application.Changelog;
-import io.github.UltimateBrowserProject.Browser.AlbumController;
-import io.github.UltimateBrowserProject.Browser.BrowserContainer;
-import io.github.UltimateBrowserProject.Browser.BrowserController;
-import io.github.UltimateBrowserProject.Service.ClearService;
-import io.github.UltimateBrowserProject.Task.ScreenshotTask;
-import io.github.UltimateBrowserProject.Database.Record;
-import io.github.UltimateBrowserProject.Database.RecordAction;
-import io.github.UltimateBrowserProject.R;
-import io.github.UltimateBrowserProject.Service.HolderService;
-import io.github.UltimateBrowserProject.Unit.BrowserUnit;
-import io.github.UltimateBrowserProject.Unit.IntentUnit;
-import io.github.UltimateBrowserProject.Unit.ViewUnit;
-import io.github.UltimateBrowserProject.View.*;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.VideoView;
 
 import org.askerov.dynamicgrid.DynamicGridView;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import io.github.UltimateBrowserProject.Application.Changelog;
+import io.github.UltimateBrowserProject.Browser.AdBlock;
+import io.github.UltimateBrowserProject.Browser.AlbumController;
+import io.github.UltimateBrowserProject.Browser.BrowserContainer;
+import io.github.UltimateBrowserProject.Browser.BrowserController;
+import io.github.UltimateBrowserProject.Database.Record;
+import io.github.UltimateBrowserProject.Database.RecordAction;
+import io.github.UltimateBrowserProject.R;
+import io.github.UltimateBrowserProject.Service.ClearService;
+import io.github.UltimateBrowserProject.Service.HolderService;
+import io.github.UltimateBrowserProject.Task.ScreenshotTask;
+import io.github.UltimateBrowserProject.Unit.BrowserUnit;
+import io.github.UltimateBrowserProject.Unit.IntentUnit;
+import io.github.UltimateBrowserProject.Unit.ViewUnit;
+import io.github.UltimateBrowserProject.View.CompleteAdapter;
+import io.github.UltimateBrowserProject.View.DialogAdapter;
+import io.github.UltimateBrowserProject.View.FullscreenHolder;
+import io.github.UltimateBrowserProject.View.GridAdapter;
+import io.github.UltimateBrowserProject.View.GridItem;
+import io.github.UltimateBrowserProject.View.RecordAdapter;
+import io.github.UltimateBrowserProject.View.SwipeToBoundListener;
+import io.github.UltimateBrowserProject.View.SwitcherPanel;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectRelativeLayout;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class BrowserActivity extends Activity implements BrowserController {
     private static final int DOUBLE_TAPS_QUIT_DEFAULT = 1800;
@@ -183,10 +216,10 @@ public class BrowserActivity extends Activity implements BrowserController {
         initSwitcherView();
         initOmnibox();
         initSearchPanel();
-
         relayoutOK = (Button) findViewById(R.id.main_relayout_ok);
         contentFrame = (FrameLayout) findViewById(R.id.main_content);
 
+        new AdBlock(this); // For AdBlock cold boot
         dispatchIntent(getIntent());
     }
 
@@ -242,7 +275,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 pinAlbums(BrowserUnit.BASE_URL + lang);
                 sp.edit().putBoolean(getString(R.string.sp_first), false).commit();
             } else {
-                pinAlbums(null); ///
+                pinAlbums(null);
             }
         }
     }
@@ -290,6 +323,8 @@ public class BrowserActivity extends Activity implements BrowserController {
         super.onDestroy();
         System.exit(0); // For remove all WebView thread
     }
+
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -420,7 +455,9 @@ public class BrowserActivity extends Activity implements BrowserController {
 
             @Override
             public boolean canSwipe() {
-                return !switcherPanel.isKeyBoardShowing();
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(BrowserActivity.this);
+                boolean ob = sp.getBoolean(getString(R.string.sp_omnibox_control), true);
+                return !switcherPanel.isKeyBoardShowing() && ob;
             }
             @Override
             public void onSwipe() {
@@ -590,11 +627,11 @@ public class BrowserActivity extends Activity implements BrowserController {
             new AlertDialog.Builder(BrowserActivity.this)
                     .setIcon(R.drawable.ic_launcher)
                     .setTitle("Update Available")
-                    .setMessage("An update for v.1.4.0 is available!\n\nOpen Update page and download?")
+                    .setMessage("An update for v.1.4.1 is available!\n\nOpen Update page and download?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             /* User clicked OK so do some stuff */
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.0/UltimateBrowserProject.v.1.4.0.apk"));
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.1/UltimateBrowserProject.v.1.4.1.apk"));
                             startActivity(intent);
                         }
                     })
@@ -907,12 +944,12 @@ public class BrowserActivity extends Activity implements BrowserController {
         albumView.startAnimation(animation);
     }
 
-    // TODO: decrease expense when onResume()
+
     private synchronized void pinAlbums(String url) {
         hideSoftInput(inputBox);
         hideSearchPanel();
         switcherContainer.removeAllViews();
-        contentFrame.removeAllViews();
+        //contentFrame.removeAllViews();
 
         for (AlbumController controller : BrowserContainer.list()) {
             if (controller instanceof UltimateBrowserProjectWebView) {
@@ -928,12 +965,14 @@ public class BrowserActivity extends Activity implements BrowserController {
         if (BrowserContainer.size() < 1 && url == null) {
             addAlbum(BrowserUnit.FLAG_HOME);
         } else if (BrowserContainer.size() >= 1 && url == null) {
-            int index = BrowserContainer.size() - 1;
             if (currentAlbumController != null) {
-                index = BrowserContainer.indexOf(currentAlbumController); ///
-                currentAlbumController.deactivate();
+                currentAlbumController.activate();
+                return;
             }
+
+            int index = BrowserContainer.size() - 1;
             currentAlbumController = BrowserContainer.get(index);
+            contentFrame.removeAllViews(); //
             contentFrame.addView((View) currentAlbumController);
             currentAlbumController.activate();
 
@@ -958,6 +997,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             final View albumView = webView.getAlbumView();
             albumView.setVisibility(View.VISIBLE);
             switcherContainer.addView(albumView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            contentFrame.removeAllViews(); //
             contentFrame.addView(webView);
 
             if (currentAlbumController != null) {

@@ -1,25 +1,45 @@
 package io.github.UltimateBrowserProject.Unit;
 
 import android.app.DownloadManager;
-import android.content.*;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.webkit.*;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+import android.webkit.URLUtil;
+import android.webkit.ValueCallback;
+import android.webkit.WebIconDatabase;
+import android.webkit.WebViewDatabase;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+import java.util.regex.Pattern;
+
 import io.github.UltimateBrowserProject.Browser.AdBlock;
 import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.Database.RecordAction;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
-
-
-import java.io.*;
-import java.net.URLEncoder;
-import java.util.*;
-import java.util.regex.Pattern;
 
 public class BrowserUnit {
     public static final int PROGRESS_MAX = 100;
@@ -61,6 +81,9 @@ public class BrowserUnit {
     public static final String URL_SCHEME_HTTP = "http://";
     public static final String URL_SCHEME_HTTPS = "https://";
     public static final String URL_SCHEME_INTENT = "intent://";
+
+    public static final String URL_PREFIX_GOOGLE_PLAY = "www.google.com/url?q=";
+    public static final String URL_SUFFIX_GOOGLE_PLAY = "&sa";
     public static final String URL_PREFIX_GOOGLE_PLUS = "plus.url.google.com/url?q=";
     public static final String URL_SUFFIX_GOOGLE_PLUS = "&rct";
 
@@ -93,9 +116,14 @@ public class BrowserUnit {
 
     public static String queryWrapper(Context context, String query) {
         // Use prefix and suffix to process some special links
-        if (query.contains(URL_PREFIX_GOOGLE_PLUS)) {
-            int start = query.indexOf(URL_PREFIX_GOOGLE_PLUS) + URL_PREFIX_GOOGLE_PLUS.length();
-            int end = query.indexOf(URL_SUFFIX_GOOGLE_PLUS);
+        String temp = query.toLowerCase(Locale.getDefault());
+        if (temp.contains(URL_PREFIX_GOOGLE_PLAY) && temp.contains(URL_SUFFIX_GOOGLE_PLAY)) {
+            int start = temp.indexOf(URL_PREFIX_GOOGLE_PLAY) + URL_PREFIX_GOOGLE_PLAY.length();
+            int end = temp.indexOf(URL_SUFFIX_GOOGLE_PLAY);
+            query = query.substring(start, end);
+        } else if (temp.contains(URL_PREFIX_GOOGLE_PLUS) && temp.contains(URL_SUFFIX_GOOGLE_PLUS)) {
+            int start = temp.indexOf(URL_PREFIX_GOOGLE_PLUS) + URL_PREFIX_GOOGLE_PLUS.length();
+            int end = temp.indexOf(URL_SUFFIX_GOOGLE_PLUS);
             query = query.substring(start, end);
         }
 
