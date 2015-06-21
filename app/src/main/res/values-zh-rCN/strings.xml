@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         点击链接检查更新 -\n http://bit.ly/UBPUpdate \n
-        目前的版本是1.4.0。
+        目前的版本是1.4.1。
     </string>
     <string name="dialog_content_upload">
         目前，文件上传仅支持在Android5.0及以上。
@@ -264,6 +264,13 @@
     </string>
     <string name="setting_summary_scroll_bar">
         允许在网页中显示滚动条
+    </string>
+    <!-- Text reflow -->
+    <string name="setting_title_text_reflow">
+        文本重排
+    </string>
+    <string name="setting_summary_text_reflow">
+        允许浏览器对网页文本进行调整
     </string>
     <!-- User Agent -->
     <string name="setting_title_user_agent">

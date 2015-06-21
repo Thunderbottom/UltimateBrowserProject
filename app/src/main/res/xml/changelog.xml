@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.4.1" versioncode="32" releasedate="June 21th 2015">
+        <change type="improvement">Added Text Reflow settings.</change>
+        <change type="improvement">Added Auto Landscape when video plays.</change>
+        <change type="bug">Fixed Minor Bugs.</change>
+    </release>
     <release version="1.4.0" versioncode="31" releasedate="June 20th 2015" summary="Major Release">
-        <change type="bug">Added Omnibox control to enable/disable swipe to switch tabs.</change>
+        <change type="improvement">Added Omnibox control to enable/disable swipe to switch tabs.</change>
         <change type="bug">Fixed Google Play linking bug.</change>
         <change type="bug">Fixed Minor Bugs.</change>
         <change type="improvement">Increased exit time to 1800 from 512.</change>

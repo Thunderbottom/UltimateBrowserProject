@@ -165,7 +165,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         WebSettings webSettings = getSettings();
 
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setTextZoom(100);
         webSettings.setUseWideViewPort(true);
@@ -177,6 +176,17 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         webSettings.setSupportMultipleWindows(sp.getBoolean(context.getString(R.string.sp_multiple_windows), false));
         webSettings.setSaveFormData(sp.getBoolean(context.getString(R.string.sp_passwords), true));
 
+        boolean textReflow = sp.getBoolean(context.getString(R.string.sp_text_reflow), true);
+        if (textReflow) {
+            webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                try {
+                    webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+                } catch (Exception e) {}
+            }
+        } else {
+            webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
+        }
 
         int userAgent = Integer.valueOf(sp.getString(context.getString(R.string.sp_user_agent), "0"));
         if (userAgent == 1) {

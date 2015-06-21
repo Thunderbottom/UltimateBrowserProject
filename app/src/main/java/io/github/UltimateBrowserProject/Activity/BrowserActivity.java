@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -313,15 +314,19 @@ public class BrowserActivity extends Activity implements BrowserController {
         stopService(toHolderService);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean exit = true;
         if (sp.getBoolean(getString(R.string.sp_clear_quit), false)) {
             Intent toClearService = new Intent(this, ClearService.class);
             startService(toClearService);
+            exit = false;
         }
 
         BrowserContainer.clear();
         IntentUnit.setContext(null);
         super.onDestroy();
-        System.exit(0); // For remove all WebView thread
+        if (exit) {
+            System.exit(0); // For remove all WebView thread
+        }
     }
 
 
@@ -468,16 +473,18 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
 
             @Override
-            public void onBound(boolean left) {
+            public void onBound(boolean canSwitch, boolean left) {
                 inputBox.setKeyListener(keyListener);
                 inputBox.setFocusable(true);
                 inputBox.setFocusableInTouchMode(true);
                 inputBox.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
                 inputBox.clearFocus();
 
-                AlbumController controller = nextAlbumController(left);
-                showAlbum(controller, false, false, true);
-                UltimateBrowserProjectToast.show(BrowserActivity.this, controller.getAlbumTitle());
+                if (canSwitch) {
+                    AlbumController controller = nextAlbumController(left);
+                    showAlbum(controller, false, false, true);
+                    UltimateBrowserProjectToast.show(BrowserActivity.this, controller.getAlbumTitle());
+                }
             }
         }));
 
@@ -627,11 +634,11 @@ public class BrowserActivity extends Activity implements BrowserController {
             new AlertDialog.Builder(BrowserActivity.this)
                     .setIcon(R.drawable.ic_launcher)
                     .setTitle("Update Available")
-                    .setMessage("An update for v.1.4.1 is available!\n\nOpen Update page and download?")
+                    .setMessage("An update for v.1.4.2 is available!\n\nOpen Update page and download?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             /* User clicked OK so do some stuff */
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.1/UltimateBrowserProject.v.1.4.1.apk"));
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.2/UltimateBrowserProject.v.1.4.2.apk"));
                             startActivity(intent);
                         }
                     })
@@ -949,7 +956,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         hideSoftInput(inputBox);
         hideSearchPanel();
         switcherContainer.removeAllViews();
-        //contentFrame.removeAllViews();
 
         for (AlbumController controller : BrowserContainer.list()) {
             if (controller instanceof UltimateBrowserProjectWebView) {
@@ -972,7 +978,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
             int index = BrowserContainer.size() - 1;
             currentAlbumController = BrowserContainer.get(index);
-            contentFrame.removeAllViews(); //
+            contentFrame.removeAllViews();
             contentFrame.addView((View) currentAlbumController);
             currentAlbumController.activate();
 
@@ -997,7 +1003,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             final View albumView = webView.getAlbumView();
             albumView.setVisibility(View.VISIBLE);
             switcherContainer.addView(albumView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            contentFrame.removeAllViews(); //
+            contentFrame.removeAllViews();
             contentFrame.addView(webView);
 
             if (currentAlbumController != null) {
@@ -1360,6 +1366,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         }
         customViewCallback = callback;
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // Auto landscape when video shows
 
         return true;
     }

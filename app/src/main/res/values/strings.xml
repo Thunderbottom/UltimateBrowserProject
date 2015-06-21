@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Click the link to check for updates -\n http://bit.ly/UBPUpdate \n
-        Current version is 1.4.0.
+        Current version is 1.4.1.
     </string>
     <string name="dialog_content_upload">
         Currently, File upload is only supported on Android 5.0 and above.
@@ -264,6 +264,13 @@
     </string>
     <string name="setting_summary_scroll_bar">
         Show scroll bar on Webpages
+    </string>
+    <!-- Text reflow -->
+    <string name="setting_title_text_reflow">
+        Text Reflow
+    </string>
+    <string name="setting_summary_text_reflow">
+        Enable text reflow
     </string>
     <!-- User Agent -->
     <string name="setting_title_user_agent">
