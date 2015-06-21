@@ -2,7 +2,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="io.github.UltimateBrowserProject"
-          android:versionCode="32"
+          android:versionCode="33"
           android:versionName="@string/app_version">
 
     <!-- SDK -->
@@ -105,6 +105,9 @@
                  android:icon="@drawable/ic_launcher">
         </service>
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="152cedb2e680f4228acd505b46ffdd9cc4d35a12" />
     </application>
 
 </manifest>

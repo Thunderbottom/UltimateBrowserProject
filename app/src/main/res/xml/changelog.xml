@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.4.2" versioncode="33" releasedate="June 21th 2015" summary="Now with Crashlytics!">
+        <change type="improvement">Removed ACRA, very sloppy.</change>
+        <change type="improvement">Added Fabric.io Integration.</change>
+        <change type="bug">Updated strings. "Version" in settings now has an Easter Egg.</change>
+    </release>
     <release version="1.4.1" versioncode="32" releasedate="June 21th 2015">
         <change type="improvement">Added Text Reflow settings.</change>
         <change type="improvement">Added Auto Landscape when video plays.</change>

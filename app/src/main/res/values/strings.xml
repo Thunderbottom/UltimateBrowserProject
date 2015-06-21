@@ -76,7 +76,7 @@
         Custom
     </string>
     <string name="dialog_title_download">
-        Download
+        Do you want to download this file?
     </string>
     <string name="dialog_title_resubmission">
         Resubmit
@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Click the link to check for updates -\n http://bit.ly/UBPUpdate \n
-        Current version is 1.4.1.
+        Current version is 1.4.2.
     </string>
     <string name="dialog_content_upload">
         Currently, File upload is only supported on Android 5.0 and above.
@@ -527,23 +527,4 @@
     <string name="whitelist_add">
         Add
     </string>
-
-    <!-- Crash Report -->
-    <string name="crash_toast_text">
-        Ooooops! I crashed, Please send a report to my developer to help fix the issue!
-    </string>
-    <string name="crash_dialog_title">
-        UltimateBrowserProject has crashed
-    </string>
-    <string name="crash_dialog_text">
-        An unexpected error has occurred forcing the application to stop. Please help us fix this by sending us the error data, all you have to do is click OK.
-    </string>
-    <string name="crash_dialog_comment_prompt">
-        You might add your comments about the problem below:
-    </string>
-    <string name="crash_dialog_ok_toast">
-        Thank for reporting!
-    </string>
-
-
 </resources>

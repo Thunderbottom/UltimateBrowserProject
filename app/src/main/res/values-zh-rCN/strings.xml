@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         点击链接检查更新 -\n http://bit.ly/UBPUpdate \n
-        目前的版本是1.4.1。
+        目前的版本是1.4.2。
     </string>
     <string name="dialog_content_upload">
         目前，文件上传仅支持在Android5.0及以上。
@@ -526,23 +526,6 @@
     </string>
     <string name="whitelist_add">
         添加
-    </string>
-
-    <!-- Crash Report -->
-    <string name="crash_toast_text">
-        Ooooops！我崩溃了，但报告已经发送到我的开发人员，以帮助解决的问题！
-    </string>
-    <string name="crash_dialog_title">
-        UltimateBrowserProject已崩溃
-    </string>
-    <string name="crash_dialog_text">
-        发生意外的错误迫使应用程序停止。请帮助我们向我们发送错误数据修正这个问题，你所要做的就是点击确定。
-    </string>
-    <string name="crash_dialog_comment_prompt">
-        您可以添加您对以下问题的意见：
-    </string>
-    <string name="crash_dialog_ok_toast">
-        谢谢报告！
     </string>
 
 </resources>

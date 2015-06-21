@@ -634,11 +634,11 @@ public class BrowserActivity extends Activity implements BrowserController {
             new AlertDialog.Builder(BrowserActivity.this)
                     .setIcon(R.drawable.ic_launcher)
                     .setTitle("Update Available")
-                    .setMessage("An update for v.1.4.2 is available!\n\nOpen Update page and download?")
+                    .setMessage("An update for v.1.4.3 is available!\n\nOpen Update page and download?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             /* User clicked OK so do some stuff */
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.2/UltimateBrowserProject.v.1.4.2.apk"));
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.3/UltimateBrowserProject.v.1.4.3.apk"));
                             startActivity(intent);
                         }
                     })
