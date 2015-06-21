@@ -156,7 +156,7 @@
     <!-- Rendering -->
     <string name="setting_title_rendering">Rendu</string>
     <string name="setting_summary_rendering_default">
-        Default
+        Défaut
     </string>
     <string name="setting_summary_rendering_grayscale">Niveaux de gris</string>
     <string name="setting_summary_rendering_inverted">Inversé</string>
@@ -178,7 +178,7 @@
     </string>
     <string name="setting_summary_readability">Activer le Mode Lecture</string>
     <string name="setting_summary_token">
-        Set Readability Token
+        Fixé Readability Token
     </string>
     <!-- Data setting -->
     <string name="setting_title_data">Données</string>
@@ -239,7 +239,7 @@
     <string name="toast_refresh_failed">Impossible de rafraîchir la page</string>
     <string name="toast_cannot_forward">Impossible d\'aller plus loin</string>
     <string name="toast_relayout_successful">
-        Successfully Relayout
+        Restructurer succès
     </string>
     <string name="toast_screenshot_successful">Capture d\'écran sauvegardé sur :&#160;</string>
     <string name="toast_screenshot_failed">Impossible de faire une capture d\'écran</string>
