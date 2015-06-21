@@ -135,17 +135,17 @@
     </string>
 
     <!-- ACRA -->
-    <string name="license_title_acra">
-        ACRA
+    <string name="license_title_fabric">
+        Fabric.io
     </string>
-    <string name="license_content_acra">
-        Apache License Version 2.0
+    <string name="license_content_fabric">
+        Fabric Terms of Service, Twitter inc.
     </string>
-    <string name="license_author_acra">
-        Kevin Gaudin
+    <string name="license_author_fabric">
+        Twitter inc.
     </string>
-    <string name="license_url_acra">
-        http://git.io/vLTmX
+    <string name="license_url_fabric">
+        http://git.io/503
     </string>
 
     <!-- All in one -->
@@ -158,7 +158,7 @@
         <item>@string/license_title_UltimateBrowserProject</item>
         <item>@string/license_title_ninja</item>
         <item>@string/license_title_typo_css</item>
-        <item>@string/license_title_acra</item>
+        <item>@string/license_title_fabric</item>
     </string-array>
     <string-array name="license_contents">
         <item>@string/license_content_android_sliding_up_panel</item>
@@ -169,7 +169,7 @@
         <item>@string/license_content_UltimateBrowserProject</item>
         <item>@string/license_content_ninja</item>
         <item>@string/license_content_typo_css</item>
-        <item>@string/license_content_acra</item>
+        <item>@string/license_content_fabric</item>
     </string-array>
     <string-array name="license_authors">
         <item>@string/license_author_android_sliding_up_panel</item>
@@ -180,7 +180,7 @@
         <item>@string/license_author_UltimateBrowserProject</item>
         <item>@string/license_author_ninja</item>
         <item>@string/license_author_typo_css</item>
-        <item>@string/license_author_acra</item>
+        <item>@string/license_author_fabric</item>
     </string-array>
     <string-array name="license_urls">
         <item>@string/license_url_android_sliding_up_panel</item>
@@ -191,7 +191,7 @@
         <item>@string/license_url_UltimateBrowserProject</item>
         <item>@string/license_url_ninja</item>
         <item>@string/license_url_typo_css</item>
-        <item>@string/license_url_acra</item>
+        <item>@string/license_url_fabric</item>
     </string-array>
 
 </resources>
