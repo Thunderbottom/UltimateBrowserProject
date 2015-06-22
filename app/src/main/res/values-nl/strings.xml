@@ -41,7 +41,7 @@
         Verwijder Cookies
     </string>
     <string name="clear_title_form_data">
-        Alle gegevens verwijderen
+        Formulier gegevens verwijderen
     </string>
     <string name="clear_title_history">
         Verwijder geschiedenis
@@ -94,10 +94,10 @@
         Het certificaat van deze site is niet vertrouwd. Toch doorgaan?
     </string>
     <string name="dialog_content_update">
-        Klik de link om voor updates te checken -\n http://bit.ly/UBPUpdate \n Huidige versie is 1.4.2.
+        Klik de link om voor updates te checken -\n http://bit.ly/UBPUpdate \n Huidige versie is 1.4.3.
     </string>
     <string name="dialog_content_upload">
-        Momenteel kunt u alleen bestanden uploaden op Android 5.0 of hoger.
+        Momenteel kunt u alleen bestanden uploaden met Android 5.0 of hoger.
     </string>
 
     <!-- List -->
@@ -110,7 +110,7 @@
         Openen in nieuw tabblad
     </string>
     <string name="main_menu_copy_link">
-        Link kopi&euml;ren
+        Koppeling kopiëren
     </string>
     <string name="main_menu_save">
         Opslaan
@@ -211,13 +211,13 @@
     </string>
     <!-- Volume key scroll -->
     <string name="setting_title_volume_control">
-        Volume Control
+        Volume knoppen
     </string>
     <string name="setting_summary_vc_switch_tabs">
-        Verander Tabblad
+        Verander tabblad
     </string>
     <string name="setting_summary_vc_scroll_webpage">
-        Scroll Webpagina
+        Scroll de webpagina
     </string>
     <string name="setting_summary_vc_system_default">
         Systeemstandaard
@@ -327,13 +327,13 @@
         Leesbaarheidmodus
     </string>
     <string name="setting_title_token">
-        Knop
+        Sleutel
     </string>
     <string name="setting_summary_readability">
         Leesbaarheidmodus aanzetten
     </string>
     <string name="setting_summary_token">
-        Stel Leesbaarheidmodus ticket in
+        Stel Leesbaarheidmodus sleutel in
     </string>
     <!-- Data setting -->
     <string name="setting_title_data">
@@ -358,7 +358,7 @@
     </string>
     <!-- Clear -->
     <string name="setting_title_clear_control">
-        Opslag instellingen
+        Data instellingen
     </string>
     <!-- Others setting -->
     <string name="setting_title_others">
@@ -391,7 +391,7 @@
         Kan deze pagina niet toevoegen aan startpagina
     </string>
     <string name="toast_add_token_successful">
-        Succesvol toegevoegde Leesbaarheidmodus ticket
+        Succesvol toegevoegde Leesbaarheidmodus sleutel
     </string>
     <string name="toast_add_whitelist_successful">
         Domein succesvol toegevoegd aan Whitelist
@@ -409,7 +409,7 @@
         Verwijderen mislukt
     </string>
     <string name="toast_copy_successful">
-        Succesvol gekopie&euml;rd
+        Succesvol gekopieërd
     </string>
     <string name="toast_delete_bookmark_successful">
         Bladwijzer succesvol verwijderd
@@ -421,19 +421,19 @@
         Domein bestaat al in de Whitelist
     </string>
     <string name="toast_double_taps_quit">
-        Klik opnieuw om te verlaten
+        Klik opnieuw om de applicatie te verlaten
     </string>
     <string name="toast_emoji">
         つ◕ل͜◕)つ
     </string>
     <string name="toast_export_bookmarks_successful">
-        Ge&euml;xporteerde bladwijzers staan bij:&#160;
+        Bladwijzers geëxporteerd:&#160;
     </string>
     <string name="toast_export_bookmarks_failed">
         Bladwijzers exporteren mislukt
     </string>
     <string name="toast_export_whitelist_successful">
-        Ge&euml;xporteerde Whitelist staat bij:&#160;
+        Whitelist geëxporteerd:&#160;
     </string>
     <string name="toast_export_whitelist_failed">
         Whitelist exporteren mislukt
@@ -526,4 +526,10 @@
     <string name="whitelist_add">
         Toevoegen
     </string>
+
+    <!-- Intro -->
+    <string name="title_activity_intro">
+        Intro
+    </string>
+
 </resources>
