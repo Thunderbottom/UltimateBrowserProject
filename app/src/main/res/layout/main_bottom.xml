@@ -183,7 +183,7 @@
                                       android:completionThreshold="1"
                                       android:singleLine="true"
                                       android:imeOptions="actionGo"
-                                      android:inputType="textNoSuggestions|textWebEditText"
+                                      android:inputType="textFilter|textNoSuggestions|textWebEditText"
                                       android:background="@color/white">
                 </AutoCompleteTextView>
 
