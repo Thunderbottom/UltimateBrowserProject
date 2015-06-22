@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Kliknij w odnośnik, aby sprawdzić dostępność aktualizacji -\n http://bit.ly/UBPUpdate \n
-        Obecna wersja to 1.4.2.
+        Obecna wersja to 1.4.3.
     </string>
     <string name="dialog_content_upload">
         Obecnie File upload is only supported on Android 5.0 and above.
@@ -530,4 +530,10 @@
     <string name="whitelist_add">
         Dodaj
     </string>
+
+    <!-- Intro -->
+    <string name="title_activity_intro">
+        Intro
+    </string>
+
 </resources>

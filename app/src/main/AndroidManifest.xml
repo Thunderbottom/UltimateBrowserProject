@@ -2,7 +2,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="io.github.UltimateBrowserProject"
-          android:versionCode="33"
+          android:versionCode="34"
           android:versionName="@string/app_version">
 
     <!-- SDK -->
@@ -92,8 +92,7 @@
                   android:theme="@style/ClearActivityTheme">
         </activity>
 
-        <activity android:name=".Intro.SecondLayoutIntro"
-            android:label="@string/title_activity_intro"/>
+        <activity android:name=".Intro.SecondLayoutIntro"/>
 
         <!-- ClearService -->
         <service android:name=".Service.ClearService"

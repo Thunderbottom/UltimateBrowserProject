@@ -94,7 +94,7 @@
         Het certificaat van deze site is niet vertrouwd. Toch doorgaan?
     </string>
     <string name="dialog_content_update">
-        Klik de link om voor updates te checken -\n http://bit.ly/UBPUpdate \n Huidige versie is 1.4.2.
+        Klik de link om voor updates te checken -\n http://bit.ly/UBPUpdate \n Huidige versie is 1.4.3.
     </string>
     <string name="dialog_content_upload">
         Momenteel kunt u alleen bestanden uploaden op Android 5.0 of hoger.
@@ -526,4 +526,10 @@
     <string name="whitelist_add">
         Toevoegen
     </string>
+
+    <!-- Intro -->
+    <string name="title_activity_intro">
+        Intro
+    </string>
+
 </resources>

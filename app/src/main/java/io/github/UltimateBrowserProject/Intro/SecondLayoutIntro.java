@@ -14,6 +14,7 @@ import io.github.UltimateBrowserProject.Slides.ThirdSlide2;
 public class SecondLayoutIntro extends AppIntro2 {
     @Override
     public void init(Bundle savedInstanceState) {
+        setFadeAnimation();
         addSlide(new FirstSlide2(), getApplicationContext());
         addSlide(new SecondSlide2(), getApplicationContext());
         addSlide(new ThirdSlide2(), getApplicationContext());

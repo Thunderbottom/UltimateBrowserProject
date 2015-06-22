@@ -17,7 +17,7 @@
         android:textColor="#ffffff"
         android:paddingRight="32dp"
         android:textSize="28sp"
-        android:text="Slide 3 title"/>
+        android:text="#3"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -25,10 +25,11 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#ffffff"
+        android:fontFamily="sans-serif-medium"
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
         android:textSize="16sp"
-        android:text="Loooooooooooooooo[...]ooooooooong descreption here"/>
+        android:text="Options are just a click away."/>
 
     <LinearLayout
         android:layout_width="fill_parent"
