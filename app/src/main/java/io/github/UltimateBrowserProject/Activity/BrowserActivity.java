@@ -73,7 +73,6 @@ import io.github.UltimateBrowserProject.Browser.BrowserContainer;
 import io.github.UltimateBrowserProject.Browser.BrowserController;
 import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.Database.RecordAction;
-import io.github.UltimateBrowserProject.Intro.SecondLayoutIntro;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Service.ClearService;
 import io.github.UltimateBrowserProject.Service.HolderService;
@@ -168,14 +167,6 @@ public class BrowserActivity extends Activity implements BrowserController {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        final String PREFS_NAME = "ActivityPREF";
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        if(settings.getBoolean("first_time", true)){
-            Intent intent = new Intent(this, SecondLayoutIntro.class);
-            startActivity(intent);
-            settings.edit().putBoolean("first_time", false).commit();
-        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityManager.TaskDescription description = new ActivityManager.TaskDescription(

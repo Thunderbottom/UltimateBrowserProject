@@ -92,7 +92,6 @@
                   android:theme="@style/ClearActivityTheme">
         </activity>
 
-        <activity android:name=".Intro.SecondLayoutIntro"/>
 
         <!-- ClearService -->
         <service android:name=".Service.ClearService"

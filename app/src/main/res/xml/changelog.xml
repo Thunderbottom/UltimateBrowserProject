@@ -2,7 +2,6 @@
 <changelog>
     <release version="1.4.3" versioncode="34" releasedate="June 22th 2015" summary="Localization update">
         <change type="improvement">Added Localizations for many languages.</change>
-        <change type="improvement">Now get instruction screen on first time install.</change>
         <change type="bug">Fixed OTA Update. Now updating once will download the latest version available.</change>
         <change type="improvement">Minor Changes in keyboard layout.</change>
     </release>
