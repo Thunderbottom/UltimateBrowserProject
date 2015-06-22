@@ -54,6 +54,16 @@ Some of the TODO items on the list are -
 
 ###Note - Please do not add ```.idea``` folder to the git while posting a pull request. Add ```.idea/``` to the gitignore file
 
+
+## Translations by:
+
+* Portuguese (PT-BR) by [fviz](https://github.com/fviz)
+* Dutch (NL) by [lucaslampe](https://github.com/lucaslampe)
+* French (FR) by [nalmada](https://github.com/nalmada)
+* Polish (PL) by [Bartti](https://github.com/Bartti)
+
+
+
 ## License:
 
 
