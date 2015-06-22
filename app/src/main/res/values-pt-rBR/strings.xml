@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- AndroidAgo -->
+    <string name="android_ago_just_now">
+        Agora
+    </string>
+
+    <!-- Album -->
+    <string name="album_title_bookmarks">
+        Favoritos
+    </string>
+    <string name="album_title_history">
+        Histórico
+    </string>
+    <string name="album_title_home">
+        Início
+    </string>
+    <string name="album_untitled">
+        Sem Título
+    </string>
+
+    <!-- Clear -->
+    <string name="clear_label">
+        Limpar
+    </string>
+    <string name="clear_menu_done_all">
+        Concluído
+    </string>
+    <string name="clear_title_quit">
+        Limpar ao sair do aplicativo
+    </string>
+    <string name="clear_title_bookmarks">
+        Limpar Favoritos
+    </string>
+    <string name="clear_title_cache">
+        Limpar Cache
+    </string>
+    <string name="clear_title_cookie">
+        Limpar Cookies
+    </string>
+    <string name="clear_title_form_data">
+        Limpar dados de Formulário
+    </string>
+    <string name="clear_title_history">
+        Limpar Histórico
+    </string>
+    <string name="clear_title_passwords">
+        Limpar Senhas
+    </string>
+
+    <!-- Dialog -->
+    <string name="dialog_title_hint">
+        Inserir Título
+    </string>
+    <string name="dialog_se_hint">
+        https://www.google.com/search?q=
+    </string>
+    <string name="dialog_ua_hint">
+        Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+    </string>
+    <string name="dialog_sign_in_username">
+        Usuário
+    </string>
+    <string name="dialog_sign_in_password">
+        Senha
+    </string>
+    <string name="dialog_button_positive">
+        OK
+    </string>
+    <string name="dialog_button_negative">
+        Cancelar
+    </string>
+    <string name="dialog_button_custom">
+        Personalizado
+    </string>
+    <string name="dialog_title_download">
+        Você quer realizar o download deste arquivo?
+    </string>
+    <string name="dialog_title_resubmission">
+        Reenviar
+    </string>
+    <string name="dialog_title_warning">
+        Aviso
+    </string>
+    <string name="dialog_title_sign_in">
+        Entrar
+    </string>
+    <string name="dialog_content_resubmission">
+        Você gostaria de reenviar seus dados?
+    </string>
+    <string name="dialog_content_ssl_error">
+        O certificado do site não é confiável. Continuar mesmo assim?
+    </string>
+    <string name="dialog_content_update">
+        Clique no link para verificar atualizações -\n http://bit.ly/UBPUpdate \n
+        Versão atual é 1.4.2.
+    </string>
+    <string name="dialog_content_upload">
+        Atualmente o upload de arquivos só é suportado no Android 5.0 e acima.
+    </string>
+
+    <!-- List -->
+    <string name="list_empty">
+        A lista atual está vazia
+    </string>
+
+    <!-- Main -->
+    <string name="main_menu_new_tab">
+        Abrir em nova aba
+    </string>
+    <string name="main_menu_copy_link">
+        Copiar link
+    </string>
+    <string name="main_menu_save">
+        Salvar
+    </string>
+    <string name="main_omnibox_input_hint">
+        Pesquisar ou digitar URL
+    </string>
+    <string name="main_relayout_ok">
+        OK
+    </string>
+    <string name="main_about_blank">
+        about:blank
+    </string>
+
+    <!-- Notification -->
+    <string name="notification_content_holder">
+        Clique para ver páginas
+    </string>
+
+    <!-- Readability -->
+    <string name="readability_label">
+        Modo de Leitura
+    </string>
+    <string name="readability_menu_background">
+        Fundo
+    </string>
+    <string name="readability_menu_share">
+        Compartilhar
+    </string>
+    <string name="readability_empty">
+        ERRO: Falha ao acessar o servidor do Readability. Por favor verifique o token de acesso e a conexão com a internet.
+    </string>
+
+    <!-- Search -->
+    <string name="search_hint">
+        Pesquisar
+    </string>
+
+    <!-- Settings -->
+    <string name="setting_label">
+        Configurações
+    </string>
+    <!-- Browser settings -->
+    <string name="setting_title_browser">
+        Configurações do navegador
+    </string>
+    <!-- Search engine -->
+    <string name="setting_title_search_engine">
+        Mecanismo de pesquisa
+    </string>
+    <string name="setting_summary_search_engine_google">
+        Google
+    </string>
+    <string name="setting_summary_search_engine_duckduckgo">
+        DuckDuckGo
+    </string>
+    <string name="setting_summary_search_engine_startpage">
+        StartPage
+    </string>
+    <string name="setting_summary_search_engine_bing">
+        Bing
+    </string>
+    <string name="setting_summary_search_engine_baidu">
+        Baidu
+    </string>
+    <string name="setting_summary_search_engine_custom">
+        Personalizado
+    </string>
+    <!-- Notification -->
+    <string name="setting_title_notification_priority">
+        Prioridade de Notificação
+    </string>
+    <string name="setting_summary_notification_priority_default">
+        Padrão
+    </string>
+    <string name="setting_summary_notification_priority_high">
+        Alta
+    </string>
+    <string name="setting_summary_notification_priority_low">
+        Baixa
+    </string>
+    <!-- Omnibox switcher -->
+    <string name="setting_title_omnibox_position">
+        Posição da Omnibox
+    </string>
+    <string name="setting_summary_omnibox_position_top">
+        Topo
+    </string>
+    <string name="setting_summary_omnibox_position_bottom">
+        Fundo
+    </string>
+    <!-- Omnibox control -->
+    <string name="setting_title_omnibox_control">
+        Controle da Omnibox
+    </string>
+    <string name="setting_summary_omnibox_control">
+        Deslize a omnibox para a esquerda/direita para alternar abas
+     </string>
+    <!-- Volume key scroll -->
+    <string name="setting_title_volume_control">
+        Controle de Volume
+    </string>
+    <string name="setting_summary_vc_switch_tabs">
+        Alternar Abas
+    </string>
+    <string name="setting_summary_vc_scroll_webpage">
+        Deslizar Página
+    </string>
+    <string name="setting_summary_vc_system_default">
+        Padrão do Sistema
+    </string>
+    <!-- Images -->
+    <string name="setting_title_images">
+        Imagens
+    </string>
+    <string name="setting_summary_images">
+        Habilitar imagens da Rede
+    </string>
+    <!-- Cookies -->
+    <string name="setting_title_cookie">
+        Cookies
+    </string>
+    <string name="setting_summary_cookie">
+        Habilitar Cookies
+    </string>
+    <!-- JavaScript -->
+    <string name="setting_title_javascript">
+        JavaScript
+    </string>
+    <string name="setting_summary_javascript">
+        Habilitar JavaScript
+    </string>
+    <!-- Location -->
+    <string name="setting_title_location">
+        Localização
+    </string>
+    <string name="setting_summary_location">
+        Permitir que websites acessem sua localização
+    </string>
+    <!-- Multiple windows -->
+    <string name="setting_title_multiple_windows">
+        Janelas Múltiplas
+    </string>
+    <string name="setting_summary_multiple_windows">
+        Habilitar janelas Múltiplas
+    </string>
+    <!-- Scroll bar -->
+    <string name="setting_title_scroll_bar">
+        Barra de rolagem
+    </string>
+    <string name="setting_summary_scroll_bar">
+        Mostrar barra de rolagem em páginas da web
+    </string>
+    <!-- Text reflow -->
+    <string name="setting_title_text_reflow">
+        Refluxo de texto
+    </string>
+    <string name="setting_summary_text_reflow">
+        Habilitar refluxo de texto
+    </string>
+    <!-- User Agent -->
+    <string name="setting_title_user_agent">
+        Agente de Usuário
+    </string>
+    <string name="setting_summary_user_agent_default">
+        Padrão
+    </string>
+    <string name="setting_summary_user_agent_desktop">
+        Desktop
+    </string>
+    <string name="setting_summary_user_agent_custom">
+        Personalizado
+    </string>
+    <!-- Rendering -->
+    <string name="setting_title_rendering">
+        Renderização
+    </string>
+    <string name="setting_summary_rendering_default">
+        Padrão
+    </string>
+    <string name="setting_summary_rendering_grayscale">
+        Escala de Cinza
+    </string>
+    <string name="setting_summary_rendering_inverted">
+        Invertida
+    </string>
+    <string name="setting_summary_rendering_inverted_grayscale">
+        Escala de Cinza invertida
+    </string>
+    <!-- AdBlock setting -->
+    <string name="setting_title_adblock">
+        AdBlock
+    </string>
+    <string name="setting_summary_adblock">
+        Habilitar AdBlock
+    </string>
+    <string name="setting_title_whitelist">
+        Whitelist
+    </string>
+    <string name="setting_summary_whitelist">
+        Permitir que estes sites exibam anúncios
+    </string>
+    <string name="setting_title_export_whitelist">
+        Exportar Whitelist
+    </string>
+    <string name="setting_title_import_whitelist">
+        Importar Whitelist
+    </string>
+    <string name="whitelist_filename">
+        Whitelist
+    </string>
+    <!-- Readability settings -->
+    <string name="setting_title_readability">
+        Readability
+    </string>
+    <string name="setting_title_token">
+        Token
+    </string>
+    <string name="setting_summary_readability">
+        Habilitar Readability
+    </string>
+    <string name="setting_summary_token">
+        Definir Token do Readability
+    </string>
+    <!-- Data setting -->
+    <string name="setting_title_data">
+        Dados
+    </string>
+    <!-- Passwords -->
+    <string name="setting_title_passwords">
+        Senhas
+    </string>
+    <string name="setting_summary_passwords">
+        Salvar Senhas
+    </string>
+    <!-- Bookmarks -->
+    <string name="setting_title_export_bookmarks">
+        Exportar Favoritos
+    </string>
+    <string name="setting_title_import_bookmarks">
+        Importar Favoritos
+    </string>
+    <string name="bookmarks_filename">
+        Favoritos
+    </string>
+    <!-- Clear -->
+    <string name="setting_title_clear_control">
+        Limpar Controle
+    </string>
+    <!-- Others setting -->
+    <string name="setting_title_others">
+        Outros
+    </string>
+    <!-- Version -->
+    <string name="setting_title_version">
+        Versão
+    </string>
+    <!-- License -->
+    <string name="setting_title_license">
+        Licença
+    </string>
+    <!-- Contact -->
+    <string name="setting_title_update">
+        Verificar Atualizações
+    </string>
+
+    <!-- Toast -->
+    <string name="toast_add_bookmark_successful">
+        Adicionado aos Favoritos com sucesso
+    </string>
+    <string name="toast_add_bookmark_failed">
+        Não é possível adicionar esta página aos Favoritos
+    </string>
+    <string name="toast_add_to_home_successful">
+        Adicionado à Página Inicial com sucesso
+    </string>
+    <string name="toast_add_to_home_failed">
+        Não foi possível adicionar à Página Inicial
+    </string>
+    <string name="toast_add_token_successful">
+        Token do Readability adicionado com sucesso
+    </string>
+    <string name="toast_add_whitelist_successful">
+        Domínio adicionado à WhiteList com sucesso
+    </string>
+    <string name="toast_already_at_the_front">
+        Já está na frente
+    </string>
+    <string name="toast_already_exist_in_home">
+        Já existe na Página Inicial
+    </string>
+    <string name="toast_clear_successful">
+        Limpo com sucesso
+    </string>
+    <string name="toast_clear_failed">
+        Falha ao Limpar
+    </string>
+    <string name="toast_copy_successful">
+        Copiado com sucesso
+    </string>
+    <string name="toast_delete_bookmark_successful">
+        Favorito excluído com sucesso
+    </string>
+    <string name="toast_delete_successful">
+        Excluído com sucesso
+    </string>
+    <string name="toast_domain_already_exists">
+        O domínio já existe na WhiteList
+    </string>
+    <string name="toast_double_taps_quit">
+        Pressione novamente para sair
+    </string>
+    <string name="toast_emoji">
+        つ◕ل͜◕)つ
+    </string>
+    <string name="toast_export_bookmarks_successful">
+        Arquivo de Favoritos exportado em:&#160;
+    </string>
+    <string name="toast_export_bookmarks_failed">
+        Falha ao exportar Favoritos
+    </string>
+    <string name="toast_export_whitelist_successful">
+        WhiteList exportada em:&#160;
+    </string>
+    <string name="toast_export_whitelist_failed">
+        Falha ao exportar WhiteList
+    </string>
+    <string name="toast_import_bookmarks_successful">
+        Contagem de Favoritos importados:&#160;
+    </string>
+    <string name="toast_import_bookmarks_failed">
+        Falha ao importar Favoritos
+    </string>
+    <string name="toast_import_whitelist_successful">
+        Contagem de Domínios importados:&#160;
+    </string>
+    <string name="toast_import_whitelist_failed">
+        Falha ao importar WhiteList
+    </string>
+    <string name="toast_input_empty">
+        Você não inseriu nada
+    </string>
+    <string name="toast_invalid_domain">
+        Domínio inválido
+    </string>
+    <string name="toast_load_error">
+        Não foi possível carregar esta URL
+    </string>
+    <string name="toast_load_in_background">
+        Carregando no fundo
+    </string>
+    <string name="toast_need_restart">
+        Por favor reinicie o aplicativo para que as mudanças tenham efeito
+    </string>
+    <string name="toast_new_tab_successful">
+        Aberto em nova aba com sucesso
+    </string>
+    <string name="toast_open_file_manager_failed">
+        Falha ao abrir Gerenciador de Arquivos
+    </string>
+    <string name="toast_refresh_failed">
+        Não é possível atualizar esta página
+    </string>
+    <string name="toast_cannot_forward">
+        Não é possível avançar
+    </string>
+    <string name="toast_relayout_successful">
+        Relayout com sucesso
+    </string>
+    <string name="toast_screenshot_successful">
+        Captura de Tela salva em:&#160;
+    </string>
+    <string name="toast_screenshot_failed">
+        Falha ao capturar a tela
+    </string>
+    <string name="toast_share_failed">
+        Não é possível compartilhar esta página
+    </string>
+    <string name="toast_start_download">
+        Iniciando download
+    </string>
+    <string name="toast_token_empty">
+        Por favor configure o token do Readability
+    </string>
+    <string name="toast_wait_a_minute">
+        Aguarde um momento
+    </string>
+
+    <!-- Token -->
+    <string name="token_label">
+        Token
+    </string>
+    <string name="token_edit_hint">
+        Token do Readability
+    </string>
+    <string name="token_add">
+        Adicionar
+    </string>
+    <string name="token_desc">
+        Ir para https://www.readability.com/developers/api para pegar seu próprio token do Readability
+    </string>
+
+    <!-- Whitelist -->
+    <string name="whitelist_label">
+        Whitelist
+    </string>
+    <string name="whitelist_menu_clear">
+        Limpar
+    </string>
+    <string name="whitelist_edit_hint">
+        Domínio
+    </string>
+    <string name="whitelist_add">
+        Adicionar
+    </string>
+</resources>
