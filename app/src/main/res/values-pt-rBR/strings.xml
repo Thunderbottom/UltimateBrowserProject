@@ -15,7 +15,7 @@
         Histórico
     </string>
     <string name="album_title_home">
-        Início <!-- check context -->
+        Início
     </string>
     <string name="album_untitled">
         Sem Título
@@ -26,7 +26,7 @@
         Limpar
     </string>
     <string name="clear_menu_done_all">
-        Concluído <!-- check context -->
+        Concluído
     </string>
     <string name="clear_title_quit">
         Limpar ao sair do aplicativo
@@ -52,7 +52,7 @@
 
     <!-- Dialog -->
     <string name="dialog_title_hint">
-        Inserir Título <!-- check context -->
+        Inserir Título
     </string>
     <string name="dialog_se_hint">
         https://www.google.com/search?q=
@@ -82,7 +82,7 @@
         Reenviar
     </string>
     <string name="dialog_title_warning">
-        Aviso <!-- check context -->
+        Aviso
     </string>
     <string name="dialog_title_sign_in">
         Entrar
@@ -218,7 +218,7 @@
         Alternar Abas
     </string>
     <string name="setting_summary_vc_scroll_webpage">
-        Deslizar Página da Web <!-- check context -->
+        Deslizar Página
     </string>
     <string name="setting_summary_vc_system_default">
         Padrão do Sistema
@@ -228,7 +228,7 @@
         Imagens
     </string>
     <string name="setting_summary_images">
-        Habilitar imagens da Rede <!-- check context -->
+        Habilitar imagens da Rede
     </string>
     <!-- Cookies -->
     <string name="setting_title_cookie">
@@ -363,7 +363,7 @@
     </string>
     <!-- Others setting -->
     <string name="setting_title_others">
-        Outras <!-- check context; maybe: Outros -->
+        Outros
     </string>
     <!-- Version -->
     <string name="setting_title_version">
@@ -473,7 +473,7 @@
         Falha ao abrir Gerenciador de Arquivos
     </string>
     <string name="toast_refresh_failed">
-        Não é possível atualizar está página <!-- check context -->
+        Não é possível atualizar esta página
     </string>
     <string name="toast_cannot_forward">
         Não é possível avançar
