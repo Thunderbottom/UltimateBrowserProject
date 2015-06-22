@@ -272,7 +272,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
             if (sp.getBoolean(getString(R.string.sp_first), true)) {
                 String lang;
-                    lang = BrowserUnit.INTRODUCTION_EN;
+                lang = BrowserUnit.INTRODUCTION_EN;
                 pinAlbums(BrowserUnit.BASE_URL + lang);
                 sp.edit().putBoolean(getString(R.string.sp_first), false).commit();
             } else {
@@ -608,17 +608,17 @@ public class BrowserActivity extends Activity implements BrowserController {
                 BufferedReader in = new BufferedReader(new InputStreamReader(updateURL.openStream()));
                 String str;
                 while ((str = in.readLine()) != null) {
-                // str is one line of text; readLine() strips the newline character(s)
+                    // str is one line of text; readLine() strips the newline character(s)
                 /* Get current Version Number */
-                PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-                int curVersion = packageInfo.versionCode;
-                int newVersion = Integer.valueOf(str);
+                    PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+                    int curVersion = packageInfo.versionCode;
+                    int newVersion = Integer.valueOf(str);
 
                 /* Is a higher version than the current already out? */
-                if (newVersion > curVersion) {
+                    if (newVersion > curVersion) {
                     /* Post a Handler for the UI to pick up and open the Dialog */
-                    mHandler.post(showUpdate);
-                }
+                        mHandler.post(showUpdate);
+                    }
 
                 }
                 in.close();
@@ -1492,8 +1492,8 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         if (vc == 0) { // Switch tabs
             if (switcherPanel.isKeyBoardShowing()) {
-                                return true;
-                            }
+                return true;
+            }
             AlbumController controller = nextAlbumController(true);
             showAlbum(controller, false, false, true);
             UltimateBrowserProjectToast.show(this, controller.getAlbumTitle());
