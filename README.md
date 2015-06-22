@@ -61,7 +61,7 @@ Some of the TODO items on the list are -
 * Dutch (NL) by [lucaslampe](https://github.com/lucaslampe) and [Menubalk](http://forum.xda-developers.com/member.php?u=6151583)
 * French (FR) by [nalmada](https://github.com/nalmada)
 * Polish (PL) by [Bartti](https://github.com/Bartti) and [Veacue](http://forum.xda-developers.com/member.php?u=5759069)
-* Turkish (TK) by [cagdassalur](https://github.com/cagdassalur)
+* Turkish (TR) by [cagdassalur](https://github.com/cagdassalur)
 
 
 
