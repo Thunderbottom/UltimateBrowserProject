@@ -58,9 +58,9 @@ Some of the TODO items on the list are -
 ## Translations by:
 
 * Portuguese (PT-BR) by [fviz](https://github.com/fviz)
-* Dutch (NL) by [lucaslampe](https://github.com/lucaslampe)
+* Dutch (NL) by [lucaslampe](https://github.com/lucaslampe) and [Menubalk](http://forum.xda-developers.com/member.php?u=6151583)
 * French (FR) by [nalmada](https://github.com/nalmada)
-* Polish (PL) by [Bartti](https://github.com/Bartti)
+* Polish (PL) by [Bartti](https://github.com/Bartti) and [Veacue](http://forum.xda-developers.com/member.php?u=5759069)
 
 
 
