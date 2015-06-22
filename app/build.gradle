@@ -38,4 +38,5 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.3.2@aar') {
         transitive = true;
     }
+    compile 'com.github.paolorotolo:appintro:1.4.0'
 }

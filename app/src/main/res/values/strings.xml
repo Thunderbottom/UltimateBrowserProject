@@ -527,4 +527,10 @@
     <string name="whitelist_add">
         Add
     </string>
+
+    <!-- Intro -->
+    <string name="title_activity_intro">
+        Intro
+    </string>
+
 </resources>

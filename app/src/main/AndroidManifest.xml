@@ -92,12 +92,8 @@
                   android:theme="@style/ClearActivityTheme">
         </activity>
 
-        <!-- ACRA Report Activity -->
-        <activity android:name="org.acra.CrashReportDialog"
-            android:theme="@style/AlertDialogStyle"
-            android:launchMode="singleInstance"
-            android:excludeFromRecents="true"
-            android:finishOnTaskLaunch="true" />
+        <activity android:name=".Intro.SecondLayoutIntro"
+            android:label="@string/title_activity_intro"/>
 
         <!-- ClearService -->
         <service android:name=".Service.ClearService"
