@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<resources>
+
+    <!-- AndroidAgo -->
+    <string name="android_ago_just_now">
+        Zojuist
+    </string>
+
+    <!-- Album -->
+    <string name="album_title_bookmarks">
+        Bladwijzers
+    </string>
+    <string name="album_title_history">
+        Geschiedenis
+    </string>
+    <string name="album_title_home">
+        Home
+    </string>
+    <string name="album_untitled">
+        Naamloos
+    </string>
+
+    <!-- Clear -->
+    <string name="clear_label">
+        Verwijder data
+    </string>
+    <string name="clear_menu_done_all">
+        Gereed
+    </string>
+    <string name="clear_title_quit">
+        Verwijder alles zodra de applicatie sluit
+    </string>
+    <string name="clear_title_bookmarks">
+        Verwijder bladwijzers
+    </string>
+    <string name="clear_title_cache">
+        Leeg Cache
+    </string>
+    <string name="clear_title_cookie">
+        Verwijder Cookies
+    </string>
+    <string name="clear_title_form_data">
+        Alle gegevens verwijderen
+    </string>
+    <string name="clear_title_history">
+        Verwijder geschiedenis
+    </string>
+    <string name="clear_title_passwords">
+        Verwijder wachtwoorden
+    </string>
+
+    <!-- Dialog -->
+    <string name="dialog_title_hint">
+        Voer een titel in
+    </string>
+    <string name="dialog_se_hint">
+        https://www.google.com/search?q=
+    </string>
+    <string name="dialog_ua_hint">
+        Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+    </string>
+    <string name="dialog_sign_in_username">
+        Gebruikersnaam
+    </string>
+    <string name="dialog_sign_in_password">
+        Wachtwoord
+    </string>
+    <string name="dialog_button_positive">
+        OK
+    </string>
+    <string name="dialog_button_negative">
+        Annuleer
+    </string>
+    <string name="dialog_button_custom">
+        Anders
+    </string>
+    <string name="dialog_title_download">
+        Wilt u dit bestand downloaden?
+    </string>
+    <string name="dialog_title_resubmission">
+        Opnieuw proberen
+    </string>
+    <string name="dialog_title_warning">
+        Waarschuwing
+    </string>
+    <string name="dialog_title_sign_in">
+        Aanmelden
+    </string>
+    <string name="dialog_content_resubmission">
+        Wilt u uw data opnieuw doorvoeren?
+    </string>
+    <string name="dialog_content_ssl_error">
+        Het certificaat van deze site is niet vertrouwd. Toch doorgaan?
+    </string>
+    <string name="dialog_content_update">
+        Klik de link om voor updates te checken -\n http://bit.ly/UBPUpdate \n Huidige versie is 1.4.2.
+    </string>
+    <string name="dialog_content_upload">
+        Momenteel kunt u alleen bestanden uploaden op Android 5.0 of hoger.
+    </string>
+
+    <!-- List -->
+    <string name="list_empty">
+        Huidige lijst is leeg
+    </string>
+
+    <!-- Main -->
+    <string name="main_menu_new_tab">
+        Openen in nieuw tabblad
+    </string>
+    <string name="main_menu_copy_link">
+        Link kopi&euml;ren
+    </string>
+    <string name="main_menu_save">
+        Opslaan
+    </string>
+    <string name="main_omnibox_input_hint">
+        Zoek of typ een URL
+    </string>
+    <string name="main_relayout_ok">
+        OK
+    </string>
+    <string name="main_about_blank">
+        about:blank
+    </string>
+
+    <!-- Notification -->
+    <string name="notification_content_holder">
+        Klik om pagina\'s te bekijken
+    </string>
+
+    <!-- Readability -->
+    <string name="readability_label">
+        Leesbaarheidmodus
+    </string>
+    <string name="readability_menu_background">
+        Achtergrond
+    </string>
+    <string name="readability_menu_share">
+        Deel
+    </string>
+    <string name="readability_empty">
+        ERROR: Readability Server bereiken mislukt. Check uw internetconnectie en probeer nog eens.
+    </string>
+
+    <!-- Search -->
+    <string name="search_hint">
+        Zoeken
+    </string>
+
+    <!-- Settings -->
+    <string name="setting_label">
+        Instellingen
+    </string>
+    <!-- Browser settings -->
+    <string name="setting_title_browser">
+        Browser instellingen
+    </string>
+    <!-- Search engine -->
+    <string name="setting_title_search_engine">
+        Zoekmachine
+    </string>
+    <string name="setting_summary_search_engine_google">
+        Google
+    </string>
+    <string name="setting_summary_search_engine_duckduckgo">
+        DuckDuckGo
+    </string>
+    <string name="setting_summary_search_engine_startpage">
+        Startpagina
+    </string>
+    <string name="setting_summary_search_engine_bing">
+        Bing
+    </string>
+    <string name="setting_summary_search_engine_baidu">
+        Baidu
+    </string>
+    <string name="setting_summary_search_engine_custom">
+        Anders
+    </string>
+    <!-- Notification -->
+    <string name="setting_title_notification_priority">
+        Notificatie prioriteit
+    </string>
+    <string name="setting_summary_notification_priority_default">
+        Standaard
+    </string>
+    <string name="setting_summary_notification_priority_high">
+        Hoog
+    </string>
+    <string name="setting_summary_notification_priority_low">
+        Laag
+    </string>
+    <!-- Omnibox switcher -->
+    <string name="setting_title_omnibox_position">
+        Omnibox positie
+    </string>
+    <string name="setting_summary_omnibox_position_top">
+        Bovenaan
+    </string>
+    <string name="setting_summary_omnibox_position_bottom">
+        Beneden
+    </string>
+    <!-- Omnibox control -->
+    <string name="setting_title_omnibox_control">
+        Omnibox instellingen
+    </string>
+    <string name="setting_summary_omnibox_control">
+        Swipe omnibox links/rechts om tabs te veranderen
+    </string>
+    <!-- Volume key scroll -->
+    <string name="setting_title_volume_control">
+        Volume Control
+    </string>
+    <string name="setting_summary_vc_switch_tabs">
+        Verander Tabblad
+    </string>
+    <string name="setting_summary_vc_scroll_webpage">
+        Scroll Webpagina
+    </string>
+    <string name="setting_summary_vc_system_default">
+        Systeemstandaard
+    </string>
+    <!-- Images -->
+    <string name="setting_title_images">
+        Afbeeldingen
+    </string>
+    <string name="setting_summary_images">
+        Netwerk afbeeldingen toestaan
+    </string>
+    <!-- Cookies -->
+    <string name="setting_title_cookie">
+        Cookies
+    </string>
+    <string name="setting_summary_cookie">
+        Cookies toestaan
+    </string>
+    <!-- JavaScript -->
+    <string name="setting_title_javascript">
+        JavaScript
+    </string>
+    <string name="setting_summary_javascript">
+        JavaScript toestaan
+    </string>
+    <!-- Location -->
+    <string name="setting_title_location">
+        Locatie
+    </string>
+    <string name="setting_summary_location">
+        Sta website\'s toe uw locatie te zien
+    </string>
+    <!-- Multiple windows -->
+    <string name="setting_title_multiple_windows">
+        Meerdere vensters
+    </string>
+    <string name="setting_summary_multiple_windows">
+        Meerdere vensters toestaan
+    </string>
+    <!-- Scroll bar -->
+    <string name="setting_title_scroll_bar">
+        Scroll balk
+    </string>
+    <string name="setting_summary_scroll_bar">
+        Laat scroll balk zien op webpagina\'s
+    </string>
+    <!-- Text reflow -->
+    <string name="setting_title_text_reflow">
+        Tekst heropmaak
+    </string>
+    <string name="setting_summary_text_reflow">
+        Tekst heropmaak toestaan
+    </string>
+    <!-- User Agent -->
+    <string name="setting_title_user_agent">
+        Gebruikers Agent
+    </string>
+    <string name="setting_summary_user_agent_default">
+        Standaard
+    </string>
+    <string name="setting_summary_user_agent_desktop">
+        Homescherm
+    </string>
+    <string name="setting_summary_user_agent_custom">
+        Anders
+    </string>
+    <!-- Rendering -->
+    <string name="setting_title_rendering">
+        Rendering
+    </string>
+    <string name="setting_summary_rendering_default">
+        Standaard
+    </string>
+    <string name="setting_summary_rendering_grayscale">
+        Grijswaarden
+    </string>
+    <string name="setting_summary_rendering_inverted">
+        Contrasterend
+    </string>
+    <string name="setting_summary_rendering_inverted_grayscale">
+        Contrasterende grijswaarden
+    </string>
+    <!-- AdBlock setting -->
+    <string name="setting_title_adblock">
+        AdBlock
+    </string>
+    <string name="setting_summary_adblock">
+        AdBlock toestaan
+    </string>
+    <string name="setting_title_whitelist">
+        Whitelist
+    </string>
+    <string name="setting_summary_whitelist">
+        Sta deze site\'s toe advertentie\'s te laten zien
+    </string>
+    <string name="setting_title_export_whitelist">
+        Exporteer Whitelist
+    </string>
+    <string name="setting_title_import_whitelist">
+        Importeer Whitelist
+    </string>
+    <string name="whitelist_filename">
+        Whitelist
+    </string>
+    <!-- Readability settings -->
+    <string name="setting_title_readability">
+        Leesbaarheidmodus
+    </string>
+    <string name="setting_title_token">
+        Knop
+    </string>
+    <string name="setting_summary_readability">
+        Leesbaarheidmodus aanzetten
+    </string>
+    <string name="setting_summary_token">
+        Stel Leesbaarheidmodus ticket in
+    </string>
+    <!-- Data setting -->
+    <string name="setting_title_data">
+        Data
+    </string>
+    <!-- Passwords -->
+    <string name="setting_title_passwords">
+        Wachtwoorden
+    </string>
+    <string name="setting_summary_passwords">
+        Wachtwoorden opslaan
+    </string>
+    <!-- Bookmarks -->
+    <string name="setting_title_export_bookmarks">
+        Exporteer bladwijzers
+    </string>
+    <string name="setting_title_import_bookmarks">
+        Importeer bladwijzers
+    </string>
+    <string name="bookmarks_filename">
+        Bladwijzers
+    </string>
+    <!-- Clear -->
+    <string name="setting_title_clear_control">
+        Opslag instellingen
+    </string>
+    <!-- Others setting -->
+    <string name="setting_title_others">
+        Andere
+    </string>
+    <!-- Version -->
+    <string name="setting_title_version">
+        Versie
+    </string>
+    <!-- License -->
+    <string name="setting_title_license">
+        Licensie
+    </string>
+    <!-- Contact -->
+    <string name="setting_title_update">
+        Check voor updates
+    </string>
+
+    <!-- Toast -->
+    <string name="toast_add_bookmark_successful">
+        Succesvol toegevoed aan bladwijzers
+    </string>
+    <string name="toast_add_bookmark_failed">
+        Kan deze pagina niet toevoegen aan bladwijzers
+    </string>
+    <string name="toast_add_to_home_successful">
+        Succesvol toegevoed aan startpagina
+    </string>
+    <string name="toast_add_to_home_failed">
+        Kan deze pagina niet toevoegen aan startpagina
+    </string>
+    <string name="toast_add_token_successful">
+        Succesvol toegevoegde Leesbaarheidmodus ticket
+    </string>
+    <string name="toast_add_whitelist_successful">
+        Domein succesvol toegevoegd aan Whitelist
+    </string>
+    <string name="toast_already_at_the_front">
+        Al op de voorgrond
+    </string>
+    <string name="toast_already_exist_in_home">
+        Bestaat al op de startpagina
+    </string>
+    <string name="toast_clear_successful">
+        Succesvol verwijderd
+    </string>
+    <string name="toast_clear_failed">
+        Verwijderen mislukt
+    </string>
+    <string name="toast_copy_successful">
+        Succesvol gekopie&euml;rd
+    </string>
+    <string name="toast_delete_bookmark_successful">
+        Bladwijzer succesvol verwijderd
+    </string>
+    <string name="toast_delete_successful">
+        Succesvol verwijderd
+    </string>
+    <string name="toast_domain_already_exists">
+        Domein bestaat al in de Whitelist
+    </string>
+    <string name="toast_double_taps_quit">
+        Klik opnieuw om te verlaten
+    </string>
+    <string name="toast_emoji">
+        つ◕ل͜◕)つ
+    </string>
+    <string name="toast_export_bookmarks_successful">
+        Ge&euml;xporteerde bladwijzers staan bij:&#160;
+    </string>
+    <string name="toast_export_bookmarks_failed">
+        Bladwijzers exporteren mislukt
+    </string>
+    <string name="toast_export_whitelist_successful">
+        Ge&euml;xporteerde Whitelist staat bij:&#160;
+    </string>
+    <string name="toast_export_whitelist_failed">
+        Whitelist exporteren mislukt
+    </string>
+    <string name="toast_import_bookmarks_successful">
+        Aantal geimporteerde bladwijzers:&#160;
+    </string>
+    <string name="toast_import_bookmarks_failed">
+        Bladwijzers importeren mislukt
+    </string>
+    <string name="toast_import_whitelist_successful">
+        Aantal geimporteerde domeinen:&#160;
+    </string>
+    <string name="toast_import_whitelist_failed">
+        Whitelist importeren mislukt
+    </string>
+    <string name="toast_input_empty">
+        U heeft niks ingevoerd
+    </string>
+    <string name="toast_invalid_domain">
+        Ongeldig domein
+    </string>
+    <string name="toast_load_error">
+        Kan deze URL niet laden
+    </string>
+    <string name="toast_load_in_background">
+        Laden op achtergrond
+    </string>
+    <string name="toast_need_restart">
+        Start de applicatie opnieuw op om veranderingen door te voeren
+    </string>
+    <string name="toast_new_tab_successful">
+        Succesvol nieuw tabblad geopend
+    </string>
+    <string name="toast_open_file_manager_failed">
+        File Manager openen mislukt
+    </string>
+    <string name="toast_refresh_failed">
+        Kan deze pagina niet vernieuwen
+    </string>
+    <string name="toast_cannot_forward">
+        Kan niet vooruit
+    </string>
+    <string name="toast_relayout_successful">
+        Succesvol layout opnieuw opgemaakt
+    </string>
+    <string name="toast_screenshot_successful">
+        Schermafbeelding opgeslagen in:&#160;
+    </string>
+    <string name="toast_screenshot_failed">
+        Schermafbeelding maken mislukt
+    </string>
+    <string name="toast_share_failed">
+        Kan deze pagina niet delen
+    </string>
+    <string name="toast_start_download">
+        Download gestart
+    </string>
+    <string name="toast_token_empty">
+        Selecteer Leesbaarheidmodus ticket
+    </string>
+    <string name="toast_wait_a_minute">
+        Een moment geduld
+    </string>
+
+    <!-- Token -->
+    <string name="token_label">
+        Ticket
+    </string>
+    <string name="token_edit_hint">
+        Leesbaarheidmodus ticket
+    </string>
+    <string name="token_add">
+        Toevoegen
+    </string>
+    <string name="token_desc">
+        Ga naar https://www.readability.com/developers/api voor je eigen Leesbaarheidmodus ticket
+    </string>
+
+    <!-- Whitelist -->
+    <string name="whitelist_label">
+        Whitelist
+    </string>
+    <string name="whitelist_menu_clear">
+        Leeg
+    </string>
+    <string name="whitelist_edit_hint">
+        Domein
+    </string>
+    <string name="whitelist_add">
+        Toevoegen
+    </string>
+</resources>
