@@ -477,7 +477,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 inputBox.setKeyListener(keyListener);
                 inputBox.setFocusable(true);
                 inputBox.setFocusableInTouchMode(true);
-                inputBox.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+                inputBox.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS|InputType.TYPE_TEXT_VARIATION_URI);
                 inputBox.clearFocus();
 
                 if (canSwitch) {

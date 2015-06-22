@@ -20,7 +20,7 @@
               android:textCursorDrawable="@null"
               android:textSize="@dimen/text_size_16sp"
               android:imeOptions="actionDone"
-              android:inputType="text"
+              android:inputType="textUri"
               android:background="@color/transparent">
     </EditText>
 

@@ -16,7 +16,7 @@
               android:textCursorDrawable="@null"
               android:singleLine="true"
               android:ellipsize="none"
-              android:inputType="text">
+              android:inputType="text|textNoSuggestions">
     </EditText>
 
     <EditText android:id="@+id/dialog_sign_in_password"
@@ -30,7 +30,7 @@
               android:textCursorDrawable="@null"
               android:singleLine="true"
               android:ellipsize="none"
-              android:inputType="textPassword">
+              android:inputType="textPassword|textNoSuggestions">
     </EditText>
 
 </LinearLayout>

@@ -183,7 +183,7 @@
                                       android:completionThreshold="1"
                                       android:singleLine="true"
                                       android:imeOptions="actionGo"
-                                      android:inputType="textFilter|textNoSuggestions|textWebEditText"
+                                      android:inputType="textUri"
                                       android:background="@color/white">
                 </AutoCompleteTextView>
 
@@ -253,8 +253,8 @@
                       android:textColorHint="@color/hint"
                       android:textCursorDrawable="@null"
                       android:textSize="@dimen/text_size_16sp"
-                      android:imeOptions="actionDone"
-                      android:inputType="text"
+                      android:imeOptions="actionGo"
+                      android:inputType="textUri"
                       android:singleLine="true"
                       android:background="@drawable/round_corner_shape_white">
             </EditText>

@@ -110,7 +110,7 @@
         Openen in nieuw tabblad
     </string>
     <string name="main_menu_copy_link">
-        Link kopi&euml;ren
+        Koppeling kopiëren
     </string>
     <string name="main_menu_save">
         Opslaan
@@ -409,7 +409,7 @@
         Verwijderen mislukt
     </string>
     <string name="toast_copy_successful">
-        Succesvol gekopie&euml;rd
+        succesvolle Kopieer
     </string>
     <string name="toast_delete_bookmark_successful">
         Bladwijzer succesvol verwijderd
@@ -427,13 +427,13 @@
         つ◕ل͜◕)つ
     </string>
     <string name="toast_export_bookmarks_successful">
-        Ge&euml;xporteerde bladwijzers staan bij:&#160;
+        Bladwijzers exporteren bestand op:&#160;
     </string>
     <string name="toast_export_bookmarks_failed">
         Bladwijzers exporteren mislukt
     </string>
     <string name="toast_export_whitelist_successful">
-        Ge&euml;xporteerde Whitelist staat bij:&#160;
+        Whitelist exporteren bestand op:&#160;
     </string>
     <string name="toast_export_whitelist_failed">
         Whitelist exporteren mislukt
