@@ -409,7 +409,7 @@
         Verwijderen mislukt
     </string>
     <string name="toast_copy_successful">
-        succesvolle Kopieer
+        Succesvol gekopieërd
     </string>
     <string name="toast_delete_bookmark_successful">
         Bladwijzer succesvol verwijderd
@@ -427,13 +427,13 @@
         つ◕ل͜◕)つ
     </string>
     <string name="toast_export_bookmarks_successful">
-        Bladwijzers exporteren bestand op:&#160;
+        Bladwijzers geëxporteerd:&#160;
     </string>
     <string name="toast_export_bookmarks_failed">
         Bladwijzers exporteren mislukt
     </string>
     <string name="toast_export_whitelist_successful">
-        Whitelist exporteren bestand op:&#160;
+        Whitelist geëxporteerd:&#160;
     </string>
     <string name="toast_export_whitelist_failed">
         Whitelist exporteren mislukt
