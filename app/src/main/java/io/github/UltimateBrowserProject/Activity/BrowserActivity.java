@@ -168,16 +168,15 @@ public class BrowserActivity extends Activity implements BrowserController {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
-        if(pref.getBoolean("activity_executed", false)){
+
+        final String PREFS_NAME = "ActivityPREF";
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        if(settings.getBoolean("first_time", true)){
             Intent intent = new Intent(this, SecondLayoutIntro.class);
             startActivity(intent);
-            finish();
-        } else {
-            SharedPreferences.Editor ed = pref.edit();
-            ed.putBoolean("activity_executed", true);
-            ed.commit();
+            settings.edit().putBoolean("first_time", false).commit();
         }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityManager.TaskDescription description = new ActivityManager.TaskDescription(
                     getString(R.string.app_name),
