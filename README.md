@@ -60,7 +60,7 @@ Some of the TODO items on the list are -
 * Portuguese (PT-BR) by [fviz](https://github.com/fviz)
 * Dutch (NL) by [lucaslampe](https://github.com/lucaslampe) and [Menubalk](http://forum.xda-developers.com/member.php?u=6151583)
 * French (FR) by [nalmada](https://github.com/nalmada)
-* Polish (PL) by [Bartti](https://github.com/Bartti) and [Veacue](http://forum.xda-developers.com/member.php?u=5759069)
+* Polish (PL) by [Bartti](https://github.com/Bartti) and [Veacue](http://forum.xda-developers.com/member.php?u=5759069) and [Toa](http://forum.xda-developers.com/member.php?u=6170529)
 * Turkish (TR) by [cagdassalur](https://github.com/cagdassalur)
 * Finnish (FI) by [Tapetti](http://forum.xda-developers.com/member.php?u=6778883)
 
