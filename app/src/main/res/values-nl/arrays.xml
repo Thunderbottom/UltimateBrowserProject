@@ -6,26 +6,26 @@
     <string-array name="holder_menu">
         <item>Voorgrond</item>
         <item>Koppeling kopiëren</item>
-        <item>Aandeel</item>
+        <item>Delen</item>
     </string-array>
 
     <!-- List -->
     <string-array name="list_menu">
-        <item>New tab</item>
+        <item>Nieuwe tabblad</item>
         <item>Koppeling kopiëren</item>
-        <item>Aandeel</item>
-        <item>Uitgeven</item>
+        <item>Delen</item>
+        <item>Bewerken</item>
         <item>Verwijder</item>
     </string-array>
 
     <!-- Main -->
     <string-array name="main_overflow">
         <item>Ga naar boven</item>
-        <item>Toevoegen aan huis</item>
+        <item>Toevoegen aan Home</item>
         <item>Zoek in pagina</item>
-        <item>Screenshot</item>
-        <item>Readability</item>
-        <item>Aandeel</item>
+        <item>Schermafbeelding</item>
+        <item>Leesbaarheidmodus</item>
+        <item>Delen</item>
         <item>Relayout</item>
         <item>Verlaten</item>
     </string-array>
