@@ -76,7 +76,7 @@ UltimateBrowserProject can automatically capture __Log Reports__ when it crashes
 When the crash takes place, an Alert Dialog will pop up requesting you to send the report. All you have to do is add comments regarding the problem __(OPTIONAL)__, and click OK.
 Everything else will be handled by the application itself!
 
-More information on this can be found on [ACRA](http://www.acra.ch) __WARNING! Nerd Website Alert!__
+More information on this can be found on [Crashlytics](http://www.crashyltics.com) 
 
 ---
 
