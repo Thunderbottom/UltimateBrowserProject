@@ -148,19 +148,6 @@
         http://git.io/503
     </string>
 
-    <!-- AppIntro -->
-    <string name="license_title_appintro">
-        Fabric.io
-    </string>
-    <string name="license_content_appintro">
-        Fabric Terms of Service, Twitter inc.
-    </string>
-    <string name="license_author_appintro">
-        Paolo Rotolo
-    </string>
-    <string name="license_url_appintro">
-        http://git.io/vLQki
-    </string>
 
     <!-- All in one -->
     <string-array name="license_titles">
