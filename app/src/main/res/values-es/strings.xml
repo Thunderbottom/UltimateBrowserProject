@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
       Haga clic en el enlace para comprobar si hay actualizaciones disponibles -\n http://bit.ly/UBPUpdate \n
-      La versión actual es 1.4.3.
+      La versión actual es 1.4.3r2.
     </string>
     <string name="dialog_content_upload">
        Actualmente, la subida de archivos sólo se permite en Android 5.0 y superiores.

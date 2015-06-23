@@ -439,7 +439,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                 addAlbum(BrowserUnit.FLAG_HISTORY);
             }
         });
-
         switcherAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
