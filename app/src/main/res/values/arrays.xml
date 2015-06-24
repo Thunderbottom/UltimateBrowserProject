@@ -4,30 +4,30 @@
 
     <!-- Holder -->
     <string-array name="holder_menu">
-        <item>Foreground</item>
-        <item>Copy link</item>
-        <item>Share</item>
+        <item>Nền</item>
+        <item>Sao chép liên kết</item>
+        <item>Chia sẻ</item>
     </string-array>
 
     <!-- List -->
     <string-array name="list_menu">
-        <item>New tab</item>
-        <item>Copy link</item>
-        <item>Share</item>
-        <item>Edit</item>
-        <item>Delete</item>
+        <item>Tab mới</item>
+        <item>Sao chép liên kết</item>
+        <item>Chia sẻ</item>
+        <item>Chỉnh sửa</item>
+        <item>Xóa</item>
     </string-array>
 
     <!-- Main -->
     <string-array name="main_overflow">
-        <item>Go to top</item>
-        <item>Add to home</item>
-        <item>Find in page</item>
-        <item>Screenshot</item>
-        <item>Readability</item>
-        <item>Share</item>
-        <item>Relayout</item>
-        <item>Quit</item>
+        <item>Lên đầu trang</item>
+        <item>Thêm vào màn hình chủ</item>
+        <item>Tìm trong trang</item>
+        <item>Chụp màn hình</item>
+        <item>Dễ đọc</item>
+        <item>Chia sẻ</item>
+        <item>Bố trí lại</item>
+        <item>Thoát</item>
     </string-array>
 
     <!-- Search engine -->
