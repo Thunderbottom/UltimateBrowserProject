@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- AndroidAgo -->
+    <string name="android_ago_just_now">
+        たった今
+    </string>
+
+    <!-- Album -->
+    <string name="album_title_bookmarks">
+        ブックマーク
+    </string>
+    <string name="album_title_history">
+        履歴
+    </string>
+    <string name="album_title_home">
+        ホーム
+    </string>
+    <string name="album_untitled">
+        無題
+    </string>
+
+    <!-- Clear -->
+    <string name="clear_label">
+        クリア
+    </string>
+    <string name="clear_menu_done_all">
+        全て完了
+    </string>
+    <string name="clear_title_quit">
+        アプリ終了時にクリアする
+    </string>
+    <string name="clear_title_bookmarks">
+        ブックマークをクリアする
+    </string>
+    <string name="clear_title_cache">
+        キャッシュをクリアする
+    </string>
+    <string name="clear_title_cookie">
+        Cookieをクリアする
+    </string>
+    <string name="clear_title_form_data">
+        Formデータをクリアする
+    </string>
+    <string name="clear_title_history">
+        履歴をクリアする
+    </string>
+    <string name="clear_title_passwords">
+        パスワードをクリアする
+    </string>
+
+    <!-- Dialog -->
+    <string name="dialog_title_hint">
+        タイトルを入力
+    </string>
+    <string name="dialog_se_hint">
+        https://www.google.com/search?q=
+    </string>
+    <string name="dialog_ua_hint">
+        Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+    </string>
+    <string name="dialog_sign_in_username">
+        ユーザー名
+    </string>
+    <string name="dialog_sign_in_password">
+        パスワード
+    </string>
+    <string name="dialog_button_positive">
+        OK
+    </string>
+    <string name="dialog_button_negative">
+        キャンセル
+    </string>
+    <string name="dialog_button_custom">
+        カスタム
+    </string>
+    <string name="dialog_title_download">
+        このファイルをダウンロードしますか？
+    </string>
+    <string name="dialog_title_resubmission">
+        データの再送信
+    </string>
+    <string name="dialog_title_warning">
+        警告
+    </string>
+    <string name="dialog_title_sign_in">
+        登録
+    </string>
+    <string name="dialog_content_resubmission">
+        データの再送信しますか？
+    </string>
+    <string name="dialog_content_ssl_error">
+        このサイトの証明書は信頼されていません。続行しますか？
+    </string>
+    <string name="dialog_content_update">
+        アップデートを確かめるにはクリックしてください。 -\n http://bit.ly/UBPUpdate \n
+        現在のバージョンは 1.4.3r2 です。
+    </string>
+    <string name="dialog_content_upload">
+        現在、ファイルアップロードはAndroid5.0とそれ以後のみサポートしています。
+    </string>
+
+    <!-- List -->
+    <string name="list_empty">
+        現在、リストは空です
+    </string>
+
+    <!-- Main -->
+    <string name="main_menu_new_tab">
+        新しいタブで開く
+    </string>
+    <string name="main_menu_copy_link">
+        リンクをコピー
+    </string>
+    <string name="main_menu_save">
+        保存
+    </string>
+    <string name="main_omnibox_input_hint">
+        検索かURLを入力
+    </string>
+    <string name="main_relayout_ok">
+        OK
+    </string>
+    <string name="main_about_blank">
+        about:blank
+    </string>
+
+    <!-- Notification -->
+    <string name="notification_content_holder">
+        クリックしてページを見る
+    </string>
+
+    <!-- Readability -->
+    <string name="readability_label">
+        Readabilityモード
+    </string>
+    <string name="readability_menu_background">
+        背景
+    </string>
+    <string name="readability_menu_share">
+        共有
+    </string>
+    <string name="readability_empty">
+        エラー: Readabilityのサーバーへのアクセスに失敗しました。 アクセストークンとインターネット接続を確認して下さい。
+    </string>
+
+    <!-- Search -->
+    <string name="search_hint">
+        検索
+    </string>
+
+    <!-- Settings -->
+    <string name="setting_label">
+        設定
+    </string>
+    <!-- Browser settings -->
+    <string name="setting_title_browser">
+        ブラウザー設定
+    </string>
+    <!-- Search engine -->
+    <string name="setting_title_search_engine">
+        検索エンジン
+    </string>
+    <string name="setting_summary_search_engine_google">
+        Google
+    </string>
+    <string name="setting_summary_search_engine_duckduckgo">
+        DuckDuckGo
+    </string>
+    <string name="setting_summary_search_engine_startpage">
+        StartPage
+    </string>
+    <string name="setting_summary_search_engine_bing">
+        Bing
+    </string>
+    <string name="setting_summary_search_engine_baidu">
+        Baidu
+    </string>
+    <string name="setting_summary_search_engine_custom">
+        カスタム
+    </string>
+    <!-- Notification -->
+    <string name="setting_title_notification_priority">
+        通知の優先度
+    </string>
+    <string name="setting_summary_notification_priority_default">
+        デフォルト
+    </string>
+    <string name="setting_summary_notification_priority_high">
+        高い
+    </string>
+    <string name="setting_summary_notification_priority_low">
+        低い
+    </string>
+    <!-- Omnibox switcher -->
+    <string name="setting_title_omnibox_position">
+        Omnibox(アドレスバー+検索バー)の位置
+    </string>
+    <string name="setting_summary_omnibox_position_top">
+        上部
+    </string>
+    <string name="setting_summary_omnibox_position_bottom">
+        下部
+    </string>
+    <!-- Omnibox control -->
+    <string name="setting_title_omnibox_control">
+        Omniboxコントロール
+    </string>
+    <string name="setting_summary_omnibox_control">
+        Omniboxを左右にスワイプすることでタブを移動します
+     </string>
+    <!-- Volume key scroll -->
+    <string name="setting_title_volume_control">
+        音量ボタンコントロール
+    </string>
+    <string name="setting_summary_vc_switch_tabs">
+        タブ切り替え
+    </string>
+    <string name="setting_summary_vc_scroll_webpage">
+        ページのスクロール
+    </string>
+    <string name="setting_summary_vc_system_default">
+        システムのデフォルト
+    </string>
+    <!-- Images -->
+    <string name="setting_title_images">
+        画像の取得
+    </string>
+    <string name="setting_summary_images">
+        インターネットを利用して画像を取得する
+    </string>
+    <!-- Cookies -->
+    <string name="setting_title_cookie">
+        Cookie
+    </string>
+    <string name="setting_summary_cookie">
+        Cookieを有効にする
+    </string>
+    <!-- JavaScript -->
+    <string name="setting_title_javascript">
+        JavaScript
+    </string>
+    <string name="setting_summary_javascript">
+        JavaScriptを有効にする
+    </string>
+    <!-- Location -->
+    <string name="setting_title_location">
+        位置情報
+    </string>
+    <string name="setting_summary_location">
+        位置情報へのアクセスをウェブサイトに許可する
+    </string>
+    <!-- Multiple windows -->
+    <string name="setting_title_multiple_windows">
+        マルチウインドウ
+    </string>
+    <string name="setting_summary_multiple_windows">
+        マルチウインドウを有効にする
+    </string>
+    <!-- Scroll bar -->
+    <string name="setting_title_scroll_bar">
+        スクロールバー
+    </string>
+    <string name="setting_summary_scroll_bar">
+        ウェブページでスクロールバーを表示する
+    </string>
+    <!-- Text reflow -->
+    <string name="setting_title_text_reflow">
+        テキストの折り返し
+    </string>
+    <string name="setting_summary_text_reflow">
+        テキストの折り返しを有効にする
+    </string>
+    <!-- User Agent -->
+    <string name="setting_title_user_agent">
+        ユーザーエージェント
+    </string>
+    <string name="setting_summary_user_agent_default">
+        デフォルト
+    </string>
+    <string name="setting_summary_user_agent_desktop">
+        デスクトップ
+    </string>
+    <string name="setting_summary_user_agent_custom">
+        カスタム
+    </string>
+    <!-- Rendering -->
+    <string name="setting_title_rendering">
+        レンダリング
+    </string>
+    <string name="setting_summary_rendering_default">
+        デフォルト
+    </string>
+    <string name="setting_summary_rendering_grayscale">
+        グレースケール
+    </string>
+    <string name="setting_summary_rendering_inverted">
+        反転
+    </string>
+    <string name="setting_summary_rendering_inverted_grayscale">
+        反転グレースケール
+    </string>
+    <!-- AdBlock setting -->
+    <string name="setting_title_adblock">
+        AdBlock
+    </string>
+    <string name="setting_summary_adblock">
+        AdBlockを利用する
+    </string>
+    <string name="setting_title_whitelist">
+        ホワイトリスト
+    </string>
+    <string name="setting_summary_whitelist">
+        これらのサイトに広告の表示を許可する
+    </string>
+    <string name="setting_title_export_whitelist">
+        ホワイトリストをエクスポートする
+    </string>
+    <string name="setting_title_import_whitelist">
+        ホワイトリストをインポートする
+    </string>
+    <string name="whitelist_filename">
+        ホワイトリスト
+    </string>
+    <!-- Readability settings -->
+    <string name="setting_title_readability">
+        Readability
+    </string>
+    <string name="setting_title_token">
+        Token
+    </string>
+    <string name="setting_summary_readability">
+        Readabilityを有効にする
+    </string>
+    <string name="setting_summary_token">
+        Readability Tokenを設定する
+    </string>
+    <!-- Data setting -->
+    <string name="setting_title_data">
+        データ
+    </string>
+    <!-- Passwords -->
+    <string name="setting_title_passwords">
+        パスワード
+    </string>
+    <string name="setting_summary_passwords">
+        パスワードを保存
+    </string>
+    <!-- Bookmarks -->
+    <string name="setting_title_export_bookmarks">
+        ブックマークをエクスポートする
+    </string>
+    <string name="setting_title_import_bookmarks">
+        ブックマークをインポートする
+    </string>
+    <string name="bookmarks_filename">
+        ブックマーク
+    </string>
+    <!-- Clear -->
+    <string name="setting_title_clear_control">
+        クリアコントロール
+    </string>
+    <!-- Others setting -->
+    <string name="setting_title_others">
+        その他
+    </string>
+    <!-- Version -->
+    <string name="setting_title_version">
+        バージョン
+    </string>
+    <!-- License -->
+    <string name="setting_title_license">
+        ライセンス
+    </string>
+    <!-- Contact -->
+    <string name="setting_title_update">
+        アップデートを確認
+    </string>
+
+    <!-- Toast -->
+    <string name="toast_add_bookmark_successful">
+        ブックマークに追加しました
+    </string>
+    <string name="toast_add_bookmark_failed">
+        このページはブックマークに追加できません
+    </string>
+    <string name="toast_add_to_home_successful">
+        ホームのページに追加しました
+    </string>
+    <string name="toast_add_to_home_failed">
+        ホームのページに追加できませんでした
+    </string>
+    <string name="toast_add_token_successful">
+        Readability Tokenの追加に成功しました
+    </string>
+    <string name="toast_add_whitelist_successful">
+        ホワイトリストにドメインの追加が成功しました
+    </string>
+    <string name="toast_already_at_the_front">
+        すでに最前面です
+    </string>
+    <string name="toast_already_exist_in_home">
+        ホームのページにすでに存在します
+    </string>
+    <string name="toast_clear_successful">
+        クリアに成功しました
+    </string>
+    <string name="toast_clear_failed">
+        クリアに失敗しました
+    </string>
+    <string name="toast_copy_successful">
+        コピーしました
+    </string>
+    <string name="toast_delete_bookmark_successful">
+        ブックマークを削除しました
+    </string>
+    <string name="toast_delete_successful">
+        削除しました
+    </string>
+    <string name="toast_domain_already_exists">
+        そのドメインはすでにホワイトリストに存在します
+    </string>
+    <string name="toast_double_taps_quit">
+        もう一度押して終了
+    </string>
+    <string name="toast_emoji">
+        つ◕ل͜◕)つ
+    </string>
+    <string name="toast_export_bookmarks_successful">
+        ブックマークはエクスポートされました 保存場所:&#160;
+    </string>
+    <string name="toast_export_bookmarks_failed">
+        ブックマークのエクスポートに失敗しました
+    </string>
+    <string name="toast_export_whitelist_successful">
+        ホワイトリストはエクスポートされました 保存場所:&#160;
+    </string>
+    <string name="toast_export_whitelist_failed">
+        ホワイトリストのエクスポートに失敗しました
+    </string>
+    <string name="toast_import_bookmarks_successful">
+        ブックマークをインポートしました 件数:&#160;
+    </string>
+    <string name="toast_import_bookmarks_failed">
+        ブックマークのインポートに失敗しました
+    </string>
+    <string name="toast_import_whitelist_successful">
+        ホワイトリストをインポートしました 件数:&#160;
+    </string>
+    <string name="toast_import_whitelist_failed">
+        ホワイトリストのインポートに失敗しました
+    </string>
+    <string name="toast_input_empty">
+        何も入力されていません
+    </string>
+    <string name="toast_invalid_domain">
+        誤ったドメインです
+    </string>
+    <string name="toast_load_error">
+        このURLを読み込むことができません
+    </string>
+    <string name="toast_load_in_background">
+        バックグラウンドで読み込み中
+    </string>
+    <string name="toast_need_restart">
+        反映するにはアプリを再起動してください
+    </string>
+    <string name="toast_new_tab_successful">
+        新しいタブで開きました
+    </string>
+    <string name="toast_open_file_manager_failed">
+        ファイルマネージャの起動に失敗しました
+    </string>
+    <string name="toast_refresh_failed">
+        このページは更新できません
+    </string>
+    <string name="toast_cannot_forward">
+        進めません
+    </string>
+    <string name="toast_relayout_successful">
+        編集しました
+    </string>
+    <string name="toast_screenshot_successful">
+        スクリーンショットは&#160;に保存されました
+    </string>
+    <string name="toast_screenshot_failed">
+        スクリーンショットに失敗しました
+    </string>
+    <string name="toast_share_failed">
+        このページはシェアできません
+    </string>
+    <string name="toast_start_download">
+        ダウンロードを開始しています
+    </string>
+    <string name="toast_token_empty">
+        Readability tokenをセットしてください
+    </string>
+    <string name="toast_wait_a_minute">
+        少々お待ちください
+    </string>
+
+    <!-- Token -->
+    <string name="token_label">
+        Token
+    </string>
+    <string name="token_edit_hint">
+        Readability Token
+    </string>
+    <string name="token_add">
+        追加
+    </string>
+    <string name="token_desc">
+        Readability tokenを得るには https://www.readability.com/developers/api にアクセスしてください。
+    </string>
+
+    <!-- Whitelist -->
+    <string name="whitelist_label">
+        ホワイトリスト
+    </string>
+    <string name="whitelist_menu_clear">
+        クリア
+    </string>
+    <string name="whitelist_edit_hint">
+        ドメイン
+    </string>
+    <string name="whitelist_add">
+        追加
+    </string>
+
+    <!-- Intro -->
+    <string name="title_activity_intro">
+        紹介
+    </string>
+
+</resources>
