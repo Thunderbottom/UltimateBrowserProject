@@ -20,7 +20,7 @@
 
     <!-- Main -->
     <string-array name="main_overflow">
-        <item>Torna all'inizio</item>
+        <item>Torna all\'inizio</item>
         <item>Aggiungi alla Pagina Iniziale</item>
         <item>Cerca nella pagina</item>
         <item>Screenshot</item>
