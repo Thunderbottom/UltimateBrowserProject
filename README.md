@@ -67,6 +67,9 @@ Some of the TODO items on the list are -
 * Finnish (FI) by [Tapetti](http://forum.xda-developers.com/member.php?u=6778883)
 * Japanese (JP) by [takahirom](https://github.com/takahirom)
 * Greek (EL) by [dancer_69](http://forum.xda-developers.com/member.php?u=390873)
+* Italian (IT) by[davimount](https://github.com/davimount)
+
+### Materialized icon by - [davimount](https://github.com/davimount)
 
 
 
