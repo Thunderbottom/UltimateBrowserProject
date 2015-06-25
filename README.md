@@ -26,7 +26,7 @@ Some of the TODO items on the list are -
 
 ## Downloads - 
 
-[Download Latest Version 1.4.4](https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.3/UltimateBrowserProject.v.1.4.3.apk)
+[Download Latest Version 1.4.4](https://github.com/balzathor/UltimateBrowserProject/releases/download/latest/UltimateBrowserProject.apk)
 
 ## Permissions:
 ```android.permission.INTERNET``` - Browsing requirements.
