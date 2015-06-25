@@ -45,7 +45,7 @@
     <string name="dialog_content_ssl_error">Le certificat de ce site n\'est pas de confiance. Voulez-vous tout de même continuer ? </string>
     <string name="dialog_content_update">
         Cliquer sur le lien pour vérifier si des mise à jour sont diposnibles -\n http://bit.ly/UBPUpdate \n
-        La version actuelle est la 1.4.3r2.
+        La version actuelle est la 1.4.4.
     </string>
     <string name="dialog_content_upload">L\'upload de fichier n\'est supporté que sur Android 5.0 et supérieur.</string>
 

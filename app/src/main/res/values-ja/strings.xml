@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         アップデートを確かめるにはクリックしてください。 -\n http://bit.ly/UBPUpdate \n
-        現在のバージョンは 1.4.3r2 です。
+        現在のバージョンは 1.4.4 です。
     </string>
     <string name="dialog_content_upload">
         現在、ファイルアップロードはAndroid5.0とそれ以後のみサポートしています。
