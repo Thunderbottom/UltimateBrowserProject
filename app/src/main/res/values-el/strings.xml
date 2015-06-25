@@ -4,120 +4,120 @@
 
     <!-- AndroidAgo -->
     <string name="android_ago_just_now">
-        Agora
+        Μόλις τώρα
     </string>
 
     <!-- Album -->
     <string name="album_title_bookmarks">
-        Favoritos
+        Σελιδοδείκτες
     </string>
     <string name="album_title_history">
-        Histórico
+        Ιστορικό
     </string>
     <string name="album_title_home">
-        Início
+        Αρχική
     </string>
     <string name="album_untitled">
-        Sem Título
+        Χωρίς τίτλο
     </string>
 
     <!-- Clear -->
     <string name="clear_label">
-        Limpar
+        Καθαρισμός
     </string>
     <string name="clear_menu_done_all">
-        Concluído
+        Όλα έτοιμα
     </string>
     <string name="clear_title_quit">
-        Limpar ao sair do aplicativo
+        Καθαρισμός όταν κλείνει η εφαρμογή
     </string>
     <string name="clear_title_bookmarks">
-        Limpar Favoritos
+        Καθαρισμός σελιδοδεικτών
     </string>
     <string name="clear_title_cache">
-        Limpar Cache
+        Καθαρισμός Cache
     </string>
     <string name="clear_title_cookie">
-        Limpar Cookies
+        Καθαρισμός Cookies
     </string>
     <string name="clear_title_form_data">
-        Limpar dados de Formulário
+        Καθαρισμός δεδομένων φόρμας
     </string>
     <string name="clear_title_history">
-        Limpar Histórico
+        Καθαρισμός ιστόρικού
     </string>
     <string name="clear_title_passwords">
-        Limpar Senhas
+        Καθαρισμός κωδικών
     </string>
 
     <!-- Dialog -->
     <string name="dialog_title_hint">
-        Inserir Título
+        Εισαγωγή τίτλου
     </string>
     <string name="dialog_se_hint">
-        https://www.google.com/search?q=
+        https://www.google.gr/search?q=
     </string>
     <string name="dialog_ua_hint">
         Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
     </string>
     <string name="dialog_sign_in_username">
-        Usuário
+        Όνομα χρήστη
     </string>
     <string name="dialog_sign_in_password">
-        Senha
+        Κωδικός
     </string>
     <string name="dialog_button_positive">
         OK
     </string>
     <string name="dialog_button_negative">
-        Cancelar
+        Άκυρο
     </string>
     <string name="dialog_button_custom">
-        Personalizado
+        Προσαρμογή
     </string>
     <string name="dialog_title_download">
-        Você quer realizar o download deste arquivo?
+        Θέλετε να ληφθεί αυτό το αρχείο;
     </string>
     <string name="dialog_title_resubmission">
-        Reenviar
+        Επανυποβολή
     </string>
     <string name="dialog_title_warning">
-        Aviso
+        Προειδοποίηση
     </string>
     <string name="dialog_title_sign_in">
-        Entrar
+        Σύνδεση
     </string>
     <string name="dialog_content_resubmission">
-        Você gostaria de reenviar seus dados?
+        Θέλετα να υποβληθούν ξανά τα δεδομένα;
     </string>
     <string name="dialog_content_ssl_error">
-        O certificado do site não é confiável. Continuar mesmo assim?
+        Το πιστοποιητικό της σελίδας δεν είναι έμπιστο. Συνέχεια;
     </string>
     <string name="dialog_content_update">
-        Clique no link para verificar atualizações -\n http://bit.ly/UBPUpdate \n
-        Versão atual é 1.4.4.
+        Κάντε κλίκ στο σύνδεσμο για έλεγχο για ενημερώσεις -\n http://bit.ly/UBPUpdate \n
+        Η τρέχουσα έκδοση είναι η 1.4.4.
     </string>
     <string name="dialog_content_upload">
-        Atualmente o upload de arquivos só é suportado no Android 5.0 e acima.
+        Προς το παρόν, η αποστολή αρχείου υποστηρίζεται μόνο σε Android 5.0 και πάνω.
     </string>
 
     <!-- List -->
     <string name="list_empty">
-        A lista atual está vazia
+        Η τρέχουσα λίστα είναι κενή
     </string>
 
     <!-- Main -->
     <string name="main_menu_new_tab">
-        Abrir em nova aba
+        Άνοιγμα σε νέα καρτέλα
     </string>
     <string name="main_menu_copy_link">
-        Copiar link
+        Αντιγραφή συνδέσμου
     </string>
     <string name="main_menu_save">
-        Salvar
+        Αποθήκευση
     </string>
     <string name="main_omnibox_input_hint">
-        Pesquisar ou digitar URL
+        Αναζήτηση ή πληκτρολόγηση URL
     </string>
     <string name="main_relayout_ok">
         OK
@@ -128,39 +128,39 @@
 
     <!-- Notification -->
     <string name="notification_content_holder">
-        Clique para ver páginas
+        Κλικ για προβολή σελίδων
     </string>
 
     <!-- Readability -->
     <string name="readability_label">
-        Modo de Leitura
+        Λειτουργία αναγνωσιμότητας
     </string>
     <string name="readability_menu_background">
-        Fundo
+        Παρασκήνιο
     </string>
     <string name="readability_menu_share">
-        Compartilhar
+        Διαμοιρασμός
     </string>
     <string name="readability_empty">
-        ERRO: Falha ao acessar o servidor do Readability. Por favor verifique o token de acesso e a conexão com a internet.
+        ΣΦΑΛΜΑ: Αποτυχία πρόσβασης στο διακομιστή Αναγνωσιμότητας. Παρακαλώ ελέγξτε τη σύνδεσή σας στο διαδίκτυο.
     </string>
 
     <!-- Search -->
     <string name="search_hint">
-        Pesquisar
+        Αναζήτηση
     </string>
 
     <!-- Settings -->
     <string name="setting_label">
-        Configurações
+        Ρυθμίσεις
     </string>
     <!-- Browser settings -->
     <string name="setting_title_browser">
-        Configurações do navegador
+        Ρυθμίσεις πλοηγού
     </string>
     <!-- Search engine -->
     <string name="setting_title_search_engine">
-        Mecanismo de pesquisa
+        Μηχανή αναζήτησης
     </string>
     <string name="setting_summary_search_engine_google">
         Google
@@ -178,359 +178,359 @@
         Baidu
     </string>
     <string name="setting_summary_search_engine_custom">
-        Personalizado
+        Προσαρμογή
     </string>
     <!-- Notification -->
     <string name="setting_title_notification_priority">
-        Prioridade de Notificação
+        Προτεραιότητα ειδοποίησης
     </string>
     <string name="setting_summary_notification_priority_default">
-        Padrão
+        Προεπιλογή
     </string>
     <string name="setting_summary_notification_priority_high">
-        Alta
+        Υψηλή
     </string>
     <string name="setting_summary_notification_priority_low">
-        Baixa
+        Χαμηλή
     </string>
     <!-- Omnibox switcher -->
     <string name="setting_title_omnibox_position">
-        Posição da Omnibox
+        Θέση Omnibox
     </string>
     <string name="setting_summary_omnibox_position_top">
-        Topo
+        Πάνω
     </string>
     <string name="setting_summary_omnibox_position_bottom">
-        Fundo
+        Κάτω
     </string>
     <!-- Omnibox control -->
     <string name="setting_title_omnibox_control">
-        Controle da Omnibox
+        Έλεγχος Omnibox
     </string>
     <string name="setting_summary_omnibox_control">
-        Deslize a omnibox para a esquerda/direita para alternar abas
+        Σύρσιμο omnibox αριστερά/δεξιά για εναλλαγή καρτελών
      </string>
     <!-- Volume key scroll -->
     <string name="setting_title_volume_control">
-        Controle de Volume
+        Ελεγχος με πλήκτρα έντασης
     </string>
     <string name="setting_summary_vc_switch_tabs">
-        Alternar Abas
+        Εναλλαγή καρτελών
     </string>
     <string name="setting_summary_vc_scroll_webpage">
-        Deslizar Página
+        Κύλιση ιστοσελίδας
     </string>
     <string name="setting_summary_vc_system_default">
-        Padrão do Sistema
+        Προεπιλογή συστήματος
     </string>
     <!-- Images -->
     <string name="setting_title_images">
-        Imagens
+        Εικόνες
     </string>
     <string name="setting_summary_images">
-        Habilitar imagens da Rede
+        Ενεργοποίηση εικόνων δικτύου
     </string>
     <!-- Cookies -->
     <string name="setting_title_cookie">
         Cookies
     </string>
     <string name="setting_summary_cookie">
-        Habilitar Cookies
+        Ενεργοποίηση Cookies
     </string>
     <!-- JavaScript -->
     <string name="setting_title_javascript">
         JavaScript
     </string>
     <string name="setting_summary_javascript">
-        Habilitar JavaScript
+        Ενεργοποίηση JavaScript
     </string>
     <!-- Location -->
     <string name="setting_title_location">
-        Localização
+        Τοποθεσία
     </string>
     <string name="setting_summary_location">
-        Permitir que websites acessem sua localização
+        Να επιτρέπεται στις ιστοσελίδες να έχουν πρόσβαση στην τοποθεσία σας
     </string>
     <!-- Multiple windows -->
     <string name="setting_title_multiple_windows">
-        Janelas Múltiplas
+        Πολλαπλά παράθυρα
     </string>
     <string name="setting_summary_multiple_windows">
-        Habilitar janelas Múltiplas
+        Ενεργοποίηση πολλαπλών παραθύρων
     </string>
     <!-- Scroll bar -->
     <string name="setting_title_scroll_bar">
-        Barra de rolagem
+        Μπάρα κύλισης
     </string>
     <string name="setting_summary_scroll_bar">
-        Mostrar barra de rolagem em páginas da web
+        Εμφάνιση μπάρας κύλισης στις ιστοσελίδες
     </string>
     <!-- Text reflow -->
     <string name="setting_title_text_reflow">
-        Refluxo de texto
+        Δυναμική προσαρμογή κειμένου
     </string>
     <string name="setting_summary_text_reflow">
-        Habilitar refluxo de texto
+        Ενεργοποίηση δυναμικής προσαρμογής κειμένου
     </string>
     <!-- User Agent -->
     <string name="setting_title_user_agent">
-        Agente de Usuário
+        User Agent
     </string>
     <string name="setting_summary_user_agent_default">
-        Padrão
+        Προεπιλογή
     </string>
     <string name="setting_summary_user_agent_desktop">
-        Desktop
+        Επιφάνεια εργασίας
     </string>
     <string name="setting_summary_user_agent_custom">
-        Personalizado
+        Προσαρμογή
     </string>
     <!-- Rendering -->
     <string name="setting_title_rendering">
-        Renderização
+        Απόδοση
     </string>
     <string name="setting_summary_rendering_default">
-        Padrão
+        Προεπιλογή
     </string>
     <string name="setting_summary_rendering_grayscale">
-        Escala de Cinza
+        Κλίμακα γκρι
     </string>
     <string name="setting_summary_rendering_inverted">
-        Invertida
+        Αντιστροφή
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
-        Escala de Cinza invertida
+        Αντίστροφη κλίμακα γκρι
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">
         AdBlock
     </string>
     <string name="setting_summary_adblock">
-        Habilitar AdBlock
+        Ενεργοποίηση AdBlock
     </string>
     <string name="setting_title_whitelist">
-        Whitelist
+        Επιτρεπτή λίστα
     </string>
     <string name="setting_summary_whitelist">
-        Permitir que estes sites exibam anúncios
+        Επέτρεψε σε αυτές τις σελίδες να εμφανίζουν ads
     </string>
     <string name="setting_title_export_whitelist">
-        Exportar Whitelist
+        Εξαγωγή επιτρεπτής λίστας
     </string>
     <string name="setting_title_import_whitelist">
-        Importar Whitelist
+        Εισαγωγή επιτρεπτής λίστας
     </string>
     <string name="whitelist_filename">
-        Whitelist
+        Επιτρεπτή λίστα
     </string>
     <!-- Readability settings -->
     <string name="setting_title_readability">
-        Readability
+        Αναγνωσιμότητα
     </string>
     <string name="setting_title_token">
-        Token
+        Δείγμα
     </string>
     <string name="setting_summary_readability">
-        Habilitar Readability
+        Ενεργοποίηση αναγνωσιμότητας
     </string>
     <string name="setting_summary_token">
-        Definir Token do Readability
+        Ορισμός δείγματος αναγνωσιμότητας
     </string>
     <!-- Data setting -->
     <string name="setting_title_data">
-        Dados
+        Δεδομένα
     </string>
     <!-- Passwords -->
     <string name="setting_title_passwords">
-        Senhas
+        Κωδικοί
     </string>
     <string name="setting_summary_passwords">
-        Salvar Senhas
+        Αποθήκευση κωδικών
     </string>
     <!-- Bookmarks -->
     <string name="setting_title_export_bookmarks">
-        Exportar Favoritos
+        Εξαγωγή σελιδοδεικτών
     </string>
     <string name="setting_title_import_bookmarks">
-        Importar Favoritos
+        Εισαγωγή σελιδοδεικτών
     </string>
     <string name="bookmarks_filename">
-        Favoritos
+        Σελιδοδείκτες
     </string>
     <!-- Clear -->
     <string name="setting_title_clear_control">
-        Limpar Controle
+        Έλεγχος καθαρισμού
     </string>
     <!-- Others setting -->
     <string name="setting_title_others">
-        Outros
+        Άλλα
     </string>
     <!-- Version -->
     <string name="setting_title_version">
-        Versão
+        Έκδοση
     </string>
     <!-- License -->
     <string name="setting_title_license">
-        Licença
+        Άδεια χρήσης
     </string>
     <!-- Contact -->
     <string name="setting_title_update">
-        Verificar Atualizações
+        Έλεγχος για ενημερώσεις
     </string>
 
     <!-- Toast -->
     <string name="toast_add_bookmark_successful">
-        Adicionado aos Favoritos com sucesso
+        Επιτυχής προσθήκη στους σελιδοδείκτες
     </string>
     <string name="toast_add_bookmark_failed">
-        Não é possível adicionar esta página aos Favoritos
+        Αδυναμία προσθήκη της σελίδας στους σελιδοδείκτες
     </string>
     <string name="toast_add_to_home_successful">
-        Adicionado à Página Inicial com sucesso
+        Επιτυχής προσθήκη στην αρχική σελίδα
     </string>
     <string name="toast_add_to_home_failed">
-        Não foi possível adicionar à Página Inicial
+        Αποτυχία προσθήκης στην αρχική σελίδα
     </string>
     <string name="toast_add_token_successful">
-        Token do Readability adicionado com sucesso
+        Επιτυχής προσθήκη στο δείγμα αναγνωσιμότητας
     </string>
     <string name="toast_add_whitelist_successful">
-        Domínio adicionado à WhiteList com sucesso
+        Επιτυχής προσθήκη Τομέα στην επιτρεπτή λίστα
     </string>
     <string name="toast_already_at_the_front">
-        Já está na frente
+        Ήδη είναι στο προσκήνιο
     </string>
     <string name="toast_already_exist_in_home">
-        Já existe na Página Inicial
+        Υπάρχει ήδη στην αρχική σελίδα
     </string>
     <string name="toast_clear_successful">
-        Limpo com sucesso
+        Επιτυχής καθαρισμός
     </string>
     <string name="toast_clear_failed">
-        Falha ao Limpar
+        Αποτυχία καθαρισμού
     </string>
     <string name="toast_copy_successful">
-        Copiado com sucesso
+        Επιτυχής αντιγραφή
     </string>
     <string name="toast_delete_bookmark_successful">
-        Favorito excluído com sucesso
+        Επιτυχής διαγραφή σελιδοδείκτη
     </string>
     <string name="toast_delete_successful">
-        Excluído com sucesso
+        Επιτυχής διαγραφή
     </string>
     <string name="toast_domain_already_exists">
-        O domínio já existe na WhiteList
+        Ο τομέας υπάρχει ήδη στην επιτρεπτή λίστα
     </string>
     <string name="toast_double_taps_quit">
-        Pressione novamente para sair
+        Πιέστε ξανά για έξοδο
     </string>
     <string name="toast_emoji">
         つ◕ل͜◕)つ
     </string>
     <string name="toast_export_bookmarks_successful">
-        Arquivo de Favoritos exportado em:&#160;
+        Εξαγόμενο αρχείο σελιδοδεικτών στο:&#160;
     </string>
     <string name="toast_export_bookmarks_failed">
-        Falha ao exportar Favoritos
+        Αποτυχία εξαγωγής σελιδοδεικτών
     </string>
     <string name="toast_export_whitelist_successful">
-        WhiteList exportada em:&#160;
+        Εξαγόμενο αρχείο επιτρεπτής λίστας στο:&#160;
     </string>
     <string name="toast_export_whitelist_failed">
-        Falha ao exportar WhiteList
+        Αποτυχία εξαγωγής επιτρεπτής λίστας
     </string>
     <string name="toast_import_bookmarks_successful">
-        Contagem de Favoritos importados:&#160;
+        Αριθμός εισαγόμενων σελιδοδεικτών:&#160;
     </string>
     <string name="toast_import_bookmarks_failed">
-        Falha ao importar Favoritos
+        Αποτυχία εισαγωγής σελιδοδεικτών
     </string>
     <string name="toast_import_whitelist_successful">
-        Contagem de Domínios importados:&#160;
+        Αριθμός εισαγόμενων τομέων:&#160;
     </string>
     <string name="toast_import_whitelist_failed">
-        Falha ao importar WhiteList
+        Αποτυχία εισαγωγής επιτρεπτής λίστας
     </string>
     <string name="toast_input_empty">
-        Você não inseriu nada
+        Δεν έχετε εισάγει τίποτα
     </string>
     <string name="toast_invalid_domain">
-        Domínio inválido
+        Μη έγκυρος τομέας
     </string>
     <string name="toast_load_error">
-        Não foi possível carregar esta URL
+        Αδυναμία φόρτωσης της URL
     </string>
     <string name="toast_load_in_background">
-        Carregando no fundo
+        Φόρτωση στο παρασκήνιο
     </string>
     <string name="toast_need_restart">
-        Por favor reinicie o aplicativo para que as mudanças tenham efeito
+        Παρακαλώ επανεκκινήστε την εφαρμογή για να εφαρμοστούν οι αλλαγές
     </string>
     <string name="toast_new_tab_successful">
-        Aberto em nova aba com sucesso
+        Επιτυχές άνοιγμα σε νέα καρτέλα
     </string>
     <string name="toast_open_file_manager_failed">
-        Falha ao abrir Gerenciador de Arquivos
+        Αποτυχία ανοίγματος διαχειριστή αρχείων
     </string>
     <string name="toast_refresh_failed">
-        Não é possível atualizar esta página
+        Αδυναμία ανανέωσης αυτής της σελίδας
     </string>
     <string name="toast_cannot_forward">
-        Não é possível avançar
+        Αδυναμία μετάβασης μπροστά
     </string>
     <string name="toast_relayout_successful">
-        Relayout com sucesso
+        Επιτυχής επαναδιάταξη
     </string>
     <string name="toast_screenshot_successful">
-        Captura de Tela salva em:&#160;
+        Το στιγμιότυπο αποθηκεύθηκε στο:&#160;
     </string>
     <string name="toast_screenshot_failed">
-        Falha ao capturar a tela
+        Αποτυχία λήψης στιγμιότυπου
     </string>
     <string name="toast_share_failed">
-        Não é possível compartilhar esta página
+        Αδυναμία διαμοιρασμού αυτής της σελίδας
     </string>
     <string name="toast_start_download">
-        Iniciando download
+        Έναρξη λήψης
     </string>
     <string name="toast_token_empty">
-        Por favor configure o token do Readability
+        Παρακαλώ ορίστε δείγμα αναγνωσιμότητας
     </string>
     <string name="toast_wait_a_minute">
-        Aguarde um momento
+        Περιμένετε ένα λεπτό
     </string>
 
     <!-- Token -->
     <string name="token_label">
-        Token
+        Δείγμα
     </string>
     <string name="token_edit_hint">
-        Token do Readability
+        Δείγμα αναγνωσιμότητας
     </string>
     <string name="token_add">
-        Adicionar
+        Προσθήκη
     </string>
     <string name="token_desc">
-        Ir para https://www.readability.com/developers/api para pegar seu próprio token do Readability
+        Πηγαίνετε στο https://www.readability.com/developers/api για να αποκτήσετε το δικό σας δείγμα αναγνωσιμότητας
     </string>
 
     <!-- Whitelist -->
     <string name="whitelist_label">
-        Whitelist
+        Επιτρεπτή λίστα
     </string>
     <string name="whitelist_menu_clear">
-        Limpar
+        Καθαρισμός
     </string>
     <string name="whitelist_edit_hint">
-        Domínio
+        Τομέας
     </string>
     <string name="whitelist_add">
-        Adicionar
+        Προσθήκη
     </string>
 
     <!-- Intro -->
     <string name="title_activity_intro">
-        Intro
+        Εισαγωγή
     </string>
 
 </resources>

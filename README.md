@@ -26,7 +26,7 @@ Some of the TODO items on the list are -
 
 ## Downloads - 
 
-[Download Latest Version 1.4.3r2](https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.3/UltimateBrowserProject.v.1.4.3.apk)
+[Download Latest Version 1.4.4](https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.3/UltimateBrowserProject.v.1.4.3.apk)
 
 ## Permissions:
 ```android.permission.INTERNET``` - Browsing requirements.
@@ -65,6 +65,11 @@ Some of the TODO items on the list are -
 * Polish (PL) by [Bartti](https://github.com/Bartti) and [Veacue](http://forum.xda-developers.com/member.php?u=5759069) and [Toa](http://forum.xda-developers.com/member.php?u=6170529)
 * Turkish (TR) by [cagdassalur](https://github.com/cagdassalur)
 * Finnish (FI) by [Tapetti](http://forum.xda-developers.com/member.php?u=6778883)
+* Japanese (JP) by [takahirom](https://github.com/takahirom)
+* Greek (EL) by [dancer_69](http://forum.xda-developers.com/member.php?u=390873)
+* Italian (IT) by[davimount](https://github.com/davimount)
+
+### Materialized icon by - [davimount](https://github.com/davimount)
 
 
 

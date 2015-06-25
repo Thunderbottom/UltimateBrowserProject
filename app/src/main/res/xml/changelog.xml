@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.4.4" versioncode="36" releasedate="June 25th 2015" summary="Localization and Icon update">
+        <change type="improvement">Added more localizations.</change>
+        <change type="improvement">Icon is now Materialized. Thanks to <a href="https://github.com/davimount">davimount</a></change>
+
+    </release>
     <release version="1.4.3r2" versioncode="35" releasedate="June 23rd 2015">
         <change type="bug">Fixed a bug in Settings - License</change>
     </release>
