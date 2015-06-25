@@ -66,6 +66,7 @@ Some of the TODO items on the list are -
 * Turkish (TR) by [cagdassalur](https://github.com/cagdassalur)
 * Finnish (FI) by [Tapetti](http://forum.xda-developers.com/member.php?u=6778883)
 * Japanese (JP) by [takahirom](https://github.com/takahirom)
+* Greek (EL) by [dancer_69](http://forum.xda-developers.com/member.php?u=390873)
 
 
 
