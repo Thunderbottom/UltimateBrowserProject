@@ -5,29 +5,29 @@
     <!-- Holder -->
     <string-array name="holder_menu">
         <item>Foreground</item>
-        <item>Kopiuj link</item>
-        <item>Udostępnij</item>
+        <item>Copy link</item>
+        <item>Share</item>
     </string-array>
 
     <!-- List -->
     <string-array name="list_menu">
-        <item>Nowa karta</item>
-        <item>Kopiuj link</item>
-        <item>Udostępnij</item>
-        <item>Edytuj</item>
-        <item>Usuń</item>
+        <item>New tab</item>
+        <item>Copy link</item>
+        <item>Share</item>
+        <item>Edit</item>
+        <item>Delete</item>
     </string-array>
 
     <!-- Main -->
     <string-array name="main_overflow">
-        <item>Do góry strony</item>
-        <item>Dodaj do ekranu startowego</item>
-        <item>Znajdź na stronie</item>
-        <item>Zrzut ekranu</item>
-        <item>Tryb czytelny</item>
-        <item>Udostępnij</item>
-        <item>Zmień układ</item>
-        <item>Wyjdź</item>
+        <item>Go to top</item>
+        <item>Add to home</item>
+        <item>Find in page</item>
+        <item>Screenshot</item>
+        <item>Readability</item>
+        <item>Share</item>
+        <item>Relayout</item>
+        <item>Quit</item>
     </string-array>
 
     <!-- Search engine -->
