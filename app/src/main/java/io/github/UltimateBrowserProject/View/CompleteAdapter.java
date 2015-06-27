@@ -1,18 +1,25 @@
 package io.github.UltimateBrowserProject.View;
 
 import android.content.Context;
+import android.os.Handler;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.TextView;
+
+import java.util.*;
+
 import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 
-import java.util.*;
-
 public class CompleteAdapter extends BaseAdapter implements Filterable {
+    private final Handler mainTreadHandler;
+
     private class CompleteFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence prefix) {
@@ -20,7 +27,8 @@ public class CompleteAdapter extends BaseAdapter implements Filterable {
                 return new FilterResults();
             }
 
-            resultList.clear();
+            final List<CompleteItem> tempResultList = new ArrayList<>();
+            tempResultList.clear();
             for (CompleteItem item : originalList) {
                 if (item.getTitle().contains(prefix) || item.getURL().contains(prefix)) {
                     if (item.getTitle().contains(prefix)) {
@@ -28,11 +36,11 @@ public class CompleteAdapter extends BaseAdapter implements Filterable {
                     } else if (item.getURL().contains(prefix)) {
                         item.setIndex(item.getURL().indexOf(prefix.toString()));
                     }
-                    resultList.add(item);
+                    tempResultList.add(item);
                 }
             }
 
-            Collections.sort(resultList, new Comparator<CompleteItem>() {
+            Collections.sort(tempResultList, new Comparator<CompleteItem>() {
                 @Override
                 public int compare(CompleteItem first, CompleteItem second) {
                     if (first.getIndex() < second.getIndex()) {
@@ -46,8 +54,15 @@ public class CompleteAdapter extends BaseAdapter implements Filterable {
             });
 
             FilterResults results = new FilterResults();
-            results.values = resultList;
-            results.count = resultList.size();
+            results.values = tempResultList;
+            results.count = tempResultList.size();
+
+            mainTreadHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    resultList = tempResultList;
+                }
+            });
 
             return results;
         }
@@ -118,6 +133,7 @@ public class CompleteAdapter extends BaseAdapter implements Filterable {
         this.layoutResId = layoutResId;
         this.originalList = new ArrayList<>();
         this.resultList = new ArrayList<>();
+        this.mainTreadHandler = new Handler();
         dedup(recordList);
     }
 
