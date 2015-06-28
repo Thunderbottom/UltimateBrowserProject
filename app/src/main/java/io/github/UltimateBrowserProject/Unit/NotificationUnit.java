@@ -42,13 +42,15 @@ public class NotificationUnit {
         builder.setSmallIcon(R.drawable.ic_notification_ultimatebrowserproject);
         builder.setContentTitle(context.getString(R.string.app_name));
         builder.setContentText(context.getString(R.string.notification_content_holder));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder.setColor(context.getResources().getColor(R.color.blue_500));
-        }
 
         Intent toActivity = new Intent(context, BrowserActivity.class);
         PendingIntent pin = PendingIntent.getActivity(context, 0, toActivity, 0);
         builder.setContentIntent(pin);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder.setColor(context.getResources().getColor(R.color.blue_500));
+            builder.setFullScreenIntent(pin, true);
+        }
 
         return builder;
     }
