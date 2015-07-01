@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         点击链接检查更新 -\n http://bit.ly/UBPUpdate \n
-        目前的版本是1.4.4。
+        目前的版本是1.4.5。
     </string>
     <string name="dialog_content_upload">
         目前，文件上传仅支持在Android5.0及以上。

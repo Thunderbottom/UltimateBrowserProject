@@ -2,7 +2,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="io.github.UltimateBrowserProject"
-          android:versionCode="36"
+          android:versionCode="37"
           android:versionName="@string/app_version">
 
     <!-- SDK -->
