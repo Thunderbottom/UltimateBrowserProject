@@ -20,7 +20,7 @@
     <string name="dialog_button_positive">OK</string>
     <string name="dialog_content_resubmission">Inviare di nuovo i dati?</string>
     <string name="dialog_content_ssl_error">Certificato del sito non attendibile. Continuare comunque?</string>
-    <string name="dialog_content_update">Clicca sul link per cercare aggiornamenti -\n http://bit.ly/UBPUpdate \n         La versione corrente è 1.4.5.</string>
+    <string name="dialog_content_update">Clicca sul link per cercare aggiornamenti -\n http://bit.ly/UBPUpdate \n         La versione corrente è 1.4.6.</string>
     <string name="dialog_content_upload">Al momento, il caricamento di file è supportato su Android 5.0 e successivi.</string>
     <string name="dialog_se_hint">https://www.google.com/search?q=</string>
     <string name="dialog_sign_in_password">Password</string>

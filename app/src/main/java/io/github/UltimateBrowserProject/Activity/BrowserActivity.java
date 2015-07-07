@@ -58,6 +58,7 @@ import org.askerov.dynamicgrid.DynamicGridView;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -1415,9 +1416,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         final List<String> list = new ArrayList<>();
         list.add(getString(R.string.main_menu_new_tab));
         list.add(getString(R.string.main_menu_copy_link));
-        if (result != null && (result.getType() == WebView.HitTestResult.IMAGE_TYPE || result.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE)) {
-            list.add(getString(R.string.main_menu_save));
-        }
+        list.add(getString(R.string.main_menu_save));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -1448,8 +1447,8 @@ public class BrowserActivity extends Activity implements BrowserController {
                     UltimateBrowserProjectToast.show(BrowserActivity.this, R.string.toast_new_tab_successful);
                 } else if (s.equals(getString(R.string.main_menu_copy_link))) { // Copy link
                     BrowserUnit.copyURL(BrowserActivity.this, target);
-                } else if (s.equals(getString(R.string.main_menu_save))) { // Save
-                    BrowserUnit.download(BrowserActivity.this, target, target, BrowserUnit.MIME_TYPE_IMAGE);
+                } else if (s.equals(getString(R.string.main_menu_save))) { // Save link
+                    BrowserUnit.download(BrowserActivity.this, target, target, URLConnection.guessContentTypeFromName(target));
                 }
 
                 dialog.hide();
@@ -1614,16 +1613,17 @@ public class BrowserActivity extends Activity implements BrowserController {
             stringList.remove(array[3]); // Screenshot
             stringList.remove(array[4]); // Readability
             stringList.remove(array[5]); // Share
+            stringList.remove(array[6]); // Save Link As
 
             UltimateBrowserProjectRelativeLayout UltimateBrowserProjectRelativeLayout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
             if (UltimateBrowserProjectRelativeLayout.getFlag() != BrowserUnit.FLAG_HOME) {
-                stringList.remove(array[6]); // Relayout
+                stringList.remove(array[7]); // Relayout
             }
         } else if (currentAlbumController != null && currentAlbumController instanceof UltimateBrowserProjectWebView) {
             if (!sp.getBoolean(getString(R.string.sp_readability), false)) {
                 stringList.remove(array[4]); // Readability
             }
-            stringList.remove(array[6]); // Relayout
+            stringList.remove(array[7]); // Relayout
         }
 
         ListView listView = (ListView) layout.findViewById(R.id.dialog_list);
@@ -1687,7 +1687,10 @@ public class BrowserActivity extends Activity implements BrowserController {
                         UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
                         IntentUnit.share(BrowserActivity.this, UltimateBrowserProjectWebView.getTitle(), UltimateBrowserProjectWebView.getUrl());
                     }
-                } else if (s.equals(array[6])) { // Relayout
+                } else if (s.equals(array[6])) { // Save link as
+                    UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
+                    BrowserUnit.download(BrowserActivity.this, UltimateBrowserProjectWebView.getUrl(), UltimateBrowserProjectWebView.getUrl(), URLConnection.guessContentTypeFromName(UltimateBrowserProjectWebView.getUrl()));
+                } else if (s.equals(array[7])) { // Relayout
                     UltimateBrowserProjectRelativeLayout UltimateBrowserProjectRelativeLayout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
                     final DynamicGridView gridView = (DynamicGridView) UltimateBrowserProjectRelativeLayout.findViewById(R.id.home_grid);
                     final List<GridItem> gridList = ((GridAdapter) gridView.getAdapter()).getList();
@@ -1764,7 +1767,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                         }
                     });
                     gridView.startEditMode();
-                } else if (s.equals(array[7])) { // Quit
+                } else if (s.equals(array[8])) { // Quit
                     finish();
                 }
 
