@@ -1417,6 +1417,10 @@ public class BrowserActivity extends Activity implements BrowserController {
         list.add(getString(R.string.main_menu_new_tab));
         list.add(getString(R.string.main_menu_copy_link));
         list.add(getString(R.string.main_menu_save));
+        list.add(getString(R.string.main_menu_save_link));
+        if (result != null && (result.getType() == WebView.HitTestResult.IMAGE_TYPE || result.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE)) {
+            list.add(getString(R.string.main_menu_save));
+        }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -1447,7 +1451,13 @@ public class BrowserActivity extends Activity implements BrowserController {
                     UltimateBrowserProjectToast.show(BrowserActivity.this, R.string.toast_new_tab_successful);
                 } else if (s.equals(getString(R.string.main_menu_copy_link))) { // Copy link
                     BrowserUnit.copyURL(BrowserActivity.this, target);
+<<<<<<< HEAD
                 } else if (s.equals(getString(R.string.main_menu_save))) { // Save link
+=======
+                } else if (s.equals(getString(R.string.main_menu_save))) { // Save
+                    BrowserUnit.download(BrowserActivity.this, target, target, BrowserUnit.MIME_TYPE_IMAGE);
+                } else if (s.equals(getString(R.string.main_menu_save_link))) { // Save link
+>>>>>>> origin/master
                     BrowserUnit.download(BrowserActivity.this, target, target, URLConnection.guessContentTypeFromName(target));
                 }
 
