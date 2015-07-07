@@ -68,6 +68,7 @@ Some of the TODO items on the list are -
 * Japanese (JP) by [takahirom](https://github.com/takahirom)
 * Greek (EL) by [dancer_69](http://forum.xda-developers.com/member.php?u=390873)
 * Italian (IT) by[davimount](https://github.com/davimount)
+* Traditional Chinese (TW) by [louis383](http://forum.xda-developers.com/member.php?u=6709293)
 
 ### Materialized icon by - [davimount](https://github.com/davimount)
 
