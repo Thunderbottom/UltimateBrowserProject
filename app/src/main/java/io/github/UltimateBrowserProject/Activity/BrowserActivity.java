@@ -58,7 +58,6 @@ import org.askerov.dynamicgrid.DynamicGridView;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -1416,7 +1415,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         final List<String> list = new ArrayList<>();
         list.add(getString(R.string.main_menu_new_tab));
         list.add(getString(R.string.main_menu_copy_link));
-        list.add(getString(R.string.main_menu_save_link));
         if (result != null && (result.getType() == WebView.HitTestResult.IMAGE_TYPE || result.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE)) {
             list.add(getString(R.string.main_menu_save));
         }
@@ -1452,8 +1450,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                     BrowserUnit.copyURL(BrowserActivity.this, target);
                 } else if (s.equals(getString(R.string.main_menu_save))) { // Save
                     BrowserUnit.download(BrowserActivity.this, target, target, BrowserUnit.MIME_TYPE_IMAGE);
-                } else if (s.equals(getString(R.string.main_menu_save_link))) { // Save link
-                    BrowserUnit.download(BrowserActivity.this, target, target, URLConnection.guessContentTypeFromName(target));
                 }
 
                 dialog.hide();
