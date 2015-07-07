@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <item>Save link as</item>
     <!-- Holder -->
     <string-array name="holder_menu">
         <item>Προσκήνιο</item>
@@ -26,7 +25,7 @@
         <item>Στιγμιότυπο</item>
         <item>Αναγνωσιμότητα</item>
         <item>Διαμοιρασμός</item>
-        <item>Save link as</item>
+        <item>Αποθήκευση συνδέσμου ως</item>
         <item>Επαναδιάταξη</item>
         <item>Έξοδος</item>
     </string-array>

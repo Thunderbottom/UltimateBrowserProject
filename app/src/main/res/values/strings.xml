@@ -116,9 +116,6 @@
     <string name="main_menu_save">
         Save as
     </string>
-    <string name="main_menu_save_link">
-        Save link
-    </string>
     <string name="main_omnibox_input_hint">
         Search or type URL
     </string>
