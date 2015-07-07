@@ -4,30 +4,30 @@
 
     <!-- Holder -->
     <string-array name="holder_menu">
-        <item>前台打开</item>
-        <item>拷贝链接</item>
+        <item>前景</item>
+        <item>複製連結</item>
         <item>分享</item>
     </string-array>
 
     <!-- List -->
     <string-array name="list_menu">
-        <item>新建标签</item>
-        <item>拷贝链接</item>
+        <item>新分頁</item>
+        <item>複製連結</item>
         <item>分享</item>
-        <item>编辑</item>
-        <item>删除</item>
+        <item>編輯</item>
+        <item>刪除</item>
     </string-array>
 
     <!-- Main -->
     <string-array name="main_overflow">
-        <item>回到顶部</item>
-        <item>添加拨号</item>
-        <item>页内搜索</item>
-        <item>网页截图</item>
-        <item>阅读模式</item>
+        <item>移至頁首</item>
+        <item>加入首頁</item>
+        <item>在頁面中尋找</item>
+        <item>螢幕截圖</item>
+        <item>Readability</item>
         <item>分享</item>
-        <item>排版</item>
-        <item>退出</item>
+        <item>文字重新排版</item>
+        <item>離開</item>
     </string-array>
 
     <!-- Search engine -->
