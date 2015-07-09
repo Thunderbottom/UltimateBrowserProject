@@ -301,6 +301,13 @@
     <string name="setting_summary_rendering_inverted_grayscale">
         Inverted Grayscale
     </string>
+    <!-- Fullscreen mode-->
+    <string name="setting_title_fullscreen">
+        Fullscreen mode
+    </string>
+    <string name="setting_summary_fullscreen">
+        Enable fullscreen mode
+    </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">
         AdBlock

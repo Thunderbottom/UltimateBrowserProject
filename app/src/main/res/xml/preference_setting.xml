@@ -102,6 +102,12 @@
                         android:entryValues="@array/setting_values_rendering">
         </ListPreference>
 
+        <CheckBoxPreference android:key="@string/sp_fullscreen"
+                            android:defaultValue="false"
+                            android:title="@string/setting_title_fullscreen"
+                            android:summary="@string/setting_summary_fullscreen">
+        </CheckBoxPreference>
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/setting_title_adblock">
