@@ -2076,7 +2076,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         omnibox.setVisibility(View.GONE);
-                        progressBar.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -2107,7 +2106,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         omnibox.setVisibility(View.VISIBLE);
-                        progressBar.setVisibility(View.VISIBLE);
                     }
 
                     @Override
