@@ -20,9 +20,9 @@ For a list of current features provided by the application and many more, Please
 
 At this stage, the applicatin requires features to make it better, while keeping it as light as possible.
 Some of the TODO items on the list are -
-* Add Fullscreen Toggle
-* Add Incognito Mode
+* Add More Features
 * Add Application themes
+* Fix Bugs
 
 ## Downloads - 
 
@@ -67,7 +67,7 @@ Some of the TODO items on the list are -
 * Finnish (FI) by [Tapetti](http://forum.xda-developers.com/member.php?u=6778883).
 * Japanese (JP) by [takahirom](https://github.com/takahirom).
 * Greek (EL) by [dancer_69](http://forum.xda-developers.com/member.php?u=390873).
-* Italian (IT) by[davimount](https://github.com/davimount).
+* Italian (IT) by [davimount](https://github.com/davimount).
 * Traditional Chinese (TW) by [louis383](http://forum.xda-developers.com/member.php?u=6709293).
 
 ### Materialized icon by - [davimount](https://github.com/davimount)
