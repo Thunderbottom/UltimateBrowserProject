@@ -3,6 +3,7 @@ package io.github.UltimateBrowserProject.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -12,6 +13,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.v4.view.MotionEventCompat;
+import android.util.DisplayMetrics;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,6 +51,10 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private int dimen144dp;
     private int dimen108dp;
     private int animTime;
+    private final int SHOW_OMNIBOX_SCROLL_THRESHOLD = convertDpToPixels(1);
+    private final int HIDE_OMNIBOX_SCROLL_THRESHOLD = convertDpToPixels(100);
+    private float y1;
+    private float y2;
 
     private Album album;
     private UltimateBrowserProjectWebViewClient webViewClient;
@@ -127,6 +134,23 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (view != null && !view.hasFocus()) {
+                    view.requestFocus();
+                }
+
+                int action = motionEvent.getAction();
+                y1 = motionEvent.getY();
+
+                if (action == MotionEvent.ACTION_DOWN) {
+                    y2 = y1;
+                } else if (action == MotionEvent.ACTION_UP) {
+                    if ((y1 - y2) > SHOW_OMNIBOX_SCROLL_THRESHOLD) {
+                        browserController.showOmnibox();
+                    } else if ((y1 - y2) < -HIDE_OMNIBOX_SCROLL_THRESHOLD) {
+                        browserController.hideOmnibox();
+                    }
+                    y2 = 0;
+                }
                 gestureDetector.onTouchEvent(motionEvent);
                 return false;
             }
@@ -424,5 +448,10 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             return false;
         }
         return true;
+    }
+
+    public static int convertDpToPixels(int dp) {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        return (int) (dp * metrics.density + 0.5f);
     }
 }

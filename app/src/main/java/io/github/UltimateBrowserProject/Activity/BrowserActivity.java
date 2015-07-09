@@ -97,6 +97,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     private static final int DOUBLE_TAPS_QUIT_DEFAULT = 1800;
 
     private SwitcherPanel switcherPanel;
+    private boolean fullscreen;
     private int anchor;
     private float dimen156dp;
     private float dimen144dp;
@@ -181,6 +182,8 @@ public class BrowserActivity extends Activity implements BrowserController {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
         }
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
+        setFullscreen(fullscreen);
         anchor = Integer.valueOf(sp.getString(getString(R.string.sp_anchor), "1"));
         if (anchor == 0) {
             setContentView(R.layout.main_top);
@@ -234,12 +237,15 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public void onResume() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
         IntentUnit.setContext(this);
         super.onResume();
         if (create) {
             return;
         }
 
+        setFullscreen(fullscreen);
         dispatchIntent(getIntent());
 
         if (IntentUnit.isDBChange()) {
@@ -465,6 +471,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 boolean ob = sp.getBoolean(getString(R.string.sp_omnibox_control), true);
                 return !switcherPanel.isKeyBoardShowing() && ob;
             }
+
             @Override
             public void onSwipe() {
                 inputBox.setKeyListener(null);
@@ -478,7 +485,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 inputBox.setKeyListener(keyListener);
                 inputBox.setFocusable(true);
                 inputBox.setFocusableInTouchMode(true);
-                inputBox.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS|InputType.TYPE_TEXT_VARIATION_URI);
+                inputBox.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_URI);
                 inputBox.clearFocus();
 
                 if (canSwitch) {
@@ -584,8 +591,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
                     if (UltimateBrowserProjectWebView.canGoForward()) {
                         UltimateBrowserProjectWebView.goForward();
-                    }
-                    else if (currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
+                    } else if (currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
                         final UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
                         if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
                             initHomeGrid(layout, true);
@@ -1039,10 +1045,12 @@ public class BrowserActivity extends Activity implements BrowserController {
             Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.album_fade_out);
             fadeOut.setAnimationListener(new Animation.AnimationListener() {
                 @Override
-                public void onAnimationRepeat(Animation animation) {}
+                public void onAnimationRepeat(Animation animation) {
+                }
 
                 @Override
-                public void onAnimationEnd(Animation animation) {}
+                public void onAnimationEnd(Animation animation) {
+                }
 
                 @Override
                 public void onAnimationStart(Animation animation) {
@@ -1447,7 +1455,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     UltimateBrowserProjectToast.show(BrowserActivity.this, R.string.toast_new_tab_successful);
                 } else if (s.equals(getString(R.string.main_menu_copy_link))) { // Copy link
                     BrowserUnit.copyURL(BrowserActivity.this, target);
-                } else if (s.equals(getString(R.string.main_menu_save))){  // Save link
+                } else if (s.equals(getString(R.string.main_menu_save))) {  // Save link
                     BrowserUnit.download(BrowserActivity.this, target, target, URLConnection.guessContentTypeFromName(target));
                 }
 
@@ -2048,5 +2056,75 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
 
         return list.get(index);
+    }
+
+    @Override
+    public void hideOmnibox() {
+        if (fullscreen) {
+            if (omnibox.getVisibility() != View.GONE) {
+                Animation hide;
+                if (anchor == 0) {
+                    hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_up);
+                } else {
+                    hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom_down);
+                }
+                hide.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        omnibox.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+                omnibox.startAnimation(hide);
+            }
+        }
+    }
+
+    @Override
+    public void showOmnibox() {
+        if (fullscreen) {
+            if (omnibox.getVisibility() != View.VISIBLE) {
+                Animation show;
+                if (anchor == 0) {
+                    show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_down);
+                } else {
+                    show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom_up);
+                }
+
+                show.setAnimationListener(new Animation.AnimationListener() {
+
+                    @Override
+                    public void onAnimationStart(Animation animation) {}
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        omnibox.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {}
+                    });
+                omnibox.startAnimation(show);
+            }
+        }
+    }
+
+    private void setFullscreen(boolean fullscreen) {
+        WindowManager.LayoutParams attrs = getWindow().getAttributes();
+        if (fullscreen) {
+            attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        } else {
+            attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        }
+        getWindow().setAttributes(attrs);
     }
 }

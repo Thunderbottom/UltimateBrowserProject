@@ -88,6 +88,9 @@
     <string name="sp_clear_passwords">
         SP_CLEAR_PASSWORDS_9
     </string>
+    <string name="sp_fullscreen">
+        SP_FULLSCREEN_9
+    </string>
 
     <!-- Readability -->
     <string name="sp_readability">
