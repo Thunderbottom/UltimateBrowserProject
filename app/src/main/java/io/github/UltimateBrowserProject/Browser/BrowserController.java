@@ -33,4 +33,8 @@ public interface BrowserController {
     boolean onHideCustomView();
 
     void onLongPress(String url);
+
+    void hideOmnibox();
+
+    void showOmnibox();
 }

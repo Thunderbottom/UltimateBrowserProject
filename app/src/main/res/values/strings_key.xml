@@ -65,6 +65,9 @@
     <string name="sp_volume">
         SP_VOLUME_9
     </string>
+    <string name="sp_fullscreen">
+        SP_FULLSCREEN_9
+    </string>
 
     <!-- Clear -->
     <string name="sp_clear_quit">
