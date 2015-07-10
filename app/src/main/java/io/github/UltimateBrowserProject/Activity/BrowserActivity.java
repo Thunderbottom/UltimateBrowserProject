@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.SearchManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
@@ -26,6 +28,7 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -57,6 +60,7 @@ import android.widget.VideoView;
 import org.askerov.dynamicgrid.DynamicGridView;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
@@ -273,13 +277,29 @@ public class BrowserActivity extends Activity implements BrowserController {
         Intent toHolderService = new Intent(this, HolderService.class);
         IntentUnit.setClear(false);
         stopService(toHolderService);
+        String action = intent.getAction();
 
         if (intent != null && intent.hasExtra(IntentUnit.OPEN)) { // From HolderActivity's menu
             pinAlbums(intent.getStringExtra(IntentUnit.OPEN));
-        } else if (intent != null && intent.getAction() != null && intent.getAction().equals(Intent.ACTION_WEB_SEARCH)) { // From ActionMode and some others
+        } else if (intent != null && action != null && action.equals(Intent.ACTION_WEB_SEARCH)) { // From ActionMode and some others
             pinAlbums(intent.getStringExtra(SearchManager.QUERY));
         } else if (intent != null && filePathCallback != null) {
             filePathCallback = null;
+        } else if (intent != null && action.equals(Intent.ACTION_VIEW)) {
+            String filePath;
+            Uri uri = intent.getData();
+            Log.d("", "Uri is " + uri);
+            if (uri != null && "content".equals(uri.getScheme())) {
+                Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Images.ImageColumns.DATA }, null, null, null);
+                cursor.moveToFirst();
+                filePath = cursor.getString(0);
+                cursor.close();
+            } else {
+                filePath = uri.getPath();
+            }
+            filePath = "file://" + filePath;
+            Log.d("", "Path is " + filePath);
+            updateAlbum(filePath);
         } else {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
             if (sp.getBoolean(getString(R.string.sp_first), true)) {
