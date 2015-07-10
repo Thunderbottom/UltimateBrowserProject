@@ -51,6 +51,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import org.askerov.dynamicgrid.DynamicGridView;
@@ -144,6 +145,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             onHideCustomView();
         }
     }
+
     private FullscreenHolder fullscreenHolder;
     private View customView;
     private VideoView videoView;
@@ -202,10 +204,12 @@ public class BrowserActivity extends Activity implements BrowserController {
         switcherPanel = (SwitcherPanel) findViewById(R.id.switcher_panel);
         switcherPanel.setStatusListener(new SwitcherPanel.StatusListener() {
             @Override
-            public void onFling() {}
+            public void onFling() {
+            }
 
             @Override
-            public void onExpanded() {}
+            public void onExpanded() {
+            }
 
             @Override
             public void onCollapsed() {
@@ -336,7 +340,6 @@ public class BrowserActivity extends Activity implements BrowserController {
             System.exit(0); // For remove all WebView thread
         }
     }
-
 
 
     @Override
@@ -636,8 +639,8 @@ public class BrowserActivity extends Activity implements BrowserController {
     };
 
     /* This Runnable creates a Dialog and asks the user to open the Market */
-    private Runnable showUpdate = new Runnable(){
-        public void run(){
+    private Runnable showUpdate = new Runnable() {
+        public void run() {
             new AlertDialog.Builder(BrowserActivity.this)
                     .setIcon(R.drawable.ic_launcher)
                     .setTitle("Update Available")
@@ -959,7 +962,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     }
 
 
-    private synchronized void pinAlbums(String url) {
+    public synchronized void pinAlbums(String url) {
         hideSoftInput(inputBox);
         hideSearchPanel();
         switcherContainer.removeAllViews();
@@ -1394,7 +1397,8 @@ public class BrowserActivity extends Activity implements BrowserController {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             try {
                 customViewCallback.onCustomViewHidden();
-            } catch (Throwable t) {}
+            } catch (Throwable t) {
+            }
         }
 
         customView.setKeepScreenOn(false);
@@ -1622,16 +1626,17 @@ public class BrowserActivity extends Activity implements BrowserController {
             stringList.remove(array[4]); // Readability
             stringList.remove(array[5]); // Share
             stringList.remove(array[6]); // Save Link As
+            stringList.remove(array[7]); // Create Shortcut
 
             UltimateBrowserProjectRelativeLayout UltimateBrowserProjectRelativeLayout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
             if (UltimateBrowserProjectRelativeLayout.getFlag() != BrowserUnit.FLAG_HOME) {
-                stringList.remove(array[7]); // Relayout
+                stringList.remove(array[8]); // Relayout
             }
         } else if (currentAlbumController != null && currentAlbumController instanceof UltimateBrowserProjectWebView) {
             if (!sp.getBoolean(getString(R.string.sp_readability), false)) {
                 stringList.remove(array[4]); // Readability
             }
-            stringList.remove(array[7]); // Relayout
+            stringList.remove(array[8]); // Relayout
         }
 
         ListView listView = (ListView) layout.findViewById(R.id.dialog_list);
@@ -1698,7 +1703,22 @@ public class BrowserActivity extends Activity implements BrowserController {
                 } else if (s.equals(array[6])) { // Save link as
                     UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
                     BrowserUnit.download(BrowserActivity.this, UltimateBrowserProjectWebView.getUrl(), UltimateBrowserProjectWebView.getUrl(), URLConnection.guessContentTypeFromName(UltimateBrowserProjectWebView.getUrl()));
-                } else if (s.equals(array[7])) { // Relayout
+                } else if (s.equals(array[7])) { // Create Shortcut
+                    UltimateBrowserProjectWebView ultimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
+                    String title = ultimateBrowserProjectWebView.getTitle();
+                    String url = ultimateBrowserProjectWebView.getUrl();
+                    Intent shortcutIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    Toast.makeText(getApplicationContext(), "Shortcut successfully created",
+                            Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent();
+                    intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+                    intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, title);
+                    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                            Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.ic_launcher));
+                    intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+                    getApplicationContext().sendBroadcast(intent);
+                } else if (s.equals(array[8])) { // Relayout
                     UltimateBrowserProjectRelativeLayout UltimateBrowserProjectRelativeLayout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
                     final DynamicGridView gridView = (DynamicGridView) UltimateBrowserProjectRelativeLayout.findViewById(R.id.home_grid);
                     final List<GridItem> gridList = ((GridAdapter) gridView.getAdapter()).getList();
@@ -1775,7 +1795,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                         }
                     });
                     gridView.startEditMode();
-                } else if (s.equals(array[8])) { // Quit
+                } else if (s.equals(array[9])) { // Quit
                     finish();
                 }
 

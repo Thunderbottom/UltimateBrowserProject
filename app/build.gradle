@@ -35,7 +35,7 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:22.2.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.3.2@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.4.0@aar') {
         transitive = true;
     }
 }
