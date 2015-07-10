@@ -32,6 +32,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -2103,6 +2104,11 @@ public class BrowserActivity extends Activity implements BrowserController {
         if (omnibox.getVisibility() != View.GONE) {
             Animation hide;
             if (anchor == 0) {
+                if (contentFrame.findViewById(R.id.main_omnibox) == null) {
+                    ((ViewGroup)omnibox.getParent()).removeView(omnibox);
+                    contentFrame.addView(omnibox);
+                    omnibox.bringToFront();
+                }
                 hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_up);
             } else {
                 hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom_down);
@@ -2129,6 +2135,11 @@ public class BrowserActivity extends Activity implements BrowserController {
         if (omnibox.getVisibility() != View.VISIBLE) {
             Animation show;
             if (anchor == 0) {
+                if (contentFrame.findViewById(R.id.main_omnibox) == null) {
+                    ((ViewGroup)omnibox.getParent()).removeView(omnibox);
+                    contentFrame.addView(omnibox);
+                    omnibox.bringToFront();
+                }
                 show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_down);
             } else {
                 show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom_up);
