@@ -38,7 +38,7 @@ public class SwitcherPanel extends ViewGroup {
     }
 
     /* shadowHeight: dp */
-    public static final int SHADOW_HEIGHT_DEFAULT = 2;
+    public static final int SHADOW_HEIGHT_DEFAULT = 0;
     private int shadowHeight = SHADOW_HEIGHT_DEFAULT;
 
     /* parallaxOffset: dp */
