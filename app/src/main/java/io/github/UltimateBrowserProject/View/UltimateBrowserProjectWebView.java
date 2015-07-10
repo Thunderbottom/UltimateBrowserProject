@@ -135,13 +135,12 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setDownloadListener(downloadListener);
 
         anchor = Integer.valueOf(sp.getString(context.getString(R.string.sp_anchor), "1"));
-
         if (anchor == 0) {
-            UP_SCROLL_THRESHOLD = convertDpToPixels(1);
-            DOWN_SCROLL_THRESHOLD = convertDpToPixels(100);
-        } else {
             UP_SCROLL_THRESHOLD = convertDpToPixels(100);
             DOWN_SCROLL_THRESHOLD = convertDpToPixels(1);
+        } else {
+            UP_SCROLL_THRESHOLD = convertDpToPixels(1);
+            DOWN_SCROLL_THRESHOLD = convertDpToPixels(100);
         }
 
         setOnTouchListener(new OnTouchListener() {
@@ -158,14 +157,12 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                     y2 = y1;
                 } else if (action == MotionEvent.ACTION_UP) {
                     if ((y1 - y2) > UP_SCROLL_THRESHOLD) {
-                        UltimateBrowserProjectToast.show(context, "SCROLLING UP " + anchor);
                         if (anchor == 0) {
                             browserController.showOmnibox();
                         } else {
                             browserController.hideOmnibox();
                         }
                     } else if ((y1 - y2) < -DOWN_SCROLL_THRESHOLD) {
-                        UltimateBrowserProjectToast.show(context, "SCROLLING DOWN " + anchor);
                         if (anchor == 0) {
                             browserController.hideOmnibox();
                         } else {
@@ -249,7 +246,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         initRendering(mode);
 
         webViewClient.enableAdBlock(sp.getBoolean(context.getString(R.string.sp_ad_block), true));
-
     }
 
     private synchronized void initAlbum() {
@@ -305,7 +301,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             UltimateBrowserProjectToast.show(context, R.string.toast_load_error);
             return;
         }
-
 
         url = BrowserUnit.queryWrapper(context, url.trim());
 

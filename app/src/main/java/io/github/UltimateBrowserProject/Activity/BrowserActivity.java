@@ -2060,59 +2060,54 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public void hideOmnibox() {
-        if (fullscreen) {
-            if (omnibox.getVisibility() != View.GONE) {
-                Animation hide;
-                if (anchor == 0) {
-                    hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_up);
-                } else {
-                    hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom_down);
-                }
-                hide.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        omnibox.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-                    }
-                });
-                omnibox.startAnimation(hide);
+        if (omnibox.getVisibility() != View.GONE) {
+            Animation hide;
+            if (anchor == 0) {
+                hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_up);
+            } else {
+                hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom_down);
             }
+            hide.setAnimationListener(new Animation.AnimationListener() {
+
+                @Override
+                public void onAnimationStart(Animation animation) {}
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    omnibox.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {}
+            });
+            omnibox.startAnimation(hide);
         }
     }
 
     @Override
     public void showOmnibox() {
-        if (fullscreen) {
-            if (omnibox.getVisibility() != View.VISIBLE) {
-                Animation show;
-                if (anchor == 0) {
-                    show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_down);
-                } else {
-                    show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom_up);
+        if (omnibox.getVisibility() != View.VISIBLE) {
+            Animation show;
+            if (anchor == 0) {
+                show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_down);
+            } else {
+                show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom_up);
+            }
+
+            show.setAnimationListener(new Animation.AnimationListener() {
+
+                @Override
+                public void onAnimationStart(Animation animation) {}
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    omnibox.setVisibility(View.VISIBLE);
                 }
 
-                show.setAnimationListener(new Animation.AnimationListener() {
-
-                    @Override
-                    public void onAnimationStart(Animation animation) {}
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        omnibox.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {}
-                    });
-                omnibox.startAnimation(show);
-            }
+                @Override
+                public void onAnimationRepeat(Animation animation) {}
+            });
+            omnibox.startAnimation(show);
         }
     }
 
