@@ -21,11 +21,13 @@
     <!-- Main -->
     <string-array name="main_overflow">
         <item>最上部へ</item>
-        <item>ホームへ</item>
+        <item>ホームに追加</item>
         <item>ページ内検索</item>
         <item>スクリーンショット</item>
         <item>Readability</item>
         <item>共有</item>
+        <item>としてリンクを保存</item>
+        <item>ショートカットを作成します</item>
         <item>編集</item>
         <item>終了</item>
     </string-array>

@@ -1,7 +1,7 @@
 package io.github.UltimateBrowserProject.Browser;
 
-import android.app.AlertDialog;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,18 +14,24 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
-import android.webkit.*;
+import android.webkit.HttpAuthHandler;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import java.io.ByteArrayInputStream;
+
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
-import java.io.ByteArrayInputStream;
-
 public class UltimateBrowserProjectWebViewClient extends WebViewClient {
-    private UltimateBrowserProjectWebView UltimateBrowserProjectWebView;
+    private UltimateBrowserProjectWebView ultimateBrowserProjectWebView;
     private Context context;
 
     private AdBlock adBlock;
@@ -42,7 +48,7 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
 
     public UltimateBrowserProjectWebViewClient(UltimateBrowserProjectWebView UltimateBrowserProjectWebView) {
         super();
-        this.UltimateBrowserProjectWebView = UltimateBrowserProjectWebView;
+        this.ultimateBrowserProjectWebView = UltimateBrowserProjectWebView;
         this.context = UltimateBrowserProjectWebView.getContext();
         this.adBlock = UltimateBrowserProjectWebView.getAdBlock();
         this.white = false;
@@ -54,9 +60,9 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
         super.onPageStarted(view, url, favicon);
 
         if (view.getTitle() == null || view.getTitle().isEmpty()) {
-            UltimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
+            ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
         } else {
-            UltimateBrowserProjectWebView.update(view.getTitle(), url);
+            ultimateBrowserProjectWebView.update(view.getTitle(), url);
         }
     }
 
@@ -64,20 +70,20 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
 
-        if (!UltimateBrowserProjectWebView.getSettings().getLoadsImagesAutomatically()) {
-            UltimateBrowserProjectWebView.getSettings().setLoadsImagesAutomatically(true);
+        if (!ultimateBrowserProjectWebView.getSettings().getLoadsImagesAutomatically()) {
+            ultimateBrowserProjectWebView.getSettings().setLoadsImagesAutomatically(true);
         }
 
         if (view.getTitle() == null || view.getTitle().isEmpty()) {
-            UltimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
+            ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
         } else {
-            UltimateBrowserProjectWebView.update(view.getTitle(), url);
+            ultimateBrowserProjectWebView.update(view.getTitle(), url);
         }
 
-        if (UltimateBrowserProjectWebView.isForeground()) {
-            UltimateBrowserProjectWebView.invalidate();
+        if (ultimateBrowserProjectWebView.isForeground()) {
+            ultimateBrowserProjectWebView.invalidate();
         } else {
-            UltimateBrowserProjectWebView.postInvalidate();
+            ultimateBrowserProjectWebView.postInvalidate();
         }
     }
 

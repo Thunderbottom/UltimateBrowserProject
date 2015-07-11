@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Click the link to check for updates -\n http://bit.ly/UBPUpdate \n
-        Current version is 1.4.4.
+        Current version is 1.4.6.
     </string>
     <string name="dialog_content_upload">
         Currently, File upload is only supported on Android 5.0 and above.
@@ -114,7 +114,7 @@
         Copy link
     </string>
     <string name="main_menu_save">
-        Save
+        Save as
     </string>
     <string name="main_omnibox_input_hint">
         Search or type URL
@@ -300,6 +300,13 @@
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
         Inverted Grayscale
+    </string>
+    <!-- Fullscreen mode -->
+    <string name="setting_title_fullscreen">
+        Fullscreen mode
+    </string>
+    <string name="setting_summary_fullscreen">
+        Enable fullscreen mode
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">

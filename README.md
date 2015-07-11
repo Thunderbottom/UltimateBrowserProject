@@ -20,13 +20,13 @@ For a list of current features provided by the application and many more, Please
 
 At this stage, the applicatin requires features to make it better, while keeping it as light as possible.
 Some of the TODO items on the list are -
-* Add Fullscreen Toggle
-* Add Incognito Mode
+* Add More Features
 * Add Application themes
+* Fix Bugs
 
 ## Downloads - 
 
-[Download Latest Version 1.4.4](https://github.com/balzathor/UltimateBrowserProject/releases/download/1.4.3/UltimateBrowserProject.v.1.4.3.apk)
+[Download Latest Version 1.4.6](https://github.com/balzathor/UltimateBrowserProject/releases/download/latest/UltimateBrowserProject.apk)
 
 ## Permissions:
 ```android.permission.INTERNET``` - Browsing requirements.
@@ -59,17 +59,23 @@ Some of the TODO items on the list are -
 
 ## Translations by:
 
-* Portuguese (PT-BR) by [fviz](https://github.com/fviz)
-* Dutch (NL) by [lucaslampe](https://github.com/lucaslampe) and [Menubalk](http://forum.xda-developers.com/member.php?u=6151583)
-* French (FR) by [nalmada](https://github.com/nalmada)
-* Polish (PL) by [Bartti](https://github.com/Bartti) and [Veacue](http://forum.xda-developers.com/member.php?u=5759069) and [Toa](http://forum.xda-developers.com/member.php?u=6170529)
-* Turkish (TR) by [cagdassalur](https://github.com/cagdassalur)
-* Finnish (FI) by [Tapetti](http://forum.xda-developers.com/member.php?u=6778883)
-* Japanese (JP) by [takahirom](https://github.com/takahirom)
-* Greek (EL) by [dancer_69](http://forum.xda-developers.com/member.php?u=390873)
-* Italian (IT) by[davimount](https://github.com/davimount)
+* Portuguese (PT-BR) by [fviz](https://github.com/fviz).
+* Dutch (NL) by [lucaslampe](https://github.com/lucaslampe) and [Menubalk](http://forum.xda-developers.com/member.php?u=6151583).
+* French (FR) by [nalmada](https://github.com/nalmada).
+* Polish (PL) by [Bartti](https://github.com/Bartti) and [Veacue](http://forum.xda-developers.com/member.php?u=5759069) and [Toa](http://forum.xda-developers.com/member.php?u=6170529).
+* Turkish (TR) by [cagdassalur](https://github.com/cagdassalur).
+* Finnish (FI) by [Tapetti](http://forum.xda-developers.com/member.php?u=6778883).
+* Japanese (JP) by [takahirom](https://github.com/takahirom).
+* Greek (EL) by [dancer_69](http://forum.xda-developers.com/member.php?u=390873).
+* Italian (IT) by [davimount](https://github.com/davimount).
+* Traditional Chinese (TW) by [louis383](http://forum.xda-developers.com/member.php?u=6709293).
 
 ### Materialized icon by - [davimount](https://github.com/davimount)
+
+## Contributors :
+
+* [james9909](http://www.github.com/james9909)
+* [takahirom](http://www.github.com/takahirom)
 
 
 

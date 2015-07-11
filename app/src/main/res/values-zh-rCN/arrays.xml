@@ -26,6 +26,8 @@
         <item>网页截图</item>
         <item>阅读模式</item>
         <item>分享</item>
+        <item>保存链接为</item>
+        <item>创建快捷方式</item>
         <item>排版</item>
         <item>退出</item>
     </string-array>

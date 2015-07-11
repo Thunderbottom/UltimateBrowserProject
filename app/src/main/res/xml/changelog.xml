@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.4.6" versioncode="38" releasedate="July 7th 2015" summary="Major Update">
+        <change type="improvement">Fixed a few bugs.</change>
+        <change type="improvement">Corrected Traditional Chinese translations.</change>
+        <change type="improvement">Added Responsive Heads Up notification for devices with Lollipop.</change>
+        <change type="improvement">Now you can save any link as a file. Long press a link or select 'Save Link As' option from the three dot menu.</change>
+    </release>
+    <release version="1.4.5" versioncode="37" releasedate="July 1st 2015" summary="Minor Update">
+        <change type="improvement">Fixed minor bugs.</change>
+        <change type="improvement">Added more localizations and updated some strings.</change>
+    </release>
     <release version="1.4.4" versioncode="36" releasedate="June 25th 2015" summary="Localization and Icon update">
         <change type="improvement">Added more localizations.</change>
-        <change type="improvement">Icon is now Materialized. Thanks to <a href="https://github.com/davimount">davimount</a></change>
-
+        <change type="improvement">Icon is now Materialized.</change>
     </release>
     <release version="1.4.3r2" versioncode="35" releasedate="June 23rd 2015">
         <change type="bug">Fixed a bug in Settings - License</change>

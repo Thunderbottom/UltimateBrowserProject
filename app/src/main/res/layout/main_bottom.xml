@@ -88,7 +88,6 @@
         <FrameLayout android:id="@+id/main_content"
                      android:layout_width="match_parent"
                      android:layout_height="match_parent"
-                     android:layout_marginTop="@dimen/layout_margin_48dp"
                      android:background="@color/white">
         </FrameLayout>
 
@@ -162,7 +161,7 @@
                     android:layout_centerInParent="true"
                     android:layout_alignParentRight="true"
                     android:layout_toLeftOf="@+id/main_omnibox_refresh"
-                    android:layout_marginRight="@dimen/layout_margin_24dp"
+                    android:layout_marginRight="@dimen/layout_margin_32dp"
                     android:src="@drawable/forward_selector"
                     android:background="@color/transparent">
                 </ImageButton>

@@ -3,12 +3,15 @@ package io.github.UltimateBrowserProject.Fragment;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
+import android.view.View;
 import android.webkit.CookieManager;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -215,13 +218,13 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
         builder.setCancelable(true);
 
         FrameLayout layout = (FrameLayout) getActivity().getLayoutInflater().inflate(R.layout.dialog_list, null, false);
-        builder.setView(layout);
+        final AlertDialog alertDialog = builder.setView(layout).create();
 
         List<Map<String, String>> list = new ArrayList<>();
         String[] titles = getResources().getStringArray(R.array.license_titles);
         String[] contents = getResources().getStringArray(R.array.license_contents);
         String[] authors = getResources().getStringArray(R.array.license_authors);
-        String[] urls = getResources().getStringArray(R.array.license_urls);
+        final String[] urls = getResources().getStringArray(R.array.license_urls);
         for (int i = 0; i < 9; i++) {
             Map<String, String> map = new HashMap<>();
             map.put(LICENSE_TITLE, titles[i]);
@@ -241,9 +244,17 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
 
         ListView listView = (ListView) layout.findViewById(R.id.dialog_list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urls[position]));
+                startActivity(browserIntent);
+                alertDialog.dismiss();
+            }
+        });
         adapter.notifyDataSetChanged();
 
-        builder.create().show();
+        alertDialog.show();
     }
 
     private void showUpdateDialog() {

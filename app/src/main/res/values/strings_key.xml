@@ -7,7 +7,7 @@
 
     <!-- TODO: change when new version code -->
     <string name="sp_first">
-        SP_FIRST_36
+        SP_FIRST_38
     </string>
 
     <!-- General -->
@@ -87,6 +87,9 @@
     </string>
     <string name="sp_clear_passwords">
         SP_CLEAR_PASSWORDS_9
+    </string>
+    <string name="sp_fullscreen">
+        SP_FULLSCREEN_9
     </string>
 
     <!-- Readability -->

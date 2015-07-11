@@ -2,7 +2,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="io.github.UltimateBrowserProject"
-          android:versionCode="36"
+          android:versionCode="38"
           android:versionName="@string/app_version">
 
     <!-- SDK -->
@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <!-- Application -->
     <application android:label="@string/app_name"
@@ -56,6 +57,16 @@
                 <action android:name="android.intent.action.WEB_SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:mimeType="text/html"/>
+                <data android:mimeType="text/plain"/>
+                <data android:mimeType="application/xhtml+xml"/>
+                <data android:mimeType="application/vnd.wap.xhtml+xml"/>
             </intent-filter>
             <meta-data android:name="android.app.searchable"
                        android:resource="@xml/searchable">

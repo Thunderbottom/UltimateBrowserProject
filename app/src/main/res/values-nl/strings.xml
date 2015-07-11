@@ -94,7 +94,7 @@
         Het certificaat van deze site is niet vertrouwd. Toch doorgaan?
     </string>
     <string name="dialog_content_update">
-        Klik de link om voor updates te checken -\n http://bit.ly/UBPUpdate \n Huidige versie is 1.4.4.
+        Klik de link om voor updates te checken -\n http://bit.ly/UBPUpdate \n Huidige versie is 1.4.6.
     </string>
     <string name="dialog_content_upload">
         Momenteel kunt u alleen bestanden uploaden op Android 5.0 of hoger.

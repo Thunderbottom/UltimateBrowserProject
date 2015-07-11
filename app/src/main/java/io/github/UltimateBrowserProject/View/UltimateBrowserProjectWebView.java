@@ -3,6 +3,7 @@ package io.github.UltimateBrowserProject.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -12,6 +13,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,6 +50,11 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private int dimen144dp;
     private int dimen108dp;
     private int animTime;
+    private int UP_SCROLL_THRESHOLD;
+    private int DOWN_SCROLL_THRESHOLD;
+    private float y1;
+    private float y2;
+    private int anchor;
 
     private Album album;
     private UltimateBrowserProjectWebViewClient webViewClient;
@@ -55,6 +62,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private UltimateBrowserProjectDownloadListener downloadListener;
     private UltimateBrowserProjectClickHandler clickHandler;
     private GestureDetector gestureDetector;
+    private SharedPreferences sp;
 
     private AdBlock adBlock;
     public AdBlock getAdBlock() {
@@ -96,6 +104,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         this.downloadListener = new UltimateBrowserProjectDownloadListener(this.context);
         this.clickHandler = new UltimateBrowserProjectClickHandler(this);
         this.gestureDetector = new GestureDetector(context, new UltimateBrowserProjectGestureListener(this));
+        this.sp = PreferenceManager.getDefaultSharedPreferences(this.context);
 
         initWebView();
         initWebSettings();
@@ -124,9 +133,44 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setWebViewClient(webViewClient);
         setWebChromeClient(webChromeClient);
         setDownloadListener(downloadListener);
+
+        anchor = Integer.valueOf(sp.getString(context.getString(R.string.sp_anchor), "1"));
+        if (anchor == 0) {
+            UP_SCROLL_THRESHOLD = convertDpToPixels(100);
+            DOWN_SCROLL_THRESHOLD = convertDpToPixels(1);
+        } else {
+            UP_SCROLL_THRESHOLD = convertDpToPixels(1);
+            DOWN_SCROLL_THRESHOLD = convertDpToPixels(100);
+        }
+
         setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (view != null && !view.hasFocus()) {
+                    view.requestFocus();
+                }
+
+                int action = motionEvent.getAction();
+                y1 = motionEvent.getY();
+
+                if (action == MotionEvent.ACTION_DOWN) {
+                    y2 = y1;
+                } else if (action == MotionEvent.ACTION_UP) {
+                    if ((y1 - y2) > UP_SCROLL_THRESHOLD) {
+                        if (anchor == 0) {
+                            browserController.showOmnibox();
+                        } else {
+                            browserController.hideOmnibox();
+                        }
+                    } else if ((y1 - y2) < -DOWN_SCROLL_THRESHOLD) {
+                        if (anchor == 0) {
+                            browserController.hideOmnibox();
+                        } else {
+                            browserController.showOmnibox();
+                        }
+                    }
+                    y2 = 0;
+                }
                 gestureDetector.onTouchEvent(motionEvent);
                 return false;
             }
@@ -202,7 +246,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         initRendering(mode);
 
         webViewClient.enableAdBlock(sp.getBoolean(context.getString(R.string.sp_ad_block), true));
-
     }
 
     private synchronized void initAlbum() {
@@ -258,7 +301,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             UltimateBrowserProjectToast.show(context, R.string.toast_load_error);
             return;
         }
-
 
         url = BrowserUnit.queryWrapper(context, url.trim());
 
@@ -424,5 +466,10 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             return false;
         }
         return true;
+    }
+
+    public static int convertDpToPixels(int dp) {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        return (int) (dp * metrics.density + 0.5f);
     }
 }
