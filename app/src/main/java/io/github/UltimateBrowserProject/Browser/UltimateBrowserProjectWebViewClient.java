@@ -2,28 +2,29 @@ package io.github.UltimateBrowserProject.Browser;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.*;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.MailTo;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.webkit.HttpAuthHandler;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.webkit.*;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.io.ByteArrayInputStream;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
@@ -37,6 +38,16 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     private AdBlock adBlock;
 
     private boolean white;
+
+    static final Pattern ACCEPTED_URI_SCHEMA = Pattern.compile(
+            "(?i)" + // switch on case insensitive matching
+                    "(" +    // begin group for schema
+                    "(?:http|https|file):\\/\\/" +
+                    "|(?:data|about|javascript):" +
+                    "|(?:.*:.*@)" +
+                    ")" +
+                    "(.*)");
+
     public void updateWhite(boolean white) {
         this.white = white;
     }
@@ -94,17 +105,101 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
             context.startActivity(intent);
             view.reload();
             return true;
-        } else if (url.startsWith(BrowserUnit.URL_SCHEME_INTENT)) {
-            Intent intent;
-            try {
-                intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
-                context.startActivity(intent);
-                return true;
-            } catch (Exception e) {} // When intent fail will crash
+        }
+        if (startActivityForUrl(url)) {
+            return true;
         }
 
         white = adBlock.isWhite(url);
         return super.shouldOverrideUrlLoading(view, url);
+    }
+
+    /*
+    from
+    https://github.com/android/platform_packages_apps_browser/blob/41c050d8ff87c95377a80646b6e6683983be8ab7/src/com/android/browser/UrlHandler.java#L118
+     */
+    boolean startActivityForUrl(String url) {
+        Intent intent;
+        // perform generic parsing of the URI to turn it into an Intent.
+        try {
+            intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
+        } catch (URISyntaxException ex) {
+            Log.w("Browser", "Bad URI " + url + ": " + ex.getMessage());
+            return false;
+        }
+
+        // check whether the intent can be resolved. If not, we will see
+        // whether we can download it from the Market.
+        if (context.getPackageManager().resolveActivity(intent, 0) == null) {
+            String packagename = intent.getPackage();
+            if (packagename != null) {
+                intent = new Intent(Intent.ACTION_VIEW, Uri
+                        .parse("market://search?q=pname:" + packagename));
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                try {
+                    context.startActivity(intent);
+                    return true;
+                } catch (ActivityNotFoundException e) {
+                    Log.w("Browser", "No activity found to handle " + url);
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        // sanitize the Intent, ensuring web pages can not bypass browser
+        // security (only access to BROWSABLE activities).
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setComponent(null);
+        Intent selector = intent.getSelector();
+        if (selector != null) {
+            selector.addCategory(Intent.CATEGORY_BROWSABLE);
+            selector.setComponent(null);
+        }
+
+        // Make sure webkit can handle it internally before checking for specialized
+        // handlers. If webkit can't handle it internally, we need to call
+        // startActivityIfNeeded
+        Matcher m = ACCEPTED_URI_SCHEMA.matcher(url);
+        if (m.matches() && !isSpecializedHandlerAvailable(intent)) {
+            return false;
+        }
+        try {
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            // ignore the error. If no application can handle the URL,
+            // eg about:blank, assume the browser can handle it.
+        }
+
+        return false;
+    }
+
+    /**
+     * Search for intent handlers that are specific to this URL
+     * aka, specialized apps like google maps or youtube
+     */
+    private boolean isSpecializedHandlerAvailable(Intent intent) {
+        PackageManager pm = context.getPackageManager();
+        List<ResolveInfo> handlers = pm.queryIntentActivities(intent,
+                PackageManager.GET_RESOLVED_FILTER);
+        if (handlers == null || handlers.size() == 0) {
+            return false;
+        }
+        for (ResolveInfo resolveInfo : handlers) {
+            IntentFilter filter = resolveInfo.filter;
+            if (filter == null) {
+                // No intent filter matches this intent?
+                // Error on the side of staying in the browser, ignore
+                continue;
+            }
+            if (filter.countDataAuthorities() == 0 && filter.countDataPaths() == 0) {
+                // Generic handler, skip
+                continue;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Deprecated
