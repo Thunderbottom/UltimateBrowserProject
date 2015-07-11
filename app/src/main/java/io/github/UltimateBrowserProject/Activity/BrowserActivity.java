@@ -2195,7 +2195,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             return;
         }
         for (String url : array) {
-            if (url == "null" || url == null) { // y no work
+            if (url.equals("null")) {
                 addAlbum(BrowserUnit.FLAG_HOME);
             } else {
                 addAlbum(url, url, false, null);
