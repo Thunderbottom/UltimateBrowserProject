@@ -132,7 +132,6 @@ public class BrowserActivity extends Activity implements BrowserController {
     private ImageButton searchDown;
     private ImageButton searchCancel;
 
-
     private Button relayoutOK;
     private FrameLayout contentFrame;
 
@@ -202,7 +201,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         mHandler = new Handler();
         checkUpdate.start();
 
-        create = true;
         shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
         mediumAnimTime = getResources().getInteger(android.R.integer.config_mediumAnimTime);
         longAnimTime = getResources().getInteger(android.R.integer.config_longAnimTime);
@@ -236,6 +234,8 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         new AdBlock(this); // For AdBlock cold boot
         dispatchIntent(getIntent());
+
+        openSavedTabs();
     }
 
     @Override
@@ -320,6 +320,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         Intent toHolderService = new Intent(this, HolderService.class);
         IntentUnit.setClear(false);
         stopService(toHolderService);
+        saveOpenTabs();
 
         create = false;
         inputBox.clearFocus();
@@ -931,6 +932,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         webView.setAlbumCover(ViewUnit.capture(webView, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
         webView.setAlbumTitle(title);
         ViewUnit.bound(this, webView);
+        webView.setUrl(url);
 
         final View albumView = webView.getAlbumView();
         if (currentAlbumController != null && (currentAlbumController instanceof UltimateBrowserProjectWebView) && resultMsg != null) {
@@ -1175,7 +1177,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             addAlbum(BrowserUnit.FLAG_HOME);
             return;
         }
-
+        BrowserContainer.get(BrowserContainer.indexOf(controller)).getUrl();
         if (controller != currentAlbumController) {
             switcherContainer.removeView(controller.getAlbumView());
             BrowserContainer.remove(controller);
@@ -2170,5 +2172,34 @@ public class BrowserActivity extends Activity implements BrowserController {
             attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
         }
         getWindow().setAttributes(attrs);
+    }
+
+    private void saveOpenTabs() {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        String urls = "";
+        for (int i = 0; i < BrowserContainer.size(); i++) {
+            urls += BrowserContainer.get(i).getUrl() + "||&&SEPARATOR&&||";
+        }
+        editor.putString("SAVED_URLS", urls).commit();
+    }
+
+    private void openSavedTabs() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String urls = sp.getString("SAVED_URLS", "");
+        String[] array;
+        try {
+            array = urls.split("\\|\\|\\&\\&SEPARATOR\\&\\&\\|\\|");
+            create = false;
+        } catch (NullPointerException e) {
+            addAlbum(BrowserUnit.FLAG_HOME);
+            return;
+        }
+        for (String url : array) {
+            if (url == "null" || url == null) { // y no work
+                addAlbum(BrowserUnit.FLAG_HOME);
+            } else {
+                addAlbum(url, url, false, null);
+            }
+        }
     }
 }

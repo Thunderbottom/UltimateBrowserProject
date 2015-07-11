@@ -36,6 +36,10 @@ public class Album {
         this.albumController = albumController;
     }
 
+    private String url;
+    public String getUrl() { return url; }
+    public void setUrl(String url) { this.url = url; }
+
     private BrowserController browserController;
     public void setBrowserController(BrowserController browserController) {
         this.browserController = browserController;
