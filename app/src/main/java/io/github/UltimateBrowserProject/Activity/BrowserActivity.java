@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.provider.Browser;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -160,6 +161,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private static boolean quit = false;
     private boolean create = true;
+    private boolean restore;
     private int shortAnimTime = 0;
     private int mediumAnimTime = 0;
     private int longAnimTime = 0;
@@ -190,6 +192,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
         setFullscreen(fullscreen);
+        restore = sp.getBoolean(getString(R.string.sp_restore_tabs), true);
         anchor = Integer.valueOf(sp.getString(getString(R.string.sp_anchor), "1"));
         if (anchor == 0) {
             setContentView(R.layout.main_top);
@@ -235,7 +238,11 @@ public class BrowserActivity extends Activity implements BrowserController {
         new AdBlock(this); // For AdBlock cold boot
         dispatchIntent(getIntent());
 
-        openSavedTabs();
+        if (restore) {
+            openSavedTabs();
+        } else {
+            pinAlbums(null);
+        }
     }
 
     @Override
@@ -308,8 +315,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                 lang = BrowserUnit.INTRODUCTION_EN;
                 pinAlbums(BrowserUnit.BASE_URL + lang);
                 sp.edit().putBoolean(getString(R.string.sp_first), false).commit();
-            } else {
-                pinAlbums(null);
             }
         }
     }
@@ -2176,29 +2181,36 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private void saveOpenTabs() {
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        String url = currentAlbumController.getUrl();
         String urls = "";
         for (int i = 0; i < BrowserContainer.size(); i++) {
             urls += BrowserContainer.get(i).getUrl() + "||&&SEPARATOR&&||";
         }
         editor.putString("SAVED_URLS", urls).commit();
+        editor.putString("OPENED_TAB", url).commit();
     }
 
     private void openSavedTabs() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         String urls = sp.getString("SAVED_URLS", "");
+        String opened_url = sp.getString("OPENED_TAB", "");
         String[] array;
         try {
             array = urls.split("\\|\\|\\&\\&SEPARATOR\\&\\&\\|\\|");
             create = false;
         } catch (NullPointerException e) {
-            addAlbum(BrowserUnit.FLAG_HOME);
+            pinAlbums(null);
             return;
         }
         for (String url : array) {
             if (url.equals("null")) {
                 addAlbum(BrowserUnit.FLAG_HOME);
             } else {
-                addAlbum(url, url, false, null);
+                if (url.equals(opened_url)) {
+                    pinAlbums(url);
+                } else {
+                    addAlbum(url, url, false, null);
+                }
             }
         }
     }
