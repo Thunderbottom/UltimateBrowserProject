@@ -16,6 +16,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -330,7 +331,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                 if (gridView.isEditMode()) {
                     gridView.stopEditMode();
                     relayoutOK.setVisibility(View.GONE);
-                    omnibox.setVisibility(View.VISIBLE);
                     initHomeGrid(layout, true);
                 }
             }
@@ -398,7 +398,6 @@ public class BrowserActivity extends Activity implements BrowserController {
             UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
             if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
                 initHomeGrid(layout, true);
-                omnibox.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -589,7 +588,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                     final UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
                     if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
                         initHomeGrid(layout, true);
-                        omnibox.setVisibility(View.VISIBLE);
                         return;
                     }
                     initBHList(layout, true);
@@ -621,7 +619,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                         final UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
                         if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
                             initHomeGrid(layout, true);
-                            omnibox.setVisibility(View.VISIBLE);
                             return;
                         }
                         initBHList(layout, true);
@@ -688,6 +685,12 @@ public class BrowserActivity extends Activity implements BrowserController {
     private void initHomeGrid(final UltimateBrowserProjectRelativeLayout layout, boolean update) {
         if (update) {
             updateProgress(BrowserUnit.PROGRESS_MIN);
+        }
+
+        if(omnibox != null) {
+            omnibox.setVisibility(View.VISIBLE);
+        } else {
+            initOmnibox();
         }
 
         RecordAction action = new RecordAction(this);
@@ -898,7 +901,6 @@ public class BrowserActivity extends Activity implements BrowserController {
             layout.setAlbumTitle(getString(R.string.album_title_home));
             holder = layout;
             initHomeGrid(layout, true);
-            omnibox.setVisibility(View.VISIBLE);
         } else {
             return;
         }
@@ -1124,7 +1126,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         layout.setAlbumCover(ViewUnit.capture(layout, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
         layout.setAlbumTitle(getString(R.string.album_title_home));
         initHomeGrid(layout, true);
-        omnibox.setVisibility(View.VISIBLE);
 
         int index = switcherContainer.indexOfChild(currentAlbumController.getAlbumView());
         currentAlbumController.deactivate();
