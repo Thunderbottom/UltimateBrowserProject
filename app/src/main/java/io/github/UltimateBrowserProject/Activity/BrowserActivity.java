@@ -687,12 +687,6 @@ public class BrowserActivity extends Activity implements BrowserController {
             updateProgress(BrowserUnit.PROGRESS_MIN);
         }
 
-        if(omnibox != null) {
-            omnibox.setVisibility(View.VISIBLE);
-        } else {
-            initOmnibox();
-        }
-
         RecordAction action = new RecordAction(this);
         action.open(false);
         final List<GridItem> gridList = action.listGrid();
