@@ -23,40 +23,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.VideoView;
+import android.view.*;
+
+import android.widget.*;
 
 import org.askerov.dynamicgrid.DynamicGridView;
 
@@ -65,13 +42,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import io.github.UltimateBrowserProject.Application.Changelog;
 import io.github.UltimateBrowserProject.Browser.AdBlock;
@@ -87,17 +58,7 @@ import io.github.UltimateBrowserProject.Task.ScreenshotTask;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
-import io.github.UltimateBrowserProject.View.CompleteAdapter;
-import io.github.UltimateBrowserProject.View.DialogAdapter;
-import io.github.UltimateBrowserProject.View.FullscreenHolder;
-import io.github.UltimateBrowserProject.View.GridAdapter;
-import io.github.UltimateBrowserProject.View.GridItem;
-import io.github.UltimateBrowserProject.View.RecordAdapter;
-import io.github.UltimateBrowserProject.View.SwipeToBoundListener;
-import io.github.UltimateBrowserProject.View.SwitcherPanel;
-import io.github.UltimateBrowserProject.View.UltimateBrowserProjectRelativeLayout;
-import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
-import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
+import io.github.UltimateBrowserProject.View.*;
 
 public class BrowserActivity extends Activity implements BrowserController {
     private static final int DOUBLE_TAPS_QUIT_DEFAULT = 1800;
@@ -134,7 +95,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
 
     private Button relayoutOK;
-    private FrameLayout contentFrame;
+    private CoordinatorLayout contentFrame;
 
     private Handler mHandler;
 
@@ -232,7 +193,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         initOmnibox();
         initSearchPanel();
         relayoutOK = (Button) findViewById(R.id.main_relayout_ok);
-        contentFrame = (FrameLayout) findViewById(R.id.main_content);
+        contentFrame = (CoordinatorLayout) findViewById(R.id.main_content);
 
         new AdBlock(this); // For AdBlock cold boot
         dispatchIntent(getIntent());
@@ -272,6 +233,21 @@ public class BrowserActivity extends Activity implements BrowserController {
 
             IntentUnit.setSPChange(false);
         }
+        // Snackbar
+        Snackbar.make(contentFrame, "This is test", Snackbar.LENGTH_LONG)
+                .setAction("UNDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // something
+                    }
+                })
+                .setAction("REDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // something
+                    }
+                })
+                .show();
     }
 
     private void dispatchIntent(Intent intent) {

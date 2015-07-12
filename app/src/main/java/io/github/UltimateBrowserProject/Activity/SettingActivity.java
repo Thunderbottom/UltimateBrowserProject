@@ -4,25 +4,27 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import io.github.UltimateBrowserProject.Task.ImportBookmarksTask;
-import io.github.UltimateBrowserProject.Task.ImportWhitelistTask;
-import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
-import io.github.UltimateBrowserProject.Fragment.SettingFragment;
-import io.github.UltimateBrowserProject.R;
-import io.github.UltimateBrowserProject.Unit.IntentUnit;
 
 import java.io.File;
 
-public class SettingActivity extends Activity {
+import io.github.UltimateBrowserProject.Fragment.SettingFragment;
+import io.github.UltimateBrowserProject.R;
+import io.github.UltimateBrowserProject.Task.ImportBookmarksTask;
+import io.github.UltimateBrowserProject.Task.ImportWhitelistTask;
+import io.github.UltimateBrowserProject.Unit.IntentUnit;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
+
+public class SettingActivity extends AppCompatActivity {
     private SettingFragment fragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fragment = new SettingFragment();
         getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
