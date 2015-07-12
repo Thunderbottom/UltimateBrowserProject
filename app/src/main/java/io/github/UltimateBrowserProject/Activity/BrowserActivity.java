@@ -398,6 +398,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
             if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
                 initHomeGrid(layout, true);
+                omnibox.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -588,6 +589,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     final UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
                     if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
                         initHomeGrid(layout, true);
+                        omnibox.setVisibility(View.VISIBLE);
                         return;
                     }
                     initBHList(layout, true);
@@ -619,6 +621,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                         final UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
                         if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
                             initHomeGrid(layout, true);
+                            omnibox.setVisibility(View.VISIBLE);
                             return;
                         }
                         initBHList(layout, true);
@@ -895,6 +898,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             layout.setAlbumTitle(getString(R.string.album_title_home));
             holder = layout;
             initHomeGrid(layout, true);
+            omnibox.setVisibility(View.VISIBLE);
         } else {
             return;
         }
@@ -1120,6 +1124,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         layout.setAlbumCover(ViewUnit.capture(layout, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
         layout.setAlbumTitle(getString(R.string.album_title_home));
         initHomeGrid(layout, true);
+        omnibox.setVisibility(View.VISIBLE);
 
         int index = switcherContainer.indexOfChild(currentAlbumController.getAlbumView());
         currentAlbumController.deactivate();
