@@ -210,6 +210,11 @@
     <string name="setting_summary_omnibox_control">
         Swipe omnibox left/right to switch tabs
      </string>
+    <!-- Omnibox inverted show/hide -->
+    <string name="setting_title_omnibox_inverted_hide">
+        Omnibox inverted hide/show
+    </string>
+    <string name="setting_summary_omnibox_inverted_hide">Invert Omnibox hide/show behaviour</string>
     <!-- Volume key scroll -->
     <string name="setting_title_volume_control">
         Volume Control

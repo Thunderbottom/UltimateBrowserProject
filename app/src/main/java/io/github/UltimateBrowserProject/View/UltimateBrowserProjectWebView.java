@@ -55,6 +55,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private float y1;
     private float y2;
     private int anchor;
+    private boolean omnibox_inverted_hide;
 
     private Album album;
     private UltimateBrowserProjectWebViewClient webViewClient;
@@ -134,6 +135,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setWebChromeClient(webChromeClient);
         setDownloadListener(downloadListener);
 
+        omnibox_inverted_hide = sp.getBoolean(context.getString(R.string.sp_omnibox_inverted_hide), false);
+
         anchor = Integer.valueOf(sp.getString(context.getString(R.string.sp_anchor), "1"));
         if (anchor == 0) {
             UP_SCROLL_THRESHOLD = convertDpToPixels(20);
@@ -157,19 +160,17 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                     y2 = y1;
                 } else if (action == MotionEvent.ACTION_UP) {
                     if ((y1 - y2) > UP_SCROLL_THRESHOLD) {
-                        /*if (anchor == 0) {
+                        if (anchor == 0 || omnibox_inverted_hide) {
                             browserController.showOmnibox();
                         } else {
                             browserController.hideOmnibox();
-                        }*/
-                        browserController.showOmnibox();
+                        }
                     } else if ((y1 - y2) < -DOWN_SCROLL_THRESHOLD) {
-                        /*if (anchor == 0) {
+                        if (anchor == 0 || omnibox_inverted_hide) {
                             browserController.hideOmnibox();
                         } else {
                             browserController.showOmnibox();
-                        }*/
-                        browserController.hideOmnibox();
+                        }
                     }
                     y2 = 0;
                 }

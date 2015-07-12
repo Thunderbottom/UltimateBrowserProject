@@ -159,4 +159,7 @@
     <string name="whitelist_label">Whitelist</string>
     <string name="whitelist_filename">Whitelist</string>
     <string name="whitelist_menu_clear">Cancella</string>
+    <string name="setting_summary_omnibox_inverted_hide">Inverti comportamento mostra/nascondi dell\'Omnibox</string>
+    <string name="setting_summary_fullscreen">Abilita il fullscreen</string>
+    <string name="setting_title_omnibox_inverted_hide">Nascondi/mostra Omnibox</string>
 </resources>
