@@ -108,6 +108,12 @@
                             android:summary="@string/setting_summary_fullscreen">
         </CheckBoxPreference>
 
+        <CheckBoxPreference android:key="@string/sp_restore_tabs"
+                            android:defaultValue="true"
+                            android:title="@string/setting_title_restore_tabs"
+                            android:summary="@string/setting_summary_restore">
+        </CheckBoxPreference>
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/setting_title_adblock">

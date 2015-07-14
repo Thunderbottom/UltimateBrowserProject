@@ -303,10 +303,17 @@
     </string>
     <!-- Fullscreen mode -->
     <string name="setting_title_fullscreen">
-        Fullscreen mode
+        Fullscreen Mode
     </string>
     <string name="setting_summary_fullscreen">
-        Enable fullscreen mode
+        Enable Fullscreen mode
+    </string>
+    <!-- Restore tabs -->
+    <string name="setting_title_restore_tabs">
+        Restore Tabs
+    </string>
+    <string name="setting_summary_restore">
+        Restore last session tabs on startup
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">

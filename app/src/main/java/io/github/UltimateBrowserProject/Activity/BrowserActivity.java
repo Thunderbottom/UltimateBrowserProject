@@ -5,7 +5,12 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.SearchManager;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
@@ -29,7 +34,12 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.util.Log;
-import android.view.*;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -38,7 +48,20 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
 
 import org.askerov.dynamicgrid.DynamicGridView;
 
@@ -46,7 +69,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.github.UltimateBrowserProject.Application.Changelog;
 import io.github.UltimateBrowserProject.Browser.AdBlock;
@@ -62,7 +91,17 @@ import io.github.UltimateBrowserProject.Task.ScreenshotTask;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
-import io.github.UltimateBrowserProject.View.*;
+import io.github.UltimateBrowserProject.View.CompleteAdapter;
+import io.github.UltimateBrowserProject.View.DialogAdapter;
+import io.github.UltimateBrowserProject.View.FullscreenHolder;
+import io.github.UltimateBrowserProject.View.GridAdapter;
+import io.github.UltimateBrowserProject.View.GridItem;
+import io.github.UltimateBrowserProject.View.RecordAdapter;
+import io.github.UltimateBrowserProject.View.SwipeToBoundListener;
+import io.github.UltimateBrowserProject.View.SwitcherPanel;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectRelativeLayout;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class BrowserActivity extends Activity implements BrowserController {
     private static final int DOUBLE_TAPS_QUIT_DEFAULT = 1800;
@@ -126,6 +165,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private static boolean quit = false;
     private boolean create = true;
+    private boolean restore;
     private int shortAnimTime = 0;
     private int mediumAnimTime = 0;
     private int longAnimTime = 0;
@@ -156,6 +196,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
         setFullscreen(fullscreen);
+        restore = sp.getBoolean(getString(R.string.sp_restore_tabs), true);
         anchor = Integer.valueOf(sp.getString(getString(R.string.sp_anchor), "1"));
         if (anchor == 0) {
             setContentView(R.layout.main_top);
@@ -167,7 +208,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         mHandler = new Handler();
         checkUpdate.start();
 
-        create = true;
         shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
         mediumAnimTime = getResources().getInteger(android.R.integer.config_mediumAnimTime);
         longAnimTime = getResources().getInteger(android.R.integer.config_longAnimTime);
@@ -201,6 +241,11 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         new AdBlock(this); // For AdBlock cold boot
         dispatchIntent(getIntent());
+        if (restore) {
+            openSavedTabs();
+        } else {
+            pinAlbums(null);
+        }
     }
 
     @Override
@@ -278,8 +323,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                 lang = BrowserUnit.INTRODUCTION_EN;
                 pinAlbums(BrowserUnit.BASE_URL + lang);
                 sp.edit().putBoolean(getString(R.string.sp_first), false).commit();
-            } else {
-                pinAlbums(null);
             }
         }
     }
@@ -290,6 +333,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         Intent toHolderService = new Intent(this, HolderService.class);
         IntentUnit.setClear(false);
         stopService(toHolderService);
+        saveOpenTabs();
 
         create = false;
         inputBox.clearFocus();
@@ -907,6 +951,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         webView.setAlbumCover(ViewUnit.capture(webView, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
         webView.setAlbumTitle(title);
         ViewUnit.bound(this, webView);
+        webView.setUrl(url);
 
         final View albumView = webView.getAlbumView();
         if (currentAlbumController != null && (currentAlbumController instanceof UltimateBrowserProjectWebView) && resultMsg != null) {
@@ -1155,6 +1200,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             return;
         }
 
+        BrowserContainer.get(BrowserContainer.indexOf(controller)).getUrl();
         if (controller != currentAlbumController) {
             switcherContainer.removeView(controller.getAlbumView());
             BrowserContainer.remove(controller);
@@ -2151,6 +2197,44 @@ public class BrowserActivity extends Activity implements BrowserController {
         getWindow().setAttributes(attrs);
     }
 
+    private void saveOpenTabs() {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        String url = currentAlbumController.getUrl();
+        String urls = "";
+        for (int i = 0; i < BrowserContainer.size(); i++) {
+            urls += BrowserContainer.get(i).getUrl() + "||&&SEPARATOR&&||";
+        }
+        editor.putString("SAVED_URLS", urls).commit();
+        editor.putString("OPENED_TAB", url).commit();
+    }
+    private void openSavedTabs() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String urls = sp.getString("SAVED_URLS", "");
+        String opened_url = sp.getString("OPENED_TAB", "");
+        String[] array;
+        int tabPos = 0;
+        try {
+            array = urls.split("\\|\\|\\&\\&SEPARATOR\\&\\&\\|\\|");
+            create = false;
+        } catch (NullPointerException e) {
+            pinAlbums(null);
+            return;
+        }
+        for (int i = 0; i < array.length; i++) {
+            String url = array[i];
+            if (!url.equals("null")) { // Do not open blank tabs
+                if (url.equals(opened_url)) {
+                    tabPos = i;
+                }
+                addAlbum(url, url, false, null);
+            }
+        }
+        try { // If only blank tabs were open, just open home page
+            showAlbum(BrowserContainer.get(tabPos), false, false, false);
+        } catch (IndexOutOfBoundsException e) {
+            pinAlbums(null);
+        }
+    }
     public static final String EXTRA_SNACKBAR_TITLE = "EXTRA_SNACKBAR_TITLE";
     public static final String EXTRA_SNACKBAR_ACTION_TITLE = "EXTRA_SNACKBAR_ACTION_TITLE";
     public static final String EXTRA_SNACKBAR_ACTION_INTENT_URI = "EXTRA_SNACKBAR_ACTION_INTENT_URI";

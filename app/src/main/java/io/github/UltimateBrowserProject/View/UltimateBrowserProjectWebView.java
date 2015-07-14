@@ -48,6 +48,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private float y1;
     private float y2;
     private int anchor;
+    private String url;
 
     private Album album;
     private UltimateBrowserProjectWebViewClient webViewClient;
@@ -354,6 +355,11 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     @Override
     public void setAlbumTitle(String title) {
         album.setAlbumTitle(title);
+    }
+
+    @Override
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override

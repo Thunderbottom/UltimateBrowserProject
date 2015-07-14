@@ -16,6 +16,10 @@ public interface AlbumController {
 
     void setAlbumTitle(String title);
 
+    String getUrl();
+
+    void setUrl(String url);
+
     void activate();
 
     void deactivate();
