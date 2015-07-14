@@ -72,6 +72,12 @@ public class UltimateBrowserProjectRelativeLayout extends RelativeLayout impleme
     }
 
     @Override
+    public String getUrl() { return null; }
+
+    @Override
+    public void setUrl(String url) {}
+
+    @Override
     public void activate() {
         album.activate();
     }

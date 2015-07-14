@@ -23,6 +23,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
+import android.provider.Browser;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -97,7 +98,6 @@ public class BrowserActivity extends Activity implements BrowserController {
     private ImageButton searchDown;
     private ImageButton searchCancel;
 
-
     private Button relayoutOK;
     private CoordinatorLayout contentFrame;
 
@@ -126,6 +126,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private static boolean quit = false;
     private boolean create = true;
+    private boolean restore;
     private int shortAnimTime = 0;
     private int mediumAnimTime = 0;
     private int longAnimTime = 0;
@@ -156,6 +157,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
         setFullscreen(fullscreen);
+        restore = sp.getBoolean(getString(R.string.sp_restore_tabs), true);
         anchor = Integer.valueOf(sp.getString(getString(R.string.sp_anchor), "1"));
         if (anchor == 0) {
             setContentView(R.layout.main_top);
@@ -167,7 +169,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         mHandler = new Handler();
         checkUpdate.start();
 
-        create = true;
         shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
         mediumAnimTime = getResources().getInteger(android.R.integer.config_mediumAnimTime);
         longAnimTime = getResources().getInteger(android.R.integer.config_longAnimTime);
@@ -201,6 +202,12 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         new AdBlock(this); // For AdBlock cold boot
         dispatchIntent(getIntent());
+
+        if (restore) {
+            openSavedTabs();
+        } else {
+            pinAlbums(null);
+        }
     }
 
     @Override
@@ -278,8 +285,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                 lang = BrowserUnit.INTRODUCTION_EN;
                 pinAlbums(BrowserUnit.BASE_URL + lang);
                 sp.edit().putBoolean(getString(R.string.sp_first), false).commit();
-            } else {
-                pinAlbums(null);
             }
         }
     }
@@ -290,6 +295,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         Intent toHolderService = new Intent(this, HolderService.class);
         IntentUnit.setClear(false);
         stopService(toHolderService);
+        saveOpenTabs();
 
         create = false;
         inputBox.clearFocus();
@@ -907,6 +913,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         webView.setAlbumCover(ViewUnit.capture(webView, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
         webView.setAlbumTitle(title);
         ViewUnit.bound(this, webView);
+        webView.setUrl(url);
 
         final View albumView = webView.getAlbumView();
         if (currentAlbumController != null && (currentAlbumController instanceof UltimateBrowserProjectWebView) && resultMsg != null) {
@@ -1154,7 +1161,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             addAlbum(BrowserUnit.FLAG_HOME);
             return;
         }
-
+        BrowserContainer.get(BrowserContainer.indexOf(controller)).getUrl();
         if (controller != currentAlbumController) {
             switcherContainer.removeView(controller.getAlbumView());
             BrowserContainer.remove(controller);
@@ -2180,4 +2187,44 @@ public class BrowserActivity extends Activity implements BrowserController {
             snackbar.show();
         }
     };
+
+    private void saveOpenTabs() {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        String url = currentAlbumController.getUrl();
+        String urls = "";
+        for (int i = 0; i < BrowserContainer.size(); i++) {
+            urls += BrowserContainer.get(i).getUrl() + "||&&SEPARATOR&&||";
+        }
+        editor.putString("SAVED_URLS", urls).commit();
+        editor.putString("OPENED_TAB", url).commit();
+    }
+
+    private void openSavedTabs() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String urls = sp.getString("SAVED_URLS", "");
+        String opened_url = sp.getString("OPENED_TAB", "");
+        String[] array;
+        int tabPos = 0;
+        try {
+            array = urls.split("\\|\\|\\&\\&SEPARATOR\\&\\&\\|\\|");
+            create = false;
+        } catch (NullPointerException e) {
+            pinAlbums(null);
+            return;
+        }
+        for (int i = 0; i < array.length; i++) {
+            String url = array[i];
+            if (!url.equals("null")) { // Do not open blank tabs
+                if (url.equals(opened_url)) {
+                    tabPos = i;
+                }
+                addAlbum(url, url, false, null);
+            }
+        }
+        try { // If only blank tabs were open, just open home page
+            showAlbum(BrowserContainer.get(tabPos), false, false, false);
+        } catch (IndexOutOfBoundsException e) {
+            pinAlbums(null);
+        }
+    }
 }

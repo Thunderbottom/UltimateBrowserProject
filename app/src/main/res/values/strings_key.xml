@@ -91,6 +91,9 @@
     <string name="sp_fullscreen">
         SP_FULLSCREEN_9
     </string>
+    <string name="sp_restore_tabs">
+        SP_RESTORE_TABS_9
+    </string>
 
     <!-- Readability -->
     <string name="sp_readability">
