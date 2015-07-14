@@ -2195,6 +2195,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         String urls = sp.getString("SAVED_URLS", "");
         String opened_url = sp.getString("OPENED_TAB", "");
         String[] array;
+        int tabPos = 0;
         try {
             array = urls.split("\\|\\|\\&\\&SEPARATOR\\&\\&\\|\\|");
             create = false;
@@ -2202,16 +2203,19 @@ public class BrowserActivity extends Activity implements BrowserController {
             pinAlbums(null);
             return;
         }
-        for (String url : array) {
-            if (url.equals("null")) {
-                addAlbum(BrowserUnit.FLAG_HOME);
-            } else {
+        for (int i = 0; i < array.length; i++) {
+            String url = array[i];
+            if (!url.equals("null")) { // Do not open blank tabs
                 if (url.equals(opened_url)) {
-                    pinAlbums(url);
-                } else {
-                    addAlbum(url, url, false, null);
+                    tabPos = i;
                 }
+                addAlbum(url, url, false, null);
             }
+        }
+        try { // If only blank tabs were open, just open home page
+            showAlbum(BrowserContainer.get(tabPos), false, false, false);
+        } catch (IndexOutOfBoundsException e) {
+            pinAlbums(null);
         }
     }
 }
