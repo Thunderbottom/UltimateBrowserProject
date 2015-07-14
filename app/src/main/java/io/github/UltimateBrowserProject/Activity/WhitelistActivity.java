@@ -1,9 +1,9 @@
 package io.github.UltimateBrowserProject.Activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +11,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import java.util.List;
+
 import io.github.UltimateBrowserProject.Browser.AdBlock;
 import io.github.UltimateBrowserProject.Database.RecordAction;
 import io.github.UltimateBrowserProject.R;
@@ -18,9 +21,7 @@ import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 import io.github.UltimateBrowserProject.View.WhitelistAdapter;
 
-import java.util.List;
-
-public class WhitelistActivity extends Activity {
+public class WhitelistActivity extends AppCompatActivity {
     private WhitelistAdapter adapter;
     private List<String> list;
 
@@ -28,7 +29,7 @@ public class WhitelistActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.whitelist);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         RecordAction action = new RecordAction(this);
         action.open(false);

@@ -5,17 +5,14 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.SearchManager;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -23,18 +20,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -43,35 +38,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.VideoView;
+import android.widget.*;
 
 import org.askerov.dynamicgrid.DynamicGridView;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import io.github.UltimateBrowserProject.Application.Changelog;
 import io.github.UltimateBrowserProject.Browser.AdBlock;
@@ -87,17 +62,7 @@ import io.github.UltimateBrowserProject.Task.ScreenshotTask;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
-import io.github.UltimateBrowserProject.View.CompleteAdapter;
-import io.github.UltimateBrowserProject.View.DialogAdapter;
-import io.github.UltimateBrowserProject.View.FullscreenHolder;
-import io.github.UltimateBrowserProject.View.GridAdapter;
-import io.github.UltimateBrowserProject.View.GridItem;
-import io.github.UltimateBrowserProject.View.RecordAdapter;
-import io.github.UltimateBrowserProject.View.SwipeToBoundListener;
-import io.github.UltimateBrowserProject.View.SwitcherPanel;
-import io.github.UltimateBrowserProject.View.UltimateBrowserProjectRelativeLayout;
-import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
-import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
+import io.github.UltimateBrowserProject.View.*;
 
 public class BrowserActivity extends Activity implements BrowserController {
     private static final int DOUBLE_TAPS_QUIT_DEFAULT = 1800;
@@ -134,7 +99,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
 
     private Button relayoutOK;
-    private FrameLayout contentFrame;
+    private CoordinatorLayout contentFrame;
 
     private Handler mHandler;
 
@@ -232,7 +197,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         initOmnibox();
         initSearchPanel();
         relayoutOK = (Button) findViewById(R.id.main_relayout_ok);
-        contentFrame = (FrameLayout) findViewById(R.id.main_content);
+        contentFrame = (CoordinatorLayout) findViewById(R.id.main_content);
 
         new AdBlock(this); // For AdBlock cold boot
         dispatchIntent(getIntent());
@@ -250,6 +215,9 @@ public class BrowserActivity extends Activity implements BrowserController {
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
         IntentUnit.setContext(this);
         super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(snackbarReceiver,
+                new IntentFilter(SNACKBAR_BROADCAST_ACTION_NAME));
+
         if (create) {
             return;
         }
@@ -272,6 +240,8 @@ public class BrowserActivity extends Activity implements BrowserController {
 
             IntentUnit.setSPChange(false);
         }
+
+
     }
 
     private void dispatchIntent(Intent intent) {
@@ -337,6 +307,8 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
 
         IntentUnit.setContext(this);
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(snackbarReceiver);
         super.onPause();
     }
 
@@ -1084,6 +1056,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 public void onAnimationStart(Animation animation) {
                     contentFrame.removeAllViews();
                     contentFrame.addView(av);
+                    ViewUnit.bound(BrowserActivity.this, av);
                 }
             });
             rv.startAnimation(fadeOut);
@@ -1093,6 +1066,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
             contentFrame.removeAllViews();
             contentFrame.addView((View) controller);
+            ViewUnit.bound(this, (View) controller);
         }
 
         currentAlbumController = controller;
@@ -2176,4 +2150,34 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
         getWindow().setAttributes(attrs);
     }
+
+    public static final String EXTRA_SNACKBAR_TITLE = "EXTRA_SNACKBAR_TITLE";
+    public static final String EXTRA_SNACKBAR_ACTION_TITLE = "EXTRA_SNACKBAR_ACTION_TITLE";
+    public static final String EXTRA_SNACKBAR_ACTION_INTENT_URI = "EXTRA_SNACKBAR_ACTION_INTENT_URI";
+    public static final String SNACKBAR_BROADCAST_ACTION_NAME = "snackbar";
+    private BroadcastReceiver snackbarReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, final Intent intent) {
+            final Snackbar snackbar = Snackbar.make(contentFrame, intent.getStringExtra(EXTRA_SNACKBAR_TITLE), Snackbar.LENGTH_LONG)
+                    .setActionTextColor(Color.WHITE);
+            TextView tv = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+            tv.setTextColor(Color.WHITE);
+            final String actionTitle = intent.getStringExtra(EXTRA_SNACKBAR_ACTION_TITLE);
+            if (actionTitle != null) {
+                snackbar.setAction(actionTitle, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final String intentUri = intent.getStringExtra(EXTRA_SNACKBAR_ACTION_INTENT_URI);
+                        try {
+                            final Intent launchIntent = Intent.parseUri(intentUri, 0);
+                            startActivity(launchIntent);
+                        } catch (Exception ignored) {
+                            ignored.printStackTrace();
+                        }
+                    }
+                });
+            }
+            snackbar.show();
+        }
+    };
 }

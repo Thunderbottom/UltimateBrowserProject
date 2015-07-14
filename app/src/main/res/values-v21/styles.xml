@@ -2,7 +2,7 @@
 
 <resources>
 
-    <style name="BrowserActivityTheme" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="BrowserActivityTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorPrimary">@color/blue_500</item>
         <item name="android:colorPrimaryDark">@color/gray_900</item>
         <item name="android:colorAccent">@color/blue_500</item>
@@ -15,7 +15,7 @@
         <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewStyle</item>
     </style>
 
-    <style name="ReadabilityActivityTheme" parent="android:Theme.Material.Light.DarkActionBar">
+    <style name="ReadabilityActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:colorAccent">@color/blue_500</item>
         <item name="android:colorPrimaryDark">@color/gray_900</item>
         <item name="android:textColor">@color/text</item>
@@ -26,7 +26,7 @@
         <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
     </style>
 
-    <style name="SettingActivityTheme" parent="android:Theme.Material.Light.DarkActionBar">
+    <style name="SettingActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:colorAccent">@color/blue_500</item>
         <item name="android:colorPrimaryDark">@color/gray_900</item>
         <item name="android:textColor">@color/text</item>
@@ -37,7 +37,7 @@
         <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
     </style>
 
-    <style name="WhitelistActivityTheme" parent="android:Theme.Material.Light.DarkActionBar" >
+    <style name="WhitelistActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar" >
         <item name="android:colorAccent">@color/blue_500</item>
         <item name="android:colorPrimaryDark">@color/gray_900</item>
         <item name="android:textColor">@color/text</item>
@@ -48,7 +48,7 @@
         <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
     </style>
 
-    <style name="TokenActivityTheme" parent="android:Theme.Material.Light.DarkActionBar">
+    <style name="TokenActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:colorAccent">@color/blue_500</item>
         <item name="android:colorPrimaryDark">@color/gray_900</item>
         <item name="android:textColor">@color/text</item>
@@ -59,7 +59,7 @@
         <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
     </style>
 
-    <style name="ClearActivityTheme" parent="android:Theme.Material.Light.DarkActionBar">
+    <style name="ClearActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:colorAccent">@color/blue_500</item>
         <item name="android:colorPrimaryDark">@color/gray_900</item>
         <item name="android:textColor">@color/text</item>
@@ -75,7 +75,7 @@
         <item name="android:popupBackground">@color/white</item>
     </style>
 
-    <style name="AlertDialogStyle" parent="android:Theme.Material.Light.Dialog.Alert">
+    <style name="AlertDialogStyle" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:colorAccent">@color/blue_500</item>
         <item name="android:background">@color/white</item>
     </style>

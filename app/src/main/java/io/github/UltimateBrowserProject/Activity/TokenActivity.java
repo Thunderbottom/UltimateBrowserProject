@@ -1,26 +1,27 @@
 package io.github.UltimateBrowserProject.Activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 
-public class TokenActivity extends Activity {
+public class TokenActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.token);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final EditText tokenEdit = (EditText) findViewById(R.id.token_edit);
         Button tokenAdd = (Button) findViewById(R.id.token_add);

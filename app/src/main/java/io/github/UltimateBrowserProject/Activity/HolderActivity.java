@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+
+import java.util.*;
+
 import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Service.HolderService;
@@ -19,8 +22,6 @@ import io.github.UltimateBrowserProject.Unit.RecordUnit;
 import io.github.UltimateBrowserProject.View.DialogAdapter;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectContextWrapper;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
-
-import java.util.*;
 
 public class HolderActivity extends Activity {
     private static final int TIMER_SCHEDULE_DEFAULT = 512;

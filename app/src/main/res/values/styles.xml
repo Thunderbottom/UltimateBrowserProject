@@ -2,42 +2,44 @@
 
 <resources>
 
-    <style name="BrowserActivityTheme" parent="android:Theme.Holo.Light.NoActionBar">
+    <style name="BrowserActivityTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:selectableItemBackground">@drawable/abc_btn_borderless_material</item>
+        <item name="colorPrimaryDark">@color/gray_900</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/background_dark</item>
         <item name="android:drawSelectorOnTop">true</item>
     </style>
 
-    <style name="ReadabilityActivityTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="ReadabilityActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:drawSelectorOnTop">true</item>
     </style>
 
-    <style name="SettingActivityTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="SettingActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:drawSelectorOnTop">true</item>
     </style>
 
-    <style name="WhitelistActivityTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="WhitelistActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:drawSelectorOnTop">true</item>
     </style>
 
-    <style name="TokenActivityTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="TokenActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:drawSelectorOnTop">true</item>
     </style>
 
-    <style name="ClearActivityTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="ClearActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/white</item>

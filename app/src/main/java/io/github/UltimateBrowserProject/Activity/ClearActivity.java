@@ -7,15 +7,17 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import io.github.UltimateBrowserProject.Fragment.ClearFragment;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 
-public class ClearActivity extends Activity {
+public class ClearActivity extends AppCompatActivity {
     public static final String DB_CHANGE = "DB_CHANGE";
     private boolean dbChange = false;
 
@@ -25,7 +27,7 @@ public class ClearActivity extends Activity {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
         }
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getFragmentManager().beginTransaction().replace(android.R.id.content, new ClearFragment()).commit();
     }

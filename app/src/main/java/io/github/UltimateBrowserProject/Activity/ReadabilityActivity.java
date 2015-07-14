@@ -1,12 +1,12 @@
 package io.github.UltimateBrowserProject.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,13 +14,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.json.JSONObject;
+
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Task.ReadabilityTask;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
-import org.json.JSONObject;
 
-public class ReadabilityActivity extends Activity {
+public class ReadabilityActivity extends AppCompatActivity {
     private static final String HEADER = "<link rel=\"stylesheet\" href=\"./typo.css\" />\n"
             + "<meta name=\"viewport\" content=\"width=device-width\">\n"
             + "<style>\n"
@@ -92,7 +94,7 @@ public class ReadabilityActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.readability);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progressBar = (ProgressBar) findViewById(R.id.readability_progress);
         webView = (WebView) findViewById(R.id.readability_webview);
@@ -219,8 +221,8 @@ public class ReadabilityActivity extends Activity {
 
     public void showLoadSuccessful() {
         try {
-            getActionBar().setTitle(result.getString(RESULT_TITLE));
-            getActionBar().setSubtitle(result.getString(RESULT_URL));
+            getSupportActionBar().setTitle(result.getString(RESULT_TITLE));
+            getSupportActionBar().setSubtitle(result.getString(RESULT_URL));
 
             progressBar.setVisibility(View.GONE);
             emptyView.setVisibility(View.GONE);
