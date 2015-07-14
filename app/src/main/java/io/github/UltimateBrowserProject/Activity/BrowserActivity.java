@@ -1060,6 +1060,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 public void onAnimationStart(Animation animation) {
                     contentFrame.removeAllViews();
                     contentFrame.addView(av);
+                    ViewUnit.bound(BrowserActivity.this, av);
                 }
             });
             rv.startAnimation(fadeOut);
@@ -1069,6 +1070,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
             contentFrame.removeAllViews();
             contentFrame.addView((View) controller);
+            ViewUnit.bound(this, (View) controller);
         }
 
         currentAlbumController = controller;
