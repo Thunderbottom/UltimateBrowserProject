@@ -210,6 +210,10 @@
     <string name="setting_summary_omnibox_control">
         Swipe omnibox left/right to switch tabs
      </string>
+    <!-- Omnibox inverted show/hide -->
+    <string name="setting_title_omnibox_inverted_hide">
+        Always hide Omnibox on scrolldown</string>
+    <string name="setting_summary_omnibox_inverted_hide">Even if omnibox is on bottom, it will hide on scrolldown</string>
     <!-- Volume key scroll -->
     <string name="setting_title_volume_control">
         Volume Control

@@ -38,6 +38,9 @@
     <string name="sp_omnibox_control">
         SP_OMNIBOX_CONTROL_9
     </string>
+    <string name="sp_omnibox_inverted_hide">
+        SP_OMNIBOX_HIDE_INVERT_9
+    </string>
     <string name="sp_passwords">
         SP_PASSWORDS_9
     </string>
