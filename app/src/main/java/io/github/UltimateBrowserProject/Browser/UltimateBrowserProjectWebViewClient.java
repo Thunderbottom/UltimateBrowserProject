@@ -13,6 +13,7 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.github.UltimateBrowserProject.Activity.BrowserActivity;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
@@ -106,8 +108,13 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
             view.reload();
             return true;
         }
-        if (startActivityForUrl(url)) {
-            return true;
+        final String intentUri = getActivityIntentUriForUrl(url);
+        if (intentUri != null) {
+            final Intent intent = new Intent(BrowserActivity.SNACKBAR_BROADCAST_ACTION_NAME);
+            intent.putExtra(BrowserActivity.EXTRA_SNACKBAR_TITLE, context.getString(R.string.open_in_app_snackbar_title));
+            intent.putExtra(BrowserActivity.EXTRA_SNACKBAR_ACTION_TITLE, context.getString(R.string.open_in_app_snackbar_action_title));
+            intent.putExtra(BrowserActivity.EXTRA_SNACKBAR_ACTION_INTENT_URI, intentUri);
+            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
         }
 
         white = adBlock.isWhite(url);
@@ -118,14 +125,14 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     from
     https://github.com/android/platform_packages_apps_browser/blob/41c050d8ff87c95377a80646b6e6683983be8ab7/src/com/android/browser/UrlHandler.java#L118
      */
-    boolean startActivityForUrl(String url) {
+    String getActivityIntentUriForUrl(String url) {
         Intent intent;
         // perform generic parsing of the URI to turn it into an Intent.
         try {
             intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
         } catch (URISyntaxException ex) {
             Log.w("Browser", "Bad URI " + url + ": " + ex.getMessage());
-            return false;
+            return null;
         }
 
         // check whether the intent can be resolved. If not, we will see
@@ -136,15 +143,9 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
                 intent = new Intent(Intent.ACTION_VIEW, Uri
                         .parse("market://search?q=pname:" + packagename));
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                try {
-                    context.startActivity(intent);
-                    return true;
-                } catch (ActivityNotFoundException e) {
-                    Log.w("Browser", "No activity found to handle " + url);
-                    return false;
-                }
+                return intent.toUri(0);
             } else {
-                return false;
+                return null;
             }
         }
 
@@ -163,16 +164,9 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
         // startActivityIfNeeded
         Matcher m = ACCEPTED_URI_SCHEMA.matcher(url);
         if (m.matches() && !isSpecializedHandlerAvailable(intent)) {
-            return false;
+            return null;
         }
-        try {
-            context.startActivity(intent);
-        } catch (ActivityNotFoundException ex) {
-            // ignore the error. If no application can handle the URL,
-            // eg about:blank, assume the browser can handle it.
-        }
-
-        return false;
+        return intent.toUri(0);
     }
 
     /**

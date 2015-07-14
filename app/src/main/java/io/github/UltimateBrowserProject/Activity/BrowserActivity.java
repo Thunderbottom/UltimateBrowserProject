@@ -5,17 +5,14 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.SearchManager;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -25,6 +22,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -32,13 +30,19 @@ import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.*;
-
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.*;
 
 import org.askerov.dynamicgrid.DynamicGridView;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
@@ -211,6 +215,9 @@ public class BrowserActivity extends Activity implements BrowserController {
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
         IntentUnit.setContext(this);
         super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(snackbarReceiver,
+                new IntentFilter(SNACKBAR_BROADCAST_ACTION_NAME));
+
         if (create) {
             return;
         }
@@ -233,21 +240,8 @@ public class BrowserActivity extends Activity implements BrowserController {
 
             IntentUnit.setSPChange(false);
         }
-        // Snackbar
-        Snackbar.make(contentFrame, "This is test", Snackbar.LENGTH_LONG)
-                .setAction("UNDO", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // something
-                    }
-                })
-                .setAction("REDO", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // something
-                    }
-                })
-                .show();
+
+
     }
 
     private void dispatchIntent(Intent intent) {
@@ -313,6 +307,8 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
 
         IntentUnit.setContext(this);
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(snackbarReceiver);
         super.onPause();
     }
 
@@ -2154,4 +2150,34 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
         getWindow().setAttributes(attrs);
     }
+
+    public static final String EXTRA_SNACKBAR_TITLE = "EXTRA_SNACKBAR_TITLE";
+    public static final String EXTRA_SNACKBAR_ACTION_TITLE = "EXTRA_SNACKBAR_ACTION_TITLE";
+    public static final String EXTRA_SNACKBAR_ACTION_INTENT_URI = "EXTRA_SNACKBAR_ACTION_INTENT_URI";
+    public static final String SNACKBAR_BROADCAST_ACTION_NAME = "snackbar";
+    private BroadcastReceiver snackbarReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, final Intent intent) {
+            final Snackbar snackbar = Snackbar.make(contentFrame, intent.getStringExtra(EXTRA_SNACKBAR_TITLE), Snackbar.LENGTH_LONG)
+                    .setActionTextColor(Color.WHITE);
+            TextView tv = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+            tv.setTextColor(Color.WHITE);
+            final String actionTitle = intent.getStringExtra(EXTRA_SNACKBAR_ACTION_TITLE);
+            if (actionTitle != null) {
+                snackbar.setAction(actionTitle, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final String intentUri = intent.getStringExtra(EXTRA_SNACKBAR_ACTION_INTENT_URI);
+                        try {
+                            final Intent launchIntent = Intent.parseUri(intentUri, 0);
+                            startActivity(launchIntent);
+                        } catch (Exception ignored) {
+                            ignored.printStackTrace();
+                        }
+                    }
+                });
+            }
+            snackbar.show();
+        }
+    };
 }

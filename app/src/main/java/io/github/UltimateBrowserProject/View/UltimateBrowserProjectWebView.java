@@ -22,14 +22,7 @@ import android.webkit.WebView;
 
 import java.net.URISyntaxException;
 
-import io.github.UltimateBrowserProject.Browser.AdBlock;
-import io.github.UltimateBrowserProject.Browser.AlbumController;
-import io.github.UltimateBrowserProject.Browser.BrowserController;
-import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectClickHandler;
-import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectDownloadListener;
-import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectGestureListener;
-import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectWebChromeClient;
-import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectWebViewClient;
+import io.github.UltimateBrowserProject.Browser.*;
 import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.Database.RecordAction;
 import io.github.UltimateBrowserProject.R;

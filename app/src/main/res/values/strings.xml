@@ -540,4 +540,13 @@
         Intro
     </string>
 
+    <!-- Open in app -->
+    <string name="open_in_app_snackbar_title">
+         Open in app?
+    </string>
+    <string name="open_in_app_snackbar_action_title">
+         OPEN
+    </string>
+
+
 </resources>
