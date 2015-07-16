@@ -77,7 +77,7 @@ public class HolderService extends Service implements BrowserController {
         webView.setFlag(BrowserUnit.FLAG_UltimateBrowserProject);
         webView.setAlbumCover(null);
         webView.setAlbumTitle(getString(R.string.album_untitled));
-        ViewUnit.bound(this, webView);
+        ViewUnit.bound(this, webView, false);
 
         webView.loadUrl(RecordUnit.getHolder().getURL());
         webView.deactivate();

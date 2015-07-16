@@ -23,7 +23,6 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
-import android.provider.Browser;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -912,7 +911,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         webView.setFlag(BrowserUnit.FLAG_UltimateBrowserProject);
         webView.setAlbumCover(ViewUnit.capture(webView, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
         webView.setAlbumTitle(title);
-        ViewUnit.bound(this, webView);
+        setBound(webView);
         webView.setUrl(url);
 
         final View albumView = webView.getAlbumView();
@@ -926,7 +925,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
 
         if (!foreground) {
-            ViewUnit.bound(this, webView);
+            setBound(webView);
             webView.loadUrl(url);
             webView.deactivate();
 
@@ -1010,7 +1009,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             webView.setFlag(BrowserUnit.FLAG_UltimateBrowserProject);
             webView.setAlbumCover(ViewUnit.capture(webView, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
             webView.setAlbumTitle(getString(R.string.album_untitled));
-            ViewUnit.bound(this, webView);
+            setBound(webView);
             webView.loadUrl(url);
 
             BrowserContainer.add(webView);
@@ -1035,6 +1034,10 @@ public class BrowserActivity extends Activity implements BrowserController {
                 }
             }, shortAnimTime);
         }
+    }
+
+    private void setBound(View view) {
+        ViewUnit.bound(this, view, fullscreen);
     }
 
     @Override
@@ -1063,7 +1066,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 public void onAnimationStart(Animation animation) {
                     contentFrame.removeAllViews();
                     contentFrame.addView(av);
-                    ViewUnit.bound(BrowserActivity.this, av);
+                    setBound(av);
                 }
             });
             rv.startAnimation(fadeOut);
@@ -1073,7 +1076,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
             contentFrame.removeAllViews();
             contentFrame.addView((View) controller);
-            ViewUnit.bound(this, (View) controller);
+            setBound((View) controller);
         }
 
         currentAlbumController = controller;
@@ -1133,7 +1136,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             webView.setFlag(BrowserUnit.FLAG_UltimateBrowserProject);
             webView.setAlbumCover(ViewUnit.capture(webView, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
             webView.setAlbumTitle(getString(R.string.album_untitled));
-            ViewUnit.bound(this, webView);
+            setBound(webView);
 
             int index = switcherContainer.indexOfChild(currentAlbumController.getAlbumView());
             currentAlbumController.deactivate();
@@ -2107,6 +2110,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     omnibox.setVisibility(View.GONE);
+                    setBound((View) currentAlbumController);
                 }
 
                 @Override
@@ -2139,6 +2143,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     omnibox.setVisibility(View.VISIBLE);
+                    setBound((View) currentAlbumController);
                 }
 
                 @Override

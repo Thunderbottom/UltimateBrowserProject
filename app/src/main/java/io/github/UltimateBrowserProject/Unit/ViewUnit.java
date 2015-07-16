@@ -3,23 +3,27 @@ package io.github.UltimateBrowserProject.Unit;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.*;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
-import io.github.UltimateBrowserProject.R;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 
 public class ViewUnit {
-    public static void bound(Context context, View view) {
+    public static void bound(Context context, View view, boolean isFullScreen) {
         int windowWidth = getWindowWidth(context);
         int windowHeight = getWindowHeight(context);
-        int statusBarHeight = getStatusBarHeight(context);
-        int dimen48dp = context.getResources().getDimensionPixelOffset(R.dimen.layout_height_48dp);
+        int adjustHeight = 0;
+        if (!isFullScreen) {
+            adjustHeight += getStatusBarHeight(context);
+        }
 
         int widthSpec = View.MeasureSpec.makeMeasureSpec(windowWidth, View.MeasureSpec.EXACTLY);
-        int heightSpec = View.MeasureSpec.makeMeasureSpec(windowHeight - statusBarHeight - dimen48dp, View.MeasureSpec.EXACTLY);
+        int heightSpec = View.MeasureSpec.makeMeasureSpec(windowHeight - adjustHeight, View.MeasureSpec.EXACTLY);
 
         view.measure(widthSpec, heightSpec);
         view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
@@ -95,6 +99,7 @@ public class ViewUnit {
     public static int getWindowWidth(Context context) {
         return context.getResources().getDisplayMetrics().widthPixels;
     }
+
     public static void setElevation(View view, float elevation) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setElevation(elevation);
