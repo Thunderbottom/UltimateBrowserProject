@@ -258,11 +258,11 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         if (intent != null && intent.hasExtra(IntentUnit.OPEN)) { // From HolderActivity's menu
             pinAlbums(intent.getStringExtra(IntentUnit.OPEN));
-        } else if (intent != null && action != null && action.equals(Intent.ACTION_WEB_SEARCH)) { // From ActionMode and some others
+        } else if (intent != null && action != null && Intent.ACTION_WEB_SEARCH.equals(action)){ // From ActionMode and some others
             pinAlbums(intent.getStringExtra(SearchManager.QUERY));
         } else if (intent != null && filePathCallback != null) {
             filePathCallback = null;
-        } else if (intent != null && action.equals(Intent.ACTION_VIEW)) {
+        } else if (intent != null && Intent.ACTION_VIEW.equals(action)) {
             String filePath;
             Uri uri = intent.getData();
             Log.d("", "Uri is " + uri);
