@@ -2172,7 +2172,9 @@ public class BrowserActivity extends Activity implements BrowserController {
         public void onReceive(Context context, final Intent intent) {
             final Snackbar snackbar = Snackbar.make(contentFrame, intent.getStringExtra(EXTRA_SNACKBAR_TITLE), Snackbar.LENGTH_LONG)
                     .setActionTextColor(Color.WHITE);
-            TextView tv = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+            final View snackbarView = snackbar.getView();
+            snackbarView.setBackgroundColor(getResources().getColor(R.color.gray_900));
+            TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
             tv.setTextColor(Color.WHITE);
             final String actionTitle = intent.getStringExtra(EXTRA_SNACKBAR_ACTION_TITLE);
             if (actionTitle != null) {
