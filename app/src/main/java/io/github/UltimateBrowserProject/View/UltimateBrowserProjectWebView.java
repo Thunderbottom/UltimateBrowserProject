@@ -128,14 +128,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setWebChromeClient(webChromeClient);
         setDownloadListener(downloadListener);
 
-        anchor = Integer.valueOf(sp.getString(context.getString(R.string.sp_anchor), "1"));
-        if (anchor == 0) {
-            UP_SCROLL_THRESHOLD = convertDpToPixels(100);
-            DOWN_SCROLL_THRESHOLD = convertDpToPixels(1);
-        } else {
-            UP_SCROLL_THRESHOLD = convertDpToPixels(1);
-            DOWN_SCROLL_THRESHOLD = convertDpToPixels(100);
-        }
+        UP_SCROLL_THRESHOLD = convertDpToPixels(100);
+        DOWN_SCROLL_THRESHOLD = convertDpToPixels(1);
 
         setOnTouchListener(new OnTouchListener() {
             @Override
@@ -151,17 +145,9 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                     y2 = y1;
                 } else if (action == MotionEvent.ACTION_UP) {
                     if ((y1 - y2) > UP_SCROLL_THRESHOLD) {
-                        if (anchor == 0) {
-                            browserController.showOmnibox();
-                        } else {
-                            browserController.hideOmnibox();
-                        }
+                        browserController.showOmnibox();
                     } else if ((y1 - y2) < -DOWN_SCROLL_THRESHOLD) {
-                        if (anchor == 0) {
-                            browserController.hideOmnibox();
-                        } else {
-                            browserController.showOmnibox();
-                        }
+                        browserController.hideOmnibox();
                     }
                     y2 = 0;
                 }
