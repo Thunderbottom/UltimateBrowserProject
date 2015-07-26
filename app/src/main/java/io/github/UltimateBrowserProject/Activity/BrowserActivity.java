@@ -23,6 +23,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.ViewCompat;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -1043,7 +1044,9 @@ public class BrowserActivity extends Activity implements BrowserController {
     @Override
     public synchronized void showAlbum(AlbumController controller, boolean anim, final boolean expand, final boolean capture) {
         if (controller == null || controller == currentAlbumController) {
-            switcherPanel.expanded();
+            if (ViewCompat.isAttachedToWindow(switcherPanel)) {
+                switcherPanel.expanded();
+            }
             return;
         }
 
