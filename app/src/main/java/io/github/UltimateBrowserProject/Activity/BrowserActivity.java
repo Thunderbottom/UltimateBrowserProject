@@ -232,6 +232,12 @@ public class BrowserActivity extends Activity implements BrowserController {
         setFullscreen(fullscreen);
         dispatchIntent(getIntent());
 
+        for (AlbumController controller : BrowserContainer.list()) {
+            if (controller instanceof UltimateBrowserProjectWebView) {
+                ((UltimateBrowserProjectWebView) controller).onResume();
+            }
+        }
+
         if (IntentUnit.isDBChange()) {
             updateBookmarks();
             updateAutoComplete();
@@ -299,6 +305,11 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         create = false;
         inputBox.clearFocus();
+        for (AlbumController controller : BrowserContainer.list()) {
+            if (controller instanceof UltimateBrowserProjectWebView) {
+                ((UltimateBrowserProjectWebView) controller).onPause();
+            }
+        }
         if (currentAlbumController != null && currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
             UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
             if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
@@ -311,9 +322,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 }
             }
         }
-
         IntentUnit.setContext(this);
-
         LocalBroadcastManager.getInstance(this).unregisterReceiver(snackbarReceiver);
         super.onPause();
     }
