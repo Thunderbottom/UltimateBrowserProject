@@ -47,7 +47,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private int DOWN_SCROLL_THRESHOLD;
     private float y1;
     private float y2;
-    private int anchor;
     private String url;
 
     private Album album;
@@ -56,7 +55,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private UltimateBrowserProjectDownloadListener downloadListener;
     private UltimateBrowserProjectClickHandler clickHandler;
     private GestureDetector gestureDetector;
-    private SharedPreferences sp;
 
     private AdBlock adBlock;
     public AdBlock getAdBlock() {
@@ -98,7 +96,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         this.downloadListener = new UltimateBrowserProjectDownloadListener(this.context);
         this.clickHandler = new UltimateBrowserProjectClickHandler(this);
         this.gestureDetector = new GestureDetector(context, new UltimateBrowserProjectGestureListener(this));
-        this.sp = PreferenceManager.getDefaultSharedPreferences(this.context);
 
         initWebView();
         initWebSettings();

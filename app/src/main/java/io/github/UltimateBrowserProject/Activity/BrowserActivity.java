@@ -2103,7 +2103,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 }
                 hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_up);
             } else {
-                hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom_down);
+                return;
             }
             hide.setAnimationListener(new Animation.AnimationListener() {
 
@@ -2135,7 +2135,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 }
                 show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_down);
             } else {
-                show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom_up);
+                return;
             }
 
             show.setAnimationListener(new Animation.AnimationListener() {
