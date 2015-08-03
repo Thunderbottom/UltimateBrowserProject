@@ -247,8 +247,6 @@ public class BrowserActivity extends Activity implements BrowserController {
 
             IntentUnit.setSPChange(false);
         }
-
-
     }
 
     private void dispatchIntent(Intent intent) {
@@ -1077,7 +1075,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             if (currentAlbumController != null) {
                 currentAlbumController.deactivate();
             }
-            contentFrame.removeAllViews();
+            contentFrame.removeView((View) controller);
             contentFrame.addView((View) controller);
             setBound((View) controller);
         }
@@ -1098,6 +1096,12 @@ public class BrowserActivity extends Activity implements BrowserController {
                 }
             }
         }, shortAnimTime);
+        ViewParent parent = omnibox.getParent();
+        if (parent != contentFrame) {
+            ((ViewGroup) parent).removeView(omnibox);
+            contentFrame.addView(omnibox);
+        }
+        omnibox.bringToFront();
     }
 
     private synchronized void updateAlbum() {
@@ -1111,18 +1115,19 @@ public class BrowserActivity extends Activity implements BrowserController {
         layout.setAlbumCover(ViewUnit.capture(layout, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
         layout.setAlbumTitle(getString(R.string.album_title_home));
         initHomeGrid(layout, true);
-        omnibox.setVisibility(View.VISIBLE);
 
         int index = switcherContainer.indexOfChild(currentAlbumController.getAlbumView());
         currentAlbumController.deactivate();
         switcherContainer.removeView(currentAlbumController.getAlbumView());
-        contentFrame.removeAllViews(); ///
+        contentFrame.removeView(layout);
 
         switcherContainer.addView(layout.getAlbumView(), index, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         contentFrame.addView(layout);
         BrowserContainer.set(layout, index);
         currentAlbumController = layout;
         updateOmnibox();
+        omnibox.setVisibility(View.VISIBLE);
+        omnibox.bringToFront();
     }
 
     private synchronized void updateAlbum(String url) {
@@ -1144,7 +1149,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             int index = switcherContainer.indexOfChild(currentAlbumController.getAlbumView());
             currentAlbumController.deactivate();
             switcherContainer.removeView(currentAlbumController.getAlbumView());
-            contentFrame.removeAllViews(); ///
+            contentFrame.removeView(webView);
 
             switcherContainer.addView(webView.getAlbumView(), index, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             contentFrame.addView(webView);
@@ -1157,6 +1162,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         } else {
             UltimateBrowserProjectToast.show(this, R.string.toast_load_error);
         }
+        omnibox.bringToFront();
     }
 
     @Override
