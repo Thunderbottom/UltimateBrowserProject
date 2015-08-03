@@ -57,10 +57,17 @@ public class UserAgentListPreference extends ListPreference {
         FrameLayout layout = (FrameLayout) LayoutInflater.from(getContext()).inflate(R.layout.dialog_edit, null, false);
         builder.setView(layout);
 
+        final EditText editText = (EditText) layout.findViewById(R.id.dialog_edit);
         final AlertDialog dialog = builder.create();
+        if (sp.getString(R.string.sp_theme + "", "0").equals("0")) {
+            //editText.setBackgroundResource(R.color.background_material_light);
+            dialog.getWindow().setBackgroundDrawableResource(R.color.background_material_light);
+        } else {
+            //editText.setBackgroundResource(R.color.background_material_light);
+            dialog.getWindow().setBackgroundDrawableResource(R.color.background_material_dark);
+        }
         dialog.show();
 
-        final EditText editText = (EditText) layout.findViewById(R.id.dialog_edit);
         editText.setHint(R.string.dialog_ua_hint);
         String custom = sp.getString(getContext().getString(R.string.sp_user_agent_custom), "");
         editText.setText(custom);

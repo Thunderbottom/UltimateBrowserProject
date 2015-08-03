@@ -35,6 +35,9 @@
     <string name="sp_notification_priority">
         SP_NOTIFICATION_PRIORITY_9
     </string>
+    <string name="sp_theme">
+        SP_THEME_9
+    </string>
     <string name="sp_omnibox_control">
         SP_OMNIBOX_CONTROL_9
     </string>
