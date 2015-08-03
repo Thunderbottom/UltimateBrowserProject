@@ -33,6 +33,7 @@
     <dimen name="layout_margin_4dp">4dp</dimen>
     <dimen name="layout_margin_2dp">2dp</dimen>
 
+    <dimen name="padding_54dp">54dp</dimen>
     <dimen name="padding_16dp">16dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
     <dimen name="padding_4dp">4dp</dimen>

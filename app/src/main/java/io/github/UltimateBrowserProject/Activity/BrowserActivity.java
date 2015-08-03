@@ -1097,7 +1097,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         }, shortAnimTime);
         ViewParent parent = omnibox.getParent();
-        if (parent != contentFrame) {
+        if (parent != contentFrame && anchor == 0) {
             ((ViewGroup) parent).removeView(omnibox);
             contentFrame.addView(omnibox);
         }
@@ -1123,6 +1123,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         switcherContainer.addView(layout.getAlbumView(), index, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         contentFrame.addView(layout);
+        BrowserContainer.set(layout, index);
         BrowserContainer.set(layout, index);
         currentAlbumController = layout;
         updateOmnibox();
