@@ -211,6 +211,14 @@ public class BrowserActivity extends Activity implements BrowserController {
     }
 
     @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            hideKeyboard();
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
@@ -941,6 +949,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
+
 
             @Override
             public void onAnimationStart(Animation animation) {
@@ -2244,4 +2253,10 @@ public class BrowserActivity extends Activity implements BrowserController {
             pinAlbums(null);
         }
     }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(searchBox.getWindowToken(), 0);
+    }
+
 }
