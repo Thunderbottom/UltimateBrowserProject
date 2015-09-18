@@ -32,6 +32,9 @@ public class WhitelistActivity extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.whitelist);
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("1")) {
+            findViewById(R.id.whitelist_layout).setBackgroundColor(getResources().getColor(R.color.background_material_dark));
+        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         RecordAction action = new RecordAction(this);

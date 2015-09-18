@@ -22,6 +22,11 @@ public class TokenActivity extends AppCompatActivity {
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.token);
+
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("1")) {
+            findViewById(R.id.token_layout).setBackgroundColor(getResources().getColor(R.color.background_material_dark));
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final EditText tokenEdit = (EditText) findViewById(R.id.token_edit);

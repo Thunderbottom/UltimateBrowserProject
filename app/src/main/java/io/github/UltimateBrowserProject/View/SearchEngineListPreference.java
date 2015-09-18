@@ -58,11 +58,6 @@ public class SearchEngineListPreference extends ListPreference {
         builder.setView(layout);
 
         final AlertDialog dialog = builder.create();
-        if (sp.getString(R.string.sp_theme + "", "0").equals("0")) {
-            dialog.getWindow().setBackgroundDrawableResource(R.color.background_material_light);
-        } else {
-            dialog.getWindow().setBackgroundDrawableResource(R.color.background_material_dark);
-        }
         dialog.show();
 
         final EditText editText = (EditText) layout.findViewById(R.id.dialog_edit);
