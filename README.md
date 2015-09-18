@@ -54,9 +54,8 @@ Some of the TODO items on the list are -
 
 ###Note - Please do not add ```.idea``` folder to the git while posting a pull request. Add ```.idea/``` to the gitignore file
 
-## Derivatives 
+## You can do whatever you want to do with this project, just don't fuck with the license
 
-* [Snap Browser](http://forum.xda-developers.com/android/apps-games/app-snap-browser-fast-lightweight-dont-t3164910)
 
 
 ## Translations by:
