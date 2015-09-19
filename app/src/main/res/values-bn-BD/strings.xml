@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- AndroidAgo -->
+    <string name="android_ago_just_now">
+        এখনই
+    </string>
+
+    <!-- Album -->
+    <string name="album_title_bookmarks">
+        বুকমার্কস
+    </string>
+    <string name="album_title_history">
+        হিস্ট্রি
+    </string>
+    <string name="album_title_home">
+        হোম
+    </string>
+    <string name="album_untitled">
+        আনটাইটেল্ড
+    </string>
+
+    <!-- Clear -->
+    <string name="clear_label">
+        ক্লিয়ার
+    </string>
+    <string name="clear_menu_done_all">
+        সব হয়ে গেছে
+    </string>
+    <string name="clear_title_quit">
+        এপ্লিকেশন এক্সিট করার সময় ক্লিয়ার করুন
+    </string>
+    <string name="clear_title_bookmarks">
+        বুকমার্ক ক্লিয়ার করুন
+    </string>
+    <string name="clear_title_cache">
+        ক্যাশ ক্লিয়ার করুন
+    </string>
+    <string name="clear_title_cookie">
+        কুকিজ ক্লিয়ার করুন
+    </string>
+    <string name="clear_title_form_data">
+        ফর্ম-ডেটা ক্লিয়ার করুন
+    </string>
+    <string name="clear_title_history">
+        হিস্ট্রি ক্লিয়ার করুন
+    </string>
+    <string name="clear_title_passwords">
+        পাসওয়ার্ড ক্লিয়ার করুন
+    </string>
+
+    <!-- Dialog -->
+    <string name="dialog_title_hint">
+        ইনপুট টাইটেল
+    </string>
+    <string name="dialog_se_hint">
+        https://www.google.com.bd/search?q=
+    </string>
+    <string name="dialog_ua_hint">
+        Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+    </string>
+    <string name="dialog_sign_in_username">
+        ইউজার-নেম
+    </string>
+    <string name="dialog_sign_in_password">
+        পাসওয়ার্ড
+    </string>
+    <string name="dialog_button_positive">
+        ওকে
+    </string>
+    <string name="dialog_button_negative">
+        ক্যান্সেল
+    </string>
+    <string name="dialog_button_custom">
+        কাস্টম
+    </string>
+    <string name="dialog_title_download">
+        আপনি কি ফাইলটি ডাউন-লোড করতে চান?
+    </string>
+    <string name="dialog_title_resubmission">
+        রি-সাবমিট
+    </string>
+    <string name="dialog_title_warning">
+        সতর্কবার্তা
+    </string>
+    <string name="dialog_title_sign_in">
+        সাইন ইন
+    </string>
+    <string name="dialog_content_resubmission">
+        আপনি কি ডেটা সাবমিট করতে চান?
+    </string>
+    <string name="dialog_content_ssl_error">
+        এই সাইটের সার্টিফিকেটটি নির্ভরযোগ্য নয়। তবুও যেতে চান?
+    </string>
+    <string name="dialog_content_update">
+        আপডেটের জন্য এই লিংকে যান -\n http://bit.ly/UBPUpdate \n
+        বর্তমান ভার্সন হল - ১.৪.৬.
+    </string>
+    <string name="dialog_content_upload">
+        এখন, ফাইল আপলোডিং শুধুমাত্র  Android 5.0 এবং তার উপরের ভার্সনে সাপোর্ট করা হচ্ছে।
+    </string>
+
+    <!-- List -->
+    <string name="list_empty">
+        বর্তমান লিস্টটি খালি
+    </string>
+
+    <!-- Main -->
+    <string name="main_menu_new_tab">
+        নতুন ট্যাব ওপেন করুন
+    </string>
+    <string name="main_menu_copy_link">
+        লিংকটি কপি করুন
+    </string>
+    <string name="main_menu_save">
+        সেভ এজ
+    </string>
+    <string name="main_omnibox_input_hint">
+        ইউআরএল টাইপ করুন অথবা সার্চ করুন
+    </string>
+    <string name="main_relayout_ok">
+        ওকে
+    </string>
+    <string name="main_about_blank">
+        about:blank
+    </string>
+
+    <!-- Notification -->
+    <string name="notification_content_holder">
+        পেজ দেখতে ক্লিক করুন
+    </string>
+
+    <!-- Readability -->
+    <string name="readability_label">
+        রিডেবিলিটি মোডে
+    </string>
+    <string name="readability_menu_background">
+        ব্যাকগ্রাউন্ড
+    </string>
+    <string name="readability_menu_share">
+        শেয়ার করুন
+    </string>
+    <string name="readability_empty">
+        ইরোর: রিডেবিলিটি সার্ভার এক্সেস করতে বার্থ হয়েছে। দয়া করে এক্সেস টোকেন এবং ইন্টারনেট কানেকশন চেক করুন।
+    </string>
+
+    <!-- Search -->
+    <string name="search_hint">
+        সার্চ
+    </string>
+
+    <!-- Settings -->
+    <string name="setting_label">
+        সেটিংস
+    </string>
+    <!-- Browser settings -->
+    <string name="setting_title_browser">
+        ব্রাউজার সেটিংস
+    </string>
+    <!-- Search engine -->
+    <string name="setting_title_search_engine">
+        সার্চ ইঞ্জিন Engine
+    </string>
+    <string name="setting_summary_search_engine_google">
+        গুগোল
+    </string>
+    <string name="setting_summary_search_engine_duckduckgo">
+        ডাক-ডাক-গো
+    </string>
+    <string name="setting_summary_search_engine_startpage">
+        স্টার্ট-পেজ
+    </string>
+    <string name="setting_summary_search_engine_bing">
+        বিং
+    </string>
+    <string name="setting_summary_search_engine_baidu">
+        বেইদু
+    </string>
+    <string name="setting_summary_search_engine_custom">
+        কাস্টম
+    </string>
+    <!-- Notification -->
+    <string name="setting_title_notification_priority">
+        নোটিফিকেশন প্রায়োরিটি
+    </string>
+    <string name="setting_summary_notification_priority_default">
+        ডিফল্ট
+    </string>
+    <string name="setting_summary_notification_priority_high">
+        হাই
+    </string>
+    <string name="setting_summary_notification_priority_low">
+        লো
+    </string>
+    <!-- Omnibox switcher -->
+    <string name="setting_title_omnibox_position">
+        ওমনি-বক্স এর পজিশন
+    </string>
+    <string name="setting_summary_omnibox_position_top">
+        টপ
+    </string>
+    <string name="setting_summary_omnibox_position_bottom">
+        বটম
+    </string>
+    <!-- Omnibox control -->
+    <string name="setting_title_omnibox_control">
+        ওমনি-বক্স কন্ট্রোল
+    </string>
+    <string name="setting_summary_omnibox_control">
+        ট্যাব সুইট করতে ওমনি-বক্স  ডানে/বামে সোয়াইপ করুন
+     </string>
+    <!-- Volume key scroll -->
+    <string name="setting_title_volume_control">
+        ভলিউম কন্ট্রোল
+    </string>
+    <string name="setting_summary_vc_switch_tabs">
+        ট্যাব সুইচ করুন
+    </string>
+    <string name="setting_summary_vc_scroll_webpage">
+        স্ক্রোল ওয়েবপেজ
+    </string>
+    <string name="setting_summary_vc_system_default">
+        সিস্টেম ডিফল্ট
+    </string>
+    <!-- Images -->
+    <string name="setting_title_images">
+        ইমেজ
+    </string>
+    <string name="setting_summary_images">
+        নেটওয়ার্কের ইমেজ এনেবল করুন
+    </string>
+    <!-- Cookies -->
+    <string name="setting_title_cookie">
+        কুকিজ
+    </string>
+    <string name="setting_summary_cookie">
+        কুকিজ এনেবল করুন
+    </string>
+    <!-- JavaScript -->
+    <string name="setting_title_javascript">
+        জাভা-স্ক্রিপ্ট
+    </string>
+    <string name="setting_summary_javascript">
+        জাভা-স্ক্রিপ্ট এনেবল করুন
+    </string>
+    <!-- Location -->
+    <string name="setting_title_location">
+        লোকেশন
+    </string>
+    <string name="setting_summary_location">
+        ওয়েবসাইটটিকে আপনার লোকেশন এক্সেস করার অনুমতি দিন
+    </string>
+    <!-- Multiple windows -->
+    <string name="setting_title_multiple_windows">
+        মাল্টিপল উইন্ডো
+    </string>
+    <string name="setting_summary_multiple_windows">
+        মাল্টিপল উইন্ডো এনেবল করুন
+    </string>
+    <!-- Scroll bar -->
+    <string name="setting_title_scroll_bar">
+        স্ক্রোল বার
+    </string>
+    <string name="setting_summary_scroll_bar">
+        ওয়েবপেজের স্ক্রোল বার দেখান
+    </string>
+    <!-- Text reflow -->
+    <string name="setting_title_text_reflow">
+        টেক্সট রি-ফ্লো
+    </string>
+    <string name="setting_summary_text_reflow">
+        টেক্সট রি-ফ্লো এনেবল করুন
+    </string>
+    <!-- User Agent -->
+    <string name="setting_title_user_agent">
+        ইউজার এজেন্ট
+    </string>
+    <string name="setting_summary_user_agent_default">
+        ডিফল্ট
+    </string>
+    <string name="setting_summary_user_agent_desktop">
+        ডেস্কটপ
+    </string>
+    <string name="setting_summary_user_agent_custom">
+        কাস্টম
+    </string>
+    <!-- Rendering -->
+    <string name="setting_title_rendering">
+        রেন্ডারিং
+    </string>
+    <string name="setting_summary_rendering_default">
+        ডিফল্ট
+    </string>
+    <string name="setting_summary_rendering_grayscale">
+        গ্রে-স্কেল
+    </string>
+    <string name="setting_summary_rendering_inverted">
+        ইনভার্টেড
+    </string>
+    <string name="setting_summary_rendering_inverted_grayscale">
+        ইনভার্টেড গ্রে-স্কেল
+    </string>
+    <!-- Fullscreen mode -->
+    <string name="setting_title_fullscreen">
+        ফুল-স্ক্রিন মোড
+    </string>
+    <string name="setting_summary_fullscreen">
+        ফুল-স্ক্রিন মোড এনেবল করুন
+    </string>
+    <!-- Restore tabs -->
+    <string name="setting_title_restore_tabs">
+        আগের সেশন এর ট্যাব রিস্টোর করুন
+    </string>
+    <!-- AdBlock setting -->
+    <string name="setting_title_adblock">
+        এড-ব্লক
+    </string>
+    <string name="setting_summary_adblock">
+        এড-ব্লক এনেবল করুন
+    </string>
+    <string name="setting_title_whitelist">
+        হোয়াইট-লিস্ট
+    </string>
+    <string name="setting_summary_whitelist">
+        এই সাইটগুলোকে বিজ্ঞাপন দেখানোর অনুমতি দিন
+    </string>
+    <string name="setting_title_export_whitelist">
+        হোয়াইট-লিস্ট এক্সপোর্ট করুন
+    </string>
+    <string name="setting_title_import_whitelist">
+        হোয়াইট-লিস্ট ইম্পোর্ট করুন
+    </string>
+    <string name="whitelist_filename">
+        হোয়াইট-লিস্ট
+    </string>
+    <!-- Readability settings -->
+    <string name="setting_title_readability">
+        রিডেবিলিটি
+    </string>
+    <string name="setting_title_token">
+        টোকেন
+    </string>
+    <string name="setting_summary_readability">
+        রিডেবিলিটি এনেবল করুন
+    </string>
+    <string name="setting_summary_token">
+        রিডেবিলিটি টোকেন সেট করুন
+    </string>
+    <!-- Data setting -->
+    <string name="setting_title_data">
+        ডেটা
+    </string>
+    <!-- Passwords -->
+    <string name="setting_title_passwords">
+        পাসওয়ার্ড
+    </string>
+    <string name="setting_summary_passwords">
+        পাসওয়ার্ড সেভ করুন
+    </string>
+    <!-- Bookmarks -->
+    <string name="setting_title_export_bookmarks">
+        বুকমার্ক এক্সপোর্ট করুন
+    </string>
+    <string name="setting_title_import_bookmarks">
+        বুকমার্ক ইম্পোর্ট করুন
+    </string>
+    <string name="bookmarks_filename">
+        বুকমার্ক
+    </string>
+    <!-- Clear -->
+    <string name="setting_title_clear_control">
+        কন্ট্রোল ক্লিয়ার করুন
+    </string>
+    <!-- Others setting -->
+    <string name="setting_title_others">
+        অন্যান্য
+    </string>
+    <!-- Version -->
+    <string name="setting_title_version">
+        ভার্সন
+    </string>
+    <!-- License -->
+    <string name="setting_title_license">
+        লাইসেন্স
+    </string>
+    <!-- Contact -->
+    <string name="setting_title_update">
+        আপডেট চেক করুন
+    </string>
+
+    <!-- Toast -->
+    <string name="toast_add_bookmark_successful">
+        বুকমার্কে সফলভাবে যুক্ত করা হয়েছে
+    </string>
+    <string name="toast_add_bookmark_failed">
+         বুকমার্কে যুক্ত করা যায় নি
+    </string>
+    <string name="toast_add_to_home_successful">
+        হোমপেজে সফলভাবে যুক্ত করা হয়েছে
+    </string>
+    <string name="toast_add_to_home_failed">
+        হোমপেজে যুক্ত করা যায় নি
+    </string>
+    <string name="toast_add_token_successful">
+        রিডেবিলিটি টোকেনে সফলভাবে যুক্ত করা হয়েছে
+    </string>
+    <string name="toast_add_whitelist_successful">
+        ডোমেনটি হোয়াইট-লিস্টে সফলভাবে যুক্ত করা হয়েছে
+    </string>
+    <string name="toast_already_at_the_front">
+        আগে থেকেই সামনে আছে
+    </string>
+    <string name="toast_already_exist_in_home">
+        আগে থেকেই হোমপেজে আছে
+    </string>
+    <string name="toast_clear_successful">
+        সফলভাবে ক্লিয়ার করা হয়েছে
+    </string>
+    <string name="toast_clear_failed">
+        ক্লিয়ার করা যায় নি
+    </string>
+    <string name="toast_copy_successful">
+        সফলভাবে কপি করা হয়েছে
+    </string>
+    <string name="toast_delete_bookmark_successful">
+        সফলভাবে বুকমার্ক ডিলিট করা হয়েছে
+    </string>
+    <string name="toast_delete_successful">
+        সফলভাবে ডিলিট করা হয়েছে
+    </string>
+    <string name="toast_domain_already_exists">
+        ডোমেইনটি আগে থেকেই হোয়াইট-লিস্টে আছে
+    </string>
+    <string name="toast_double_taps_quit">
+        এক্সিট করতে আবার প্রেস করুন
+    </string>
+    <string name="toast_emoji">
+        つ◕ل͜◕)つ
+    </string>
+    <string name="toast_export_bookmarks_successful">
+        এই লোকেশনে বুকমার্ক ফাইল এক্সপোর্ট করা হয়েছে:&#160;
+    </string>
+    <string name="toast_export_bookmarks_failed">
+        বুকর্মার্ক এক্সপোর্ট করা যায় নি
+    </string>
+    <string name="toast_export_whitelist_successful">
+        এই লোকেশনে হোয়াইট-লিস্ট ফাইল এক্সপোর্ট করা হয়েছে:&#160;
+    </string>
+    <string name="toast_export_whitelist_failed">
+        হোয়াইট-লিস্ট এক্সপোর্ট করা যায় নি
+    </string>
+    <string name="toast_import_bookmarks_successful">
+        বুকমার্ক ইম্পোর্টের সংখ্যা:&#160;
+    </string>
+    <string name="toast_import_bookmarks_failed">
+        বুকমার্ক ইম্পোর্ট করা যায় নি
+    </string>
+    <string name="toast_import_whitelist_successful">
+        ইম্পোর্টেড ডোমেইনের সংখ্যা:&#160;
+    </string>
+    <string name="toast_import_whitelist_failed">
+        হোয়াইট-লিস্ট ইম্পোর্ট করা যায় নি
+    </string>
+    <string name="toast_input_empty">
+        আপনি কিছুই ইনপুট করেন নি
+    </string>
+    <string name="toast_invalid_domain">
+        ইনভ্যালিড ডোমেইন
+    </string>
+    <string name="toast_load_error">
+        ইউআরএলটি লোড করা যায় নি
+    </string>
+    <string name="toast_load_in_background">
+        ব্যাকগ্রাউন্ডে লোড করা হচ্ছে
+    </string>
+    <string name="toast_need_restart">
+        চেঞ্জ গুলো কার্যকর করতে এ্যপটি রিস্টার্ট করুন
+    </string>
+    <string name="toast_new_tab_successful">
+        সফলভাবে নতুন ট্যাবের ভেতর ওপেন করা হয়েছে
+    </string>
+    <string name="toast_open_file_manager_failed">
+        ফাইল ম্যানেজার ওপেন করা যায় নি
+    </string>
+    <string name="toast_refresh_failed">
+        পেজটি রিফ্রেশ করা যায় নি
+    </string>
+    <string name="toast_cannot_forward">
+        ফরোয়ার্ড-এ যাওয়া যায় নি
+    </string>
+    <string name="toast_relayout_successful">
+        সফলভাবে রি-লেয়াউট করা হয়েছে
+    </string>
+    <string name="toast_screenshot_successful">
+        এই লোকেশনে স্ক্রিনশট সেভ করা হয়েছে:&#160;
+    </string>
+    <string name="toast_screenshot_failed">
+        স্ক্রিনশট নেয়া যায় নি
+    </string>
+    <string name="toast_share_failed">
+        এই পেজটি শেয়ার করা যায় নি
+    </string>
+    <string name="toast_start_download">
+        ডাউনলোড শুরু হচ্ছে
+    </string>
+    <string name="toast_token_empty">
+        দয়া করে রিডেবিলিটি টোকেন সেট করুন
+    </string>
+    <string name="toast_wait_a_minute">
+        কিছুক্ষণ অপেক্ষা করুন
+    </string>
+
+    <!-- Token -->
+    <string name="token_label">
+        টোকেন
+    </string>
+    <string name="token_edit_hint">
+        রিডেবিলিটি টোকেন
+    </string>
+    <string name="token_add">
+        এড
+    </string>
+    <string name="token_desc">
+        আপনার রিডেবিলিটি টোকেন পেতে, https://www.readability.com/developers/api এ যান
+    </string>
+
+    <!-- Whitelist -->
+    <string name="whitelist_label">
+        হোয়াইট-লিস্ট
+    </string>
+    <string name="whitelist_menu_clear">
+        ক্লিয়ার
+    </string>
+    <string name="whitelist_edit_hint">
+        ডোমেইন
+    </string>
+    <string name="whitelist_add">
+        এড
+    </string>
+
+    <!-- Intro -->
+    <string name="title_activity_intro">
+        ইনট্রো
+    </string>
+
+    <!-- Open in app -->
+    <string name="open_in_app_snackbar_title">
+         এ্যপ এর ভেতরেই ওপেন করা হবে?
+    </string>
+    <string name="open_in_app_snackbar_action_title">
+         ওপেন
+    </string>
+
+
+</resources>
