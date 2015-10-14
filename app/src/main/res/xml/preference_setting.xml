@@ -21,6 +21,14 @@
             android:entryValues="@array/setting_values_notification_priority">
         </ListPreference>
 
+        <ListPreference android:key="@string/sp_theme"
+            android:defaultValue="0"
+            android:title="Application Theme"
+            android:summary="Light"
+            android:entries="@array/settings_entries_app_theme"
+            android:entryValues="@array/setting_values_app_theme">
+        </ListPreference>
+
         <ListPreference android:key="@string/sp_anchor"
             android:defaultValue="1"
             android:title="@string/setting_title_omnibox_position"

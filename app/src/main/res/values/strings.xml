@@ -193,6 +193,13 @@
     <string name="setting_summary_notification_priority_low">
         Low
     </string>
+    <!-- Theme -->
+    <string name="setting_theme_light">
+        Light
+    </string>
+    <string name="setting_theme_dark">
+        Dark
+    </string>
     <!-- Omnibox switcher -->
     <string name="setting_title_omnibox_position">
         Omnibox Position

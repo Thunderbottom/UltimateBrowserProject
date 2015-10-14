@@ -60,6 +60,16 @@
         <item>2</item>
     </string-array>
 
+    <!-- Theme -->
+    <string-array name="settings_entries_app_theme">
+        <item>@string/setting_theme_light</item>
+        <item>@string/setting_theme_dark</item>
+    </string-array>
+    <string-array name="setting_values_app_theme">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
     <!-- Tab switcher -->
     <string-array name="setting_entries_tab_position">
         <item>@string/setting_summary_omnibox_position_top</item>

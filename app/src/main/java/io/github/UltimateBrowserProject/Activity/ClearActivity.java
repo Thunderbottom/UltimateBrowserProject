@@ -23,6 +23,12 @@ public class ClearActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("0")) {
+            this.setTheme(R.style.ClearActivityTheme);
+        } else {
+            this.setTheme(R.style.ClearActivityThemeDark);
+        }
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
         }

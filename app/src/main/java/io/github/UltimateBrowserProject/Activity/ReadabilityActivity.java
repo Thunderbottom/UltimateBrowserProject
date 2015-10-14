@@ -92,6 +92,12 @@ public class ReadabilityActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("0")) {
+            this.setTheme(R.style.ReadabilityActivityTheme);
+        } else {
+            this.setTheme(R.style.ReadabilityActivityThemeDark);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.readability);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

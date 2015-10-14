@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.view.View;
 import android.webkit.CookieManager;
@@ -39,6 +40,7 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
 
     private ListPreference searchEngine;
     private ListPreference notiPriority;
+    private ListPreference theme;
     private ListPreference tabPosition;
     private ListPreference volumeControl;
     private ListPreference userAgent;
@@ -46,6 +48,7 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
 
     private String[] seEntries;
     private String[] npEntries;
+    private String[] tEntries;
     private String[] tpEntries;
     private String[] vcEntries;
     private String[] ucEntries;
@@ -88,6 +91,11 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
             summary = getString(R.string.setting_summary_search_engine_custom);
             searchEngine.setSummary(summary);
         }
+
+        tEntries = getResources().getStringArray(R.array.settings_entries_app_theme);
+        summary = tEntries[Integer.valueOf(sp.getString(getString(R.string.sp_theme), "0"))];
+        theme = (ListPreference) findPreference(getString(R.string.sp_theme));
+        theme.setSummary(summary);
 
         npEntries = getResources().getStringArray(R.array.setting_entries_notification_priority);
         summary = npEntries[Integer.valueOf(sp.getString(getString(R.string.sp_notification_priority), "0"))];
@@ -189,6 +197,10 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
         } else if (key.equals(getString(R.string.sp_notification_priority))) {
             String summary = npEntries[Integer.valueOf(sp.getString(key, "0"))];
             notiPriority.setSummary(summary);
+        } else if (key.equals(getString(R.string.sp_theme))) {
+            String summary = tEntries[Integer.valueOf(sp.getString(key, "0"))];
+            theme.setSummary(summary);
+            UltimateBrowserProjectToast.show(getActivity(), R.string.toast_need_restart);
         } else if (key.equals(getString(R.string.sp_anchor))) {
             String summary = tpEntries[Integer.valueOf(sp.getString(key, "1"))];
             tabPosition.setSummary(summary);

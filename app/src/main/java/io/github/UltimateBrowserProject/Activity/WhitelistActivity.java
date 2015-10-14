@@ -1,8 +1,10 @@
 package io.github.UltimateBrowserProject.Activity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,8 +29,12 @@ public class WhitelistActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.whitelist);
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("1")) {
+            findViewById(R.id.whitelist_layout).setBackgroundColor(getResources().getColor(R.color.background_material_dark));
+        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         RecordAction action = new RecordAction(this);

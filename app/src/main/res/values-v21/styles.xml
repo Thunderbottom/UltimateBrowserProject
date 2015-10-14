@@ -21,9 +21,20 @@
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/background_material_light</item>
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
+    </style>
+
+    <style name="ReadabilityActivityThemeDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorAccent">@color/blue_500</item>
+        <item name="android:colorPrimaryDark">@color/gray_900</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorHighlight">@color/blue_200</item>
+        <item name="android:windowBackground">@color/background_material_dark</item>
+        <item name="android:drawSelectorOnTop">true</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogStyleDark</item>
     </style>
 
     <style name="SettingActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -32,9 +43,20 @@
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/background_material_light</item>
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
+    </style>
+
+    <style name="SettingActivityThemeDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorAccent">@color/blue_500</item>
+        <item name="android:colorPrimaryDark">@color/gray_900</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorHighlight">@color/blue_200</item>
+        <item name="android:windowBackground">@color/background_material_dark</item>
+        <item name="android:drawSelectorOnTop">true</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogStyleDark</item>
     </style>
 
     <style name="WhitelistActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar" >
@@ -43,9 +65,20 @@
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorSecondary">@color/text</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/background_material_light</item>
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
+    </style>
+
+    <style name="WhitelistActivityThemeDark" parent="@style/Theme.AppCompat.Light.DarkActionBar" >
+        <item name="android:colorAccent">@color/blue_500</item>
+        <item name="android:colorPrimaryDark">@color/gray_900</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/text</item>
+        <item name="android:textColorHighlight">@color/blue_200</item>
+        <item name="android:windowBackground">@color/background_material_dark</item>
+        <item name="android:drawSelectorOnTop">true</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogStyleDark</item>
     </style>
 
     <style name="TokenActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -54,9 +87,20 @@
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorSecondary">@color/text</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/background_material_light</item>
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
+    </style>
+
+    <style name="TokenActivityThemeDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorAccent">@color/blue_500</item>
+        <item name="android:colorPrimaryDark">@color/gray_900</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColorHighlight">@color/blue_200</item>
+        <item name="android:windowBackground">@color/background_material_dark</item>
+        <item name="android:drawSelectorOnTop">true</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogStyleDark</item>
     </style>
 
     <style name="ClearActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -65,23 +109,42 @@
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
         <item name="android:textColorHighlight">@color/blue_200</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/background_material_light</item>
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
     </style>
 
+    <style name="ClearActivityThemeDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorAccent">@color/blue_500</item>
+        <item name="android:colorPrimaryDark">@color/gray_900</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorHighlight">@color/blue_200</item>
+        <item name="android:windowBackground">@color/background_material_dark</item>
+        <item name="android:drawSelectorOnTop">true</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogStyleDark</item>
+    </style>
+
     <style name="AutoCompleteTextViewStyle" parent="android:Widget.Material.Light.AutoCompleteTextView">
         <item name="android:popupElevation">@dimen/elevation_2dp</item>
-        <item name="android:popupBackground">@color/white</item>
+        <item name="android:popupBackground">@color/background_material_light</item>
+    </style>
+
+    <style name="AutoCompleteTextViewStyleDark" parent="android:Widget.Material.Light.AutoCompleteTextView">
+        <item name="android:popupElevation">@dimen/elevation_2dp</item>
+        <item name="android:popupBackground">@color/background_material_dark</item>
     </style>
 
     <style name="AlertDialogStyle" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:colorAccent">@color/blue_500</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/background_material_light</item>
+    </style>
+
+    <style name="AlertDialogStyleDark" parent="@style/Theme.AppCompat.Dialog.Alert">
+        <item name="android:colorAccent">@color/blue_500</item>
+        <item name="android:background">@color/background_material_dark</item>
     </style>
 
     <style name="Theme.Dialog" parent="@android:style/Theme.Dialog" />
-
-
 
 </resources>

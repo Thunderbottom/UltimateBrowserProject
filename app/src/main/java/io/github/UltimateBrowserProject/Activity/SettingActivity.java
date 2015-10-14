@@ -2,8 +2,10 @@ package io.github.UltimateBrowserProject.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -23,6 +25,12 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("0")) {
+            this.setTheme(R.style.SettingActivityTheme);
+        } else {
+            this.setTheme(R.style.SettingActivityThemeDark);
+        }
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

@@ -19,14 +19,19 @@ import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 public class TokenActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.token);
+
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("1")) {
+            findViewById(R.id.token_layout).setBackgroundColor(getResources().getColor(R.color.background_material_dark));
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final EditText tokenEdit = (EditText) findViewById(R.id.token_edit);
         Button tokenAdd = (Button) findViewById(R.id.token_add);
 
-        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         String token = sp.getString(getString(R.string.sp_readability_token), "");
         tokenEdit.setText(token);
         tokenEdit.setSelection(token.length());
