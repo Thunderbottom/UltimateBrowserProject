@@ -131,7 +131,7 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
         try {
             intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
         } catch (URISyntaxException ex) {
-            Log.w("Browser", "Bad URI " + url + ": " + StackTraceParser.parse(ex);
+            Log.w("Browser", "Bad URI " + url + ": " + StackTraceParser.parse(ex));
             return null;
         }
 
