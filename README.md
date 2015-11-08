@@ -54,7 +54,6 @@ Some of the TODO items on the list are -
 
 ###Note - Please do not add ```.idea``` folder to the git while posting a pull request. Add ```.idea/``` to the gitignore file
 
-## You can do whatever you want to do with this project, just don't fuck with the license
 
 
 
