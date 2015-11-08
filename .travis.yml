@@ -35,7 +35,9 @@ android:
     # KitKat emulators
     - android-19
     - addon-google_apis-google-19 # System image, requires android-19, provides Google APIs
-    #- sys-img-armeabi-v7a-android-19 # System image, requires android-19
+    - sys-img-armeabi-v7a-android-19 # System image, requires android-19
+    - android-21
+    - sys-img-armeabi-v7a-android-21
 
   # Licenses are automatically accepted by Travis CI
   licenses:
@@ -59,7 +61,7 @@ before_script:
   - adb shell input keyevent 82
 
 script:
-  - ./gradlew clean build connectedCheck -PdisablePreDex
+  - gradle build connectedCheck
 
 notifications:
   email: false
@@ -68,4 +70,4 @@ sudo: false
 
 cache:
   directories:
-    - $HOME/.gradle
+    - $HOME/.gradle/caches
