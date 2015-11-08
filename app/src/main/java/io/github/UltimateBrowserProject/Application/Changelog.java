@@ -63,11 +63,11 @@ public class Changelog {
     }
 
     private String getStyles() {
-        StringBuilder sb = new StringBuilder("");
-        sb.append("<style type='text/css'>");
-        sb.append(".h1 {font-size: 12pt; font-weight: 700;").append(mReleaseColor == null ? "" : "color: #" + String.format("%06X", mReleaseColor).toUpperCase()).append(";}");
-        sb.append(".releasedate {font-size: 9pt;").append(mReleaseDateColor == null ? "" : "color: #" + String.format("%06X", mReleaseDateColor).toUpperCase()).append(";}");
-        sb.append(".summary {font-size: 9pt; display: block; clear: left;}");
+        StringBuilder sb = new StringBuilder();
+        sb.append("<style type='text/css'>")
+          .append(".h1 {font-size: 12pt; font-weight: 700;").append(mReleaseColor == null ? "" : "color: #" + String.format("%06X", mReleaseColor).toUpperCase()).append(";}")
+          .append(".releasedate {font-size: 9pt;").append(mReleaseDateColor == null ? "" : "color: #" + String.format("%06X", mReleaseDateColor).toUpperCase()).append(";}")
+          .append(".summary {font-size: 9pt; display: block; clear: left;}");
 
         mStyle.generateStyles(sb);
 

@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.io.ByteArrayInputStream;
+import java.lang.NullPointerException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -32,6 +33,8 @@ import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
+
+import org.xdevs23.debugUtils.StackTraceParser
 
 public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     private UltimateBrowserProjectWebView ultimateBrowserProjectWebView;
@@ -44,7 +47,7 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     static final Pattern ACCEPTED_URI_SCHEMA = Pattern.compile(
             "(?i)" + // switch on case insensitive matching
                     "(" +    // begin group for schema
-                    "(?:http|https|file):\\/\\/" +
+                    "(?:http|https|file|ftp):\\/\\/" +
                     "|(?:data|about|javascript):" +
                     "|(?:.*:.*@)" +
                     ")" +
@@ -72,32 +75,29 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
 
-        if (view.getTitle() == null || view.getTitle().isEmpty()) {
-            ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
-        } else {
-            ultimateBrowserProjectWebView.update(view.getTitle(), url);
-        }
+        if (view.getTitle() == null || view.getTitle().isEmpty())
+             ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
+        else ultimateBrowserProjectWebView.update(view.getTitle(), url);
+        
     }
 
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
 
-        if (!ultimateBrowserProjectWebView.getSettings().getLoadsImagesAutomatically()) {
-            ultimateBrowserProjectWebView.getSettings().setLoadsImagesAutomatically(true);
-        }
+        ultimateBrowserProjectWebView.getSettings().setLoadsImagesAutomatically( 
+            (!ultimateBrowserProjectWebView.getSettings().getLoadsImagesAutomatically()) );
 
-        if (view.getTitle() == null || view.getTitle().isEmpty()) {
-            ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
-        } else {
-            ultimateBrowserProjectWebView.update(view.getTitle(), url);
-        }
 
-        if (ultimateBrowserProjectWebView.isForeground()) {
-            ultimateBrowserProjectWebView.invalidate();
-        } else {
-            ultimateBrowserProjectWebView.postInvalidate();
-        }
+        if (view.getTitle() == null || view.getTitle().isEmpty())
+             ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
+        else ultimateBrowserProjectWebView.update(view.getTitle(), url);
+
+
+        if (ultimateBrowserProjectWebView.isForeground())
+             ultimateBrowserProjectWebView.invalidate();
+        else ultimateBrowserProjectWebView.postInvalidate();
+
     }
 
     @Override
@@ -131,7 +131,7 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
         try {
             intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
         } catch (URISyntaxException ex) {
-            Log.w("Browser", "Bad URI " + url + ": " + ex.getMessage());
+            Log.w("Browser", "Bad URI " + url + ": " + StackTraceParser.parse(ex));
             return null;
         }
 
@@ -177,9 +177,14 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
         PackageManager pm = context.getPackageManager();
         List<ResolveInfo> handlers = pm.queryIntentActivities(intent,
                 PackageManager.GET_RESOLVED_FILTER);
-        if (handlers == null || handlers.size() == 0) {
-            return false;
-        }
+        // Could cause java.lang.NullPointerException on ... handlers.size() ... because
+        // handlers could be null, so .size() might not be available
+        try {
+            if (handlers == null || handlers.size() == 0) {
+                return false;
+            }
+        } catch(NullPointerException ex) { /* do nothing, only prevent crash */ }
+        
         for (ResolveInfo resolveInfo : handlers) {
             IntentFilter filter = resolveInfo.filter;
             if (filter == null) {
@@ -187,10 +192,7 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
                 // Error on the side of staying in the browser, ignore
                 continue;
             }
-            if (filter.countDataAuthorities() == 0 && filter.countDataPaths() == 0) {
-                // Generic handler, skip
-                continue;
-            }
+            if (filter.countDataAuthorities() == 0 && filter.countDataPaths() == 0) continue; // Generic handler, skip
             return true;
         }
         return false;
@@ -277,19 +279,14 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
         });
 
         AlertDialog dialog = builder.create();
-        if (error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
-            dialog.show();
-        } else {
-            handler.proceed();
-        }
+        if (error.getPrimaryError() == SslError.SSL_UNTRUSTED) dialog.show();
+        else handler.proceed();
     }
 
     @Override
     public void onReceivedHttpAuthRequest(WebView view, @NonNull final HttpAuthHandler handler, String host, String realm) {
         Context holder = IntentUnit.getContext();
-        if (holder == null || !(holder instanceof Activity)) {
-            return;
-        }
+        if (holder == null || !(holder instanceof Activity)) return;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(holder);
         builder.setCancelable(false);
