@@ -1,5 +1,5 @@
 ![Launcher Icon](/Artworks/UBP Banner.png)
-UltimateBrowserProject [![GitHub version](https://badge.fury.io/gh/balzathor%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/balzathor%2FUltimateBrowserProject)
+UltimateBrowserProject [![GitHub version](https://badge.fury.io/gh/balzathor%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/balzathor%2FUltimateBrowserProject)[![Build Status](https://travis-ci.org/balzathor/UltimateBrowserProject.svg)](https://travis-ci.org/balzathor/UltimateBrowserProject)
 ===
 Open source, lightweight Android Browser.
 
@@ -54,7 +54,6 @@ Some of the TODO items on the list are -
 
 ###Note - Please do not add ```.idea``` folder to the git while posting a pull request. Add ```.idea/``` to the gitignore file
 
-## You can do whatever you want to do with this project, just don't fuck with the license
 
 
 
