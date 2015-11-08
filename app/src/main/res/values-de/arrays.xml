@@ -4,32 +4,32 @@
 
     <!-- Holder -->
     <string-array name="holder_menu">
-        <item>Foreground</item>
-        <item>Copy link</item>
-        <item>Share</item>
+        <item>Vordergrund</item>
+        <item>Link kopieren</item>
+        <item>Teilen</item>
     </string-array>
 
     <!-- List -->
     <string-array name="list_menu">
-        <item>New tab</item>
-        <item>Copy link</item>
-        <item>Share</item>
-        <item>Edit</item>
-        <item>Delete</item>
+        <item>Neuer Tab</item>
+        <item>Link kopieren</item>
+        <item>Teilen</item>
+        <item>Bearbeiten</item>
+        <item>Löschen</item>
     </string-array>
 
     <!-- Main -->
     <string-array name="main_overflow">
-        <item>Go to top</item>
-        <item>Add to home</item>
-        <item>Find in page</item>
+        <item>Nach oben</item>
+        <item>Zur Startseite</item>
+        <item>Auf der Seite suchen</item>
         <item>Screenshot</item>
-        <item>Readability</item>
-        <item>Share</item>
-        <item>Save link as</item>
-        <item>Create shortcut</item>
-        <item>Relayout</item>
-        <item>Quit</item>
+        <item>Lesbarkeit</item>
+        <item>Teilen</item>
+        <item>Link speichern als</item>
+        <item>Verknüpfung erstellen</item>
+        <item>Anpassen</item>
+        <item>Beenden</item>
     </string-array>
 
     <!-- Search engine -->
