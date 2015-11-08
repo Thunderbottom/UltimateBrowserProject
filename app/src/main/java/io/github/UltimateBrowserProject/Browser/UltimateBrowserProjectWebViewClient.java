@@ -34,7 +34,7 @@ import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
-import org.xdevs23.debugUtils.StackTraceParser
+import org.xdevs23.debugUtils.StackTraceParser;
 
 public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     private UltimateBrowserProjectWebView ultimateBrowserProjectWebView;
