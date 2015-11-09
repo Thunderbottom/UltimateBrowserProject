@@ -48,6 +48,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
+import java.util.Locale;
 
 import io.github.UltimateBrowserProject.Application.Changelog;
 import io.github.UltimateBrowserProject.Browser.AdBlock;
