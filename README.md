@@ -1,5 +1,6 @@
 ![Launcher Icon](/Artworks/UBP Banner.png)
-UltimateBrowserProject [![GitHub version](https://badge.fury.io/gh/balzathor%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/balzathor%2FUltimateBrowserProject)[![Build Status](https://travis-ci.org/balzathor/UltimateBrowserProject.svg)](https://travis-ci.org/balzathor/UltimateBrowserProject)
+
+[![GitHub version](https://badge.fury.io/gh/balzathor%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/balzathor%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/balzathor/UltimateBrowserProject.svg)](https://travis-ci.org/balzathor/UltimateBrowserProject)
 ===
 Open source, lightweight Android Browser.
 
@@ -16,19 +17,14 @@ __REQUIRES: ANDROID 4.1+__
 
 For a list of current features provided by the application and many more, Please Check out [Featurelist](https://github.com/balzathor/UltimateBrowserProject/blob/master/app/src/main/assets/UltimateBrowserProject_introduction_en.md)
 
-## Current Development requirements - 
-
-At this stage, the applicatin requires features to make it better, while keeping it as light as possible.
-Some of the TODO items on the list are -
-* Add More Features
-* Add Application themes
-* Fix Bugs
 
 ## Downloads - 
 
 [Download Latest Version 1.4.6](https://github.com/balzathor/UltimateBrowserProject/releases/download/latest/UltimateBrowserProject.apk)
+[Download Latest Beta Version (1.0β)](https://github.com/balzathor/UltimateBrowserProject/releases/download/latestbeta/UltimateBrowserProject.apk)
 
 ## Permissions:
+
 ```android.permission.INTERNET``` - Browsing requirements.
 
 ```android.permission.ACCESS_NETWORK_STATE``` - Browsing requirements.
@@ -52,11 +48,6 @@ Some of the TODO items on the list are -
 * If you make some changes and want me to Include in this Git, please file a Pull Request with changelog and I'll take a look at it.
 
 
-###Note - Please do not add ```.idea``` folder to the git while posting a pull request. Add ```.idea/``` to the gitignore file
-
-
-
-
 ## Translations by:
 
 * Portuguese (PT-BR) by [fviz](https://github.com/fviz).
@@ -69,6 +60,7 @@ Some of the TODO items on the list are -
 * Greek (EL) by [dancer_69](http://forum.xda-developers.com/member.php?u=390873).
 * Italian (IT) by [davimount](https://github.com/davimount).
 * Traditional Chinese (TW) by [louis383](http://forum.xda-developers.com/member.php?u=6709293).
+* German (DE) by [Simao](https://github.com/xdevs23).
 
 ### Materialized icon by - [davimount](https://github.com/davimount)
 
