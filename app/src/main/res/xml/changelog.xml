@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="2.0" versioncode="39" releasedate="November 9th 2015" summary="Major Update">
+        <change type="improvement">Fixed a crash while switching tabs.</change>
+        <change type="improvement">Fixed download for Android Marshmallow (6.0).</change>
+        <change type="improvement">Added German, Bengali Translations.</change>
+        <change type="improvement">Added Dark Theme.</change>
+        <change type="improvement">Added better StackTrace generator for app crash.</change>
+        <change type="improvement">Now you can Print any document using Google Cloud Print.</change>
+        <change type="improvement">Fixed animations for hiding Omnibox.</change>
+        <change type="improvement">Note: Omnibox now hides only when Position is set to 'Top'.</change>
+        <change type="improvement">Minor bug fixes.</change>
+    </release>
     <release version="1.4.6" versioncode="38" releasedate="July 7th 2015" summary="Major Update">
         <change type="improvement">Fixed a few bugs.</change>
         <change type="improvement">Corrected Traditional Chinese translations.</change>

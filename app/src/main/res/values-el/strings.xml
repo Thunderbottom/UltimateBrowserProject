@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Κάντε κλίκ στο σύνδεσμο για έλεγχο για ενημερώσεις -\n http://bit.ly/UBPUpdate \n
-        Η τρέχουσα έκδοση είναι η 1.4.6.
+        Η τρέχουσα έκδοση είναι η 2.0
     </string>
     <string name="dialog_content_upload">
         Προς το παρόν, η αποστολή αρχείου υποστηρίζεται μόνο σε Android 5.0 και πάνω.
@@ -300,6 +300,20 @@
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
         Αντίστροφη κλίμακα γκρι
+    </string>
+    <!-- Fullscreen mode -->
+    <string name="setting_title_fullscreen">
+        Fullscreen mode
+    </string>
+    <string name="setting_summary_fullscreen">
+        Enable fullscreen mode
+    </string>
+    <!-- Restore Tabs -->
+    <string name="setting_title_restore_tabs">
+        Restore Tabs
+    </string>
+    <string name="setting_summary_restore_tabs">
+        Restore tabs from previous sessions
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">

@@ -20,7 +20,7 @@
     <string name="dialog_button_positive">OK</string>
     <string name="dialog_content_resubmission">Inviare di nuovo i dati?</string>
     <string name="dialog_content_ssl_error">Certificato del sito non attendibile. Continuare comunque?</string>
-    <string name="dialog_content_update">Clicca sul link per cercare aggiornamenti -\n http://bit.ly/UBPUpdate \n         La versione corrente è 1.4.6.</string>
+    <string name="dialog_content_update">Clicca sul link per cercare aggiornamenti -\n http://bit.ly/UBPUpdate \n         La versione corrente è 2.0</string>
     <string name="dialog_content_upload">Al momento, il caricamento di file è supportato su Android 5.0 e successivi.</string>
     <string name="dialog_se_hint">https://www.google.com/search?q=</string>
     <string name="dialog_sign_in_password">Password</string>
@@ -45,6 +45,10 @@
     <string name="readability_menu_share">Condivisione</string>
     <string name="search_hint">Cerca</string>
     <string name="setting_label">Impostazioni</string>
+    <string name="setting_title_fullscreen">Modalità schermo intero</string>
+    <string name="setting_summary_fullscreen">Attivare la modalità a schermo intero</string>
+    <string name="setting_title_restore_tabs">Ripristinare le schede</string>
+    <string name="setting_summary_restore_tabs">Ripristinare le schede delle sessioni precedenti</string>
     <string name="setting_summary_adblock">Abilita AdBlock</string>
     <string name="setting_summary_cookie">Abilita Cookies</string>
     <string name="setting_summary_images">Abilita Immagini</string>

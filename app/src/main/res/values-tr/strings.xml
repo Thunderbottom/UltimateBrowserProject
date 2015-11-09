@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Güncellemeleri kontrol etmek için linke tıklayın -\n http://bit.ly/UBPUpdate \n
-        Güncel Versiyon 1.4.6.
+        Güncel Versiyon 2.0
     </string>
     <string name="dialog_content_upload">
         Şu anda dosya gönderimi sadece Android 5.0 ve üzeri için desteklenmektedir.
@@ -302,6 +302,20 @@
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
         Çevirilmiş Siyah Beyaz
+    </string>
+    <!-- Fullscreen mode -->
+    <string name="setting_title_fullscreen">
+        Tam ekran modu
+    </string>
+    <string name="setting_summary_fullscreen">
+        Tam Ekran modunu etkinleştirin
+    </string>
+    <!-- Restore Tabs -->
+    <string name="setting_title_restore_tabs">
+        Sekmeleri geri yükle
+    </string>
+    <string name="setting_summary_restore_tabs">
+        Önceki oturumlarda sekmeleri geri yükle
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">

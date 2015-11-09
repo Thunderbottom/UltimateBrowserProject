@@ -227,6 +227,19 @@ public class BrowserUnit {
         UltimateBrowserProjectToast.show(context, R.string.toast_start_download);
     }
 
+    public static void downloadCache(Context context, String url, String contentDisposition, String mimeType) {
+        DownloadManager.Request requestCache = new DownloadManager.Request(Uri.parse(url));
+        String filename = URLUtil.guessFileName(url, contentDisposition, mimeType); // Maybe unexpected filename.
+
+                requestCache.allowScanningByMediaScanner();
+        requestCache.setTitle(filename);
+        requestCache.setMimeType(mimeType);
+        requestCache.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "cache");
+
+        DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        manager.enqueue(requestCache);
+    }
+
     public static String screenshot(Context context, Bitmap bitmap, String name) {
         if (bitmap == null) {
             return null;

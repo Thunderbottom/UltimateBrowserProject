@@ -310,7 +310,10 @@
     </string>
     <!-- Restore tabs -->
     <string name="setting_title_restore_tabs">
-        আগের সেশন এর ট্যাব রিস্টোর করুন
+        ট্যাব পুনরুদ্ধার
+    </string>
+    <string name="setting_summary_restore_tabs">
+        পূর্ববর্তী সেশন থেকে ট্যাব পুনরুদ্ধার
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">

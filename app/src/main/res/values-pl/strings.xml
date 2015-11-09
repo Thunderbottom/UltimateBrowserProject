@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Kliknij link by zaktualizować -\n http://bit.ly/UBPUpdate \n
-        Obecna wersja 1.4.6.
+        Obecna wersja 2.0
     </string>
     <string name="dialog_content_upload">
         Obecnie obsluga przesylania pliku dostepna tylko w wesji Android 5.0 lub nowszym.
@@ -300,6 +300,20 @@
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
         Odwrócona skala szarości
+    </string>
+    <!-- Fullscreen mode -->
+    <string name="setting_title_fullscreen">
+        Pełny ekran
+    </string>
+    <string name="setting_summary_fullscreen">
+        Włącz tryb pełnoekranowy
+    </string>
+    <!-- Restore Tabs -->
+    <string name="setting_title_restore_tabs">
+        Przywracanie zakładek
+    </string>
+    <string name="setting_summary_restore_tabs">
+        Przywracanie kart z poprzedniej sesji
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">

@@ -5,7 +5,12 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.SearchManager;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
@@ -14,9 +19,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
@@ -30,7 +38,13 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.util.Log;
-import android.view.*;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -39,15 +53,35 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
 
 import org.askerov.dynamicgrid.DynamicGridView;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.github.UltimateBrowserProject.Application.Changelog;
 import io.github.UltimateBrowserProject.Browser.AdBlock;
@@ -56,6 +90,7 @@ import io.github.UltimateBrowserProject.Browser.BrowserContainer;
 import io.github.UltimateBrowserProject.Browser.BrowserController;
 import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.Database.RecordAction;
+import io.github.UltimateBrowserProject.Print.PrintDialogActivity;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Service.ClearService;
 import io.github.UltimateBrowserProject.Service.HolderService;
@@ -63,7 +98,17 @@ import io.github.UltimateBrowserProject.Task.ScreenshotTask;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
-import io.github.UltimateBrowserProject.View.*;
+import io.github.UltimateBrowserProject.View.CompleteAdapter;
+import io.github.UltimateBrowserProject.View.DialogAdapter;
+import io.github.UltimateBrowserProject.View.FullscreenHolder;
+import io.github.UltimateBrowserProject.View.GridAdapter;
+import io.github.UltimateBrowserProject.View.GridItem;
+import io.github.UltimateBrowserProject.View.RecordAdapter;
+import io.github.UltimateBrowserProject.View.SwipeToBoundListener;
+import io.github.UltimateBrowserProject.View.SwitcherPanel;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectRelativeLayout;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class BrowserActivity extends Activity implements BrowserController {
     private static final int DOUBLE_TAPS_QUIT_DEFAULT = 1800;
@@ -83,6 +128,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     private ImageButton switcherBookmarks;
     private ImageButton switcherHistory;
     private ImageButton switcherAdd;
+    private ImageButton switcherPrint;
 
     private RelativeLayout omnibox;
     private AutoCompleteTextView inputBox;
@@ -142,7 +188,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityManager.TaskDescription description = new ActivityManager.TaskDescription(
                     getString(R.string.app_name),
@@ -433,6 +479,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         switcherBookmarks = (ImageButton) findViewById(R.id.switcher_bookmarks);
         switcherHistory = (ImageButton) findViewById(R.id.switcher_history);
         switcherAdd = (ImageButton) findViewById(R.id.switcher_add);
+        switcherPrint = (ImageButton) findViewById(R.id.switcher_print);
 
         switcherSetting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -449,6 +496,39 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         });
 
+        switcherPrint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentAlbumController != null && currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
+                    UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
+                    if(layout.getFlag()== BrowserUnit.FLAG_HOME) {
+                        Toast.makeText(BrowserActivity.this,
+                                "Nothing to Print here!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else if(currentAlbumController != null && currentAlbumController instanceof UltimateBrowserProjectWebView) {
+                        UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
+                        String title = UltimateBrowserProjectWebView.getTitle();
+                        String url = UltimateBrowserProjectWebView.getUrl();
+                        final String targetCache = url;
+                        BrowserUnit.downloadCache(BrowserActivity.this, targetCache, targetCache, URLConnection.guessContentTypeFromName(targetCache));
+                        if (!isNetworkAvailable()) {
+                            Toast.makeText(BrowserActivity.this,
+                                    "Network connection not available, Please try later",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/cache");
+                            Intent printIntent = new Intent(BrowserActivity.this, PrintDialogActivity.class);
+                            printIntent.setDataAndType(Uri.fromFile(file), "text/html");
+                            printIntent.putExtra("title", title);
+                            startActivity(printIntent);
+                        }
+                    }
+                }
+
+
+        });
         switcherHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -461,6 +541,20 @@ public class BrowserActivity extends Activity implements BrowserController {
                 addAlbum(BrowserUnit.FLAG_HOME);
             }
         });
+
+    }
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        // if no network is available networkInfo will be null
+        // otherwise check if we are connected
+        if (networkInfo != null && networkInfo.isConnected()) {
+            Log.e("Network Testing", "***Available***");
+            return true;
+        }
+        Log.e("Network Testing", "***Not Available***");
+        return false;
     }
 
     private void initOmnibox() {

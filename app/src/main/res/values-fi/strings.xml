@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Paina linkkiä tarkastaksesi päivitykset -\n http://bit.ly/UBPUpdate \n
-        Nykyinen versio on 1.4.6.
+        Nykyinen versio on 2.0
     </string>
     <string name="dialog_content_upload">
         Tällä hetkellä tiedostojen lähettäminen on tuettu vain Android 5.0 ja uudemmissa.
@@ -300,6 +300,20 @@
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
         Käänteinen harmaasävy
+    </string>
+    <!-- Fullscreen mode -->
+    <string name="setting_title_fullscreen">
+        Koko näytön tila
+    </string>
+    <string name="setting_summary_fullscreen">
+        Ota koko näytön tilassa
+    </string>
+    <!-- Restore Tabs -->
+    <string name="setting_title_restore_tabs">
+        Palauta Välilehdet
+    </string>
+    <string name="setting_summary_restore_tabs">
+        Palauta välilehtiä aiemmilla kerroilla
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">

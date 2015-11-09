@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Clique no link para verificar atualizações -\n http://bit.ly/UBPUpdate \n
-        Versão atual é 1.4.6.
+        Versão atual é 2.0
     </string>
     <string name="dialog_content_upload">
         Atualmente o upload de arquivos só é suportado no Android 5.0 e acima.
@@ -300,6 +300,20 @@
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
         Escala de Cinza invertida
+    </string>
+    <!-- Fullscreen mode -->
+    <string name="setting_title_fullscreen">
+        Modo tela cheia
+    </string>
+    <string name="setting_summary_fullscreen">
+        Ative o modo de tela cheia
+    </string>
+    <!-- Restore Tabs -->
+    <string name="setting_title_restore_tabs">
+        Restaurar Abas
+    </string>
+    <string name="setting_summary_restore_tabs">
+        Restaurar abas de sessões anteriores
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">

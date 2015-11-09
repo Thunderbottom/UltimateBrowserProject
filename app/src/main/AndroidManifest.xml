@@ -2,7 +2,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="io.github.UltimateBrowserProject"
-          android:versionCode="38"
+          android:versionCode="39"
           android:versionName="@string/app_version">
 
     <!-- SDK -->
@@ -85,6 +85,12 @@
                   android:theme="@style/SettingActivityTheme">
         </activity>
 
+        <!-- PrintDialog -->
+        <activity android:name=".Print.PrintDialogActivity"
+                  android:theme="@android:style/Theme.NoTitleBar"
+                  android:exported="false">
+        </activity>
+
         <!-- WhitelistActivity -->
         <activity android:name=".Activity.WhitelistActivity"
                   android:label="@string/whitelist_label"
@@ -97,12 +103,13 @@
                   android:theme="@style/TokenActivityTheme">
         </activity>
 
+        <activity android:name=".Intro.SecondLayoutIntro"/>
+
         <!-- ClearActivity -->
         <activity android:name=".Activity.ClearActivity"
                   android:label="@string/clear_label"
                   android:theme="@style/ClearActivityTheme">
         </activity>
-
 
         <!-- ClearService -->
         <service android:name=".Service.ClearService"

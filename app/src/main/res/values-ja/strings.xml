@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         アップデートを確かめるにはクリックしてください。 -\n http://bit.ly/UBPUpdate \n
-        現在のバージョンは 1.4.6 です。
+        現在のバージョンは 2.0です。
     </string>
     <string name="dialog_content_upload">
         現在、ファイルアップロードはAndroid5.0とそれ以後のみサポートしています。
@@ -300,6 +300,20 @@
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
         反転グレースケール
+    </string>
+    <!-- Fullscreen mode -->
+    <string name="setting_title_fullscreen">
+        フルスクリーンモード
+    </string>
+    <string name="setting_summary_fullscreen">
+        フルスクリーンモードを有効にします
+    </string>
+    <!-- Restore Tabs -->
+    <string name="setting_title_restore_tabs">
+        タブを復元
+    </string>
+    <string name="setting_summary_restore_tabs">
+        以前のセッションからのタブを復元
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">

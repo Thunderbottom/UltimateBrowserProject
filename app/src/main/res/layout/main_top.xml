@@ -42,6 +42,15 @@
                              android:background="@color/transparent">
                 </ImageButton>
 
+                <ImageButton android:id="@+id/switcher_print"
+                             android:contentDescription="@null"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_margin="@dimen/layout_margin_8dp"
+                             android:src="@drawable/print_selector"
+                             android:background="@color/transparent">
+                </ImageButton>
+
                 <ImageButton android:id="@+id/switcher_history"
                              android:contentDescription="@null"
                              android:layout_width="wrap_content"
@@ -59,6 +68,7 @@
                              android:src="@drawable/add_selector"
                              android:background="@color/transparent">
                 </ImageButton>
+
 
             </LinearLayout>
 

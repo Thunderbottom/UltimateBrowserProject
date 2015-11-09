@@ -94,7 +94,7 @@
         Het certificaat van deze site is niet vertrouwd. Toch doorgaan?
     </string>
     <string name="dialog_content_update">
-        Klik de link om voor updates te checken -\n http://bit.ly/UBPUpdate \n Huidige versie is 1.4.6.
+        Klik de link om voor updates te checken -\n http://bit.ly/UBPUpdate \n Huidige versie is 2.0
     </string>
     <string name="dialog_content_upload">
         Momenteel kunt u alleen bestanden uploaden op Android 5.0 of hoger.
@@ -299,6 +299,20 @@
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
         Contrasterende grijswaarden
+    </string>
+    <!-- Fullscreen mode -->
+    <string name="setting_title_fullscreen">
+        Volledige schermmodus
+    </string>
+    <string name="setting_summary_fullscreen">
+        Enable modus Volledig scherm
+    </string>
+    <!-- Restore Tabs -->
+    <string name="setting_title_restore_tabs">
+        Herstellen Tabs
+    </string>
+    <string name="setting_summary_restore_tabs">
+        Herstellen tabs uit eerdere sessies
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">

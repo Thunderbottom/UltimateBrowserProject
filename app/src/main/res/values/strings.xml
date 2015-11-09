@@ -95,7 +95,7 @@
     </string>
     <string name="dialog_content_update">
         Click the link to check for updates -\n http://bit.ly/UBPUpdate \n
-        Current version is 1.4.6.
+        Current version is 2.0
     </string>
     <string name="dialog_content_upload">
         Currently, File upload is only supported on Android 5.0 and above.
@@ -317,7 +317,10 @@
     </string>
     <!-- Restore tabs -->
     <string name="setting_title_restore_tabs">
-        Restore tabs from previous session
+        Restore Tabs
+    </string>
+    <string name="setting_summary_restore_tabs">
+        Restore tabs from previous sessions
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">
@@ -559,5 +562,21 @@
          OPEN
     </string>
 
+    <!-- Crashlytics-->
+    <string name="com.crashlytics.CrashSubmissionPromptTitle">
+        Send Crash Report?
+    </string>
+    <string name="com.crashlytics.CrashSubmissionPromptMessage">
+        Looks like we crashed! Please help us fix the problem by sending a crash report.
+    </string>
+    <string name="com.crashlytics.CrashSubmissionSendTitle">
+        Send
+    </string>
+    <string name="com.crashlytics.CrashSubmissionAlwaysSendTitle">
+        Always Send
+    </string>
+    <string name="com.crashlytics.CrashSubmissionCancelTitle">
+        Don\'t Send
+    </string>
 
 </resources>
