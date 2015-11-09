@@ -257,6 +257,11 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
     }
 
+    private enum browserLangs {
+        en,
+        de
+    }
+    
     private void dispatchIntent(Intent intent) {
         Intent toHolderService = new Intent(this, HolderService.class);
         IntentUnit.setClear(false);
@@ -288,7 +293,12 @@ public class BrowserActivity extends Activity implements BrowserController {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
             if (sp.getBoolean(getString(R.string.sp_first), true)) {
                 String lang;
-                lang = BrowserUnit.INTRODUCTION_EN;
+                String langS = Locale.getDefault().getLanguage();
+                switch(browserLangs.valueOf(langS)) {
+                    case de: lang = BrowserUnit.INTRODUCTION_DE;    break;
+                    case en: /* Use default, so no break here... More info see https://goo.gl/3WGKL2 */
+                    default: lang = BrowserUnit.INTRODUCTION_EN;    break;
+                }
                 pinAlbums(BrowserUnit.BASE_URL + lang);
                 sp.edit().putBoolean(getString(R.string.sp_first), false).commit();
             }
