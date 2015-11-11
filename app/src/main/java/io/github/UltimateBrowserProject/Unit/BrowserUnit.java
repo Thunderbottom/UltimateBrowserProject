@@ -62,13 +62,14 @@ public class BrowserUnit {
     public static final String BOOKMARK_TITLE = "{title}";
     public static final String BOOKMARK_URL = "{url}";
     public static final String BOOKMARK_TIME = "{time}";
-    public static final String INTRODUCTION_EN = "UltimateBrowserProject_introduction_en.html";
+    public static final String INTRODUCTION_EN = "UltimateBrowserProject_introduction_en.html",
+                               INTRODUCTION_DE = "UltimateBrowserProject_introduction_de.html";
 
-    public static final String SEARCH_ENGINE_GOOGLE = "https://www.google.com/search?q=";
+    public static final String SEARCH_ENGINE_GOOGLE     = "https://www.google.com/search?q=";
     public static final String SEARCH_ENGINE_DUCKDUCKGO = "https://duckduckgo.com/?q=";
-    public static final String SEARCH_ENGINE_STARTPAGE = "https://startpage.com/do/search?query=";
-    public static final String SEARCH_ENGINE_BING = "http://www.bing.com/search?q=";
-    public static final String SEARCH_ENGINE_BAIDU = "http://www.baidu.com/s?wd=";
+    public static final String SEARCH_ENGINE_STARTPAGE  = "https://startpage.com/do/search?query=";
+    public static final String SEARCH_ENGINE_BING       = "http://www.bing.com/search?q=";
+    public static final String SEARCH_ENGINE_BAIDU      = "http://www.baidu.com/s?wd=";
 
     // Chrome desktop 41.0.2228.0
     public static final String UA_DESKTOP = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
@@ -119,22 +120,22 @@ public class BrowserUnit {
         String temp = query.toLowerCase(Locale.getDefault());
         if (temp.contains(URL_PREFIX_GOOGLE_PLAY) && temp.contains(URL_SUFFIX_GOOGLE_PLAY)) {
             int start = temp.indexOf(URL_PREFIX_GOOGLE_PLAY) + URL_PREFIX_GOOGLE_PLAY.length();
-            int end = temp.indexOf(URL_SUFFIX_GOOGLE_PLAY);
+            int end   = temp.indexOf(URL_SUFFIX_GOOGLE_PLAY);
             query = query.substring(start, end);
         } else if (temp.contains(URL_PREFIX_GOOGLE_PLUS) && temp.contains(URL_SUFFIX_GOOGLE_PLUS)) {
             int start = temp.indexOf(URL_PREFIX_GOOGLE_PLUS) + URL_PREFIX_GOOGLE_PLUS.length();
-            int end = temp.indexOf(URL_SUFFIX_GOOGLE_PLUS);
+            int end   = temp.indexOf(URL_SUFFIX_GOOGLE_PLUS);
             query = query.substring(start, end);
         }
 
         if (isURL(query)) {
-            if (query.startsWith(URL_SCHEME_ABOUT) || query.startsWith(URL_SCHEME_MAIL_TO)) {
+            if (query.startsWith(URL_SCHEME_ABOUT) || query.startsWith(URL_SCHEME_MAIL_TO))
                 return query;
-            }
 
-            if (!query.contains("://")) {
+
+            if (!query.contains("://"))
                 query = URL_SCHEME_HTTP + query;
-            }
+
 
             return query;
         }
