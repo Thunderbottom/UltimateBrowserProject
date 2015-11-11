@@ -161,7 +161,7 @@ public class BrowserUnit {
         if (url == null) return null;
 
 
-        String green500 = "<span style=\"color: #4CAF50;\">{content}</spam>";
+        String green500 = "<span style=\"color: #4CAF50;\">{content}</span>";
         String gray500  = "<span style=\"color: #9E9E9E;\">{content}</span>";
 
         if (url.startsWith(BrowserUnit.URL_SCHEME_HTTPS)) {
