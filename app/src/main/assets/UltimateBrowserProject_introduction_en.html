@@ -18,11 +18,19 @@
     }
 </style>
 <title>
-    UltimateBrowserProject v.2.0
+    UltimateBrowserProject
 </title>
 <div class="typo typo-selection">
 
-    <h1>UltimateBrowserProject v.2.0 </h1>
+    <h1>
+        <script type="text/javascript">
+                var urlAddition  = document.location.search;             // Returns '?version=...'
+                var urlAdditionF = urlAddition.replace("?version=", ""); // Returns the version
+                var fullTitle    = UltimateBrowserProject v." + urlAdditionF;
+                document.title   = fullTitle; // Set title
+                document.write(fullTitle); // for example: UltimateBrowserProject v.2.0
+        </script>
+    </h1>
 
     <p>UltimateBrowserProject is a browser that aims to do the work unlike any other browser. Currently, it supports the following functions. </p>
 

@@ -28,16 +28,19 @@ import java.util.Date;
 import java.util.List;
 
 public class Changelog {
-    private static final String RELEASE_TAG = "release";
-    private static final String CHANGE_TAG = "change";
-    private static final String VERSION_CODE_ATTR = "versioncode";
-    private static final String VERSION_ATTR = "version";
-    private static final String RELEASE_DATE_ATTR = "releasedate";
-    private static final String RELEASE_SUMMARY_ATTR = "summary";
-    private static final String CHANGE_TYPE_ATTR = "type";
-    private static final String CHANGE_TYPE_BUG_VALUE = "bug";
-    private static final String CHANGE_TYPE_NEW_VALUE = "new";
-    private static final String CHANGE_TYPE_IMPROVEMENT_VALUE = "improvement";
+    private static final String RELEASE_TAG           = "release",
+                                CHANGE_TAG            = "change",
+
+                                VERSION_CODE_ATTR     = "versioncode",
+                                VERSION_ATTR          = "version",
+
+                                RELEASE_DATE_ATTR     = "releasedate",
+                                RELEASE_SUMMARY_ATTR  = "summary",
+
+                                CHANGE_TYPE_ATTR      = "type",
+                                CHANGE_TYPE_BUG_VALUE = "bug",
+                                CHANGE_TYPE_NEW_VALUE = "new",
+                                CHANGE_TYPE_IMPROVEMENT_VALUE = "improvement";
 
     private static final SimpleDateFormat mDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -65,8 +68,10 @@ public class Changelog {
     private String getStyles() {
         StringBuilder sb = new StringBuilder();
         sb.append("<style type='text/css'>")
-          .append(".h1 {font-size: 12pt; font-weight: 700;").append(mReleaseColor == null ? "" : "color: #" + String.format("%06X", mReleaseColor).toUpperCase()).append(";}")
-          .append(".releasedate {font-size: 9pt;").append(mReleaseDateColor == null ? "" : "color: #" + String.format("%06X", mReleaseDateColor).toUpperCase()).append(";}")
+          .append(".h1 {font-size: 12pt; font-weight: 700;").append(mReleaseColor     == null ? ""
+                : "color: #" + String.format("%06X", mReleaseColor)    .toUpperCase()).append(";}")
+          .append(".releasedate {font-size: 9pt;")          .append(mReleaseDateColor == null ? ""
+                : "color: #" + String.format("%06X", mReleaseDateColor).toUpperCase()).append(";}")
           .append(".summary {font-size: 9pt; display: block; clear: left;}");
 
         mStyle.generateStyles(sb);
@@ -147,12 +152,16 @@ public class Changelog {
                 xmlResourceParser.next();
 
                 /*String change = xmlResourceParser.getText();
-                change = change.replace("[b]", "<b>").replace("[/b]", "</b>").replace("[i]", "<i>").replace("[/i]", "</i>").replace("[u]", "<u>").replace("[/u]", "</u>").replace("[s]", "<s>").replace("[/s]", "</s>");
+                change = change.replace("[b]", "<b>").replace("[/b]", "</b>")
+                .replace("[i]", "<i>").replace("[/i]", "</i>").replace("[u]", "<u>")
+                .replace("[/u]", "</u>").replace("[s]", "<s>").replace("[/s]", "</s>");
                 */
 
                 StringBuilder change = new StringBuilder(xmlResourceParser.getText());
-                List<String> tags = Arrays.asList("[b]", "[/b]", "[i]", "[/i]", "[u]", "[/u]", "[s]", "[/s]", "[/color]");
-                List<String> htmlTags = Arrays.asList("<b>", "</b>", "<i>", "</i>", "<u>", "</u>", "<s>", "</s>", "</font>");
+                List<String> tags
+                        = Arrays.asList("[b]", "[/b]", "[i]", "[/i]", "[u]", "[/u]", "[s]", "[/s]", "[/color]");
+                List<String> htmlTags
+                        = Arrays.asList("<b>", "</b>", "<i>", "</i>", "<u>", "</u>", "<s>", "</s>", "</font>");
 
                 for(int i = 0, count = tags.size(); i < count; i++) {
                     String tag = tags.get(i);
@@ -250,12 +259,12 @@ public class Changelog {
 
     public static class StyleList extends Style {
         private boolean mNumbered = false;
-        private Integer mBugBackgroundColor = null;
-        private Integer mNewBackgroundColor = null;
-        private Integer mImprovementBackgroundColor = null;
-        private Integer mBugColor = null;
-        private Integer mNewColor = null;
-        private Integer mImprovementColor = null;
+        private Integer mBugBackgroundColor         = null,
+                        mNewBackgroundColor         = null,
+                        mImprovementBackgroundColor = null,
+                        mBugColor                   = null,
+                        mNewColor                   = null,
+                        mImprovementColor           = null;
 
         public StyleList() {
             this(false);
@@ -442,24 +451,19 @@ public class Changelog {
         public Changelog create() {
             Changelog changelog = new Changelog(mContext, mChangelogResourceId);
 
-            if(mTitle != null) {
-                changelog.mTitle = mTitle;
-            }
+            if(mTitle != null)          changelog.mTitle = mTitle;
 
-            if(mReleaseColor != null) {
-                changelog.mReleaseColor = mReleaseColor;
-            }
-            if(mReleasePrefix != null) {
-                changelog.mReleasePrefix = mReleasePrefix;
-            }
 
-            if(mReleaseDateColor != null) {
-                changelog.mReleaseDateColor = mReleaseDateColor;
-            }
+            if(mReleaseColor != null)   changelog.mReleaseColor = mReleaseColor;
 
-            if(mStyle != null) {
-                changelog.mStyle = mStyle;
-            }
+            if(mReleasePrefix != null)  changelog.mReleasePrefix = mReleasePrefix;
+
+
+            if(mReleaseDateColor != null) changelog.mReleaseDateColor = mReleaseDateColor;
+
+
+            if(mStyle != null)          changelog.mStyle = mStyle;
+
             if(mButtonText != null && mOnClickListener != null) {
                 changelog.mButtonText = mButtonText;
                 changelog.mOnClickListener = mOnClickListener;

@@ -13,9 +13,9 @@ public class BrowserContainer {
     }
 
     public synchronized static void set(AlbumController controller, int index) {
-        if (list.get(index) instanceof UltimateBrowserProjectWebView) {
+        if (list.get(index) instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) list.get(index)).destroy();
-        }
+
 
         list.set(index, controller);
     }
@@ -29,17 +29,17 @@ public class BrowserContainer {
     }
 
     public synchronized static void remove(int index) {
-        if (list.get(index) instanceof UltimateBrowserProjectWebView) {
+        if (list.get(index) instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) list.get(index)).destroy();
-        }
+
 
         list.remove(index);
     }
 
     public synchronized static void remove(AlbumController controller) {
-        if (controller instanceof UltimateBrowserProjectWebView) {
+        if (controller instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) controller).destroy();
-        }
+
 
         list.remove(controller);
     }
@@ -58,9 +58,9 @@ public class BrowserContainer {
 
     public synchronized static void clear() {
         for (AlbumController albumController : list) {
-            if (albumController instanceof UltimateBrowserProjectWebView) {
+            if (albumController instanceof UltimateBrowserProjectWebView)
                 ((UltimateBrowserProjectWebView) albumController).destroy();
-            }
+            
         }
 
         list.clear();

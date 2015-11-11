@@ -90,9 +90,8 @@ public class HolderService extends Service implements BrowserController {
 
     @Override
     public void onDestroy() {
-        if (IntentUnit.isClear()) {
-            BrowserContainer.clear();
-        }
+        if (IntentUnit.isClear()) BrowserContainer.clear();
+
         stopForeground(true);
         super.onDestroy();
     }

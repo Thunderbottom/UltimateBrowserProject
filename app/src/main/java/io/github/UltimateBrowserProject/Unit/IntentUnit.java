@@ -8,11 +8,11 @@ public class IntentUnit {
     public static final String OPEN = "OPEN";
     public static final String URL = "URL";
 
-    public static final int REQUEST_BOOKMARKS = 0x100;
-    public static final int REQUEST_FILE_16 = 0x101;
-    public static final int REQUEST_FILE_21 = 0x102;
-    public static final int REQUEST_WHITELIST = 0x103;
-    public static final int REQUEST_CLEAR = 0x104;
+    public static final int REQUEST_BOOKMARKS = 0x100,
+                            REQUEST_FILE_16 = 0x101,
+                            REQUEST_FILE_21 = 0x102,
+                            REQUEST_WHITELIST = 0x103,
+                            REQUEST_CLEAR = 0x104;
     public static final String INTENT_TYPE_TEXT_PLAIN = "text/plain";
     public static final String INTENT_TYPE_MESSAGE_RFC822 = "message/rfc822";
 
@@ -55,7 +55,7 @@ public class IntentUnit {
     public static boolean isDBChange() {
         return dbChange;
     }
-    public static void setDBChange(boolean b) {
+    public static void   setDBChange(boolean b) {
         dbChange = b;
     }
 
@@ -63,7 +63,7 @@ public class IntentUnit {
     public static boolean isSPChange() {
         return spChange;
     }
-    public static void setSPChange(boolean b) {
+    public static void   setSPChange(boolean b) {
         spChange = b;
     }
 }

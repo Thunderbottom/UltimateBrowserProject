@@ -21,22 +21,17 @@ public class NotificationUnit {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         int priority = Integer.valueOf(sp.getString(context.getString(R.string.sp_notification_priority), "0"));
-        if (priority == 0) {
-            builder.setPriority(Notification.PRIORITY_DEFAULT);
-        } else if (priority == 1) {
-            builder.setPriority(Notification.PRIORITY_HIGH);
-        } else if (priority == 2) {
-            builder.setPriority(Notification.PRIORITY_LOW);
-        } else {
-            builder.setPriority(Notification.PRIORITY_DEFAULT);
-        }
+        if      (priority == 0) builder.setPriority(Notification.PRIORITY_DEFAULT);
+        else if (priority == 1) builder.setPriority(Notification.PRIORITY_HIGH);
+        else if (priority == 2) builder.setPriority(Notification.PRIORITY_LOW);
+        else                    builder.setPriority(Notification.PRIORITY_DEFAULT);
+
 
         int total = 0;
         for (AlbumController controller : BrowserContainer.list()) {
-            if (controller instanceof UltimateBrowserProjectWebView) {
-                total++;
-            }
+            if (controller instanceof UltimateBrowserProjectWebView) total++;
         }
+
         builder.setNumber(total);
 
         builder.setSmallIcon(R.drawable.ic_notification_ultimatebrowserproject);

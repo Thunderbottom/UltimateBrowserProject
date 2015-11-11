@@ -23,9 +23,9 @@ public class TokenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.token);
 
-        if (sp.getString(getString(R.string.sp_theme), "0").equals("1")) {
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("1"))
             findViewById(R.id.token_layout).setBackgroundColor(getResources().getColor(R.color.background_material_dark));
-        }
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -46,14 +46,14 @@ public class TokenActivity extends AppCompatActivity {
                     sp.edit().putString(
                             getString(R.string.sp_readability_token),
                             tokenEdit.getText().toString().trim()
-                    ).commit();
+                    ).apply();
                     UltimateBrowserProjectToast.show(TokenActivity.this, R.string.toast_add_token_successful);
                 }
             }
         });
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
-        }
+
     }
 
     @Override

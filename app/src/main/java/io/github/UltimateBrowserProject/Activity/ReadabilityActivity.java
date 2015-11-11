@@ -23,7 +23,8 @@ import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 
 public class ReadabilityActivity extends AppCompatActivity {
-    private static final String HEADER = "<link rel=\"stylesheet\" href=\"./typo.css\" />\n"
+    private static final String HEADER =
+              "<link rel=\"stylesheet\" href=\"./typo.css\" />\n"
             + "<meta name=\"viewport\" content=\"width=device-width\">\n"
             + "<style>\n"
             + "    html {\n"
@@ -42,33 +43,35 @@ public class ReadabilityActivity extends AppCompatActivity {
             + "        margin: 2em auto 0;\n"
             + "    }\n"
             + "</style>\n";
+
     private static final String HEADER_BACKGROUND = "{background}";
     private static final String DIV = "<div>";
     private static final String DIV_CLASS_TYPO = "<div class=\"typo typo-selection\">";
-    private static final String COLOR_WHITE = "#FFFFFF";
-    private static final String COLOR_YELLOW = "#F5F5DC";
+    private static final String COLOR_WHITE  = "#FFFFFF",
+                                COLOR_YELLOW = "#F5F5DC";
 
-    private static final String REQUEST = "https://www.readability.com/api/content/v1/parser?url={url}&token={token}";
-    private static final String REQUEST_URL = "{url}";
-    private static final String REQUEST_TOKEN = "{token}";
-    private static final int RESULT_SUCCESSFUL = 0x100;
-    private static final int RESULT_FAILED = 0x101;
+    private static final String REQUEST = "https://www.readability.com/api/content/v1/parser?url={url}&token={token}",
+                                REQUEST_URL     = "{url}",
+                                REQUEST_TOKEN   = "{token}";
 
-    private static final String RESULT_CONTENT = "content";
-    private static final String RESULT_DOMAIN = "domain";
-    private static final String RESULT_AUTHOR = "author";
-    private static final String RESULT_URL = "url";
-    private static final String RESULT_SHORT_URL = "short_url";
-    private static final String RESULT_TITLE = "title";
-    private static final String RESULT_EXCERPT = "excerpt";
-    private static final String RESULT_DIRECTION = "direction";
-    private static final String RESULT_WORD_COUNT = "word_count";
-    private static final String RESULT_TOTAL_PAGES = "total_pages";
-    private static final String RESULT_DATE_PUBLISHED = "date_published";
-    private static final String RESULT_DEK = "dek";
-    private static final String RESULT_LEAD_IMAGE_URL = "lead_image_url";
-    private static final String RESULT_NEXT_PAGE_ID = "next_page_id";
-    private static final String RESULT_RENDERED_PAGES = "rendered_pages";
+    private static final int RESULT_SUCCESSFUL = 0x100,
+                             RESULT_FAILED     = 0x101;
+
+    private static final String RESULT_CONTENT        = "content",
+                                RESULT_DOMAIN         = "domain",
+                                RESULT_AUTHOR         = "author",
+                                RESULT_URL            = "url",
+                                RESULT_SHORT_URL      = "short_url",
+                                RESULT_TITLE          = "title",
+                                RESULT_EXCERPT        = "excerpt",
+                                RESULT_DIRECTION      = "direction",
+                                RESULT_WORD_COUNT     = "word_count",
+                                RESULT_TOTAL_PAGES    = "total_pages",
+                                RESULT_DATE_PUBLISHED = "date_published",
+                                RESULT_DEK            = "dek",
+                                RESULT_LEAD_IMAGE_URL = "lead_image_url",
+                                RESULT_NEXT_PAGE_ID   = "next_page_id",
+                                RESULT_RENDERED_PAGES = "rendered_pages";
 
     private ProgressBar progressBar;
     private WebView webView;
@@ -85,6 +88,7 @@ public class ReadabilityActivity extends AppCompatActivity {
         RUNNING,
         IDLE
     }
+
     private Status status = Status.IDLE;
     public void setStatus(Status status) {
         this.status = status;
@@ -146,18 +150,15 @@ public class ReadabilityActivity extends AppCompatActivity {
             case R.id.readability_menu_background:
                 int color = sp.getInt(getString(R.string.sp_readability_background), getResources().getColor(R.color.white));
                 if (color == getResources().getColor(R.color.white)) {
-                    sp.edit().putInt(getString(R.string.sp_readability_background), Color.parseColor(COLOR_YELLOW)).commit();
+                    sp.edit().putInt(getString(R.string.sp_readability_background), Color.parseColor(COLOR_YELLOW)).apply();
                     findViewById(R.id.readability_frame).setBackgroundColor(Color.parseColor(COLOR_YELLOW));
                 } else {
-                    sp.edit().putInt(getString(R.string.sp_readability_background), getResources().getColor(R.color.white)).commit();
+                    sp.edit().putInt(getString(R.string.sp_readability_background), getResources().getColor(R.color.white)).apply();
                     findViewById(R.id.readability_frame).setBackgroundColor(getResources().getColor(R.color.white));
                 }
-                if (status == Status.IDLE && result != null) {
-                    showLoadSuccessful();
-                }
+                if (status == Status.IDLE && result != null) showLoadSuccessful();
                 break;
-            default:
-                break;
+            default: break;
         }
 
         return true;
@@ -166,11 +167,10 @@ public class ReadabilityActivity extends AppCompatActivity {
     private String contentWrapper(String content) {
         int color = sp.getInt(getString(R.string.sp_readability_background), getResources().getColor(R.color.white));
         String header;
-        if (color == getResources().getColor(R.color.white)) {
-            header = HEADER.replace(HEADER_BACKGROUND, "#FFFFFF");
-        } else {
-            header = HEADER.replace(HEADER_BACKGROUND, "#F5F5DC");
-        }
+        if (color == getResources().getColor(R.color.white))
+             header = HEADER.replace(HEADER_BACKGROUND, "#FFFFFF");
+        else header = HEADER.replace(HEADER_BACKGROUND, "#F5F5DC");
+
 
         return (header + content).replace(DIV, DIV_CLASS_TYPO);
     }
@@ -206,32 +206,31 @@ public class ReadabilityActivity extends AppCompatActivity {
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setTextZoom(100);
         webSettings.setUseWideViewPort(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webSettings.setLoadsImagesAutomatically(true);
-        } else {
-            webSettings.setLoadsImagesAutomatically(false);
-        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+             webSettings.setLoadsImagesAutomatically(true);
+        else webSettings.setLoadsImagesAutomatically(false);
+
     }
 
     public void showLoadStart() {
-        webView.setVisibility(View.GONE);
-        emptyView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
+        webView     .setVisibility(View.GONE);
+        emptyView   .setVisibility(View.GONE);
+        progressBar .setVisibility(View.VISIBLE);
     }
 
     public void showLoadError() {
-        progressBar.setVisibility(View.GONE);
-        webView.setVisibility(View.GONE);
-        emptyView.setVisibility(View.VISIBLE);
+        progressBar .setVisibility(View.GONE);
+        webView     .setVisibility(View.GONE);
+        emptyView   .setVisibility(View.VISIBLE);
     }
 
     public void showLoadSuccessful() {
         try {
-            getSupportActionBar().setTitle(result.getString(RESULT_TITLE));
+            getSupportActionBar()   .setTitle(result.getString(RESULT_TITLE));
             getSupportActionBar().setSubtitle(result.getString(RESULT_URL));
 
-            progressBar.setVisibility(View.GONE);
-            emptyView.setVisibility(View.GONE);
+            progressBar .setVisibility(View.GONE);
+            emptyView   .setVisibility(View.GONE);
 
             initWebView();
             String content = contentWrapper(result.getString(RESULT_CONTENT));

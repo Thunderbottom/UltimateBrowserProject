@@ -77,23 +77,22 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == IntentUnit.REQUEST_BOOKMARKS) {
-            if (resultCode != Activity.RESULT_OK || data == null || data.getData() == null) {
+            if (resultCode != Activity.RESULT_OK || data == null || data.getData() == null)
                 UltimateBrowserProjectToast.show(this, R.string.toast_import_bookmarks_failed);
-            } else {
+            else {
                 File file = new File(data.getData().getPath());
                 new ImportBookmarksTask(fragment, file).execute();
             }
         } else if (requestCode == IntentUnit.REQUEST_WHITELIST) {
-            if (resultCode != Activity.RESULT_OK || data == null || data.getData() == null) {
+            if (resultCode != Activity.RESULT_OK || data == null || data.getData() == null)
                 UltimateBrowserProjectToast.show(this, R.string.toast_import_whitelist_failed);
-            } else {
+            else {
                 File file = new File(data.getData().getPath());
                 new ImportWhitelistTask(fragment, file).execute();
             }
         } else if (requestCode == IntentUnit.REQUEST_CLEAR) {
-            if (resultCode == Activity.RESULT_OK && data != null && data.hasExtra(ClearActivity.DB_CHANGE)) {
+            if (resultCode == Activity.RESULT_OK && data != null && data.hasExtra(ClearActivity.DB_CHANGE))
                 fragment.setDBChange(data.getBooleanExtra(ClearActivity.DB_CHANGE, false));
-            }
         }
     }
 }

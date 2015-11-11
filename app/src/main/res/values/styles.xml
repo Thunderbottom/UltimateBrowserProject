@@ -9,6 +9,9 @@
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/background_dark</item>
         <item name="android:drawSelectorOnTop">true</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="ReadabilityActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -16,6 +19,8 @@
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:drawSelectorOnTop">true</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="ReadabilityActivityThemeDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -25,6 +30,8 @@
         <item name="android:windowBackground">@color/background_dark</item>
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:alertDialogTheme">@style/AlertDialogStyleDark</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="SettingActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -32,6 +39,8 @@
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:drawSelectorOnTop">true</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="SettingActivityThemeDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -41,6 +50,8 @@
         <item name="android:windowBackground">@color/background_dark</item>
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:alertDialogTheme">@style/AlertDialogStyleDark</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="WhitelistActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -48,6 +59,8 @@
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:drawSelectorOnTop">true</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="WhitelistActivityThemeDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -56,6 +69,8 @@
         <item name="android:windowBackground">@color/background_dark</item>
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:alertDialogTheme">@style/AlertDialogStyleDark</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="TokenActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -63,6 +78,8 @@
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:drawSelectorOnTop">true</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="TokenActivityThemeDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -72,6 +89,8 @@
         <item name="android:windowBackground">@color/background_dark</item>
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:alertDialogTheme">@style/AlertDialogStyleDark</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="ClearActivityTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -79,6 +98,8 @@
         <item name="android:textColorHighlight">@color/blue_200</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:drawSelectorOnTop">true</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="ClearActivityThemeDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -88,6 +109,8 @@
         <item name="android:windowBackground">@color/background_dark</item>
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:alertDialogTheme">@style/AlertDialogStyleDark</item>
+        <!-- Add this to remove gradient which is drawn directly under status bar -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="Theme.Dialog" parent="@android:style/Theme.Dialog"/>

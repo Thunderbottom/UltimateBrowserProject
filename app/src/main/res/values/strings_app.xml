@@ -4,147 +4,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation" >
 
+    <!-- Use 'translatable="false"' to say that only this value should be applied -->
+
 
     <!-- Scheme -->
-    <string name="app_scheme_http">
+    <string name="app_scheme_http" translatable="false">
         http
     </string>
-    <string name="app_scheme_https">
+    <string name="app_scheme_https" translatable="false">
         https
     </string>
 
     <!-- Info -->
-    <string name="app_name">
+    <string name="app_name" translatable="false">
         UltimateBrowserProject
     </string>
-    <string name="app_version">
+    <string name="app_version" translatable="false">
         2.0
     </string>
 
     <!-- AndroidSlidingUpPanel -->
-    <string name="license_title_android_sliding_up_panel">
+    <string name="license_title_android_sliding_up_panel" translatable="false">
         Android Sliding Up Panel
     </string>
-    <string name="license_content_android_sliding_up_panel">
+    <string name="license_content_android_sliding_up_panel" translatable="false">
         Apache License Version 2.0
     </string>
-    <string name="license_author_android_sliding_up_panel">
+    <string name="license_author_android_sliding_up_panel" translatable="false">
         Umano: News Read To You
     </string>
-    <string name="license_url_android_sliding_up_panel">
+    <string name="license_url_android_sliding_up_panel" translatable="false">
         http://git.io/vUruG
     </string>
 
     <!-- Android-SwipeToDismiss -->
-    <string name="license_title_android_swipe_to_dismiss">
+    <string name="license_title_android_swipe_to_dismiss" translatable="false">
         Android Swipe-to-Dismiss Sample Code
     </string>
-    <string name="license_content_android_swipe_to_dismiss">
+    <string name="license_content_android_swipe_to_dismiss" translatable="false">
         Apache License Version 2.0
     </string>
-    <string name="license_author_android_swipe_to_dismiss">
+    <string name="license_author_android_swipe_to_dismiss" translatable="false">
         Roman Nurik
     </string>
-    <string name="license_url_android_swipe_to_dismiss">
+    <string name="license_url_android_swipe_to_dismiss" translatable="false">
         http://git.io/vUruO
     </string>
 
     <!-- AndroidAgo -->
-    <string name="license_title_android_ago">
+    <string name="license_title_android_ago" translatable="false">
         android-ago
     </string>
-    <string name="license_content_android_ago">
+    <string name="license_content_android_ago" translatable="false">
         Apache License Version 2.0
     </string>
-    <string name="license_author_android_ago">
+    <string name="license_author_android_ago" translatable="false">
         Kiran Rao
     </string>
-    <string name="license_url_android_ago">
+    <string name="license_url_android_ago" translatable="false">
         http://git.io/vUrum
     </string>
 
     <!-- DynamicGrid -->
-    <string name="license_title_dynamic_grid">
+    <string name="license_title_dynamic_grid" translatable="false">
         DynamicGrid
     </string>
-    <string name="license_content_dynamic_grid">
+    <string name="license_content_dynamic_grid" translatable="false">
         Apache License Version 2.0
     </string>
-    <string name="license_author_dynamic_grid">
+    <string name="license_author_dynamic_grid" translatable="false">
         askerov
     </string>
-    <string name="license_url_dynamic_grid">
+    <string name="license_url_dynamic_grid" translatable="false">
         http://git.io/vTHZH
     </string>
 
 
     <!-- Lightning -->
-    <string name="license_title_lightning">
+    <string name="license_title_lightning" translatable="false">
         Lightning Browser
     </string>
-    <string name="license_content_lightning">
+    <string name="license_content_lightning" translatable="false">
         Mozilla Public License Version 2.0
     </string>
-    <string name="license_author_lightning">
+    <string name="license_author_lightning" translatable="false">
         Anthony Restaino
     </string>
-    <string name="license_url_lightning">
+    <string name="license_url_lightning" translatable="false">
         http://git.io/vUruk
     </string>
 
     <!-- UltimateBrowserProject -->
-    <string name="license_title_UltimateBrowserProject">
+    <string name="license_title_UltimateBrowserProject" translatable="false">
         UltimateBrowserProject
     </string>
-    <string name="license_content_UltimateBrowserProject">
+    <string name="license_content_UltimateBrowserProject" translatable="false">
         Apache License Version 2.0
     </string>
-    <string name="license_author_UltimateBrowserProject">
+    <string name="license_author_UltimateBrowserProject" translatable="false">
         Balzathor, Takahirom, James Wang
     </string>
-    <string name="license_url_UltimateBrowserProject">
+    <string name="license_url_UltimateBrowserProject" translatable="false">
         http://git.io/vIG0r
     </string>
 
     <!-- Ninja -->
-    <string name="license_title_ninja">
+    <string name="license_title_ninja" translatable="false">
         Ninja
     </string>
-    <string name="license_content_ninja">
+    <string name="license_content_ninja" translatable="false">
         Apache License Version 2.0
     </string>
-    <string name="license_author_ninja">
+    <string name="license_author_ninja" translatable="false">
         Matthew Lee
     </string>
-    <string name="license_url_ninja">
+    <string name="license_url_ninja" translatable="false">
         http://git.io/vUrEh
     </string>
     
     <!-- typo.css -->
-    <string name="license_title_typo_css">
+    <string name="license_title_typo_css" translatable="false">
         typo.css
     </string>
-    <string name="license_content_typo_css">
+    <string name="license_content_typo_css" translatable="false">
         The MIT License (MIT)
     </string>
-    <string name="license_author_typo_css">
+    <string name="license_author_typo_css" translatable="false">
         Fish
     </string>
-    <string name="license_url_typo_css">
+    <string name="license_url_typo_css" translatable="false">
         http://git.io/vIyHD
     </string>
 
     <!-- Fabric -->
-    <string name="license_title_fabric">
+    <string name="license_title_fabric" translatable="false">
         Fabric.io
     </string>
-    <string name="license_content_fabric">
+    <string name="license_content_fabric" translatable="false">
         Fabric Terms of Service, Twitter inc.
     </string>
-    <string name="license_author_fabric">
+    <string name="license_author_fabric" translatable="false">
         Twitter inc.
     </string>
-    <string name="license_url_fabric">
+    <string name="license_url_fabric" translatable="false">
         http://git.io/503
     </string>
 

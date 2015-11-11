@@ -26,8 +26,7 @@ import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 public class HolderActivity extends Activity {
     private static final int TIMER_SCHEDULE_DEFAULT = 512;
 
-    private Record first = null;
-    private Record second = null;
+    private Record first = null, second = null;
     private Timer timer = null;
     private boolean background = false;
 
@@ -38,9 +37,9 @@ public class HolderActivity extends Activity {
             finish();
             return;
         }
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
-        }
+
         first = new Record();
         first.setTitle(getString(R.string.album_untitled));
         first.setURL(getIntent().getData().toString());
@@ -69,9 +68,7 @@ public class HolderActivity extends Activity {
             return;
         }
 
-        if (timer != null) {
-            timer.cancel();
-        }
+        if (timer != null) timer.cancel();
 
         second = new Record();
         second.setTitle(getString(R.string.album_untitled));
@@ -91,17 +88,16 @@ public class HolderActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        if (timer != null) {
-            timer.cancel();
-        }
+        if (timer != null) timer.cancel();
 
-        if (background) {
+
+        if (background)
             UltimateBrowserProjectToast.show(this, R.string.toast_load_in_background);
-        }
 
-        first = null;
+
+        first  = null;
         second = null;
-        timer = null;
+        timer  = null;
         background = false;
         super.onDestroy();
     }
@@ -140,14 +136,9 @@ public class HolderActivity extends Activity {
                         toActivity.putExtra(IntentUnit.OPEN, first.getURL());
                         startActivity(toActivity);
                         break;
-                    case 1:
-                        BrowserUnit.copyURL(HolderActivity.this, first.getURL());
-                        break;
-                    case 2:
-                        IntentUnit.share(HolderActivity.this, first.getTitle(), first.getURL());
-                        break;
-                    default:
-                        break;
+                    case 1: BrowserUnit.copyURL(HolderActivity.this, first.getURL());                break;
+                    case 2: IntentUnit.share(HolderActivity.this, first.getTitle(), first.getURL()); break;
+                    default:                                                                         break;
                 }
                 dialog.hide();
                 dialog.dismiss();
