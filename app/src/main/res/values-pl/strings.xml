@@ -29,7 +29,7 @@
 		Gotowe
 	</string>
 	<string name="clear_title_quit">
-		Usuwaj po zamknięciu przeglądarki
+		Usuwaj przy zamykaniu przeglądarki
 	</string>
 	<string name="clear_title_bookmarks">
 		Usuwaj zakładki
@@ -108,7 +108,7 @@
 
 	<!-- Main -->
 	<string name="main_menu_new_tab">
-		Otworz w nowej karcie
+		Otwórz w nowej karcie
 	</string>
 	<string name="main_menu_copy_link">
 		Kopiuj link
@@ -206,27 +206,27 @@
 		Położenie omniboksa
 	</string>
 	<string name="setting_summary_omnibox_position_top">
-		Góra
+		Na górze
 	</string>
 	<string name="setting_summary_omnibox_position_bottom">
-		Dół
+		Na dole
 	</string>
 	<!-- Omnibox control -->
 	<string name="setting_title_omnibox_control">
-		Ustawienia omniboksa
+		Przełączanie kart za pomocą omniboksa
 	</string>
 	<string name="setting_summary_omnibox_control">
 		Przesuwaj omnibox w lewo/prawo, aby przełączać karty
 	 </string>
 	<!-- Volume key scroll -->
 	<string name="setting_title_volume_control">
-		Regulacja głośności
+		Działanie przycisków regulacji głośności
 	</string>
 	<string name="setting_summary_vc_switch_tabs">
-		Przełącz karty
+		Przełączaj karty
 	</string>
 	<string name="setting_summary_vc_scroll_webpage">
-		Przewiń stronę
+		Przewijaj stronę
 	</string>
 	<string name="setting_summary_vc_system_default">
 		Ustawienie domyślne systemu
@@ -271,7 +271,7 @@
 		Pasek przewijania
 	</string>
 	<string name="setting_summary_scroll_bar">
-		Pokażuj pasek przewijania strony
+		Pokazuj pasek przewijania strony
 	</string>
 	<!-- Text reflow -->
 	<string name="setting_title_text_reflow">
@@ -337,7 +337,7 @@
 		Zezwalaj stronom na wyświetlanie reklam
 	</string>
 	<string name="setting_title_export_whitelist">
-		Zapisz białą listę
+		Eksportuj białą listę
 	</string>
 	<string name="setting_title_import_whitelist">
 		Importuj białą listę
@@ -367,14 +367,14 @@
 		Hasło
 	</string>
 	<string name="setting_summary_passwords">
-		Zapisz hasło
+		Pamiętaj hasła
 	</string>
 	<!-- Bookmarks -->
 	<string name="setting_title_export_bookmarks">
-		Zapisz zakładki
+		Eksportuj zakładki
 	</string>
 	<string name="setting_title_import_bookmarks">
-		Otwórz zakładki
+		Importuj zakładki
 	</string>
 	<string name="bookmarks_filename">
 		Zakładki
@@ -411,10 +411,10 @@
 		Pomyślnie dodano na stronę startową
 	</string>
 	<string name="toast_add_to_home_failed">
-		Nie udało się dodać do strony startowej
+		Nie udało się dodać na stronę startową
 	</string>
 	<string name="toast_add_token_successful">
-		Dodano token trybu czytania
+		Pomyślnie dodano token trybu czytania
 	</string>
 	<string name="toast_add_whitelist_successful">
 		Pomyślnie dodano domenę na białą listę
@@ -450,16 +450,16 @@
 		つ◕ل͜◕)つ
 	</string>
 	<string name="toast_export_bookmarks_successful">
-		Zapisane zakładki:&#160;
+		Wyeksportowane zakładki:&#160;
 	</string>
 	<string name="toast_export_bookmarks_failed">
-		Nie udało się zapisać zakładek
+		Nie udało się wyeksportować zakładek
 	</string>
 	<string name="toast_export_whitelist_successful">
-		Zapisano białą listę:&#160;
+		Pomyślnie wyeksportowano białą listę:&#160;
 	</string>
 	<string name="toast_export_whitelist_failed">
-		Nie udało się zapisać białej listy
+		Nie udało się wyeksportować białej listy
 	</string>
 	<string name="toast_import_bookmarks_successful">
 		Zaimportowane zakładki:&#160;
@@ -486,13 +486,13 @@
 		Otwieranie w tle
 	</string>
 	<string name="toast_need_restart">
-		Uruchom ponownie przeglądarkę, aby zapisać zmiany
+		Uruchom ponownie przeglądarkę, aby zastosować zmiany
 	</string>
 	<string name="toast_new_tab_successful">
 		Otwarto w nowej karcie
 	</string>
 	<string name="toast_open_file_manager_failed">
-		Nie udało się otworzyć menadżera plików
+		Nie udało się otworzyć menedżera plików
 	</string>
 	<string name="toast_refresh_failed">
 		Nie udało się odświeżyć
@@ -533,7 +533,7 @@
 		Dodaj
 	</string>
 	<string name="token_desc">
-		Otwórz https://www.readability.com/developers/api, aby uzyskać swój token trybu czytania
+		Otwórz https://www.readability.com/developers/api, aby uzyskać swój token umożliwiający korzystanie z trybu czytania.
 	</string>
 
 	<!-- Whitelist -->
