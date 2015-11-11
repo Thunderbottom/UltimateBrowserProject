@@ -546,5 +546,14 @@
     <string name="title_activity_intro">
         Intro
     </string>
+    <string name="setting_theme_dark">Escuro</string>
+    <string name="setting_theme_light">Claro</string>
+    <string name="open_in_app_snackbar_action_title">Abrir</string>
+    <string name="open_in_app_snackbar_title">Abrir em App</string>
+    <string name="com.crashlytics.CrashSubmissionAlwaysSendTitle">Enviar sempre</string>
+    <string name="com.crashlytics.CrashSubmissionCancelTitle">Não enviar</string>
+    <string name="com.crashlytics.CrashSubmissionPromptMessage"></string>
+    <string name="com.crashlytics.CrashSubmissionPromptTitle">Enviar reportagem?</string>
+    <string name="com.crashlytics.CrashSubmissionSendTitle">Enviar</string>
 
 </resources>

@@ -49,7 +49,7 @@ public class ScreenshotTask extends AsyncTask<Void, Void, Boolean> {
         } catch (Exception e) {
             path = null;
         }
-        return path != null && !path.isEmpty();
+        return (path != null && !path.isEmpty());
     }
 
     @Override
@@ -57,10 +57,9 @@ public class ScreenshotTask extends AsyncTask<Void, Void, Boolean> {
         dialog.hide();
         dialog.dismiss();
 
-        if (result) {
-            UltimateBrowserProjectToast.show(context, context.getString(R.string.toast_screenshot_successful) + path);
-        } else {
-            UltimateBrowserProjectToast.show(context, R.string.toast_screenshot_failed);
-        }
+        if (result)
+             UltimateBrowserProjectToast.show(context, context.getString(R.string.toast_screenshot_successful) + path);
+        else UltimateBrowserProjectToast.show(context, R.string.toast_screenshot_failed);
+
     }
 }

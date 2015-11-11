@@ -32,9 +32,9 @@ public class WhitelistActivity extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.whitelist);
-        if (sp.getString(getString(R.string.sp_theme), "0").equals("1")) {
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("1"))
             findViewById(R.id.whitelist_layout).setBackgroundColor(getResources().getColor(R.color.background_material_dark));
-        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         RecordAction action = new RecordAction(this);
@@ -57,11 +57,11 @@ public class WhitelistActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String domain = editText.getText().toString().trim();
-                if (domain.isEmpty()) {
+                if (domain.isEmpty())
                     UltimateBrowserProjectToast.show(WhitelistActivity.this, R.string.toast_input_empty);
-                } else if (!BrowserUnit.isURL(domain)) {
+                else if (!BrowserUnit.isURL(domain))
                     UltimateBrowserProjectToast.show(WhitelistActivity.this, R.string.toast_invalid_domain);
-                } else {
+                else {
                     RecordAction action = new RecordAction(WhitelistActivity.this);
                     action.open(true);
                     if (action.checkDomain(domain)) {
@@ -77,9 +77,9 @@ public class WhitelistActivity extends AppCompatActivity {
                 }
             }
         });
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
-        }
+
     }
 
     @Override

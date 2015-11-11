@@ -1,0 +1,133 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="typo.css" type="text/css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" />
+  <style type="text/css">
+      html {
+        background: white;
+      }
+      
+      img {
+        max-width: device-width;
+        width: expression(this.width > device-width ? device-width : this.width);
+        height:       auto;
+        display:     block;
+        margin-left:  auto;
+        margin-right: auto;
+      }
+      
+      body {
+        position: absolute;
+        top:    10px;
+        left:    5%;
+        right:   5%;
+        bottom: 10px;
+      }
+  </style>
+  <title>
+      UltimateBrowserProject
+  </title>
+</head>
+  <body>
+    <div class="typo typo-selection">
+    
+        <h1>
+            <script type="text/javascript">
+                var urlAddition  = document.location.search;             // Returns '?version=...'
+                var urlAdditionF = urlAddition.replace("?version=", ""); // Returns the version
+                var fullTitle    = "UltimateBrowserProject v." + urlAdditionF;
+                document.title   = fullTitle; // Set title
+                document.write(fullTitle); // for example: UltimateBrowserProject v.2.0
+            </script>
+        </h1>
+    
+        <p>UltimateBrowserProject ist ein Browser, der dafür ausgerichtet ist, die Arbeit, anders, als alle anderen Browser zu erledigen.
+        Zurzeit werden folgende Funktionen unterstützt. </p>
+    
+        <h3>Benutzerdefinierte Startseite:</h3>
+    
+        <ul>
+          <li>
+            <p>Das erste mal, wenn Sie den Browser starten, wird die Webseite <code>about:blank</code> angezeigt.</p>
+          </li>
+          <li>
+            <p>Benutzen Sie das Menü <strong>Zur Startseite hinzufügen</strong>, um Webseiten zu merken.</p>
+          </li>
+          <li>
+            <p>Benutzen Sie das Menü <strong>Anpassen</strong>, um Ihre Startseite zu individualisieren.</p>
+          </li>
+          <li>
+            <p><strong>Halten Sie</strong> eine Karte auf der Startseite <strong>gedrückt</strong>, um sie zu bearbeiten.</p>
+          </li>
+        </ul>
+    
+        <span style="color:red;"><i>Neu!</i></span>
+        <h2>Benutzerdefinierter User-Agent:</h2>
+    
+        <p>Nun können Sie Ihren eigenen User-Agent einstellen. Für eine Liste von User-Agents, 
+        besuchen Sie die Webseite <a href="http://www.useragentstring.com/pages/useragentstring.php" title="User Agent List" target="_blank">User Agent List</a> und setzen Sie es unter <code>Einstellungen -> User-Agent -> Benutzerdefiniert</code> ein.</p>
+    
+        <h2>Zwischen Tabs wechseln:</h2>
+    
+        <ul>
+          <li>
+            <p>Sie können die Tabswitcher-Position auf <strong>oben oder unten</strong> festlegen, indem Sie die Einstellung unter <code>Einstellungen -> Browser -> Position des Tabswitchers</code> ändern.</p></li><li><p>Press the <strong>address bar</strong> and <strong>drag it down or up</strong>, then the tab switcher will be displayed.</p></li><li><p><strong>Swipe up/down</strong> to dismiss a page.</p></li></ul>
+    
+        <p><strong>Denken Sie daran</strong>, dass wenn die Tastatur offen ist, dass der Tabswitcher nicht angezeigt wird.
+        Dies ist kein Fehler, sondern so vorgesehen.</p>
+    
+        <h2>Im Hintergrund laden:</h2>
+    
+        <ol>
+          <li>
+            <p>UltimateBrowserProject <strong>als Standardbrowser festlegen</strong>.</p>
+          </li>
+          <li>
+            <p><strong>Eine einzigste Berührung</strong> öffnet Links im Hintergrund, und zeigt eine Benachrichtigung in der Benachrichtigungsleiste.</p>
+          </li>
+          <li>
+            <p><strong>Den Link doppelt tippen</strong> öffnet ein Dialog, um den Link im Vordergrund zu öffnen.</p></li></ol>
+    
+        <h2>Lautstärketasten:</h2>
+    
+        <p>Unter <code>Einstellungen -> Browser -> Lautstärketasten</code> können Sie das Verhalten festlegen auf:</p>
+    
+        <ul><li><p>Zwischen Tabs wechseln.</p></li><li><p>Durch die Webseite scrollen.</p></li><li><p>Systemstandard.</p></li></ul>
+    
+        <span style="color:red"><i>Neu!</i></span><h2>Wischen, um zwischen Tabs zu wechseln:</h2>
+    
+        <p>Nun können Sie die Omnibox (Adressleiste) verwenden, um zwischen Tabs zu wechseln!</p>
+    
+        <h2>AdBlock (Werbeblocker) Whitelist:</h2>
+    
+        <p>Da AdBlock fehlerhafte Webseitendarstellung hervorrufen kann, können diese Seiten zur Whitelist unter <code>Einstellungen -> Werbeblocker -> Whitelist</code> eingestellt werden.</p>
+    
+        <h2>Readability (Lesbarkeitsmodus):</h2>
+    
+        <p>UltimateBrowserProject unterstützt den Lesbarkeitsmodus (Readability), aber benötigt einen <strong>Readability API Token</strong>.</p>
+    
+        <p>Um den Token zu erhalten, muss über die Webseite <a href="https://www.readability.com/developers/api" title="Readability Developer APIs">Readability Developer APIs</a> ein Token angefordert werden und unter <code>Einstellungen -> Lesbarkeitsmodus -> Token</code> eingestellt werden.</p>
+    
+        <h2>Screenshot:</h2>
+    
+        <p>UltimateBrowserProject kann <strong>ganze Webseiten aufnehmen!</strong>.</p>
+    
+        <p>Leider kann damit nicht die ganze Seite aufgenommen werden, da sonst <strong>nicht genügend Arbeitsspeicher vorhanden ist (OOM)</strong>.</p>
+    
+        <h2>Protokollierung:</h2>
+    
+        <p>UltimateBrowserProject kann automatisch Protokolle senden, wenn die App abstürzt.</p>
+    
+        <p>Sobald die App abstürzt, erscheint ein Dialog zum Absenden des Berichts. Sie können auch einen Kommentar hinzufügen <strong>(OPTIONAL)</strong>, und dann OK drücken.</p>
+    
+        <p>Alles andere wird in der Anwendung selber geregelt!</p>
+    
+        <p>Mehr Informationen gibt es hier: <a href="http://www.crashlytics.com" title="Crashlytics">Crashlytics</a></p>
+    
+        <hr/>
+    
+    </div>
+  </body>
+</html>

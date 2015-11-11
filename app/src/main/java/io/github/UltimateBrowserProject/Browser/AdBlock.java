@@ -48,9 +48,8 @@ public class AdBlock {
         url = url.toLowerCase(locale);
 
         int index = url.indexOf('/', 8); // -> http://(7) and https://(8)
-        if (index != -1) {
-            url = url.substring(0, index);
-        }
+        if (index != -1) url = url.substring(0, index);
+
 
         URI uri = new URI(url);
         String domain = uri.getHost();
@@ -65,18 +64,16 @@ public class AdBlock {
     public AdBlock(Context context) {
         this.context = context;
 
-        if (hosts.isEmpty()) {
-            loadHosts(context);
-        }
+        if (hosts.isEmpty()) loadHosts(context);
+
         loadDomains(context);
     }
 
     public boolean isWhite(String url) {
         for (String domain : whitelist) {
-            if (url.contains(domain)) {
-                return true;
-            }
+            if (url.contains(domain)) return true;
         }
+
         return false;
     }
 

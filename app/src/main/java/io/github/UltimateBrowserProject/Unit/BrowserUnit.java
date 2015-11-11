@@ -62,36 +62,36 @@ public class BrowserUnit {
     public static final String BOOKMARK_TITLE = "{title}";
     public static final String BOOKMARK_URL = "{url}";
     public static final String BOOKMARK_TIME = "{time}";
-    public static final String INTRODUCTION_EN = "UltimateBrowserProject_introduction_en.html";
+    public static final String INTRODUCTION_EN = "UltimateBrowserProject_introduction_en.html",
+                               INTRODUCTION_DE = "UltimateBrowserProject_introduction_de.html";
 
-    public static final String SEARCH_ENGINE_GOOGLE = "https://www.google.com/search?q=";
+    public static final String SEARCH_ENGINE_GOOGLE     = "https://www.google.com/search?q=";
     public static final String SEARCH_ENGINE_DUCKDUCKGO = "https://duckduckgo.com/?q=";
-    public static final String SEARCH_ENGINE_STARTPAGE = "https://startpage.com/do/search?query=";
-    public static final String SEARCH_ENGINE_BING = "http://www.bing.com/search?q=";
-    public static final String SEARCH_ENGINE_BAIDU = "http://www.baidu.com/s?wd=";
+    public static final String SEARCH_ENGINE_STARTPAGE  = "https://startpage.com/do/search?query=";
+    public static final String SEARCH_ENGINE_BING       = "http://www.bing.com/search?q=";
+    public static final String SEARCH_ENGINE_BAIDU      = "http://www.baidu.com/s?wd=";
 
     // Chrome desktop 41.0.2228.0
-    public static final String UA_DESKTOP = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
-    public static final String URL_ENCODING = "UTF-8";
-    public static final String URL_ABOUT_BLANK = "about:blank";
-    public static final String URL_SCHEME_ABOUT = "about:";
-    public static final String URL_SCHEME_MAIL_TO = "mailto:";
-    public static final String URL_SCHEME_FILE = "file://";
-    public static final String URL_SCHEME_FTP = "ftp://";
-    public static final String URL_SCHEME_HTTP = "http://";
-    public static final String URL_SCHEME_HTTPS = "https://";
-    public static final String URL_SCHEME_INTENT = "intent://";
+    public static final String  UA_DESKTOP = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+    public static final String  URL_ENCODING        = "UTF-8",
+                                URL_ABOUT_BLANK     = "about:blank",
+                                URL_SCHEME_ABOUT    = "about:",
+                                URL_SCHEME_MAIL_TO  = "mailto:",
+                                URL_SCHEME_FILE     = "file://",
+                                URL_SCHEME_FTP      = "ftp://",
+                                URL_SCHEME_HTTP     = "http://",
+                                URL_SCHEME_HTTPS    = "https://",
+                                URL_SCHEME_INTENT   = "intent://";
 
-    public static final String URL_PREFIX_GOOGLE_PLAY = "www.google.com/url?q=";
-    public static final String URL_SUFFIX_GOOGLE_PLAY = "&sa";
-    public static final String URL_PREFIX_GOOGLE_PLUS = "plus.url.google.com/url?q=";
-    public static final String URL_SUFFIX_GOOGLE_PLUS = "&rct";
+    public static final String  URL_PREFIX_GOOGLE_PLAY = "www.google.com/url?q=",
+                                URL_SUFFIX_GOOGLE_PLAY = "&sa",
+                                URL_PREFIX_GOOGLE_PLUS = "plus.url.google.com/url?q=",
+                                URL_SUFFIX_GOOGLE_PLUS = "&rct";
 
 
     public static boolean isURL(String url) {
-        if (url == null) {
-            return false;
-        }
+        if (url == null) return false;
+
 
         url = url.toLowerCase(Locale.getDefault());
         if (url.startsWith(URL_ABOUT_BLANK)
@@ -119,22 +119,22 @@ public class BrowserUnit {
         String temp = query.toLowerCase(Locale.getDefault());
         if (temp.contains(URL_PREFIX_GOOGLE_PLAY) && temp.contains(URL_SUFFIX_GOOGLE_PLAY)) {
             int start = temp.indexOf(URL_PREFIX_GOOGLE_PLAY) + URL_PREFIX_GOOGLE_PLAY.length();
-            int end = temp.indexOf(URL_SUFFIX_GOOGLE_PLAY);
+            int end   = temp.indexOf(URL_SUFFIX_GOOGLE_PLAY);
             query = query.substring(start, end);
         } else if (temp.contains(URL_PREFIX_GOOGLE_PLUS) && temp.contains(URL_SUFFIX_GOOGLE_PLUS)) {
             int start = temp.indexOf(URL_PREFIX_GOOGLE_PLUS) + URL_PREFIX_GOOGLE_PLUS.length();
-            int end = temp.indexOf(URL_SUFFIX_GOOGLE_PLUS);
+            int end   = temp.indexOf(URL_SUFFIX_GOOGLE_PLUS);
             query = query.substring(start, end);
         }
 
         if (isURL(query)) {
-            if (query.startsWith(URL_SCHEME_ABOUT) || query.startsWith(URL_SCHEME_MAIL_TO)) {
+            if (query.startsWith(URL_SCHEME_ABOUT) || query.startsWith(URL_SCHEME_MAIL_TO))
                 return query;
-            }
 
-            if (!query.contains("://")) {
+
+            if (!query.contains("://"))
                 query = URL_SCHEME_HTTP + query;
-            }
+
 
             return query;
         }
@@ -147,30 +147,22 @@ public class BrowserUnit {
         String custom = sp.getString(context.getString(R.string.sp_search_engine_custom), SEARCH_ENGINE_GOOGLE);
         final int i = Integer.valueOf(sp.getString(context.getString(R.string.sp_search_engine), "0"));
         switch (i) {
-            case 0:
-                return SEARCH_ENGINE_GOOGLE + query;
-            case 1:
-                return SEARCH_ENGINE_DUCKDUCKGO + query;
-            case 2:
-                return SEARCH_ENGINE_STARTPAGE + query;
-            case 3:
-                return SEARCH_ENGINE_BING + query;
-            case 4:
-                return SEARCH_ENGINE_BAIDU + query;
-            case 5:
-                return custom + query;
-            default:
-                return SEARCH_ENGINE_GOOGLE + query;
+            case 0: return SEARCH_ENGINE_GOOGLE + query;
+            case 1: return SEARCH_ENGINE_DUCKDUCKGO + query;
+            case 2: return SEARCH_ENGINE_STARTPAGE + query;
+            case 3: return SEARCH_ENGINE_BING + query;
+            case 4: return SEARCH_ENGINE_BAIDU + query;
+            case 5: return custom + query;
+            default:return SEARCH_ENGINE_GOOGLE + query;
         }
     }
 
     public static String urlWrapper(String url) {
-        if (url == null) {
-            return null;
-        }
+        if (url == null) return null;
 
-        String green500 = "<font color='#4CAF50'>{content}</font>";
-        String gray500 = "<font color='#9E9E9E'>{content}</font>";
+
+        String green500 = "<span style=\"color: #4CAF50;\">{content}</span>";
+        String gray500  = "<span style=\"color: #9E9E9E;\">{content}</span>";
 
         if (url.startsWith(BrowserUnit.URL_SCHEME_HTTPS)) {
             String scheme = green500.replace("{content}", BrowserUnit.URL_SCHEME_HTTPS);
@@ -231,7 +223,7 @@ public class BrowserUnit {
         DownloadManager.Request requestCache = new DownloadManager.Request(Uri.parse(url));
         String filename = URLUtil.guessFileName(url, contentDisposition, mimeType); // Maybe unexpected filename.
 
-                requestCache.allowScanningByMediaScanner();
+        requestCache.allowScanningByMediaScanner();
         requestCache.setTitle(filename);
         requestCache.setMimeType(mimeType);
         requestCache.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "cache");
@@ -241,14 +233,13 @@ public class BrowserUnit {
     }
 
     public static String screenshot(Context context, Bitmap bitmap, String name) {
-        if (bitmap == null) {
-            return null;
-        }
+        if (bitmap == null) return null;
+
 
         File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        if (name == null || name.trim().isEmpty()) {
+        if (name == null || name.trim().isEmpty())
             name = String.valueOf(System.currentTimeMillis());
-        }
+
         name = name.trim();
 
         int count = 0;
@@ -329,9 +320,8 @@ public class BrowserUnit {
     }
 
     public static int importBookmarks(Context context, File file) {
-        if (file == null) {
-            return -1;
-        }
+        if (file == null) return -1;
+
         List<Record> list = new ArrayList<>();
 
         try {
@@ -378,9 +368,8 @@ public class BrowserUnit {
     }
 
     public static int importWhitelist(Context context, File file) {
-        if (file == null) {
-            return -1;
-        }
+        if (file == null) return -1;
+
 
         AdBlock adBlock = new AdBlock(context);
         int count = 0;
@@ -413,7 +402,7 @@ public class BrowserUnit {
     public static boolean clearCache(Context context) {
         try {
             File dir = context.getCacheDir();
-            if (dir != null && dir.isDirectory()) {
+            if ( dir != null && dir.isDirectory() ) {
                 deleteDir(dir);
             }
 
@@ -449,16 +438,16 @@ public class BrowserUnit {
         action.clearHistory();
         action.close();
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2)
             WebIconDatabase.getInstance().removeAllIcons();
-        }
+
     }
 
     public static void clearPasswords(Context context) {
         WebViewDatabase.getInstance(context).clearHttpAuthUsernamePassword();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2)
             WebViewDatabase.getInstance(context).clearUsernamePassword();
-        }
+
     }
 
     private static boolean deleteDir(File dir) {

@@ -18,11 +18,11 @@ public class ViewUnit {
         int windowWidth = getWindowWidth(context);
         int windowHeight = getWindowHeight(context);
         int adjustHeight = 0;
-        if (!isFullScreen) {
+        if (!isFullScreen)
             adjustHeight += getStatusBarHeight(context);
-        }
 
-        int widthSpec = View.MeasureSpec.makeMeasureSpec(windowWidth, View.MeasureSpec.EXACTLY);
+
+        int widthSpec  = View.MeasureSpec.makeMeasureSpec(windowWidth,                 View.MeasureSpec.EXACTLY);
         int heightSpec = View.MeasureSpec.makeMeasureSpec(windowHeight - adjustHeight, View.MeasureSpec.EXACTLY);
 
         view.measure(widthSpec, heightSpec);
@@ -30,9 +30,9 @@ public class ViewUnit {
     }
 
     public static Bitmap capture(View view, float width, float height, boolean scroll, Bitmap.Config config) {
-        if (!view.isDrawingCacheEnabled()) {
-            view.setDrawingCacheEnabled(true);
-        }
+        if (!view .isDrawingCacheEnabled())
+             view.setDrawingCacheEnabled(true);
+
 
         Bitmap bitmap = Bitmap.createBitmap((int) width, (int) height, config);
         bitmap.eraseColor(Color.WHITE);
@@ -75,21 +75,20 @@ public class ViewUnit {
     }
 
     public static Drawable getDrawable(Context context, int id) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             return context.getResources().getDrawable(id, null);
-        } else {
+        else
             return context.getResources().getDrawable(id);
-        }
+
     }
 
     public static int getStatusBarHeight(Context context) {
         Resources resources = context.getResources();
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            return resources.getDimensionPixelSize(resourceId);
-        }
 
-        return 0;
+        return (resourceId > 0  ? resources.getDimensionPixelSize(resourceId)
+                                : 0);       // same as: if(...) return ???; else return 0;
+
     }
 
     public static int getWindowHeight(Context context) {

@@ -6,106 +6,106 @@
 
 
     <!-- TODO: change when new version code -->
-    <string name="sp_first">
+    <string name="sp_first" translatable="false">
         SP_FIRST_39
     </string>
 
     <!-- General -->
-    <string name="sp_ad_block">
+    <string name="sp_ad_block" translatable="false">
         SP_AD_BLOCK_9
     </string>
-    <string name="sp_anchor">
+    <string name="sp_anchor" translatable="false">
         SP_ANCHOR_9
     </string>
-    <string name="sp_cookies">
+    <string name="sp_cookies" translatable="false">
         SP_COOKIES_9
     </string>
-    <string name="sp_images">
+    <string name="sp_images" translatable="false">
         SP_IMAGES_9
     </string>
-    <string name="sp_javascript">
+    <string name="sp_javascript" translatable="false">
         SP_JAVASCRIPT_9
     </string>
-    <string name="sp_location">
+    <string name="sp_location" translatable="false">
         SP_LOCATION_9
     </string>
-    <string name="sp_multiple_windows">
+    <string name="sp_multiple_windows" translatable="false">
         SP_MULTIPLE_WINDOWS_9
     </string>
-    <string name="sp_notification_priority">
+    <string name="sp_notification_priority" translatable="false">
         SP_NOTIFICATION_PRIORITY_9
     </string>
-    <string name="sp_theme">
+    <string name="sp_theme" translatable="false">
         SP_THEME_9
     </string>
-    <string name="sp_omnibox_control">
+    <string name="sp_omnibox_control" translatable="false">
         SP_OMNIBOX_CONTROL_9
     </string>
-    <string name="sp_passwords">
+    <string name="sp_passwords" translatable="false">
         SP_PASSWORDS_9
     </string>
-    <string name="sp_rendering">
+    <string name="sp_rendering" translatable="false">
         SP_RENDERING_9
     </string>
-    <string name="sp_search_engine">
+    <string name="sp_search_engine" translatable="false">
         SP_SEARCH_ENGINE_9
     </string>
-    <string name="sp_search_engine_custom">
+    <string name="sp_search_engine_custom" translatable="false">
         SP_SEARCH_ENGINE_CUSTOM_9
     </string>
-    <string name="sp_text_reflow">
+    <string name="sp_text_reflow" translatable="false">
         SP_TEXT_REFLOW_9
     </string>
-    <string name="sp_user_agent">
+    <string name="sp_user_agent" translatable="false">
         SP_USER_AGENT_9
     </string>
-    <string name="sp_user_agent_custom">
+    <string name="sp_user_agent_custom" translatable="false">
         SP_USER_AGENT_CUSTOM_9
     </string>
-    <string name="sp_scroll_bar">
+    <string name="sp_scroll_bar" translatable="false">
         SP_SCROLL_BAR_9
     </string>
-    <string name="sp_volume">
+    <string name="sp_volume" translatable="false">
         SP_VOLUME_9
     </string>
 
     <!-- Clear -->
-    <string name="sp_clear_quit">
+    <string name="sp_clear_quit" translatable="false">
         SP_CLEAR_QUIT_9
     </string>
-    <string name="sp_clear_bookmarks">
+    <string name="sp_clear_bookmarks" translatable="false">
         SP_CLEAR_BOOKMARKS_9
     </string>
-    <string name="sp_clear_cache">
+    <string name="sp_clear_cache" translatable="false">
         SP_CLEAR_CACHE_9
     </string>
-    <string name="sp_clear_cookie">
+    <string name="sp_clear_cookie" translatable="false">
         SP_CLEAR_COOKIE_9
     </string>
-    <string name="sp_clear_form_data">
+    <string name="sp_clear_form_data" translatable="false">
         SP_CLEAR_FORM_DATA_9
     </string>
-    <string name="sp_clear_history">
+    <string name="sp_clear_history" translatable="false">
         SP_CLEAR_HISTORY_9
     </string>
-    <string name="sp_clear_passwords">
+    <string name="sp_clear_passwords" translatable="false">
         SP_CLEAR_PASSWORDS_9
     </string>
-    <string name="sp_fullscreen">
+    <string name="sp_fullscreen" translatable="false">
         SP_FULLSCREEN_9
     </string>
-    <string name="sp_restore_tabs">
+    <string name="sp_restore_tabs" translatable="false">
         SP_RESTORE_TABS_9
     </string>
 
     <!-- Readability -->
-    <string name="sp_readability">
+    <string name="sp_readability" translatable="false">
         SP_READABILITY_9
     </string>
-    <string name="sp_readability_token">
+    <string name="sp_readability_token" translatable="false">
         SP_READABILITY_TOKEN_9
     </string>
-    <string name="sp_readability_background">
+    <string name="sp_readability_background" translatable="false">
         SP_READABILITY_BACKGROUND_9
     </string>
 

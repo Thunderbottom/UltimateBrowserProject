@@ -546,5 +546,6 @@
     <string name="title_activity_intro">
         Introducción
     </string>
+    <string name="open_in_app_snackbar_action_title"></string>
 
 </resources>

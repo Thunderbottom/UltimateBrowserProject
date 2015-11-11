@@ -553,11 +553,19 @@
 
     <!-- Open in app -->
     <string name="open_in_app_snackbar_title">
-         In app öffnen?
+        In App öffnen?
     </string>
     <string name="open_in_app_snackbar_action_title">
          ÖFFNEN
     </string>
+
+    <!-- Added translations (found using Android Studio Translations Editor -->
+    <string name="com.crashlytics.CrashSubmissionAlwaysSendTitle">Immer senden</string>
+    <string name="com.crashlytics.CrashSubmissionCancelTitle">Nicht senden</string>
+    <string name="com.crashlytics.CrashSubmissionPromptMessage">Sieht nach einem Absturz aus! Bitte helfen Sie uns das Problem zu beheben, indem Sie einen Absturzbericht senden.</string>
+    <string name="com.crashlytics.CrashSubmissionPromptTitle">Absturzbericht senden?</string>
+    <string name="com.crashlytics.CrashSubmissionSendTitle">Senden</string>
+    <string name="setting_summary_restore_tabs">Tabs aus vorheriger Sitzung wiederherstellen</string>
 
 
 </resources>

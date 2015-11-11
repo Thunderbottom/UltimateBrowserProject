@@ -26354,6 +26354,7 @@ doubleclick-analytics.com
 doubleclick.com
 doubleclick.d4p.net
 doubleclick.de
+doubleclick.google.com
 doubleclick.ne.jp
 doubleclick.net
 doubleclick.net.24489.9178.302br.net

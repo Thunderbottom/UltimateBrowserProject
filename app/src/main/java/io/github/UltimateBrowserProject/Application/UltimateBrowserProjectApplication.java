@@ -16,6 +16,5 @@ public class UltimateBrowserProjectApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
-
     }
 }
