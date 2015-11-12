@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -146,6 +147,11 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private Handler mHandler;
 
+    private static String TAG = "UltimateBrowserProject";
+
+    private static void logt(String msg) {
+        Log.d(TAG, msg);
+    }
 
     private class VideoCompletionListener implements MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener {
         @Override
@@ -330,13 +336,13 @@ public class BrowserActivity extends Activity implements BrowserController {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
             if (sp.getBoolean(getString(R.string.sp_first), true)) {
                 String lang,
-                       langS = Locale.getDefault().getDisplayLanguage();
+                       langS = Resources.getSystem().getConfiguration().locale.getLanguage();
+                logt("Language found: " + langS);
                 switch( BrowserLanguages.valueOf(langS) ) {
                     case de: lang = BrowserUnit.INTRODUCTION_DE;    break;
                     case en: /* Skip this and use 'default: ' for English */
                     default: lang = BrowserUnit.INTRODUCTION_EN;    break;
                 }
-                lang = BrowserUnit.INTRODUCTION_EN;
                 pinAlbums(BrowserUnit.BASE_URL + lang);
                 sp.edit().putBoolean(getString(R.string.sp_first), false).commit();
             }
