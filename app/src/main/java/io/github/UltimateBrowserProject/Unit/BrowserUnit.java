@@ -62,8 +62,9 @@ public class BrowserUnit {
     public static final String BOOKMARK_TITLE = "{title}";
     public static final String BOOKMARK_URL = "{url}";
     public static final String BOOKMARK_TIME = "{time}";
-    public static final String INTRODUCTION_EN = "UltimateBrowserProject_introduction_en.html",
-                               INTRODUCTION_DE = "UltimateBrowserProject_introduction_de.html";
+    public static final String INTRODUCTION_PREFIX = "UltimateBrowserProject_introduction_",
+                               INTRODUCTION_EN = INTRODUCTION_PREFIX + "en" + SUFFIX_HTML,
+                               INTRODUCTION_DE = INTRODUCTION_PREFIX + "de" + SUFFIX_HTML;
 
     public static final String SEARCH_ENGINE_GOOGLE     = "https://www.google.com/search?q=";
     public static final String SEARCH_ENGINE_DUCKDUCKGO = "https://duckduckgo.com/?q=";

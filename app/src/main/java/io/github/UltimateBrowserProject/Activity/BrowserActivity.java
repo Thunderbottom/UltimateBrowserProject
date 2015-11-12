@@ -294,7 +294,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
     }
 
-    private enum browserLanguages {
+    public enum BrowserLanguages {
         en,
         de
     }
@@ -331,7 +331,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             if (sp.getBoolean(getString(R.string.sp_first), true)) {
                 String lang,
                        langS = Locale.getDefault().getDisplayLanguage();
-                switch( browserLanguages.valueOf(langS) ) {
+                switch( BrowserLanguages.valueOf(langS) ) {
                     case de: lang = BrowserUnit.INTRODUCTION_DE;    break;
                     case en: /* Skip this and use 'default: ' for English */
                     default: lang = BrowserUnit.INTRODUCTION_EN;    break;

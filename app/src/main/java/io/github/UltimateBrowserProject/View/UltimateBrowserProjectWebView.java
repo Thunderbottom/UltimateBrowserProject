@@ -3,6 +3,7 @@ package io.github.UltimateBrowserProject.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.ColorMatrix;
@@ -14,11 +15,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+
+import org.xdevs23.debugUtils.StackTraceParser;
 
 import java.net.URISyntaxException;
 
@@ -49,12 +53,18 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private float y2;
     private String url;
 
+    private static String TAG = "UltimateBrowserProject";
+
     private Album album;
     private UltimateBrowserProjectWebViewClient webViewClient;
     private UltimateBrowserProjectWebChromeClient webChromeClient;
     private UltimateBrowserProjectDownloadListener downloadListener;
     private UltimateBrowserProjectClickHandler clickHandler;
     private GestureDetector gestureDetector;
+
+    private static void logt(String msg) {
+        Log.d(TAG, msg);
+    }
 
     private AdBlock adBlock;
     public AdBlock getAdBlock() {
@@ -272,6 +282,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setLayerType(View.LAYER_TYPE_HARDWARE, paint);
     }
 
+
     @Override
     public synchronized void loadUrl(String url) {
         if (url == null || url.trim().isEmpty()) {
@@ -298,7 +309,19 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         }
 
         webViewClient.updateWhite(adBlock.isWhite(url));
-        super.loadUrl(url);
+
+        // Handle introduction html version
+        String finalUrl = url;
+        if ( url.contains(BrowserUnit.INTRODUCTION_PREFIX) )
+            try {
+                finalUrl += "?version=" + this.context.getPackageManager().getPackageInfo(
+                        this.context.getPackageName(), 0
+                ).versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                logt("Exception occured: " + StackTraceParser.parse(e));
+            }
+
+        super.loadUrl(finalUrl);
         if (browserController != null && foreground) {
             browserController.updateBookmarks();
         }
