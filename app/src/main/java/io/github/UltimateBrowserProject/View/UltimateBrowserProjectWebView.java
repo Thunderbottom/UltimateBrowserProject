@@ -135,6 +135,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setWebChromeClient(webChromeClient);
         setDownloadListener(downloadListener);
 
+        // Don't forget to set here the correct offset
+
         UP_SCROLL_THRESHOLD = convertDpToPixels(100);
         DOWN_SCROLL_THRESHOLD = convertDpToPixels(1);
 
@@ -153,8 +155,17 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                 } else if (action == MotionEvent.ACTION_UP) {
                     if ((y1 - y2) > UP_SCROLL_THRESHOLD) {
                         browserController.showOmnibox();
+                        int l = view.getLeft(), t = view.getTop() + 48,
+                            b = view.getBottom() /* put here -48 if you use bottom bar */,
+                            r = view.getRight();
+
+                        view.layout(l, t, r, b);
                     } else if ((y1 - y2) < -DOWN_SCROLL_THRESHOLD) {
                         browserController.hideOmnibox();
+                        int l = view.getLeft(), t = view.getTop() - 48,
+                            b = view.getBottom() /* put here +48 if you use bottom bar */,
+                            r = view.getRight();
+                        view.layout(l, t, r, b);
                     }
                     y2 = 0;
                 }
@@ -323,8 +334,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             }
         }
         logt("Loading url " + finalUrl);
-        if( url.contains("debug:disableHeightAdjust") ) ViewUnit.respectAdjustHeight = false;
-        else super.loadUrl(finalUrl);
+        super.loadUrl(finalUrl);
         if (browserController != null && foreground)
             browserController.updateBookmarks();
 

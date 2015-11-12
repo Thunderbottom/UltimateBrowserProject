@@ -715,6 +715,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 }
             }
         });
+        
     }
 
     /* This Thread checks for Updates in the Background */

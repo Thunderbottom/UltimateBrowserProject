@@ -198,6 +198,8 @@ public class SwitcherPanel extends ViewGroup {
         coverHeight = windowHeight - statusBarHeight - dimen108dp - dimen48dp;
     }
 
+
+
     @Override
     protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
         return new LayoutParams();

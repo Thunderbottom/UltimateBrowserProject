@@ -13,22 +13,41 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
+import org.xdevs23.debugUtils.Logging;
+
 public class ViewUnit {
     public static boolean respectAdjustHeight = true;
+    private static int adjustHeightMultiplier = 1;
+
 
     public static void bound(Context context, View view, boolean isFullScreen) {
         int windowWidth = getWindowWidth(context);
         int windowHeight = getWindowHeight(context);
         int adjustHeight = 0;
         if (!isFullScreen && respectAdjustHeight)
-            adjustHeight += getStatusBarHeight(context);
+            adjustHeight += getStatusBarHeight(context) * adjustHeightMultiplier;
 
 
         int widthSpec  = View.MeasureSpec.makeMeasureSpec(windowWidth,                 View.MeasureSpec.EXACTLY);
         int heightSpec = View.MeasureSpec.makeMeasureSpec(windowHeight - adjustHeight, View.MeasureSpec.EXACTLY);
+        int heightC    = windowHeight - adjustHeight;
 
-        view.measure(widthSpec, heightSpec);
-        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+
+
+        Logging.logt(String.format(
+                "Window height: %s; Window width: %s; "
+              + "Adjust height: %s; status bar height: %s;"
+              + "widthSpec: %s; heightSpec: %s",
+                windowHeight, windowWidth,
+                adjustHeight, getStatusBarHeight(context),
+                widthSpec, heightSpec
+        ));
+
+
+        // view.measure(widthSpec, heightSpec);
+        // view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        view.setMinimumHeight(heightC);
+        view.setMinimumWidth(windowWidth);
     }
 
     public static Bitmap capture(View view, float width, float height, boolean scroll, Bitmap.Config config) {
@@ -89,7 +108,7 @@ public class ViewUnit {
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
 
         return ( (resourceId > 0)  ? resources.getDimensionPixelSize(resourceId)
-                                   : 0);       // same as: if(...) return ???; else return 0;
+                                   : 0);
 
     }
 
