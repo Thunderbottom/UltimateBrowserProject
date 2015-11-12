@@ -69,7 +69,8 @@ For a list of current features provided by the application and many more, Please
 
 * [james9909](http://www.github.com/james9909)
 * [takahirom](http://www.github.com/takahirom)
-* [davimount](https://github.com/davimount)
+* [davimount](https://www.github.com/davimount)
+* [xdevs23](https://www.github.com/xdevs23)
 
 
 
