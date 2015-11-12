@@ -20,7 +20,7 @@ For a list of current features provided by the application and many more, Please
 
 ## Downloads - 
 
-[Download Latest Version 2.0(https://github.com/balzathor/UltimateBrowserProject/releases/download/latest/UltimateBrowserProject.apk)
+[Download Latest Version 1.4.6](https://github.com/balzathor/UltimateBrowserProject/releases/download/latest/UltimateBrowserProject.apk)
 
 [Download Latest Beta Version (1.0β)](https://github.com/balzathor/UltimateBrowserProject/releases/download/latestbeta/UltimateBrowserProject.apk)
 
