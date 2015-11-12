@@ -4,6 +4,10 @@
 
 # Files for the Dalvik VM
 *.dex
+*.odex
+
+# Compiled resource files
+*.arsc
 
 # Java class files
 *.class
@@ -25,6 +29,9 @@ proguard/
 
 # Log Files
 *.log
+
+# Custom key store for building without original keystore
+Custom.jks
 
 # =========================
 # Operating System Files
