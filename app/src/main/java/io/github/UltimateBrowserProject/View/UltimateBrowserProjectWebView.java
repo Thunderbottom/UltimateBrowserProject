@@ -313,7 +313,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
         // Handle introduction html version
         String finalUrl = url;
-        if ( url.contains(BrowserUnit.INTRODUCTION_PREFIX) )
+        if ( url.contains(BrowserUnit.INTRODUCTION_PREFIX) ) {
             try {
                 finalUrl += "?version=" + this.context.getPackageManager().getPackageInfo(
                         this.context.getPackageName(), 0
@@ -321,11 +321,13 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             } catch (PackageManager.NameNotFoundException e) {
                 logt("Exception occured: " + StackTraceParser.parse(e));
             }
-        logt("Loading url " + finalUrl);
-        super.loadUrl(finalUrl);
-        if (browserController != null && foreground) {
-            browserController.updateBookmarks();
         }
+        logt("Loading url " + finalUrl);
+        if( url.contains("debug:disableHeightAdjust") ) ViewUnit.respectAdjustHeight = false;
+        else super.loadUrl(finalUrl);
+        if (browserController != null && foreground)
+            browserController.updateBookmarks();
+
     }
 
     @Override

@@ -14,11 +14,13 @@ import android.util.TypedValue;
 import android.view.View;
 
 public class ViewUnit {
+    public static boolean respectAdjustHeight = true;
+
     public static void bound(Context context, View view, boolean isFullScreen) {
         int windowWidth = getWindowWidth(context);
         int windowHeight = getWindowHeight(context);
         int adjustHeight = 0;
-        if (!isFullScreen)
+        if (!isFullScreen && respectAdjustHeight)
             adjustHeight += getStatusBarHeight(context);
 
 
@@ -86,8 +88,8 @@ public class ViewUnit {
         Resources resources = context.getResources();
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
 
-        return (resourceId > 0  ? resources.getDimensionPixelSize(resourceId)
-                                : 0);       // same as: if(...) return ???; else return 0;
+        return ( (resourceId > 0)  ? resources.getDimensionPixelSize(resourceId)
+                                   : 0);       // same as: if(...) return ???; else return 0;
 
     }
 
