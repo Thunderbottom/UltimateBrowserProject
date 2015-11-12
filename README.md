@@ -1,6 +1,6 @@
 ![Launcher Icon](/Artworks/UBP Banner.png)
 
-[![GitHub version](https://badge.fury.io/gh/balzathor%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/balzathor%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/balzathor/UltimateBrowserProject.svg)](https://travis-ci.org/balzathor/UltimateBrowserProject)
+[![GitHub version](https://badge.fury.io/gh/balzathor%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/balzathor%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/balzathor/UltimateBrowserProject.svg)](https://travis-ci.org/balzathor/UltimateBrowserProject)     [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/balzathor/ultimatebrowserproject/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 ===
 Open source, lightweight Android Browser.
 
@@ -101,5 +101,5 @@ For a list of current features provided by the application and many more, Please
 [Apache License 2.0](http://directory.fsf.org/wiki/License:Apache2.0)
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/balzathor/ultimatebrowserproject/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 
