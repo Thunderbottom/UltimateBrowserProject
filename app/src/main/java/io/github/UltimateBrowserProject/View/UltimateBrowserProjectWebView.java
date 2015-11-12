@@ -285,6 +285,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
     @Override
     public synchronized void loadUrl(String url) {
+
         if (url == null || url.trim().isEmpty()) {
             UltimateBrowserProjectToast.show(context, R.string.toast_load_error);
             return;
@@ -320,7 +321,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             } catch (PackageManager.NameNotFoundException e) {
                 logt("Exception occured: " + StackTraceParser.parse(e));
             }
-
+        logt("Loading url " + finalUrl);
         super.loadUrl(finalUrl);
         if (browserController != null && foreground) {
             browserController.updateBookmarks();
