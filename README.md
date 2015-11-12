@@ -99,3 +99,7 @@ For a list of current features provided by the application and many more, Please
 
 
 [Apache License 2.0](http://directory.fsf.org/wiki/License:Apache2.0)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/balzathor/ultimatebrowserproject/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
