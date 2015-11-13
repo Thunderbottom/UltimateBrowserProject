@@ -23,6 +23,7 @@ import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -70,6 +71,8 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import org.askerov.dynamicgrid.DynamicGridView;
+import org.xdevs23.debugUtils.Logging;
+import org.xdevs23.threads.Sleeper;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -143,7 +146,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                         searchCancel;
 
     private Button relayoutOK;
-    private CoordinatorLayout contentFrame;
+    private static CoordinatorLayout contentFrame = null;
 
     private Handler mHandler;
 
@@ -172,6 +175,8 @@ public class BrowserActivity extends Activity implements BrowserController {
     private WebChromeClient.CustomViewCallback customViewCallback;
     private ValueCallback<Uri> uploadMsg = null;
     private ValueCallback<Uri[]> filePathCallback = null;
+
+    public static RelativeLayout webViewPlaceHolder = null;
 
     private static boolean quit = false;
     private boolean create = true, restore;
@@ -565,6 +570,10 @@ public class BrowserActivity extends Activity implements BrowserController {
         return false;
     }
 
+    public static void removeWebViewPlaceholder() {
+        contentFrame.removeView(webViewPlaceHolder);
+    }
+
     private void initOmnibox() {
         omnibox         = (RelativeLayout) findViewById(R.id.main_omnibox);
         inputBox        = (AutoCompleteTextView) findViewById(R.id.main_omnibox_input);
@@ -573,6 +582,9 @@ public class BrowserActivity extends Activity implements BrowserController {
         omniboxForward  = (ImageButton) findViewById(R.id.main_omnibox_forward);
         omniboxOverflow = (ImageButton) findViewById(R.id.main_omnibox_overflow);
         progressBar     = (ProgressBar) findViewById(R.id.main_progress_bar);
+
+
+
         inputBox.setOnTouchListener(new SwipeToBoundListener(omnibox, new SwipeToBoundListener.BoundCallback() {
             private KeyListener keyListener = inputBox.getKeyListener();
 
@@ -715,7 +727,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 }
             }
         });
-        
+
     }
 
     /* This Thread checks for Updates in the Background */
@@ -1119,6 +1131,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             webView.setAlbumCover(ViewUnit.capture(webView, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
             webView.setAlbumTitle(getString(R.string.album_untitled));
             setBound(webView);
+            contentFrame.addView(webView);
             webView.loadUrl(url);
 
             BrowserContainer.add(webView);
@@ -1126,7 +1139,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             albumView.setVisibility(View.VISIBLE);
             switcherContainer.addView(albumView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             contentFrame.removeAllViews();
-            contentFrame.addView(webView);
+
 
             if (currentAlbumController != null)
                 currentAlbumController.deactivate();
@@ -2207,7 +2220,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     }
 
     @Override
-    public void hideOmnibox() {
+    public void hideOmnibox(View view) {
         if (omnibox.getVisibility() != View.GONE) {
             Animation hide;
             if (anchor == 0) {
@@ -2216,30 +2229,28 @@ public class BrowserActivity extends Activity implements BrowserController {
                     contentFrame.addView(omnibox);
                     omnibox.bringToFront();
                 }
-                hide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_up);
+
             } else {
                 return;
             }
-            hide.setAnimationListener(new Animation.AnimationListener() {
+            omnibox.setVisibility(View.GONE);
+            CoordinatorLayout.LayoutParams p = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            CoordinatorLayout.LayoutParams pw = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
 
-                @Override
-                public void onAnimationStart(Animation animation) {}
+            p.setMargins (0, -96, 0, 0);
+            pw.setMargins(0, 0,   0, 0);
 
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    omnibox.setVisibility(View.GONE);
-                    setBound((View) currentAlbumController);
-                }
+            omnibox.setLayoutParams(p);
+            view.setLayoutParams(pw);
 
-                @Override
-                public void onAnimationRepeat(Animation animation) {}
-            });
-            omnibox.startAnimation(hide);
         }
     }
 
     @Override
-    public void showOmnibox() {
+    public void showOmnibox(View view) {
+
         if (omnibox.getVisibility() != View.VISIBLE) {
             Animation show;
             if (anchor == 0) {
@@ -2252,29 +2263,30 @@ public class BrowserActivity extends Activity implements BrowserController {
             } else {
                 return;
             }
+            omnibox.setVisibility(View.VISIBLE);
+            CoordinatorLayout.LayoutParams p = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            CoordinatorLayout.LayoutParams pw = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
 
-            show.setAnimationListener(new Animation.AnimationListener() {
+                p.setMargins (0, 0,  0, 0);
+                pw.setMargins(0, 96, 0, 0);
 
-                @Override
-                public void onAnimationStart(Animation animation) {}
+                omnibox.setLayoutParams(p);
+                view.setLayoutParams(pw);
 
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    omnibox.setVisibility(View.VISIBLE);
-                    setBound((View) currentAlbumController);
-                }
+                omnibox.refreshDrawableState();
+                view.refreshDrawableState();
 
-                @Override
-                public void onAnimationRepeat(Animation animation) {}
-            });
-            omnibox.startAnimation(show);
         }
     }
+
+
 
     private void setFullscreen(boolean fullscreen) {
         WindowManager.LayoutParams attrs = getWindow().getAttributes();
         if (fullscreen) {
-            attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+            attrs.flags |=  WindowManager.LayoutParams.FLAG_FULLSCREEN;
         } else {
             attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
         }

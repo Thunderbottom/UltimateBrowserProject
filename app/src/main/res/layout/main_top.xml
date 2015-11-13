@@ -99,7 +99,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/layout_height_48dp"
                         android:minHeight="@dimen/layout_height_48dp"
-                        android:background="@color/background_dark">
+                        android:background="@color/background_dark" >
 
             <ImageButton android:id="@+id/main_omnibox_overflow"
                          android:contentDescription="@null"

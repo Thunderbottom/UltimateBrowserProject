@@ -286,6 +286,7 @@ public class SwitcherPanel extends ViewGroup {
         int paddingLeft = getPaddingLeft();
         int paddingTop = getPaddingTop();
 
+
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             LayoutParams layoutParams = (LayoutParams) child.getLayoutParams();
@@ -326,7 +327,7 @@ public class SwitcherPanel extends ViewGroup {
             top = bottom - ((int) (ViewUnit.dp2px(getContext(), shadowHeight)));
         }
 
-        shadowDrawable.setBounds(left, top, right, bottom);
+        shadowDrawable.setBounds(left, top + 96, right, bottom);
         shadowDrawable.draw(canvas);
     }
 

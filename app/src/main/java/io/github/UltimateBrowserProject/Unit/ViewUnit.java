@@ -16,38 +16,36 @@ import android.view.View;
 import org.xdevs23.debugUtils.Logging;
 
 public class ViewUnit {
-    public static boolean respectAdjustHeight = true;
+    public static boolean respectAdjustHeight = true,
+                          disableAdjusting    = true;
     private static int adjustHeightMultiplier = 1;
 
 
-    public static void bound(Context context, View view, boolean isFullScreen) {
-        int windowWidth = getWindowWidth(context);
-        int windowHeight = getWindowHeight(context);
-        int adjustHeight = 0;
-        if (!isFullScreen && respectAdjustHeight)
-            adjustHeight += getStatusBarHeight(context) * adjustHeightMultiplier;
+    public static void bound(Context context, View view, boolean isFullScreen) { // Don't need this?!
+        if(!disableAdjusting) {
+            int windowWidth = getWindowWidth(context);
+            int windowHeight = getWindowHeight(context);
+            int adjustHeight = 0;
+            if (!isFullScreen && respectAdjustHeight)
+                adjustHeight += getStatusBarHeight(context) * adjustHeightMultiplier;
 
 
-        int widthSpec  = View.MeasureSpec.makeMeasureSpec(windowWidth,                 View.MeasureSpec.EXACTLY);
-        int heightSpec = View.MeasureSpec.makeMeasureSpec(windowHeight - adjustHeight, View.MeasureSpec.EXACTLY);
-        int heightC    = windowHeight - adjustHeight;
+            int widthSpec = View.MeasureSpec.makeMeasureSpec(windowWidth, View.MeasureSpec.EXACTLY);
+            int heightSpec = View.MeasureSpec.makeMeasureSpec(windowHeight - adjustHeight, View.MeasureSpec.EXACTLY);
+            int heightC = windowHeight - adjustHeight;
 
+            Logging.logt(String.format(
+                    "Window height: %s; Window width: %s; "
+                            + "Adjust height: %s; status bar height: %s;"
+                            + "widthSpec: %s; heightSpec: %s",
+                    windowHeight, windowWidth,
+                    adjustHeight, getStatusBarHeight(context),
+                    widthSpec, heightSpec
+            ));
 
-
-        Logging.logt(String.format(
-                "Window height: %s; Window width: %s; "
-              + "Adjust height: %s; status bar height: %s;"
-              + "widthSpec: %s; heightSpec: %s",
-                windowHeight, windowWidth,
-                adjustHeight, getStatusBarHeight(context),
-                widthSpec, heightSpec
-        ));
-
-
-        // view.measure(widthSpec, heightSpec);
-        // view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-        view.setMinimumHeight(heightC);
-        view.setMinimumWidth(windowWidth);
+            view.measure(widthSpec, heightSpec);
+            view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        }
     }
 
     public static Bitmap capture(View view, float width, float height, boolean scroll, Bitmap.Config config) {

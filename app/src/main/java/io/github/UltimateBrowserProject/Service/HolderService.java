@@ -47,10 +47,10 @@ public class HolderService extends Service implements BrowserController {
     public void onCreateView(WebView view, Message resultMsg) {}
 
     @Override
-    public void hideOmnibox() {}
+    public void hideOmnibox(View view) {}
 
     @Override
-    public void showOmnibox() {}
+    public void showOmnibox(View view) {}
 
     @Override
     public boolean onShowCustomView(View view, int requestedOrientation, WebChromeClient.CustomViewCallback callback) {

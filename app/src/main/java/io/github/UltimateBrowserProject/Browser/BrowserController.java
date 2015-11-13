@@ -34,7 +34,7 @@ public interface BrowserController {
 
     void onLongPress(String url);
 
-    void hideOmnibox();
+    void hideOmnibox(View view);
 
-    void showOmnibox();
+    void showOmnibox(View view);
 }
