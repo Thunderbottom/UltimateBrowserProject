@@ -72,6 +72,7 @@ import android.widget.VideoView;
 
 import org.askerov.dynamicgrid.DynamicGridView;
 import org.xdevs23.debugUtils.Logging;
+import org.xdevs23.debugUtils.StackTraceParser;
 import org.xdevs23.threads.Sleeper;
 
 import java.io.BufferedReader;
@@ -131,7 +132,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                         switcherAdd,
                         switcherPrint;
 
-    private RelativeLayout omnibox;
+    public static RelativeLayout omnibox = null;
     private AutoCompleteTextView inputBox;
     private ImageButton omniboxBookmark,
                         omniboxRefresh,
@@ -147,6 +148,8 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private Button relayoutOK;
     private static CoordinatorLayout contentFrame = null;
+
+    private static UltimateBrowserProjectWebView ubpWebView = null;
 
     private Handler mHandler;
 
@@ -240,6 +243,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         });
 
+
         dimen156dp = getResources().getDimensionPixelSize(R.dimen.layout_width_156dp);
         dimen144dp = getResources().getDimensionPixelSize(R.dimen.layout_width_144dp);
         dimen117dp = getResources().getDimensionPixelSize(R.dimen.layout_height_117dp);
@@ -252,11 +256,14 @@ public class BrowserActivity extends Activity implements BrowserController {
         relayoutOK = (Button) findViewById(R.id.main_relayout_ok);
         contentFrame = (CoordinatorLayout) findViewById(R.id.main_content);
 
+
         new AdBlock(this); // For AdBlock cold boot
         dispatchIntent(getIntent());
 
         if (restore) openSavedTabs();
         else pinAlbums(null);
+
+
 
     }
 
@@ -584,6 +591,17 @@ public class BrowserActivity extends Activity implements BrowserController {
         progressBar     = (ProgressBar) findViewById(R.id.main_progress_bar);
 
 
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        p = (LinearLayout.LayoutParams) omnibox.getLayoutParams();
+
+        p.height = 96;
+        p.weight =  1;
+
+        p.setMargins(0, 0, 0, ViewUnit.getWindowHeight(getApplicationContext()) - 96);
+
+        omnibox.setLayoutParams(p);
 
         inputBox.setOnTouchListener(new SwipeToBoundListener(omnibox, new SwipeToBoundListener.BoundCallback() {
             private KeyListener keyListener = inputBox.getKeyListener();
@@ -1131,6 +1149,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             webView.setAlbumCover(ViewUnit.capture(webView, dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
             webView.setAlbumTitle(getString(R.string.album_untitled));
             setBound(webView);
+            ubpWebView = webView;
             contentFrame.addView(webView);
             webView.loadUrl(url);
 
@@ -2240,7 +2259,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     ViewGroup.LayoutParams.WRAP_CONTENT);
 
             p.setMargins (0, -96, 0, 0);
-            pw.setMargins(0, 0,   0, 0);
+            pw.setMargins(0, 0, 0, 0);
 
             omnibox.setLayoutParams(p);
             view.setLayoutParams(pw);
@@ -2263,20 +2282,21 @@ public class BrowserActivity extends Activity implements BrowserController {
             } else {
                 return;
             }
+            RelativeLayout omnibox = (RelativeLayout) findViewById(R.id.main_omnibox);
             omnibox.setVisibility(View.VISIBLE);
             CoordinatorLayout.LayoutParams p = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             CoordinatorLayout.LayoutParams pw = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
 
-                p.setMargins (0, 0,  0, 0);
-                pw.setMargins(0, 96, 0, 0);
+            p.setMargins(0, 0, 0, 0);
+            pw.setMargins(0, 96, 0, 0);
 
-                omnibox.setLayoutParams(p);
-                view.setLayoutParams(pw);
+            omnibox.setLayoutParams(p);
+            view.setLayoutParams(pw);
 
-                omnibox.refreshDrawableState();
-                view.refreshDrawableState();
+            omnibox.refreshDrawableState();
+            view.refreshDrawableState();
 
         }
     }

@@ -240,40 +240,43 @@ public class SwitcherPanel extends ViewGroup {
         int layoutHeight = heightSize - getPaddingTop() - getPaddingBottom();
 
         for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
-            LayoutParams layoutParams = (LayoutParams) child.getLayoutParams();
+            try {
+                View child = getChildAt(i);
 
-            int width = layoutWidth;
-            int height = layoutHeight;
-            if (child == switcherView) {
-                height = (int) (height - coverHeight);
-                width = width - layoutParams.leftMargin - layoutParams.rightMargin;
-            } else if (child == mainView) {
-                height = height - layoutParams.topMargin;
-            }
+                LayoutParams layoutParams = (LayoutParams) child.getLayoutParams();
 
-            int childWidthSpec;
-            if (layoutParams.width == ViewGroup.LayoutParams.WRAP_CONTENT) {
-                childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST);
-            } else if (layoutParams.width == ViewGroup.LayoutParams.MATCH_PARENT) {
-                childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
-            } else {
-                childWidthSpec = MeasureSpec.makeMeasureSpec(layoutParams.width, MeasureSpec.EXACTLY);
-            }
+                int width = layoutWidth;
+                int height = layoutHeight;
+                if (child == switcherView) {
+                    height = (int) (height - coverHeight);
+                    width = width - layoutParams.leftMargin - layoutParams.rightMargin;
+                } else if (child == mainView) {
+                    height = height - layoutParams.topMargin;
+                }
 
-            int childHeightSpec;
-            if (layoutParams.height == ViewGroup.LayoutParams.WRAP_CONTENT) {
-                childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST);
-            } else if (layoutParams.height == ViewGroup.LayoutParams.MATCH_PARENT) {
-                childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
-            } else {
-                childHeightSpec = MeasureSpec.makeMeasureSpec(layoutParams.height, MeasureSpec.EXACTLY);
-            }
+                int childWidthSpec;
+                if (layoutParams.width == ViewGroup.LayoutParams.WRAP_CONTENT) {
+                    childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST);
+                } else if (layoutParams.width == ViewGroup.LayoutParams.MATCH_PARENT) {
+                    childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
+                } else {
+                    childWidthSpec = MeasureSpec.makeMeasureSpec(layoutParams.width, MeasureSpec.EXACTLY);
+                }
 
-            child.measure(childWidthSpec, childHeightSpec);
-            if (child == mainView) {
-                slideRange = mainView.getMeasuredHeight() - coverHeight;
-            }
+                int childHeightSpec;
+                if (layoutParams.height == ViewGroup.LayoutParams.WRAP_CONTENT) {
+                    childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST);
+                } else if (layoutParams.height == ViewGroup.LayoutParams.MATCH_PARENT) {
+                    childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+                } else {
+                    childHeightSpec = MeasureSpec.makeMeasureSpec(layoutParams.height, MeasureSpec.EXACTLY);
+                }
+
+                child.measure(childWidthSpec, childHeightSpec);
+                if (child == mainView) {
+                    slideRange = mainView.getMeasuredHeight() - coverHeight;
+                }
+            } catch(Exception ex) {}
         }
 
         setMeasuredDimension(widthSize, heightSize);
@@ -288,23 +291,25 @@ public class SwitcherPanel extends ViewGroup {
 
 
         for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
-            LayoutParams layoutParams = (LayoutParams) child.getLayoutParams();
+            try {
+                View child = getChildAt(i);
+                LayoutParams layoutParams = (LayoutParams) child.getLayoutParams();
 
-            int top = paddingTop;
-            if (child == mainView) {
-                top = computeTopPosition(slideOffset);
-            }
-            if (child == switcherView && anchor == Anchor.BOTTOM) {
-                top = computeTopPosition(slideOffset) + mainView.getMeasuredHeight();
-            }
+                int top = paddingTop;
+                if (child == mainView) {
+                    top = computeTopPosition(slideOffset);
+                }
+                if (child == switcherView && anchor == Anchor.BOTTOM) {
+                    top = computeTopPosition(slideOffset) + mainView.getMeasuredHeight();
+                }
 
-            int height = child.getMeasuredHeight();
-            int bottom = top + height;
-            int left = paddingLeft + layoutParams.leftMargin;
-            int right = left + child.getMeasuredWidth();
+                int height = child.getMeasuredHeight();
+                int bottom = top + height;
+                int left = paddingLeft + layoutParams.leftMargin;
+                int right = left + child.getMeasuredWidth();
 
-            child.layout(left, top, right, bottom);
+                child.layout(left, top, right, bottom);
+            } catch(Exception ex) {}
         }
 
         applyParallaxForCurrentSlideOffset();

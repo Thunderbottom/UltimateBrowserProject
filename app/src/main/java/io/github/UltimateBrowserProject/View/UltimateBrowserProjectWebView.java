@@ -14,8 +14,10 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.design.widget.CoordinatorLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -65,6 +67,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private UltimateBrowserProjectDownloadListener downloadListener;
     private UltimateBrowserProjectClickHandler clickHandler;
     private GestureDetector gestureDetector;
+
+    private static UltimateBrowserProjectWebView thisWebView = null;
 
     private static void logt(String msg) {
         Log.d(TAG, msg);
@@ -118,6 +122,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     }
 
     private synchronized void initWebView() {
+        thisWebView = this;
 
         RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -141,8 +146,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setWillNotCacheDrawing(false);
         setSaveEnabled(true);
 
-        setBackground(null);
-        getRootView().setBackground(null);
+        getRootView().setBackgroundColor(context.getResources().getColor(R.color.white));
         setBackgroundColor(context.getResources().getColor(R.color.white));
 
         setFocusable(true);
@@ -156,11 +160,13 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setDownloadListener(downloadListener);
 
 
-        UP_SCROLL_THRESHOLD = convertDpToPixels(100);
+        UP_SCROLL_THRESHOLD = convertDpToPixels(60);
         DOWN_SCROLL_THRESHOLD = convertDpToPixels(1);
 
         setOnTouchListener(new OnTouchListener() {
             boolean isOmni = true;
+            int ym1 = 0, ym2 = 0, lastM = 0, cpo = 0, cpwo = 96;
+
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (view != null && !view.hasFocus()) {
@@ -172,17 +178,37 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
                 if (action == MotionEvent.ACTION_DOWN) {
                     y2 = y1;
+                    ym1 = (int)y1;
                 } else if (action == MotionEvent.ACTION_UP) {
-
-
-                    if ((y1 - y2) > UP_SCROLL_THRESHOLD) {
-                        browserController.showOmnibox(view);
-
-
-                    } else if ((y1 - y2) < -DOWN_SCROLL_THRESHOLD) {
-                        browserController.hideOmnibox(view);
-                    }
+                    ym1   = 0;
+                    ym2   = 0;
+                    lastM = 0;
+                    cpo   = 0;
+                    cpwo  = 96;
                     y2 = 0;
+                } else if (action == MotionEvent.ACTION_MOVE) {
+                    CoordinatorLayout.LayoutParams p  = (CoordinatorLayout.LayoutParams)BrowserActivity.omnibox.getLayoutParams();
+                    CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)thisWebView.getLayoutParams();
+                    lastM = (int)motionEvent.getY();
+                    ym2   = 96 - (lastM - ym1);
+                    cpo  -= ym2 - 96;
+                    cpwo  = cpo + 96;
+                    if      (cpwo <   0)  cpwo =   0;
+                    else if (cpwo >  96)  cpwo =  96;
+                    if      (cpo  >   0)  cpo  =   0;
+                    else if (cpo  < -96)  cpo  = -96;
+                    try {
+                        if((lastM - ym1) != 0) {
+                            p.setMargins (0, cpo,  0, 0);
+                            pw.setMargins(0, cpwo, 0, 0);
+
+                            BrowserActivity.omnibox.setLayoutParams(p);
+                            thisWebView.setLayoutParams(pw);
+                        }
+                    } catch (Exception ex) {
+                        Logging.logt(StackTraceParser.parse(ex));
+                    }
+
                 }
                 gestureDetector.onTouchEvent(motionEvent);
                 return false;
@@ -349,6 +375,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             }
         }
         logt("Loading url " + finalUrl);
+        thisWebView.setMinimumHeight(ViewUnit.getWindowHeight(context) - 96);
         super.loadUrl(finalUrl);
         if (browserController != null && foreground)
             browserController.updateBookmarks();
