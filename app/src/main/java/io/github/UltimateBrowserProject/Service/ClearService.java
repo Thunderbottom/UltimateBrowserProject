@@ -7,8 +7,6 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 
 import io.github.UltimateBrowserProject.Activity.ClearActivity;
-import io.github.UltimateBrowserProject.R;
-import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 
 public class ClearService extends Service {
     @Override

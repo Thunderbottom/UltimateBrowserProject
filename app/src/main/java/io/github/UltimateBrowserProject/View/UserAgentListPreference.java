@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
 import io.github.UltimateBrowserProject.R;
 
 public class UserAgentListPreference extends ListPreference {

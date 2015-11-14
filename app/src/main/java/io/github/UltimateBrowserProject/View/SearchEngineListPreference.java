@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 

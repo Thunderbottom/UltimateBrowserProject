@@ -23,7 +23,6 @@ import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -71,9 +70,6 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import org.askerov.dynamicgrid.DynamicGridView;
-import org.xdevs23.debugUtils.Logging;
-import org.xdevs23.debugUtils.StackTraceParser;
-import org.xdevs23.threads.Sleeper;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -85,7 +81,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 

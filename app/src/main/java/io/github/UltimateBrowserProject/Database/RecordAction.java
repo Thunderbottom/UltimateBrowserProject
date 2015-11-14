@@ -4,12 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import io.github.UltimateBrowserProject.Unit.RecordUnit;
-import io.github.UltimateBrowserProject.View.GridItem;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import io.github.UltimateBrowserProject.Unit.RecordUnit;
+import io.github.UltimateBrowserProject.View.GridItem;
 
 public class RecordAction {
     private SQLiteDatabase database;

@@ -3,12 +3,13 @@ package io.github.UltimateBrowserProject.Task;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+
+import java.io.File;
+
 import io.github.UltimateBrowserProject.Fragment.SettingFragment;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
-
-import java.io.File;
 
 public class ImportBookmarksTask extends AsyncTask<Void, Void, Boolean> {
     private SettingFragment fragment;

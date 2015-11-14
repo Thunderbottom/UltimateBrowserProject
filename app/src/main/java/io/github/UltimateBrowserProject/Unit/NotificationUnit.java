@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+
 import io.github.UltimateBrowserProject.Activity.BrowserActivity;
 import io.github.UltimateBrowserProject.Browser.AlbumController;
 import io.github.UltimateBrowserProject.Browser.BrowserContainer;

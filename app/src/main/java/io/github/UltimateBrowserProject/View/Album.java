@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import io.github.UltimateBrowserProject.Browser.AlbumController;
 import io.github.UltimateBrowserProject.Browser.BrowserController;
 import io.github.UltimateBrowserProject.R;

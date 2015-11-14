@@ -7,10 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import io.github.UltimateBrowserProject.Browser.AdBlock;
-import io.github.UltimateBrowserProject.R;
 
 import java.util.List;
+
+import io.github.UltimateBrowserProject.Browser.AdBlock;
+import io.github.UltimateBrowserProject.R;
 
 public class WhitelistAdapter extends ArrayAdapter<String> {
     private Context context;

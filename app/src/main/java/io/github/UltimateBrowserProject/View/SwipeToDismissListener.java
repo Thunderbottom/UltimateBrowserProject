@@ -3,7 +3,11 @@ package io.github.UltimateBrowserProject.View;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.view.*;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 
 public class SwipeToDismissListener implements View.OnTouchListener {
     public interface DismissCallback {

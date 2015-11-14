@@ -2,6 +2,7 @@ package io.github.UltimateBrowserProject.Browser;
 
 import android.os.Handler;
 import android.os.Message;
+
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class UltimateBrowserProjectClickHandler extends Handler {

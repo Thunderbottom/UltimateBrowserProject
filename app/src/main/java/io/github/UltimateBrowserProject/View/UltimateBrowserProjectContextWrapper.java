@@ -3,6 +3,7 @@ package io.github.UltimateBrowserProject.View;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Resources;
+
 import io.github.UltimateBrowserProject.R;
 
 public class UltimateBrowserProjectContextWrapper extends ContextWrapper {

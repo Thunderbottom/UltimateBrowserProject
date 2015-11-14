@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
+
 import io.github.UltimateBrowserProject.Browser.AlbumController;
 import io.github.UltimateBrowserProject.Browser.BrowserController;
 import io.github.UltimateBrowserProject.R;

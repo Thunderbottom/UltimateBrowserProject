@@ -6,9 +6,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.webkit.DownloadListener;
 import android.webkit.URLUtil;
+
 import io.github.UltimateBrowserProject.R;
-import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
+import io.github.UltimateBrowserProject.Unit.IntentUnit;
 
 public class UltimateBrowserProjectDownloadListener implements DownloadListener {
     private Context context;

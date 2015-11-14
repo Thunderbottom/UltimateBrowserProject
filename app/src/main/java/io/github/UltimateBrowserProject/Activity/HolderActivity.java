@@ -11,7 +11,11 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.R;

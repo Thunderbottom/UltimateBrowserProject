@@ -3,7 +3,11 @@ package io.github.UltimateBrowserProject.Browser;
 import android.net.Uri;
 import android.os.Message;
 import android.view.View;
-import android.webkit.*;
+import android.webkit.GeolocationPermissions;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class UltimateBrowserProjectWebChromeClient extends WebChromeClient {

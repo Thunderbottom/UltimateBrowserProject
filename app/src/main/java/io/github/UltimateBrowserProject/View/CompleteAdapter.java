@@ -11,7 +11,12 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.R;

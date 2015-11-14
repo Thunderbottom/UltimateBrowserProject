@@ -2,6 +2,7 @@ package io.github.UltimateBrowserProject.Browser;
 
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class UltimateBrowserProjectGestureListener extends GestureDetector.SimpleOnGestureListener {

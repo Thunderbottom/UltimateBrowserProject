@@ -1,13 +1,15 @@
 package io.github.UltimateBrowserProject.Task;
 
 import android.os.AsyncTask;
-import io.github.UltimateBrowserProject.Activity.ReadabilityActivity;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import io.github.UltimateBrowserProject.Activity.ReadabilityActivity;
 
 public class ReadabilityTask extends AsyncTask<Void, Void, Boolean> {
     private String query = null;

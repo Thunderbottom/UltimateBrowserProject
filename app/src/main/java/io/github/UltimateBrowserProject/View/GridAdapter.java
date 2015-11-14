@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import io.github.UltimateBrowserProject.R;
-import io.github.UltimateBrowserProject.Unit.BrowserUnit;
-import io.github.UltimateBrowserProject.Unit.ViewUnit;
+
 import org.askerov.dynamicgrid.BaseDynamicGridAdapter;
 
 import java.util.List;
+
+import io.github.UltimateBrowserProject.R;
+import io.github.UltimateBrowserProject.Unit.BrowserUnit;
+import io.github.UltimateBrowserProject.Unit.ViewUnit;
 
 public class GridAdapter extends BaseDynamicGridAdapter {
     private static class Holder {

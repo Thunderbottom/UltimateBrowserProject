@@ -1,5 +1,6 @@
 package io.github.UltimateBrowserProject.View;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,7 +18,6 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.DragEvent;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,7 +32,14 @@ import org.xdevs23.debugUtils.StackTraceParser;
 import java.net.URISyntaxException;
 
 import io.github.UltimateBrowserProject.Activity.BrowserActivity;
-import io.github.UltimateBrowserProject.Browser.*;
+import io.github.UltimateBrowserProject.Browser.AdBlock;
+import io.github.UltimateBrowserProject.Browser.AlbumController;
+import io.github.UltimateBrowserProject.Browser.BrowserController;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectClickHandler;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectDownloadListener;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectGestureListener;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectWebChromeClient;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectWebViewClient;
 import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.Database.RecordAction;
 import io.github.UltimateBrowserProject.R;
@@ -50,16 +57,16 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
     private Context context;
     private int flag = BrowserUnit.FLAG_UltimateBrowserProject;
-    private int dimen144dp;
-    private int dimen108dp;
+    private int dimen144dp,
+                dimen108dp;
     private int animTime;
-    private int UP_SCROLL_THRESHOLD;
-    private int DOWN_SCROLL_THRESHOLD;
     private float y1;
-    private float y2;
-    private String url;
 
-    private static String TAG = "UltimateBrowserProject";
+    @SuppressWarnings("unused")
+    String url;
+
+    @SuppressWarnings("unused")
+    static String TAG = "UltimateBrowserProject";
 
     private Album album;
     private UltimateBrowserProjectWebViewClient webViewClient;
@@ -85,6 +92,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     }
 
     private String userAgentOriginal;
+    @SuppressWarnings("unused")
     public String getUserAgentOriginal() {
         return userAgentOriginal;
     }
@@ -137,7 +145,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         this.setLayoutParams(p);
 
         this.setMinimumHeight(ViewUnit.getWindowHeight(context) - 96);
-        this.setMinimumWidth(ViewUnit.getWindowWidth  (context));
+        this.setMinimumWidth(ViewUnit.getWindowWidth(context));
 
         setAlwaysDrawnWithCacheEnabled(true);
         setAnimationCacheEnabled(true);
@@ -159,12 +167,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setWebChromeClient(webChromeClient);
         setDownloadListener(downloadListener);
 
-
-        UP_SCROLL_THRESHOLD = convertDpToPixels(60);
-        DOWN_SCROLL_THRESHOLD = convertDpToPixels(1);
-
         setOnTouchListener(new OnTouchListener() {
-            boolean isOmni = true;
             int ym1 = 0, ym2 = 0, lastM = 0, cpo = 0, cpwo = 96;
 
             @Override
@@ -177,15 +180,26 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                 y1 = motionEvent.getY();
 
                 if (action == MotionEvent.ACTION_DOWN) {
-                    y2 = y1;
                     ym1 = (int)y1;
                 } else if (action == MotionEvent.ACTION_UP) {
+
                     ym1   = 0;
                     ym2   = 0;
                     lastM = 0;
-                    cpo   = 0;
-                    cpwo  = 96;
-                    y2 = 0;
+                    if((cpo <  0 && cpo  != -96) ||
+                       (cpo == 0 && cpwo ==  96)) {
+                        cpo  =   0;
+                        cpwo =  96;
+                    } else {
+                        cpo  = -96;
+                        cpwo =   0;
+                    }
+                    CoordinatorLayout.LayoutParams p  = (CoordinatorLayout.LayoutParams)BrowserActivity.omnibox.getLayoutParams();
+                    CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)thisWebView.getLayoutParams();
+                    p.setMargins (0, cpo,  0, 0);
+                    pw.setMargins(0, cpwo, 0, 0);
+                    BrowserActivity.omnibox.setLayoutParams(p);
+                    thisWebView.setLayoutParams(pw);
                 } else if (action == MotionEvent.ACTION_MOVE) {
                     CoordinatorLayout.LayoutParams p  = (CoordinatorLayout.LayoutParams)BrowserActivity.omnibox.getLayoutParams();
                     CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)thisWebView.getLayoutParams();
@@ -198,13 +212,11 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                     if      (cpo  >   0)  cpo  =   0;
                     else if (cpo  < -96)  cpo  = -96;
                     try {
-                        if((lastM - ym1) != 0) {
-                            p.setMargins (0, cpo,  0, 0);
-                            pw.setMargins(0, cpwo, 0, 0);
+                        p.setMargins (0, cpo,  0, 0);
+                        pw.setMargins(0, cpwo, 0, 0);
+                        BrowserActivity.omnibox.setLayoutParams(p);
+                        thisWebView.setLayoutParams(pw);
 
-                            BrowserActivity.omnibox.setLayoutParams(p);
-                            thisWebView.setLayoutParams(pw);
-                        }
                     } catch (Exception ex) {
                         Logging.logt(StackTraceParser.parse(ex));
                     }
@@ -244,6 +256,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         }
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     public synchronized void initPreferences() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         WebSettings webSettings = getSettings();
@@ -265,7 +278,9 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
                     webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                    /* Do nothing */
+                }
             }
         } else {
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
@@ -356,7 +371,9 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             try {
                 intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
                 context.startActivity(intent);
-            } catch (URISyntaxException u) {}
+            } catch (URISyntaxException u) {
+                /* Do nothing */
+            }
 
             return;
         }
@@ -479,11 +496,13 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         }
     }
 
+    @SuppressWarnings("unused")
     public synchronized void pause() {
         onPause();
         pauseTimers();
     }
 
+    @SuppressWarnings("unused")
     public synchronized void resume() {
         onResume();
         resumeTimers();
@@ -516,18 +535,16 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         String title = getTitle();
         String url = getUrl();
 
-        if (title == null
+        return (title == null
                 || title.isEmpty()
                 || url == null
                 || url.isEmpty()
                 || url.startsWith(BrowserUnit.URL_SCHEME_ABOUT)
                 || url.startsWith(BrowserUnit.URL_SCHEME_MAIL_TO)
-                || url.startsWith(BrowserUnit.URL_SCHEME_INTENT)) {
-            return false;
-        }
-        return true;
+                || url.startsWith(BrowserUnit.URL_SCHEME_INTENT));
     }
 
+    @SuppressWarnings("unused")
     public static int convertDpToPixels(int dp) {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
         return (int) (dp * metrics.density + 0.5f);

@@ -2,7 +2,10 @@ package io.github.UltimateBrowserProject.Browser;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.*;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
@@ -17,12 +20,18 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.webkit.*;
+import android.webkit.HttpAuthHandler;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import org.xdevs23.debugUtils.StackTraceParser;
+
 import java.io.ByteArrayInputStream;
-import java.lang.NullPointerException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -33,8 +42,6 @@ import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
-
-import org.xdevs23.debugUtils.StackTraceParser;
 
 public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     private UltimateBrowserProjectWebView ultimateBrowserProjectWebView;

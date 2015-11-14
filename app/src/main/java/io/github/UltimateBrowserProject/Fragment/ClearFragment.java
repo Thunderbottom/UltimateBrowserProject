@@ -3,6 +3,7 @@ package io.github.UltimateBrowserProject.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+
 import io.github.UltimateBrowserProject.R;
 
 public class ClearFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {

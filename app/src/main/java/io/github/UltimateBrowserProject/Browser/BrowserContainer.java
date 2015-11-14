@@ -1,9 +1,9 @@
 package io.github.UltimateBrowserProject.Browser;
 
-import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
-
 import java.util.LinkedList;
 import java.util.List;
+
+import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class BrowserContainer {
     private static List<AlbumController> list = new LinkedList<>();
