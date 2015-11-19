@@ -473,13 +473,13 @@
         Failed to import Whitelist
     </string>
     <string name="toast_input_empty">
-        You haven't typed anything
+        You haven\'t typed anything
     </string>
     <string name="toast_invalid_domain">
         Invalid Domain
     </string>
     <string name="toast_load_error">
-        Can't load this URL
+        Can\'t load this URL
     </string>
     <string name="toast_load_in_background">
         Loading in background
@@ -494,10 +494,10 @@
         Failed to open File Manager
     </string>
     <string name="toast_refresh_failed">
-        Can't refresh this page
+        Can\'t refresh this page
     </string>
     <string name="toast_cannot_forward">
-        Can't go forward
+        Can\'t go forward
     </string>
     <string name="toast_relayout_successful">
         Successfully Relayout
@@ -576,7 +576,7 @@
         Always Send
     </string>
     <string name="com.crashlytics.CrashSubmissionCancelTitle">
-        Don't Send
+        Don\'t Send
     </string>
 
 </resources>
