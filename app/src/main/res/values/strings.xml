@@ -98,7 +98,7 @@
         Current version is 2.0
     </string>
     <string name="dialog_content_upload">
-        Currently, File upload is only supported on Android 5.0 and above.
+        Currently, File uploads are only supported on Android 5.0 and above.
     </string>
 
     <!-- List -->
@@ -142,7 +142,7 @@
         Share
     </string>
     <string name="readability_empty">
-        ERROR: Failed to access Readability Server. Please check access token and Internet connection.
+        ERROR: Failed to access Readability Server. Please check access token and your internet connection.
     </string>
 
     <!-- Search -->
@@ -333,7 +333,7 @@
         Whitelist
     </string>
     <string name="setting_summary_whitelist">
-        Allow these sites show ads
+        Allow these sites to show ads
     </string>
     <string name="setting_title_export_whitelist">
         Export Whitelist
@@ -473,13 +473,13 @@
         Failed to import Whitelist
     </string>
     <string name="toast_input_empty">
-        You haven\'t input anything
+        You haven't typed anything
     </string>
     <string name="toast_invalid_domain">
         Invalid Domain
     </string>
     <string name="toast_load_error">
-        Can\'t load this URL
+        Can't load this URL
     </string>
     <string name="toast_load_in_background">
         Loading in background
@@ -488,16 +488,16 @@
         Please restart the application for changes to take effect
     </string>
     <string name="toast_new_tab_successful">
-        Successfully Opened in a new tab
+        Successfully opened in a new tab
     </string>
     <string name="toast_open_file_manager_failed">
         Failed to open File Manager
     </string>
     <string name="toast_refresh_failed">
-        Can\'t refresh this page
+        Can't refresh this page
     </string>
     <string name="toast_cannot_forward">
-        Can\'t go forward
+        Can't go forward
     </string>
     <string name="toast_relayout_successful">
         Successfully Relayout
@@ -509,7 +509,7 @@
         Failed to capture a screenshot
     </string>
     <string name="toast_share_failed">
-        Can\'t share this page
+        Cannot share this page
     </string>
     <string name="toast_start_download">
         Starting download
@@ -556,7 +556,7 @@
 
     <!-- Open in app -->
     <string name="open_in_app_snackbar_title">
-         Open in app?
+         Open in the app?
     </string>
     <string name="open_in_app_snackbar_action_title">
          OPEN
@@ -567,7 +567,7 @@
         Send Crash Report?
     </string>
     <string name="com.crashlytics.CrashSubmissionPromptMessage">
-        Looks like we crashed! Please help us fix the problem by sending a crash report.
+        Looks like we crashed! Please help us fix the problem by sending us a crash report.
     </string>
     <string name="com.crashlytics.CrashSubmissionSendTitle">
         Send
@@ -576,7 +576,7 @@
         Always Send
     </string>
     <string name="com.crashlytics.CrashSubmissionCancelTitle">
-        Don\'t Send
+        Don't Send
     </string>
 
 </resources>
