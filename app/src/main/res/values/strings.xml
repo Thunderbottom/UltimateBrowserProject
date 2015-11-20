@@ -98,7 +98,7 @@
         Current version is 2.0
     </string>
     <string name="dialog_content_upload">
-        Currently, File uploads are only supported on Android 5.0 and above.
+        Currently, file uploads are only supported on Android 5.0 and above.
     </string>
 
     <!-- List -->
@@ -142,7 +142,7 @@
         Share
     </string>
     <string name="readability_empty">
-        ERROR: Failed to access Readability Server. Please check access token and your internet connection.
+        ERROR: Failed to access Readability Server. Please check the access token and your internet connection.
     </string>
 
     <!-- Search -->
@@ -404,7 +404,7 @@
         Successfully added to Bookmarks
     </string>
     <string name="toast_add_bookmark_failed">
-        Can\'t add this page to Bookmarks
+        Failed to add this page to Bookmarks
     </string>
     <string name="toast_add_to_home_successful">
         Successfully added to Homepage
@@ -422,7 +422,7 @@
         Already at the front
     </string>
     <string name="toast_already_exist_in_home">
-        Already exists at Homepage
+        Already exists on the Homepage
     </string>
     <string name="toast_clear_successful">
         Successfully Cleared
@@ -479,13 +479,13 @@
         Invalid Domain
     </string>
     <string name="toast_load_error">
-        Can\'t load this URL
+        Cannot load this URL
     </string>
     <string name="toast_load_in_background">
-        Loading in background
+        Loading in the background
     </string>
     <string name="toast_need_restart">
-        Please restart the application for changes to take effect
+        Please restart the application for the changes to take effect
     </string>
     <string name="toast_new_tab_successful">
         Successfully opened in a new tab
@@ -564,10 +564,10 @@
 
     <!-- Crashlytics-->
     <string name="com.crashlytics.CrashSubmissionPromptTitle">
-        Send Crash Report?
+        Send the crash report?
     </string>
     <string name="com.crashlytics.CrashSubmissionPromptMessage">
-        Looks like we crashed! Please help us fix the problem by sending us a crash report.
+        Looks like the application crashed! Please help us fix the problem by sending us a crash report.
     </string>
     <string name="com.crashlytics.CrashSubmissionSendTitle">
         Send
