@@ -142,8 +142,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
             p.addRule(RelativeLayout.BELOW, R.id.main_omnibox);
         } else {
-        //    p.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-        //    p.addRule(RelativeLayout.ABOVE, R.id.main_omnibox);
+            p.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+            p.addRule(RelativeLayout.ABOVE, R.id.main_omnibox);
         }
 
         p.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
@@ -209,45 +209,42 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                     }
                     CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)thisWebView.getLayoutParams();
                     CoordinatorLayout.LayoutParams p  = (CoordinatorLayout.LayoutParams)BrowserActivity.omnibox.getLayoutParams();
+                    p.height = oh;
                     if(BrowserActivity.anchor == 0) {
-                        p.height = oh;
-                        p.setMargins (0, cpo,  0, 0);
+                        p.setMargins(0, cpo, 0, 0);
                         pw.setMargins(0, cpwo, 0, 0);
-                        BrowserActivity.omnibox.setLayoutParams(p);
-                        thisWebView.setLayoutParams(pw);
                     } else {
-                        p.height = oh;
-                        p.setMargins (0, 0, 0, cpo );
+                        p.setMargins(0, ViewUnit.getAdjustedWindowHeight(context) + cpo, 0, 0);
                         pw.setMargins(0, 0, 0, cpwo);
-                        BrowserActivity.omnibox.setLayoutParams(p);
-                        thisWebView.setLayoutParams(pw);
                     }
-                    BrowserActivity.omnibox.setMinimumHeight(oh);
+                    BrowserActivity.omnibox.setLayoutParams(p);
+                    thisWebView.setLayoutParams(pw);
                 } else if (action == MotionEvent.ACTION_MOVE) {
                     lastM = (int)motionEvent.getY();
                     ym2   = oh - (lastM - ym1);
-                    cpo  -= ym2 - oh;
-                    cpwo  = cpo + oh;
+                    if(BrowserActivity.anchor == 0) {
+                        cpo  -= ym2 - oh;
+                        cpwo  = cpo + oh;
+                    } else {
+                        cpo  += oh - ym2;
+                        cpwo  = oh - cpo;
+                    }
                     if      (cpwo <   0)  cpwo =   0;
                     else if (cpwo >  oh)  cpwo =  oh;
                     if      (cpo  >   0)  cpo  =   0;
                     else if (cpo  < -oh)  cpo  = -oh;
                     CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)thisWebView.getLayoutParams();
                     CoordinatorLayout.LayoutParams p  = (CoordinatorLayout.LayoutParams)BrowserActivity.omnibox.getLayoutParams();
+                    p.height = oh;
                     if(BrowserActivity.anchor == 0) {
-                        p.height = oh;
                         p.setMargins (0, cpo,  0, 0);
                         pw.setMargins(0, cpwo, 0, 0);
-                        BrowserActivity.omnibox.setLayoutParams(p);
-                        thisWebView.setLayoutParams(pw);
                     } else {
-                        p.height = oh;
-                        p.setMargins (0, 0, 0, cpo);
-                        pw.setMargins(0, 0, 0, cpwo);
-                        BrowserActivity.omnibox.setLayoutParams(p);
-                        thisWebView.setLayoutParams(pw);
-                        BrowserActivity.omnibox.bringToFront();
+                        p.setMargins(0, ViewUnit.getAdjustedWindowHeight(context) + cpo, 0, 0);
+                        pw.setMargins(0, 0, 0, cpwo - ViewUnit.getStatusBarHeight(context));
                     }
+                    BrowserActivity.omnibox.setLayoutParams(p);
+                    thisWebView.setLayoutParams(pw);
                 }
                 gestureDetector.onTouchEvent(motionEvent);
                 return false;

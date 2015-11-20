@@ -118,6 +118,10 @@ public class ViewUnit {
         return context.getResources().getDisplayMetrics().widthPixels;
     }
 
+    public static int getAdjustedWindowHeight(Context context) {
+        return getWindowHeight(context) - getStatusBarHeight(context);
+    }
+
     public static void setElevation(View view, float elevation) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setElevation(elevation);

@@ -1278,9 +1278,9 @@ public class BrowserActivity extends Activity implements BrowserController {
             p.height = ViewUnit.getOmniboxHeight(getApplicationContext());
 
             if(anchor == 0)
-                p.setMargins(0, 0, 0, ViewUnit.getWindowHeight(getApplicationContext()) - p.height);
+                p.setMargins(0, 0, 0, ViewUnit.getAdjustedWindowHeight(getApplicationContext()) - p.height);
             else
-                p.setMargins(0, ViewUnit.getWindowHeight(getApplicationContext()) - p.height, 0, 0);
+                p.setMargins(0, ViewUnit.getAdjustedWindowHeight(getApplicationContext()) - p.height, 0, 0);
 
             logd("Setting layout params...");
             omnibox.setLayoutParams(p);
