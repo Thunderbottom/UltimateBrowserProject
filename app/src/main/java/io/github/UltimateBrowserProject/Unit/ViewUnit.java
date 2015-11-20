@@ -123,4 +123,16 @@ public class ViewUnit {
             view.setElevation(elevation);
         }
     }
+
+    public static int densityPixelsToPixels(Context context, int dp) {
+        return ((int)getDensity(context) * dp);
+    }
+
+    public static int getOmniboxHeight(Context context) {
+        return densityPixelsToPixels(context, 48);
+    }
+
+    public static int goh(Context c) {
+        return getOmniboxHeight(c);
+    }
 }

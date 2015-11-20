@@ -12,4 +12,8 @@ public class StackTraceParser {
 		return sw.toString();
 	}
 
+    public static void logStackTrace(Throwable throwable) {
+        Logging.logt(parse(throwable));
+    }
+
 }

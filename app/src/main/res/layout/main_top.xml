@@ -92,7 +92,7 @@
     <LinearLayout android:id="@+id/main_view"
                   android:orientation="vertical"
                   android:layout_width="match_parent"
-                  android:layout_height="match_parent"
+                  android:layout_height="wrap_content"
                   android:background="@color/background_dark">
 
         <RelativeLayout android:id="@+id/main_omnibox"
@@ -277,7 +277,7 @@
 
         <android.support.design.widget.CoordinatorLayout android:id="@+id/main_content"
                      android:layout_width="match_parent"
-                     android:layout_height="match_parent"
+                     android:layout_height="wrap_content"
                      android:background="@color/white">
         </android.support.design.widget.CoordinatorLayout>
 

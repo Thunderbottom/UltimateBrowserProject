@@ -69,7 +69,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.android.debug.hv.ViewServer;
+
 import org.askerov.dynamicgrid.DynamicGridView;
+import org.xdevs23.config.ConfigUtils;
+import org.xdevs23.debugUtils.Logging;
+import org.xdevs23.debugUtils.StackTraceParser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -116,7 +121,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private SwitcherPanel switcherPanel;
     private boolean fullscreen;
-    private int anchor;
+    public static int anchor;
     private float dimen156dp, dimen144dp, dimen117dp, dimen108dp, dimen48dp;
 
     private HorizontalScrollView switcherScroller;
@@ -152,6 +157,9 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private static void logt(String msg) {
         Log.d(TAG, msg);
+    }
+    private static void logd(String msg) {
+        Logging.logd(msg);
     }
 
     private class VideoCompletionListener implements MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener {
@@ -191,8 +199,21 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        logd("DEBUG ENABLED");
+        if(ConfigUtils.isDebuggable()) {
+            Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+                @Override
+                public void uncaughtException(Thread thread, Throwable ex) {
+                    StackTraceParser.logStackTrace(ex);
+                }
+            });
+       //     ViewServer.get(this).addWindow(this);
+        }
+
         super.onCreate(savedInstanceState);
-        
+
+        logd("Initializing...");
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityManager.TaskDescription description = new ActivityManager.TaskDescription(
                     getString(R.string.app_name),
@@ -204,20 +225,27 @@ public class BrowserActivity extends Activity implements BrowserController {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
 
+        logd("Loading preferences...");
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
         setFullscreen(fullscreen);
         restore = sp.getBoolean(getString(R.string.sp_restore_tabs), true);
         anchor = Integer.valueOf(sp.getString(getString(R.string.sp_anchor), "1"));
-        if (anchor == 0) {
-            setContentView(R.layout.main_top);
-        } else {
-            setContentView(R.layout.main_bottom);
-        }
 
+
+        //if (anchor == 0) {
+            logd("Appliying top omnibox");
+            setContentView(R.layout.main_top);
+        //} else {
+        //    logd("Applying bottom omnibox");
+        //    setContentView(R.layout.main_bottom);
+        //}
+
+        logd("Checking for update");
         new Changelog(this, R.xml.changelog).showWhatsNew();
         mHandler = new Handler();
         checkUpdate.start();
+
 
         shortAnimTime  = getResources().getInteger(android.R.integer.config_shortAnimTime);
         mediumAnimTime = getResources().getInteger(android.R.integer.config_mediumAnimTime);
@@ -245,8 +273,11 @@ public class BrowserActivity extends Activity implements BrowserController {
         dimen108dp = getResources().getDimensionPixelSize(R.dimen.layout_height_108dp);
         dimen48dp  = getResources().getDimensionPixelOffset(R.dimen.layout_height_48dp);
 
+        logd("Initializing switcher view...");
         initSwitcherView();
+        logd("Initializing omnibox...");
         initOmnibox();
+        logd("Initializing search panel...");
         initSearchPanel();
         relayoutOK = (Button) findViewById(R.id.main_relayout_ok);
         contentFrame = (CoordinatorLayout) findViewById(R.id.main_content);
@@ -255,6 +286,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         new AdBlock(this); // For AdBlock cold boot
         dispatchIntent(getIntent());
 
+        logd("Starting browser init");
         if (restore) openSavedTabs();
         else pinAlbums(null);
 
@@ -272,11 +304,14 @@ public class BrowserActivity extends Activity implements BrowserController {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        logd("New intent!");
         setIntent(intent);
     }
 
     @Override
     public void onResume() {
+        logd("Resuming...");
+    //    ViewServer.get(this).setFocusedWindow(this);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
         IntentUnit.setContext(this);
@@ -313,6 +348,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     }
 
     private void dispatchIntent(Intent intent) {
+        logd("Dispatching intent...");
         Intent toHolderService = new Intent(this, HolderService.class);
         IntentUnit.setClear(false);
         stopService(toHolderService);
@@ -359,6 +395,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public void onPause() {
+        logd("Pausing...");
         Intent toHolderService = new Intent(this, HolderService.class);
         IntentUnit.setClear(false);
         stopService(toHolderService);
@@ -387,6 +424,8 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public void onDestroy() {
+        logd("Destroying...");
+    //    ViewServer.get(this).removeWindow(this);
         Intent toHolderService = new Intent(this, HolderService.class);
         IntentUnit.setClear(true);
         stopService(toHolderService);
@@ -411,6 +450,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
+        logd("Config changed!");
         if (currentAlbumController != null && currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
             UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
             if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
@@ -451,6 +491,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        logd("Key down event");
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
             // When video fullscreen, just control the sound
             return !(fullscreenHolder != null || customView != null || videoView != null) && onKeyCodeVolumeUp();
@@ -472,6 +513,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
+        logd("Key up event");
         // When video fullscreen, just control the sound
         if (fullscreenHolder != null || customView != null || videoView != null)
             return false;
@@ -586,18 +628,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         progressBar     = (ProgressBar) findViewById(R.id.main_progress_bar);
 
 
-        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        p = (LinearLayout.LayoutParams) omnibox.getLayoutParams();
-
-        p.height = 96;
-        p.weight =  1;
-
-        p.setMargins(0, 0, 0, ViewUnit.getWindowHeight(getApplicationContext()) - 96);
-
-        omnibox.setLayoutParams(p);
-
         inputBox.setOnTouchListener(new SwipeToBoundListener(omnibox, new SwipeToBoundListener.BoundCallback() {
             private KeyListener keyListener = inputBox.getKeyListener();
 
@@ -650,7 +680,9 @@ public class BrowserActivity extends Activity implements BrowserController {
                 return false;
             }
         });
+        logd("Updating bookmarks...");
         updateBookmarks();
+        logd("Updating autocomplete...");
         updateAutoComplete();
 
         omniboxBookmark.setOnClickListener(new View.OnClickListener() {
@@ -725,9 +757,9 @@ public class BrowserActivity extends Activity implements BrowserController {
                     return;
                 }
                 if (currentAlbumController instanceof UltimateBrowserProjectWebView) {
-                    UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
-                    if (UltimateBrowserProjectWebView.canGoForward()) {
-                        UltimateBrowserProjectWebView.goForward();
+                    UltimateBrowserProjectWebView ultimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
+                    if (ultimateBrowserProjectWebView.canGoForward()) {
+                        ultimateBrowserProjectWebView.goForward();
                     } else if (currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
                         final UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) currentAlbumController;
                         if (layout.getFlag() == BrowserUnit.FLAG_HOME) {
@@ -978,6 +1010,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     }
 
     private synchronized void addAlbum(int flag) {
+        logd("Adding album...");
         final AlbumController holder;
         if (flag == BrowserUnit.FLAG_BOOKMARKS) {
             UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout)
@@ -1039,6 +1072,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     }
 
     private synchronized void addAlbum(String title, final String url, final boolean foreground, final Message resultMsg) {
+        logd("Adding album... (2)");
         final UltimateBrowserProjectWebView webView = new UltimateBrowserProjectWebView(this);
         webView.setBrowserController(this);
         webView.setFlag(BrowserUnit.FLAG_UltimateBrowserProject);
@@ -1100,6 +1134,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
 
     public synchronized void pinAlbums(String url) {
+        logd("Pinning ablums...");
         hideSoftInput(inputBox);
         hideSearchPanel();
         switcherContainer.removeAllViews();
@@ -1178,6 +1213,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public synchronized void showAlbum(AlbumController controller, boolean anim, final boolean expand, final boolean capture) {
+        logd("Showing album...");
         if (controller == null || controller == currentAlbumController) {
             if (ViewCompat.isAttachedToWindow(switcherPanel)) switcherPanel.expanded();
             return;
@@ -1232,17 +1268,31 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         }, shortAnimTime);
         ViewParent parent = omnibox.getParent();
-        if (parent != contentFrame && anchor == 0) {
+        if (parent != contentFrame) {
             ((ViewGroup) parent).removeView(omnibox);
             contentFrame.addView(omnibox);
+
+            logd("Applying omnibox layout options...");
+            CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) omnibox.getLayoutParams();
+
+            p.height = ViewUnit.getOmniboxHeight(getApplicationContext());
+
+            if(anchor == 0)
+                p.setMargins(0, 0, 0, ViewUnit.getWindowHeight(getApplicationContext()) - p.height);
+            else
+                p.setMargins(0, ViewUnit.getWindowHeight(getApplicationContext()) - p.height, 0, 0);
+
+            logd("Setting layout params...");
+            omnibox.setLayoutParams(p);
         }
         omnibox.bringToFront();
     }
 
     private synchronized void updateAlbum() {
-        if (currentAlbumController == null) {
+        logd("Updating album...");
+        if (currentAlbumController == null)
             return;
-        }
+
 
         UltimateBrowserProjectRelativeLayout layout = (UltimateBrowserProjectRelativeLayout) getLayoutInflater().inflate(R.layout.home, null, false);
         layout.setBrowserController(this);
@@ -1267,9 +1317,10 @@ public class BrowserActivity extends Activity implements BrowserController {
     }
 
     private synchronized void updateAlbum(String url) {
-        if (currentAlbumController == null) {
+        logd("Updating album...(2)");
+        if (currentAlbumController == null)
             return;
-        }
+
 
         if (currentAlbumController instanceof UltimateBrowserProjectWebView) {
             ((UltimateBrowserProjectWebView) currentAlbumController).loadUrl(url);
@@ -1303,6 +1354,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public synchronized void removeAlbum(AlbumController controller) {
+        logd("Removing album...");
         if (currentAlbumController == null || BrowserContainer.size() <= 1) {
             switcherContainer.removeView(controller.getAlbumView());
             BrowserContainer.remove(controller);
@@ -1372,18 +1424,19 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public void updateInputBox(String query) {
-        if (query != null) {
+        if (query != null)
             inputBox.setText(Html.fromHtml(BrowserUnit.urlWrapper(query)), EditText.BufferType.SPANNABLE);
-        } else {
+        else
             inputBox.setText(null);
-        }
+
         inputBox.clearFocus();
     }
 
     private void updateOmnibox() {
-        if (currentAlbumController == null) {
+        logd("Updating omnibox");
+
+        if (currentAlbumController == null)
             return;
-        }
 
         if (currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
             updateProgress(BrowserUnit.PROGRESS_MAX);
@@ -1428,11 +1481,11 @@ public class BrowserActivity extends Activity implements BrowserController {
     }
 
     private void updateRefresh(boolean running) {
-        if (running) {
+        if (running)
             omniboxRefresh.setImageDrawable(ViewUnit.getDrawable(this, R.drawable.cl_selector_dark));
-        } else {
+        else
             omniboxRefresh.setImageDrawable(ViewUnit.getDrawable(this, R.drawable.refresh_selector));
-        }
+
     }
 
     @Override
@@ -1475,9 +1528,10 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public void onCreateView(WebView view, final Message resultMsg) {
-        if (resultMsg == null) {
+        logd("[]onCreateView");
+        if (resultMsg == null)
             return;
-        }
+
         switcherPanel.collapsed();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -1494,9 +1548,10 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public boolean onShowCustomView(View view, WebChromeClient.CustomViewCallback callback) {
-        if (view == null) {
+        logd("[]onShowCustomView");
+        if (view == null)
             return false;
-        }
+
         if (customView != null && callback != null) {
             callback.onCustomViewHidden();
             return false;
@@ -1540,19 +1595,21 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     @Override
     public boolean onHideCustomView() {
-        if (customView == null || customViewCallback == null || currentAlbumController == null) {
+        logd("[]onHideCustomView");
+        if (customView == null || customViewCallback == null || currentAlbumController == null)
             return false;
-        }
+
 
         FrameLayout decorView = (FrameLayout) getWindow().getDecorView();
-        if (decorView != null) {
+        if (decorView != null)
             decorView.removeView(fullscreenHolder);
-        }
+
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             try {
                 customViewCallback.onCustomViewHidden();
             } catch (Throwable t) {
+                /* */
             }
         }
 
@@ -1575,9 +1632,9 @@ public class BrowserActivity extends Activity implements BrowserController {
     @Override
     public void onLongPress(String url) {
         WebView.HitTestResult result;
-        if (!(currentAlbumController instanceof UltimateBrowserProjectWebView)) {
+        if (!(currentAlbumController instanceof UltimateBrowserProjectWebView))
             return;
-        }
+
         result = ((UltimateBrowserProjectWebView) currentAlbumController).getHitTestResult();
 
         final List<String> list = new ArrayList<>();
@@ -1684,37 +1741,25 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private boolean onKeyCodeBack(boolean douQ) {
         hideSoftInput(inputBox);
-        if (switcherPanel.getStatus() != SwitcherPanel.Status.EXPANDED) {
+        if (switcherPanel.getStatus() != SwitcherPanel.Status.EXPANDED)
             switcherPanel.expanded();
-        } else if (currentAlbumController == null) {
+        else if (currentAlbumController == null)
             finish();
-        } else if (currentAlbumController instanceof UltimateBrowserProjectWebView) {
+        else if (currentAlbumController instanceof UltimateBrowserProjectWebView) {
             UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
-            if (UltimateBrowserProjectWebView.canGoBack()) {
+            if (UltimateBrowserProjectWebView.canGoBack())
                 UltimateBrowserProjectWebView.goBack();
-            } else {
-                updateAlbum();
-            }
+            else updateAlbum();
+
         } else if (currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
             switch (currentAlbumController.getFlag()) {
-                case BrowserUnit.FLAG_BOOKMARKS:
-                    updateAlbum();
-                    break;
-                case BrowserUnit.FLAG_HISTORY:
-                    updateAlbum();
-                    break;
-                case BrowserUnit.FLAG_HOME:
-                    if (douQ) {
-                        doubleTapsQuit();
-                    }
-                    break;
-                default:
-                    finish();
-                    break;
+                case BrowserUnit.FLAG_BOOKMARKS:    updateAlbum();      break;
+                case BrowserUnit.FLAG_HISTORY:      updateAlbum();      break;
+                case BrowserUnit.FLAG_HOME: if (douQ)doubleTapsQuit();  break;
+                default: finish();                                      break;
             }
-        } else {
-            finish();
-        }
+        } else           finish();
+
 
         return true;
     }
@@ -1763,6 +1808,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     }
 
     private boolean showOverflow() {
+        logd("Showing overflow...");
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -2198,41 +2244,37 @@ public class BrowserActivity extends Activity implements BrowserController {
          */
         int bits = WindowManager.LayoutParams.FLAG_FULLSCREEN;
 
-        if (fullscreen) {
+        if (fullscreen)
             layoutParams.flags |= bits;
-        } else {
+        else {
             layoutParams.flags &= ~bits;
-            if (customView != null) {
+            if (customView != null)
                 customView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-            } else {
+            else
                 contentFrame.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-            }
         }
         getWindow().setAttributes(layoutParams);
     }
 
     private AlbumController nextAlbumController(boolean next) {
-        if (BrowserContainer.size() <= 1) {
+        if (BrowserContainer.size() <= 1)
             return currentAlbumController;
-        }
+
 
         List<AlbumController> list = BrowserContainer.list();
         int index = list.indexOf(currentAlbumController);
         if (next) {
             index++;
-            if (index >= list.size()) {
-                index = 0;
-            }
+            if (index >= list.size()) index = 0;
         } else {
             index--;
-            if (index < 0) {
-                index = list.size() - 1;
-            }
-        }
+            if (index < 0) index = list.size() - 1;
 
+        }
         return list.get(index);
     }
 
+    @Deprecated
     @Override
     public void hideOmnibox(View view) {
         if (omnibox.getVisibility() != View.GONE) {
@@ -2244,9 +2286,8 @@ public class BrowserActivity extends Activity implements BrowserController {
                     omnibox.bringToFront();
                 }
 
-            } else {
-                return;
-            }
+            } else return;
+
             omnibox.setVisibility(View.GONE);
             CoordinatorLayout.LayoutParams p = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -2254,7 +2295,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     ViewGroup.LayoutParams.WRAP_CONTENT);
 
             p.setMargins (0, -96, 0, 0);
-            pw.setMargins(0, 0, 0, 0);
+            pw.setMargins(0,   0, 0, 0);
 
             omnibox.setLayoutParams(p);
             view.setLayoutParams(pw);
@@ -2262,6 +2303,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
     }
 
+    @Deprecated
     @Override
     public void showOmnibox(View view) {
 
@@ -2344,11 +2386,12 @@ public class BrowserActivity extends Activity implements BrowserController {
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
         String url = currentAlbumController.getUrl();
         String urls = "";
-        for (int i = 0; i < BrowserContainer.size(); i++) {
+        for (int i = 0; i < BrowserContainer.size(); i++)
             urls += BrowserContainer.get(i).getUrl() + "||&&SEPARATOR&&||";
-        }
-        editor.putString("SAVED_URLS", urls).commit();
-        editor.putString("OPENED_TAB", url).commit();
+
+        editor.putString("SAVED_URLS", urls);
+        editor.putString("OPENED_TAB", url);
+        editor.apply();
     }
 
     private void openSavedTabs() {
