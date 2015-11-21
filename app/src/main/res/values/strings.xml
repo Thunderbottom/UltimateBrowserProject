@@ -401,13 +401,13 @@
 
     <!-- Toast -->
     <string name="toast_add_bookmark_successful">
-        Successfully added to Bookmarks
+        Successfully added as a Bookmark
     </string>
     <string name="toast_add_bookmark_failed">
-        Failed to add this page to Bookmarks
+        Failed to add this page as a Bookmark
     </string>
     <string name="toast_add_to_home_successful">
-        Successfully added to Homepage
+        Successfully added to the Homepage
     </string>
     <string name="toast_add_to_home_failed">
         Failed to add to the Homepage
@@ -416,7 +416,7 @@
         Successfully added Readability Token
     </string>
     <string name="toast_add_whitelist_successful">
-        Successfully added Domain to Whitelist
+        Successfully added the domain to the whitelist
     </string>
     <string name="toast_already_at_the_front">
         Already at the front
@@ -458,7 +458,7 @@
         Exported Whitelist file at:&#160;
     </string>
     <string name="toast_export_whitelist_failed">
-        Failed to export Whitelist
+        Failed to export the Whitelist
     </string>
     <string name="toast_import_bookmarks_successful">
         Imported Bookmarks count:&#160;
@@ -470,7 +470,7 @@
         Imported Domains count:&#160;
     </string>
     <string name="toast_import_whitelist_failed">
-        Failed to import Whitelist
+        Failed to import the Whitelist
     </string>
     <string name="toast_input_empty">
         You haven\'t typed anything
@@ -491,10 +491,10 @@
         Successfully opened in a new tab
     </string>
     <string name="toast_open_file_manager_failed">
-        Failed to open File Manager
+        Failed to open the File Manager
     </string>
     <string name="toast_refresh_failed">
-        Can\'t refresh this page
+        Failed to refresh the page
     </string>
     <string name="toast_cannot_forward">
         Can\'t go forward
