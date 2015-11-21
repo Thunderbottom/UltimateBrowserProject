@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import com.android.debug.hv.ViewServer;
 import android.graphics.Bitmap;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -18,14 +17,12 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import org.xdevs23.debugUtils.Logging;
@@ -78,10 +75,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private GestureDetector gestureDetector;
 
     private static UltimateBrowserProjectWebView thisWebView = null;
-
-    private static void logt(String msg) {
-        Log.d(TAG, msg);
-    }
 
     private AdBlock adBlock;
     public AdBlock getAdBlock() {
@@ -154,7 +147,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
         this.setLayoutParams(p);
 
-        this.setMinimumHeight(ViewUnit.getWindowHeight(context) - 96);
+        this.setMinimumHeight(ViewUnit.getWindowHeight(context) - oh);
         this.setMinimumWidth (ViewUnit.getWindowWidth(context));
 
         setAlwaysDrawnWithCacheEnabled(true);
@@ -199,49 +192,59 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                     ym1   = 0;
                     ym2   = 0;
                     lastM = 0;
-                    if((cpo <  0 && cpo  != -oh) ||
-                       (cpo == 0 && cpwo ==  oh)) {
-                        cpo  =   0;
+                    if((cpo <= 0 && cpo != -oh) ||
+                       (cpo == 0 && cpwo == oh)) {
+                        cpo  =  0;
                         cpwo =  oh;
                     } else {
-                        cpo  = -oh;
-                        cpwo =   0;
+                        cpo  =  -oh;
+                        cpwo =  0;
                     }
                     CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)thisWebView.getLayoutParams();
                     CoordinatorLayout.LayoutParams p  = (CoordinatorLayout.LayoutParams)BrowserActivity.omnibox.getLayoutParams();
                     p.height = oh;
                     if(BrowserActivity.anchor == 0) {
-                        p.setMargins(0, cpo, 0, 0);
+                        p.setMargins (0, cpo , 0, 0);
                         pw.setMargins(0, cpwo, 0, 0);
                     } else {
-                        p.setMargins(0, ViewUnit.getAdjustedWindowHeight(context) + cpo, 0, 0);
+                        p.setMargins (0, ViewUnit.getAdjustedWindowHeight(context) + cpo, 0, 0);
                         pw.setMargins(0, 0, 0, cpwo);
                     }
                     BrowserActivity.omnibox.setLayoutParams(p);
                     thisWebView.setLayoutParams(pw);
                 } else if (action == MotionEvent.ACTION_MOVE) {
-                    lastM = (int)motionEvent.getY();
-                    ym2   = oh - (lastM - ym1);
-                    if(BrowserActivity.anchor == 0) {
-                        cpo  -= ym2 - oh;
-                        cpwo  = cpo + oh;
-                    } else {
-                        cpo  += oh - ym2;
-                        cpwo  = oh - cpo;
-                    }
-                    if      (cpwo <   0)  cpwo =   0;
-                    else if (cpwo >  oh)  cpwo =  oh;
-                    if      (cpo  >   0)  cpo  =   0;
-                    else if (cpo  < -oh)  cpo  = -oh;
+                    boolean glitchfix;
                     CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)thisWebView.getLayoutParams();
                     CoordinatorLayout.LayoutParams p  = (CoordinatorLayout.LayoutParams)BrowserActivity.omnibox.getLayoutParams();
-                    p.height = oh;
+                    if(BrowserActivity.anchor == 1 && lastM == 0
+                            && pw.bottomMargin == oh) {
+                        cpo  =  0;
+                        cpwo = oh;
+                        glitchfix = true;
+                    } else glitchfix = false;
+                    lastM = (int)motionEvent.getY();
+                    if(!glitchfix) {
+                        ym2 = oh - (lastM - ym1);
+                        if (BrowserActivity.anchor == 0) {
+                            cpo -= ym2 - oh;
+                            cpwo = cpo + oh;
+                        } else {
+                            cpo += oh - ym2;
+                            cpwo = oh - cpo;
+                        }
+                        if (cpwo < 0) cpwo = 0;
+                        else if (cpwo > oh) cpwo = oh;
+                        if (cpo > 0) cpo = 0;
+                        else if (cpo < -oh) cpo = -oh;
+                    }
+                    p .height  = oh;
+                    pw.height  = ViewUnit.getAdjustedWindowHeight(context) - cpwo;
                     if(BrowserActivity.anchor == 0) {
                         p.setMargins (0, cpo,  0, 0);
-                        pw.setMargins(0, cpwo, 0, 0);
+                        pw.setMargins(0, cpwo, 0, oh);
                     } else {
                         p.setMargins(0, ViewUnit.getAdjustedWindowHeight(context) + cpo, 0, 0);
-                        pw.setMargins(0, 0, 0, cpwo - ViewUnit.getStatusBarHeight(context));
+                        pw.setMargins(0, 0, 0, cpwo);
                     }
                     BrowserActivity.omnibox.setLayoutParams(p);
                     thisWebView.setLayoutParams(pw);
@@ -414,7 +417,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             }
         }
         Logging.logd("Loading url " + finalUrl);
-        thisWebView.setMinimumHeight(ViewUnit.getWindowHeight(context) - ViewUnit.getOmniboxHeight(context));
+        thisWebView.setMinimumHeight(ViewUnit.getWindowHeight(context) - ViewUnit.goh(context));
         super.loadUrl(finalUrl);
         if (browserController != null && foreground)
             browserController.updateBookmarks();
@@ -517,6 +520,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             browserController.updateInputBox(url);
         }
     }
+
+
 
     @SuppressWarnings("unused")
     public synchronized void pause() {

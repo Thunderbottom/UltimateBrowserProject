@@ -2,10 +2,6 @@ package org.xdevs23.debugUtils;
 
 import android.util.Log;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.xdevs23.config.AppConfig;
 import org.xdevs23.config.ConfigUtils;
 
 public class Logging {

@@ -69,8 +69,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import com.android.debug.hv.ViewServer;
-
 import org.askerov.dynamicgrid.DynamicGridView;
 import org.xdevs23.config.ConfigUtils;
 import org.xdevs23.debugUtils.Logging;
@@ -232,14 +230,8 @@ public class BrowserActivity extends Activity implements BrowserController {
         restore = sp.getBoolean(getString(R.string.sp_restore_tabs), true);
         anchor = Integer.valueOf(sp.getString(getString(R.string.sp_anchor), "1"));
 
-
-        //if (anchor == 0) {
-            logd("Appliying top omnibox");
-            setContentView(R.layout.main_top);
-        //} else {
-        //    logd("Applying bottom omnibox");
-        //    setContentView(R.layout.main_bottom);
-        //}
+        logd("Appliying layout...");
+        setContentView(R.layout.main_top);
 
         logd("Checking for update");
         new Changelog(this, R.xml.changelog).showWhatsNew();
@@ -2273,72 +2265,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
         return list.get(index);
     }
-
-    @Deprecated
-    @Override
-    public void hideOmnibox(View view) {
-        if (omnibox.getVisibility() != View.GONE) {
-            Animation hide;
-            if (anchor == 0) {
-                if (contentFrame.findViewById(R.id.main_omnibox) == null) {
-                    ((ViewGroup)omnibox.getParent()).removeView(omnibox);
-                    contentFrame.addView(omnibox);
-                    omnibox.bringToFront();
-                }
-
-            } else return;
-
-            omnibox.setVisibility(View.GONE);
-            CoordinatorLayout.LayoutParams p = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            CoordinatorLayout.LayoutParams pw = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            p.setMargins (0, -96, 0, 0);
-            pw.setMargins(0,   0, 0, 0);
-
-            omnibox.setLayoutParams(p);
-            view.setLayoutParams(pw);
-
-        }
-    }
-
-    @Deprecated
-    @Override
-    public void showOmnibox(View view) {
-
-        if (omnibox.getVisibility() != View.VISIBLE) {
-            Animation show;
-            if (anchor == 0) {
-                if (contentFrame.findViewById(R.id.main_omnibox) == null) {
-                    ((ViewGroup)omnibox.getParent()).removeView(omnibox);
-                    contentFrame.addView(omnibox);
-                    omnibox.bringToFront();
-                }
-                show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top_down);
-            } else {
-                return;
-            }
-            RelativeLayout omnibox = (RelativeLayout) findViewById(R.id.main_omnibox);
-            omnibox.setVisibility(View.VISIBLE);
-            CoordinatorLayout.LayoutParams p = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            CoordinatorLayout.LayoutParams pw = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            p.setMargins(0, 0, 0, 0);
-            pw.setMargins(0, 96, 0, 0);
-
-            omnibox.setLayoutParams(p);
-            view.setLayoutParams(pw);
-
-            omnibox.refreshDrawableState();
-            view.refreshDrawableState();
-
-        }
-    }
-
-
 
     private void setFullscreen(boolean fullscreen) {
         WindowManager.LayoutParams attrs = getWindow().getAttributes();

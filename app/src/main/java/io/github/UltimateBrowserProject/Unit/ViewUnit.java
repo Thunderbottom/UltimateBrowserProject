@@ -110,6 +110,15 @@ public class ViewUnit {
 
     }
 
+    public static int getNavigationBarHeight(Context context) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+
+        return ( (resourceId > 0)  ? resources.getDimensionPixelSize(resourceId)
+                : 0);
+
+    }
+
     public static int getWindowHeight(Context context) {
         return context.getResources().getDisplayMetrics().heightPixels;
     }
@@ -120,6 +129,12 @@ public class ViewUnit {
 
     public static int getAdjustedWindowHeight(Context context) {
         return getWindowHeight(context) - getStatusBarHeight(context);
+    }
+
+    public static int getAdjustedWindowHeight(Context context, boolean statusbar, boolean navbar) {
+        return getWindowHeight(context)
+                - (statusbar ? getStatusBarHeight    (context) : 0)
+                - (navbar    ? getNavigationBarHeight(context) : 0);
     }
 
     public static void setElevation(View view, float elevation) {

@@ -16,6 +16,7 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -41,6 +42,7 @@ import io.github.UltimateBrowserProject.Activity.BrowserActivity;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
+import io.github.UltimateBrowserProject.Unit.ViewUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class UltimateBrowserProjectWebViewClient extends WebViewClient {
@@ -80,11 +82,28 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)ultimateBrowserProjectWebView.getLayoutParams();
+        CoordinatorLayout.LayoutParams p  = (CoordinatorLayout.LayoutParams)BrowserActivity.omnibox.getLayoutParams();
+        if(BrowserActivity.anchor == 0) {
+            p.setMargins (0, 0, 0, 0);
+            pw.setMargins(0, ViewUnit.goh(context), 0, 0);
+        } else {
+            p.setMargins (0, ViewUnit.getAdjustedWindowHeight(context) - ViewUnit.goh(context), 0, 0);
+            pw.setMargins(0, 0, 0, ViewUnit.goh(context));
+        }
+
+        p.height  = ViewUnit.goh(context);
+        pw.height = ViewUnit.getAdjustedWindowHeight(context)
+                  - ViewUnit.goh(context);
+        BrowserActivity.omnibox.setLayoutParams(p);
+        ultimateBrowserProjectWebView.setLayoutParams(pw);
+
         super.onPageStarted(view, url, favicon);
 
         if (view.getTitle() == null || view.getTitle().isEmpty())
              ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
         else ultimateBrowserProjectWebView.update(view.getTitle(), url);
+
         
     }
 
