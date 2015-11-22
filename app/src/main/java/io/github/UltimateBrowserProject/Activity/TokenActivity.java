@@ -28,7 +28,9 @@ public class TokenActivity extends AppCompatActivity {
             findViewById(R.id.token_layout).setBackgroundColor(getResources().getColor(R.color.background_material_dark));
 
 
-        try { getSupportActionBar().setDisplayHomeAsUpEnabled(true); } catch(Exception e) {/* */}
+        try {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch(NullPointerException e) { /* */ }
 
         final EditText tokenEdit = (EditText) findViewById(R.id.token_edit);
         Button tokenAdd = (Button) findViewById(R.id.token_add);
