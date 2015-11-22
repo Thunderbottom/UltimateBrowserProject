@@ -236,7 +236,7 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
         String[] contents = getResources().getStringArray(R.array.license_contents);
         String[] authors = getResources().getStringArray(R.array.license_authors);
         final String[] urls = getResources().getStringArray(R.array.license_urls);
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < titles.length; i++) {
             Map<String, String> map = new HashMap<>();
             map.put(LICENSE_TITLE, titles[i]);
             map.put(LICENSE_CONTENT, contents[i]);
