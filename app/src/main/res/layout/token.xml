@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:id="@+id/token_layout"
               android:orientation="vertical"
               android:layout_width="match_parent"
@@ -26,7 +27,9 @@
                   android:inputType="textMultiLine">
         </EditText>
 
-        <Button android:id="@+id/token_add"
+        <com.rey.material.widget.Button
+                style="@style/Button_MainStyle_Flatted"
+                android:id="@+id/token_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/layout_margin_8dp"
@@ -34,8 +37,10 @@
                 android:layout_marginBottom="@dimen/layout_margin_8dp"
                 android:text="@string/token_add"
                 android:textColor="@color/text"
-                android:textAllCaps="true">
-        </Button>
+                android:textAllCaps="true"
+                app:rd_enable="true"
+                app:rd_style="@style/Material.Drawable.Ripple.Wave.Light">
+        </com.rey.material.widget.Button>
 
     </LinearLayout>
 

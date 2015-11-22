@@ -10,8 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
+
+import com.rey.material.widget.Button;
 
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
@@ -27,7 +28,7 @@ public class TokenActivity extends AppCompatActivity {
             findViewById(R.id.token_layout).setBackgroundColor(getResources().getColor(R.color.background_material_dark));
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        try { getSupportActionBar().setDisplayHomeAsUpEnabled(true); } catch(Exception e) {/* */}
 
         final EditText tokenEdit = (EditText) findViewById(R.id.token_edit);
         Button tokenAdd = (Button) findViewById(R.id.token_add);
