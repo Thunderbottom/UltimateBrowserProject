@@ -26,16 +26,16 @@
         Eliminar
     </string>
     <string name="clear_menu_done_all">
-    Hecho
+        Hecho
     </string>
     <string name="clear_title_quit">
-    Eliminar cuando se salga de la aplicación
+        Eliminar al salir de la aplicación
     </string>
     <string name="clear_title_bookmarks">
         Eliminar todos los marcadores
     </string>
     <string name="clear_title_cache">
-        Vaciar la caché
+        Vaciar el caché
     </string>
     <string name="clear_title_cookie">
         Eliminar Cookies
@@ -52,7 +52,7 @@
 
     <!-- Dialog -->
     <string name="dialog_title_hint">
-    Introduzca un título
+        Introduzca un título
     </string>
     <string name="dialog_se_hint">
         https://www.google.com/search?q=
@@ -76,7 +76,7 @@
         Personalizar
     </string>
     <string name="dialog_title_download">
-      ¿Quiere descargar este archivo?
+        ¿Quiere descargar este archivo?
     </string>
     <string name="dialog_title_resubmission">
         Volver a enviar
@@ -88,27 +88,27 @@
         Registrarse
     </string>
     <string name="dialog_content_resubmission">
-       ¿Quiere volver a enviar la información?
+        ¿Quiere volver a enviar la información?
     </string>
     <string name="dialog_content_ssl_error">
-      El certificado del sitio no es de confianza. ¿Desea continuar de todas formas?
+        El certificado del sitio no es de confianza. ¿Desea continuar de todas formas?
     </string>
     <string name="dialog_content_update">
-      Haga clic en el enlace para comprobar si hay actualizaciones disponibles -\n http://bit.ly/UBPUpdate \n
-      La versión actual es 2.0
+        Haga clic en el enlace para comprobar si hay actualizaciones disponibles -\n http://bit.ly/UBPUpdate \n
+        La versión actual es 2.0
     </string>
     <string name="dialog_content_upload">
-       Actualmente, la subida de archivos sólo se permite en Android 5.0 y superiores.
+        Actualmente, la subida de archivos sólo se permite en Android 5.0 y superiores.
     </string>
 
     <!-- List -->
     <string name="list_empty">
-       La lista está vacía
+        La lista está vacía
     </string>
 
     <!-- Main -->
     <string name="main_menu_new_tab">
-       Abrir en una nueva pestaña
+        Abrir en una nueva pestaña
     </string>
     <string name="main_menu_copy_link">
         Copiar link
@@ -117,7 +117,7 @@
         Guardar
     </string>
     <string name="main_omnibox_input_hint">
-     Buscar o introducir una URL
+        Buscar o introducir una URL
     </string>
     <string name="main_relayout_ok">
         OK
@@ -128,7 +128,7 @@
 
     <!-- Notification -->
     <string name="notification_content_holder">
-       Haga clic para ver las páginas
+        Haga clic para ver las páginas
     </string>
 
     <!-- Readability -->
@@ -142,7 +142,7 @@
         Compartir
     </string>
     <string name="readability_empty">
-       ERROR: No se pudo acceder al servidor de lectura. Por favor verifique la autenticación y la conexión a Internet.
+        ERROR: No se pudo acceder al servidor de lectura. Por favor verifique la autenticación y la conexión a Internet.
     </string>
 
     <!-- Search -->
@@ -198,17 +198,17 @@
         Posición de la barra de direcciones
     </string>
     <string name="setting_summary_omnibox_position_top">
-      Superior
+        Superior
     </string>
     <string name="setting_summary_omnibox_position_bottom">
-      Inferior
+        Inferior
     </string>
     <!-- Omnibox control -->
     <string name="setting_title_omnibox_control">
         Control de la barra de direcciones
     </string>
     <string name="setting_summary_omnibox_control">
-        Deslice el cuadro multifunción de derecha/izquierda para cambiar de pestaña
+        Deslice el cuadro multifunción a la derecha/izquierda para cambiar de pestaña
      </string>
     <!-- Volume key scroll -->
     <string name="setting_title_volume_control">
@@ -221,21 +221,21 @@
         Scroll Web
     </string>
     <string name="setting_summary_vc_system_default">
-        Sistema por defecto
+        Por defecto del sistema
     </string>
     <!-- Images -->
     <string name="setting_title_images">
         Imágenes
     </string>
     <string name="setting_summary_images">
-        Activar imágenes en internet
+        Cargar imágenes
     </string>
     <!-- Cookies -->
     <string name="setting_title_cookie">
         Cookies
     </string>
     <string name="setting_summary_cookie">
-       Activar las Cookies
+        Activar las Cookies
     </string>
     <!-- JavaScript -->
     <string name="setting_title_javascript">
@@ -287,7 +287,7 @@
     </string>
     <!-- Rendering -->
     <string name="setting_title_rendering">
-        Reproducción
+        Renderizado
     </string>
     <string name="setting_summary_rendering_default">
         Por Defecto
@@ -296,24 +296,24 @@
         Escala de grises
     </string>
     <string name="setting_summary_rendering_inverted">
-        Inverso
+        Colores invertidos
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
-        Escala de grises inversa
+        Escala de grises invertida
     </string>
     <!-- Fullscreen mode -->
     <string name="setting_title_fullscreen">
-        Fullscreen mode
+        Pantalla completa
     </string>
     <string name="setting_summary_fullscreen">
-        Enable fullscreen mode
+        Activar modo de pantalla completa
     </string>
     <!-- Restore Tabs -->
     <string name="setting_title_restore_tabs">
-        Restore Tabs
+        Restaurar pestañas
     </string>
     <string name="setting_summary_restore_tabs">
-        Restore tabs from previous sessions
+        Recuperar las pestañas de la asesión anterior
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">
@@ -326,7 +326,7 @@
         Whitelist
     </string>
     <string name="setting_summary_whitelist">
-      Permitir que estos sitios muestren anuncios
+        Permitir que estos sitios muestren anuncios
     </string>
     <string name="setting_title_export_whitelist">
         Exportar Whitelist
@@ -348,7 +348,7 @@
         Activar Modo Lectura
     </string>
     <string name="setting_summary_token">
-       Ajustar Token del Modo Lectura
+        Ajustar Token del Modo Lectura
     </string>
     <!-- Data setting -->
     <string name="setting_title_data">
@@ -373,7 +373,7 @@
     </string>
     <!-- Clear -->
     <string name="setting_title_clear_control">
-        Controles Claros
+        Eliminar datos
     </string>
     <!-- Others setting -->
     <string name="setting_title_others">
@@ -397,13 +397,13 @@
         Añadido con éxito a marcadores
     </string>
     <string name="toast_add_bookmark_failed">
-       No se pudo añadir esta web a marcadores
+        No se pudo añadir esta web a marcadores
     </string>
     <string name="toast_add_to_home_successful">
-       Añadido con éxito a la pantalla de bienvenida
+        Añadido con éxito a la pantalla de inicio
     </string>
     <string name="toast_add_to_home_failed">
-       No se pudo añadir a la pantalla de bienvenida
+        No se pudo añadir a la pantalla de inicio
     </string>
     <string name="toast_add_token_successful">
         Token de modo lectura añadido con éxito
@@ -415,16 +415,16 @@
         Ya en el primer plano
     </string>
     <string name="toast_already_exist_in_home">
-        Ya existe en la pantalla de Bienvenida
+        Ya existe en la pantalla de inicio
     </string>
     <string name="toast_clear_successful">
-       Operación de eliminación concluida con éxito
+        Operación de eliminación concluida con éxito
     </string>
     <string name="toast_clear_failed">
-       Fallo al eliminar
+        Fallo al eliminar
     </string>
     <string name="toast_copy_successful">
-       Copiado con éxito
+        Copiado con éxito
     </string>
     <string name="toast_delete_bookmark_successful">
         Marcador borrado con éxito
@@ -442,34 +442,34 @@
         つ◕ل͜◕)つ
     </string>
     <string name="toast_export_bookmarks_successful">
-        Exportar archivo de marcadores :&#160;
+        Archivo de marcadores exportado a:&#160;
     </string>
     <string name="toast_export_bookmarks_failed">
         Fallo al exportar marcadores
     </string>
     <string name="toast_export_whitelist_successful">
-        Archivo de whitelist exportado :&#160;
+        Archivo de whitelist exportado a:&#160;
     </string>
     <string name="toast_export_whitelist_failed">
        Fallo al exportar la whitelist
     </string>
     <string name="toast_import_bookmarks_successful">
-        Número de marcadores importados :&#160;
+        Número de marcadores importados:&#160;
     </string>
     <string name="toast_import_bookmarks_failed">
         Fallo al importar marcadores
     </string>
     <string name="toast_import_whitelist_successful">
-        Número de dominios importados :&#160;
+        Número de dominios importados:&#160;
     </string>
     <string name="toast_import_whitelist_failed">
-       Fallo al importar la whitelist
+        Fallo al importar la whitelist
     </string>
     <string name="toast_input_empty">
-       No ha introducido nada
+        No ha introducido nada
     </string>
     <string name="toast_invalid_domain">
-        Dominio no válido
+        Dominio inválido
     </string>
     <string name="toast_load_error">
         No se puede cargar esta URL
@@ -496,22 +496,22 @@
         Redimensionado con éxito
     </string>
     <string name="toast_screenshot_successful">
-        Captura de pantalla guardada :&#160;
+        Captura de pantalla guardada en:&#160;
     </string>
     <string name="toast_screenshot_failed">
         No se pudo guardar la captura de pantalla
     </string>
     <string name="toast_share_failed">
-       No es posible compartir esta página
+        No es posible compartir esta página
     </string>
     <string name="toast_start_download">
         Descarga iniciándose
     </string>
     <string name="toast_token_empty">
-       Por favor establece el token del modo lectura
+        Por favor establezca el token del modo lectura
     </string>
     <string name="toast_wait_a_minute">
-       Espera un momento
+        Espera un momento
     </string>
 
     <!-- Token -->
@@ -519,7 +519,7 @@
         Token
     </string>
     <string name="token_edit_hint">
-       Token de modo de lectura
+        Token de modo de lectura
     </string>
     <string name="token_add">
         Añadir
@@ -548,4 +548,29 @@
     </string>
     <string name="open_in_app_snackbar_action_title"></string>
 
+    <!-- Open in app -->
+    <string name="open_in_app_snackbar_title">
+         ¿Abrir en la aplicación?
+    </string>
+    <string name="open_in_app_snackbar_action_title">
+         ABRIR
+    </string>
+
+    <!-- Crashlytics-->
+    <string name="com.crashlytics.CrashSubmissionPromptTitle">
+        ¿Enviar informe de error?
+    </string>
+    <string name="com.crashlytics.CrashSubmissionPromptMessage">
+        ¡Parece que la aplicación se ha detenido! Por favor, ayúdenos a corregir este error enviándonos un informe de errores.
+    </string>
+    <string name="com.crashlytics.CrashSubmissionSendTitle">
+        Enviar
+    </string>
+    <string name="com.crashlytics.CrashSubmissionAlwaysSendTitle">
+        Enviar siempre
+    </string>
+    <string name="com.crashlytics.CrashSubmissionCancelTitle">
+        No enviar
+    </string>
+    
 </resources>
