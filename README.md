@@ -1,6 +1,6 @@
 ![Launcher Icon](/Artworks/UBP Banner.png)
 
-[![GitHub version](https://badge.fury.io/gh/balzathor%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/balzathor%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/balzathor/UltimateBrowserProject.svg)](https://travis-ci.org/balzathor/UltimateBrowserProject)     [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/balzathor/ultimatebrowserproject/trend.png)](https://bitdeli.com/free "Bitdeli Badge")     [![ReviewNinja](https://app.review.ninja/37241078/badge)](https://app.review.ninja/balzathor/UltimateBrowserProject)
+[![GitHub version](https://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/balzathor%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/Thunderbottom/UltimateBrowserProject.svg)](https://travis-ci.org/balzathor/UltimateBrowserProject)     [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/balzathor/ultimatebrowserproject/trend.png)](https://bitdeli.com/free "Bitdeli Badge")     [![ReviewNinja](https://app.review.ninja/37241078/badge)](https://app.review.ninja/balzathor/UltimateBrowserProject)
 ===
 Open source, lightweight Android Browser.
 
