@@ -1,6 +1,6 @@
 ![Launcher Icon](/Artworks/UBP Banner.png)
 
-[![GitHub version](https://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/balzathor%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/Thunderbottom/UltimateBrowserProject.svg)](https://travis-ci.org/balzathor/UltimateBrowserProject)     [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/balzathor/ultimatebrowserproject/trend.png)](https://bitdeli.com/free "Bitdeli Badge")     [![ReviewNinja](https://app.review.ninja/37241078/badge)](https://app.review.ninja/balzathor/UltimateBrowserProject)
+[![GitHub version](https://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/Thunderbottom/UltimateBrowserProject.svg)](https://travis-ci.org/Thunderbottom/UltimateBrowserProject)     [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Thunderbottom/ultimatebrowserproject/trend.png)](https://bitdeli.com/free "Bitdeli Badge")     [![ReviewNinja](https://app.review.ninja/37241078/badge)](https://app.review.ninja/Thunderbottom/UltimateBrowserProject)
 ===
 Open source, lightweight Android Browser.
 
@@ -15,14 +15,14 @@ __REQUIRES: ANDROID 4.1+__
 
 ## List of current features
 
-For a list of current features provided by the application and many more, Please Check out [Featurelist](https://github.com/balzathor/UltimateBrowserProject/blob/master/app/src/main/assets/UltimateBrowserProject_introduction_en.md)
+For a list of current features provided by the application and many more, Please Check out [Featurelist](https://github.com/Thunderbottom/UltimateBrowserProject/blob/master/app/src/main/assets/UltimateBrowserProject_introduction_en.md)
 
 
 ## Downloads - 
 
-[Download Latest Version 1.4.6](https://github.com/balzathor/UltimateBrowserProject/releases/download/latest/UltimateBrowserProject.apk)
+[Download Latest Version 1.4.6](https://github.com/Thunderbottom/UltimateBrowserProject/releases/download/latest/UltimateBrowserProject.apk)
 
-[Download Latest Beta Version (1.0β)](https://github.com/balzathor/UltimateBrowserProject/releases/download/latestbeta/UltimateBrowserProject.apk)
+[Download Latest Beta Version (1.0β)](https://github.com/Thunderbottom/UltimateBrowserProject/releases/download/latestbeta/UltimateBrowserProject.apk)
 
 ## Permissions:
 
@@ -78,7 +78,7 @@ For a list of current features provided by the application and many more, Please
 
 
     UltimateBrowserProject
-    Copyright (C) 2015  balzathor
+    Copyright (C) 2015  Thunderbottom
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
