@@ -133,7 +133,7 @@
 
     <!-- Readability -->
     <string name="readability_label">
-        Lesbarkeitsmodus
+        Readability
     </string>
     <string name="readability_menu_background">
         Hintergrund
@@ -212,7 +212,7 @@
     </string>
     <!-- Omnibox control -->
     <string name="setting_title_omnibox_control">
-        Omnibox Steuerung
+        Adressleistensteuerung
     </string>
     <string name="setting_summary_omnibox_control">
         Wischen Sie nach links/rechts, um zwischen den Tabs zu wechseln.
@@ -303,10 +303,10 @@
         Graustufen
     </string>
     <string name="setting_summary_rendering_inverted">
-        Invertiert
+        Negativ
     </string>
     <string name="setting_summary_rendering_inverted_grayscale">
-        Invertiert (Graustufen)
+        Negativ (Graustufen)
     </string>
     <!-- Fullscreen mode -->
     <string name="setting_title_fullscreen">
@@ -321,10 +321,10 @@
     </string>
     <!-- AdBlock setting -->
     <string name="setting_title_adblock">
-        Werbeblocker
+        AdBlock
     </string>
     <string name="setting_summary_adblock">
-        Aktiviere Werbeblocker
+        Aktiviere den Werbeblocker
     </string>
     <string name="setting_title_whitelist">
         Whitelist
@@ -343,7 +343,7 @@
     </string>
     <!-- Readability settings -->
     <string name="setting_title_readability">
-        Lesbarkeit
+        Readability
     </string>
     <string name="setting_title_token">
         Token
@@ -352,7 +352,7 @@
         Aktiviere Lesbarkeitsmodus
     </string>
     <string name="setting_summary_token">
-        Setze Token für Lesbarkeitsmodus
+        Setze Token für Readability
     </string>
     <!-- Data setting -->
     <string name="setting_title_data">
@@ -523,7 +523,7 @@
         Token
     </string>
     <string name="token_edit_hint">
-        Token für Lesbarkeitsmodus
+        Token für Readability
     </string>
     <string name="token_add">
         Hinzufügen
@@ -553,7 +553,7 @@
 
     <!-- Open in app -->
     <string name="open_in_app_snackbar_title">
-        In App öffnen?
+        In der App öffnen?
     </string>
     <string name="open_in_app_snackbar_action_title">
          ÖFFNEN
@@ -565,7 +565,7 @@
     <string name="com.crashlytics.CrashSubmissionPromptMessage">Sieht nach einem Absturz aus! Bitte helfen Sie uns das Problem zu beheben, indem Sie einen Absturzbericht senden.</string>
     <string name="com.crashlytics.CrashSubmissionPromptTitle">Absturzbericht senden?</string>
     <string name="com.crashlytics.CrashSubmissionSendTitle">Senden</string>
-    <string name="setting_summary_restore_tabs">Tabs aus vorheriger Sitzung wiederherstellen</string>
+    <string name="setting_summary_restore_tabs">Tabs aus letzter Sitzung wiederherstellen</string>
 
 
 </resources>
