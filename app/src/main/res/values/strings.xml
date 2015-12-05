@@ -491,13 +491,13 @@
         Successfully opened in a new tab
     </string>
     <string name="toast_open_file_manager_failed">
-        Failed to open File Manager
+        Failed to open the File Manager
     </string>
     <string name="toast_refresh_failed">
-        Can\'t refresh this page
+        Cannot refresh this page
     </string>
     <string name="toast_cannot_forward">
-        Can\'t go forward
+        Cannot go forward
     </string>
     <string name="toast_relayout_successful">
         Successfully Relayout
@@ -515,7 +515,7 @@
         Starting download
     </string>
     <string name="toast_token_empty">
-        Please set Readability token
+        Please set the Readability token
     </string>
     <string name="toast_wait_a_minute">
         Wait for a moment
