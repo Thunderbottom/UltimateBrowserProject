@@ -1,6 +1,6 @@
 ![Launcher Icon](/Artworks/UBP Banner.png)
 
-[![GitHub version](https://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/Thunderbottom/UltimateBrowserProject.svg)](https://travis-ci.org/Thunderbottom/UltimateBrowserProject)     [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Thunderbottom/ultimatebrowserproject/trend.png)](https://bitdeli.com/free "Bitdeli Badge")     [![ReviewNinja](https://app.review.ninja/37241078/badge)](https://app.review.ninja/Thunderbottom/UltimateBrowserProject)
+[![Owner](https://img.shields.io/badge/owner-Thunderbottom-orange.svg)](http://github.com/Thunderbottom)    [![GitHub version](https://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/Thunderbottom/UltimateBrowserProject.svg)](https://travis-ci.org/Thunderbottom/UltimateBrowserProject)     [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Thunderbottom/ultimatebrowserproject/trend.png)](https://bitdeli.com/free "Bitdeli Badge")     [![ReviewNinja](https://app.review.ninja/37241078/badge)](https://app.review.ninja/Thunderbottom/UltimateBrowserProject)
 ===
 Open source, lightweight Android Browser.
 
