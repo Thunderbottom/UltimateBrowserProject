@@ -208,76 +208,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                         cpwo =  0;
                     }
 
-                    Thread thread = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                assert fview != null;
-                                fview.post(new Runnable() {
 
-                                    public void run() {
-                                            Logging.logd("Started omnibox animation");
-                                            int cpot = cpor, cpwot = cpwor;
-                                            boolean moveUp = (cpwor >= oh / 2);
-                                            if (moveUp) {
-                                                while (cpot != 0) {
-                                                    cpot++;
-                                                    cpwot++;
-                                                    CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams) thisWebView.getLayoutParams();
-                                                    CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) BrowserActivity.omnibox.getLayoutParams();
-                                                    p.height = oh;
-                                                    if (BrowserActivity.anchor == 0) {
-                                                        p.setMargins(0, cpot, 0, 0);
-                                                        pw.setMargins(0, cpwot, 0, 0);
-                                                    } else {
-                                                        p.setMargins(0, ViewUnit.getAdjustedWindowHeight(context) + cpot, 0, 0);
-                                                        pw.setMargins(0, 0, 0, cpwot);
-                                                    }
-                                                    BrowserActivity.omnibox.setLayoutParams(p);
-                                                    thisWebView.setLayoutParams(pw);
-                                                    BrowserActivity.omnibox.refreshDrawableState();
-                                                    try {
-                                                        Thread.sleep(4);
-                                                    } catch (Exception ex) {
-                                                        Logging.logd("ERR");
-                                                    }
-                                                    Logging.logd("Actual values: " + cpot + " " + cpwot);
-                                                }
-                                            } else {
-                                                while (cpot != -oh) {
-                                                    cpot--;
-                                                    cpwot--;
-                                                    CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams) thisWebView.getLayoutParams();
-                                                    CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) BrowserActivity.omnibox.getLayoutParams();
-                                                    p.height = oh;
-                                                    if (BrowserActivity.anchor == 0) {
-                                                        p.setMargins(0, cpot, 0, 0);
-                                                        pw.setMargins(0, cpwot, 0, 0);
-                                                    } else {
-                                                        p.setMargins(0, ViewUnit.getAdjustedWindowHeight(context) + cpot, 0, 0);
-                                                        pw.setMargins(0, 0, 0, cpwot);
-                                                    }
-                                                    BrowserActivity.omnibox.setLayoutParams(p);
-                                                    thisWebView.setLayoutParams(pw);
-                                                    BrowserActivity.omnibox.refreshDrawableState();
-                                                    try {
-                                                        Thread.sleep(4);
-                                                    } catch (Exception ex) {
-                                                        Logging.logd("ERR");
-                                                    }
-                                                    Logging.logd("Actual values: " + cpot + "  " + cpwot);
-                                                }
-                                            }
-                                            Logging.logd("End of omnibox animation");
-                                        }
-
-                                });
-                            } catch(Exception ex) {Logging.logd("AssertionError");}
-                        }
-
-                    });
-                    thread.start();
-                    /*
                     CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)thisWebView.getLayoutParams();
                     CoordinatorLayout.LayoutParams p  = (CoordinatorLayout.LayoutParams)BrowserActivity.omnibox.getLayoutParams();
                     p.height = oh;
@@ -290,7 +221,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                     }
                     BrowserActivity.omnibox.setLayoutParams(p);
                     thisWebView.setLayoutParams(pw);
-                    */
+                    
                 } else if (action == MotionEvent.ACTION_MOVE) {
                     boolean glitchfix;
                     CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)thisWebView.getLayoutParams();
