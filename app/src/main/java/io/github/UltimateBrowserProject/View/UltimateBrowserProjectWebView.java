@@ -193,7 +193,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                     Logging.logd("MotionEvent.ACTION_UP");
                     assert view != null;
                     boolean moveUp = (BrowserActivity.anchor == 0 ? (-cpo >= oh / 2) : (cpo == 0));
-                    Logging.logd(cpo);
                     ym1   = 0;
                     ym2   = 0;
                     lastM = 0;
@@ -212,39 +211,35 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                                                     (BrowserActivity.anchor == 0 ?   0 : oh)))
                             .setDuration(480);
                     view.animate()
-                            .translationY((moveUp ? (BrowserActivity.anchor == 0 ? -oh : 0 ) :
-                                                    (BrowserActivity.anchor == 0 ?   0 : 0)))
+                            .translationY((moveUp ? (BrowserActivity.anchor == 0 ?   0  : 0 ) :
+                                                    (BrowserActivity.anchor == 0 ?   oh : 0)))
                             .setDuration(60);
 
                 } else if (action == MotionEvent.ACTION_MOVE) {
-                    if(lastM == 0 && BrowserActivity.anchor == 0)
-                        BrowserActivity.omnibox.animate()
-                            .setDuration(1).translationY(0);
                     assert view != null;
-                    boolean glitchfix;
-                    glitchfix = (BrowserActivity.anchor == 1 && lastM == 0);
+                    boolean glitchfix = (lastM == 0);
                     lastM = (int)motionEvent.getY();
+                    ym2 = oh - (lastM - ym1);
+
+                    if (BrowserActivity.anchor == 0) {
+                        cpo -= ym2 - oh;
+                        cpwo = cpo + oh;
+                    } else {
+                        cpo += oh - ym2;
+                        cpwo = oh - cpo;
+                    }
+
+                    if      (cpwo < 0  ) cpwo =  0;
+                    else if (cpwo > oh ) cpwo = oh;
+                    if      (cpo  > 0  ) cpo  =  0;
+                    else if (cpo  < -oh) cpo  = -oh;
                     if(!glitchfix) {
-                        ym2 = oh - (lastM - ym1);
-
-                        if (BrowserActivity.anchor == 0) {
-                            cpo -= ym2 - oh;
-                            cpwo = cpo + oh;
-                        } else {
-                            cpo += oh - ym2;
-                            cpwo = oh - cpo;
-                        }
-                        if      (cpwo < 0  ) cpwo =  0;
-                        else if (cpwo > oh ) cpwo = oh;
-                        if      (cpo  > 0  ) cpo  =  0;
-                        else if (cpo  < -oh) cpo  = -oh;
-
                         if(BrowserActivity.anchor == 0) {
                             BrowserActivity.omnibox.animate()
                                     .translationY(cpo)
                                     .setDuration(0);
                             view.animate()
-                                    .translationY(cpo)
+                                    .translationY(cpo + oh)
                                     .setDuration(0);
                         }
                     }

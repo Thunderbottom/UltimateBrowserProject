@@ -83,20 +83,13 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)ultimateBrowserProjectWebView.getLayoutParams();
-        CoordinatorLayout.LayoutParams p  = (CoordinatorLayout.LayoutParams)BrowserActivity.omnibox.getLayoutParams();
-        if(BrowserActivity.anchor == 0) {
-            p.setMargins (0, 0, 0, 0);
-            pw.setMargins(0, ViewUnit.goh(context), 0, 0);
-        } else {
-            p.setMargins (0, ViewUnit.getAdjustedWindowHeight(context) - ViewUnit.goh(context), 0, 0);
-            pw.setMargins(0, 0, 0, ViewUnit.goh(context));
-        }
 
-        p.height  = ViewUnit.goh(context);
-        pw.height = ViewUnit.getAdjustedWindowHeight(context)
-                  - ViewUnit.goh(context);
-        BrowserActivity.omnibox.setLayoutParams(p);
+        pw.setMargins(0, 0, 0, 0);
+        pw.height = ViewUnit.getWindowHeight(context);
+
         ultimateBrowserProjectWebView.setLayoutParams(pw);
+
+        if(BrowserActivity.anchor == 0)ultimateBrowserProjectWebView.animate().translationY(ViewUnit.goh(context));
 
         super.onPageStarted(view, url, favicon);
 
