@@ -36,6 +36,7 @@ import io.github.UltimateBrowserProject.Browser.BrowserController;
 import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectClickHandler;
 import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectDownloadListener;
 import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectGestureListener;
+import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectJavaScriptInterface;
 import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectWebChromeClient;
 import io.github.UltimateBrowserProject.Browser.UltimateBrowserProjectWebViewClient;
 import io.github.UltimateBrowserProject.Database.Record;
@@ -71,6 +72,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private UltimateBrowserProjectWebChromeClient webChromeClient;
     private UltimateBrowserProjectDownloadListener downloadListener;
     private UltimateBrowserProjectClickHandler clickHandler;
+    public  UltimateBrowserProjectJavaScriptInterface jsInterface;
     private GestureDetector gestureDetector;
 
     private static UltimateBrowserProjectWebView thisWebView = null;
@@ -116,6 +118,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         this.downloadListener = new UltimateBrowserProjectDownloadListener(this.context);
         this.clickHandler = new UltimateBrowserProjectClickHandler(this);
         this.gestureDetector = new GestureDetector(context, new UltimateBrowserProjectGestureListener(this));
+        this.jsInterface = new UltimateBrowserProjectJavaScriptInterface();
 
         initWebView();
         initWebSettings();
@@ -123,6 +126,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         initAlbum();
     }
 
+    @SuppressLint("JavascriptInterface")
     private synchronized void initWebView() {
         thisWebView = this;
 
@@ -147,7 +151,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         this.setLayoutParams(p);
 
         this.setMinimumHeight(ViewUnit.getWindowHeight(context));
-        this.setMinimumWidth (ViewUnit.getWindowWidth (context));
+        this.setMinimumWidth(ViewUnit.getWindowWidth(context));
 
         setAlwaysDrawnWithCacheEnabled(true);
         setAnimationCacheEnabled(true);
@@ -168,6 +172,9 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         setWebViewClient(webViewClient);
         setWebChromeClient(webChromeClient);
         setDownloadListener(downloadListener);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+            addJavascriptInterface(jsInterface, "JsIface");
 
         setOnTouchListener(new OnTouchListener() {
             int oh = ViewUnit.goh(context),

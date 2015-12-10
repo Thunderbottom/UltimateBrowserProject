@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.MailTo;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.os.Build;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.text.method.PasswordTransformationMethod;
@@ -23,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.webkit.HttpAuthHandler;
 import android.webkit.SslErrorHandler;
+import android.webkit.ValueCallback;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
@@ -100,7 +103,6 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
             ultimateBrowserProjectWebView.setLayoutParams(pw);
         }
 
-
         if(BrowserActivity.anchor == 0)ultimateBrowserProjectWebView.animate().translationY(ViewUnit.goh(context));
 
         super.onPageStarted(view, url, favicon);
@@ -125,9 +127,21 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
         else ultimateBrowserProjectWebView.update(view.getTitle(), url);
 
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+            ultimateBrowserProjectWebView.evaluateJavascript(
+                    "(function() { window.JsIface.postHeadColor(document.querySelector(\"meta[name='theme-color']\").getAttribute(\"content\")) })();",
+                    null);
+
+            Logging.logd("Evaluated post head color javascript");
+        }
+
+
+
         if (ultimateBrowserProjectWebView.isForeground())
              ultimateBrowserProjectWebView.invalidate();
         else ultimateBrowserProjectWebView.postInvalidate();
+
 
     }
 

@@ -189,6 +189,8 @@ public class BrowserActivity extends Activity implements BrowserController {
                  longAnimTime = 0;
     private AlbumController currentAlbumController = null;
 
+    private static Context staticContext = null;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -209,6 +211,8 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
 
         super.onCreate(savedInstanceState);
+
+        staticContext = this.getApplicationContext();
 
         logd("Initializing...");
 
@@ -303,7 +307,6 @@ public class BrowserActivity extends Activity implements BrowserController {
     @Override
     public void onResume() {
         logd("Resuming...");
-    //    ViewServer.get(this).setFocusedWindow(this);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
         IntentUnit.setContext(this);
@@ -375,11 +378,11 @@ public class BrowserActivity extends Activity implements BrowserController {
                 logt("Language found: " + langS);
                 switch( BrowserLanguages.valueOf(langS) ) {
                     case de: lang = BrowserUnit.INTRODUCTION_DE;    break;
-                    case en: /* Skip this and use 'default: ' for English */
+                    case en: lang = BrowserUnit.INTRODUCTION_EN;    break;
                     default: lang = BrowserUnit.INTRODUCTION_EN;    break;
                 }
                 pinAlbums(BrowserUnit.BASE_URL + lang);
-                sp.edit().putBoolean(getString(R.string.sp_first), false).commit();
+                sp.edit().putBoolean(getString(R.string.sp_first), false).apply();
             }
         }
     }
@@ -591,6 +594,10 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         });
 
+    }
+
+    public static Context getContext() {
+        return staticContext;
     }
 
     public boolean isNetworkAvailable() {
