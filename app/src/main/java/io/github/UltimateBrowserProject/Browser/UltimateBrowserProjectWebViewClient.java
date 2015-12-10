@@ -1,7 +1,6 @@
 package io.github.UltimateBrowserProject.Browser;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +17,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +29,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
+import com.rey.material.app.DialogFragment;
+
+import org.xdevs23.debugUtils.Logging;
 import org.xdevs23.debugUtils.StackTraceParser;
 
 import java.io.ByteArrayInputStream;
@@ -82,12 +86,20 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams)ultimateBrowserProjectWebView.getLayoutParams();
+        if(ultimateBrowserProjectWebView.getLayoutParams() instanceof RelativeLayout.LayoutParams) {
+            RelativeLayout.LayoutParams pw = (RelativeLayout.LayoutParams) ultimateBrowserProjectWebView.getLayoutParams();
 
-        pw.setMargins(0, 0, 0, 0);
-        pw.height = ViewUnit.getWindowHeight(context);
+            pw.setMargins(0, 0, 0, 0);
+            pw.height = ViewUnit.getAdjustedWindowHeight(context);
+            ultimateBrowserProjectWebView.setLayoutParams(pw);
+        } else {
+            CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams) ultimateBrowserProjectWebView.getLayoutParams();
 
-        ultimateBrowserProjectWebView.setLayoutParams(pw);
+            pw.setMargins(0, 0, 0, 0);
+            pw.height = ViewUnit.getAdjustedWindowHeight(context);
+            ultimateBrowserProjectWebView.setLayoutParams(pw);
+        }
+
 
         if(BrowserActivity.anchor == 0)ultimateBrowserProjectWebView.animate().translationY(ViewUnit.goh(context));
 
@@ -312,8 +324,10 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
         builder.setTitle(R.string.dialog_title_sign_in);
 
         LinearLayout signInLayout = (LinearLayout) LayoutInflater.from(holder).inflate(R.layout.dialog_sign_in, null, false);
-        final EditText userEdit = (EditText) signInLayout.findViewById(R.id.dialog_sign_in_username);
-        final EditText passEdit = (EditText) signInLayout.findViewById(R.id.dialog_sign_in_password);
+        final com.rey.material.widget.EditText userEdit
+                = (com.rey.material.widget.EditText) signInLayout.findViewById(R.id.dialog_sign_in_username);
+        final com.rey.material.widget.EditText passEdit
+                = (com.rey.material.widget.EditText) signInLayout.findViewById(R.id.dialog_sign_in_password);
         passEdit.setTypeface(Typeface.DEFAULT);
         passEdit.setTransformationMethod(new PasswordTransformationMethod());
         builder.setView(signInLayout);

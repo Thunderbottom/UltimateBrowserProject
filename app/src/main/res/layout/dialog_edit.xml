@@ -14,7 +14,7 @@
               android:layout_marginLeft="@dimen/layout_margin_20dp"
               android:layout_marginRight="@dimen/layout_margin_20dp"
               android:layout_gravity="center"
-              android:gravity="top|left"
+              android:gravity="top|start"
               android:textColor="@color/text"
               android:textColorHint="@color/hint"
               android:textCursorDrawable="@null"

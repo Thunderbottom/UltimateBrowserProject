@@ -55,5 +55,8 @@ dependencies {
         transitive = true;
     }
     // Material Design library (rey5137)
-    compile 'com.github.rey5137:material:1.2.2-SNAPSHOT'
+    compile 'com.github.rey5137:material:1.2.2'
+
+    // Ripple effect library (traex)
+    compile 'com.github.traex.rippleeffect:library:1.3'
 }
