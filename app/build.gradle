@@ -54,6 +54,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
         transitive = true;
     }
+
     // Material Design library (rey5137)
     compile 'com.github.rey5137:material:1.2.2'
 

@@ -2,7 +2,6 @@ package io.github.UltimateBrowserProject.Browser;
 
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
-import android.view.View;
 
 import org.xdevs23.debugUtils.Logging;
 

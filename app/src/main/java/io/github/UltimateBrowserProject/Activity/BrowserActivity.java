@@ -207,7 +207,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                     StackTraceParser.logStackTrace(ex);
                 }
             });
-       //     ViewServer.get(this).addWindow(this);
         }
 
         super.onCreate(savedInstanceState);
@@ -284,7 +283,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         logd("Starting browser init");
         if (restore) openSavedTabs();
-        else pinAlbums(null);
+        else pinAlbums(null);   // maybe put addAlbum(title, url, true, null) here?
 
 
 
