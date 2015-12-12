@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.MailTo;
 import android.net.Uri;
@@ -119,18 +120,6 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
         if (view.getTitle() == null || view.getTitle().isEmpty())
              ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
         else ultimateBrowserProjectWebView.update(view.getTitle(), url);
-
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-
-            ultimateBrowserProjectWebView.evaluateJavascript(
-                    "(function() { window.JsIface.postHeadColor(document.querySelector(\"meta[name='theme-color']\").getAttribute(\"content\")) })();",
-                    null);
-
-            Logging.logd("Evaluated post head color javascript");
-        }
-
-
 
         if (ultimateBrowserProjectWebView.isForeground())
              ultimateBrowserProjectWebView.invalidate();

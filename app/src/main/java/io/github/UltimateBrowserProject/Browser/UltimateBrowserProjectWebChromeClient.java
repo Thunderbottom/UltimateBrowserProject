@@ -1,13 +1,19 @@
 package io.github.UltimateBrowserProject.Browser;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+import org.xdevs23.debugUtils.Logging;
+
+import io.github.UltimateBrowserProject.Activity.BrowserActivity;
+import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class UltimateBrowserProjectWebChromeClient extends WebChromeClient {
@@ -33,12 +39,18 @@ public class UltimateBrowserProjectWebChromeClient extends WebChromeClient {
     public void onProgressChanged(WebView view, int progress) {
         super.onProgressChanged(view, progress);
         ultimateBrowserProjectWebView.update(progress);
+        if(! (progress < BrowserUnit.PROGRESS_MAX)) {
+            UltimateBrowserProjectJavaScriptInterface.evaluateGetColorJS(view);
+        } else {
+            ultimateBrowserProjectWebView.jsInterface.reapplyColor();
+        }
     }
 
     @Override
     public void onReceivedTitle(WebView view, String title) {
         super.onReceivedTitle(view, title);
         ultimateBrowserProjectWebView.update(title, view.getUrl());
+        UltimateBrowserProjectJavaScriptInterface.evaluateGetColorJS(view);
     }
 
     @Deprecated
@@ -82,10 +94,12 @@ public class UltimateBrowserProjectWebChromeClient extends WebChromeClient {
     }
 
     /**
-     * TODO: ?support this method
+     * TODO: ?support this method... maybe you need to show a alertdialog asking to allow location
+     * TODO: and then just do callback.invoke(origin, true, true) for allowing,
+     * TODO: callback.invoke(origin, false, true) for disallowing...?
      * @link http://developer.android.com/reference/android/webkit/WebChromeClient.html#onGeolocationPermissionsShowPrompt%28java.lang.String,%20android.webkit.GeolocationPermissions.Callback%29
-     * @param origin
-     * @param callback
+     * @param origin The origin of the web content attempting to use the Geolocation API.
+     * @param callback The callback to use to set the permission state for the origin
      */
     @Override
     public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {

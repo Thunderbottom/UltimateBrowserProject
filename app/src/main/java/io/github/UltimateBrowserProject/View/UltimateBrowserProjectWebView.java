@@ -24,7 +24,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
-import org.xdevs23.debugUtils.DebugTestException;
 import org.xdevs23.debugUtils.Logging;
 import org.xdevs23.debugUtils.StackTraceParser;
 
@@ -127,7 +126,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         initAlbum();
     }
 
-    @SuppressLint("JavascriptInterface")
+    @SuppressWarnings("deprecation")
+    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
     private synchronized void initWebView() {
         thisWebView = this;
 

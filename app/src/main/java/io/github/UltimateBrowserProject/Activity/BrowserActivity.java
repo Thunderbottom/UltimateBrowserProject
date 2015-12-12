@@ -31,6 +31,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewCompat;
 import android.text.Editable;
@@ -780,6 +781,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         });
 
+        omnibox.setBackgroundResource(R.color.background_dark);
     }
 
     /* This Thread checks for Updates in the Background */
@@ -1486,6 +1488,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         } else {
             updateRefresh(false);
             progressBar.setVisibility(View.GONE);
+
         }
     }
 

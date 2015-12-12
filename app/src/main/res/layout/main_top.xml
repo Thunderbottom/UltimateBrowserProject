@@ -98,8 +98,20 @@
         <RelativeLayout android:id="@+id/main_omnibox"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/layout_height_48dp"
-                        android:minHeight="@dimen/layout_height_48dp"
-                        android:background="@color/background_dark" >
+                        android:minHeight="@dimen/layout_height_48dp">
+
+            <RelativeLayout android:id="@+id/main_omnibox_tinyseperator"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentTop="false"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:background="@color/hover_transparent">
+
+            </RelativeLayout>
 
             <ImageButton android:id="@+id/main_omnibox_overflow"
                          android:contentDescription="@null"
