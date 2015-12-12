@@ -419,8 +419,6 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         Logging.logd("Loading url " + finalUrl);
         thisWebView.setMinimumHeight(ViewUnit.getWindowHeight(context) - ViewUnit.goh(context));
 
-        DebugTestException.printActualStack();
-
         super.loadUrl(finalUrl);
         if (browserController != null && foreground)
             browserController.updateBookmarks();

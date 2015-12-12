@@ -1137,6 +1137,8 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         });
         albumView.startAnimation(animation);
+
+        webView.loadUrl(url);
     }
 
 
