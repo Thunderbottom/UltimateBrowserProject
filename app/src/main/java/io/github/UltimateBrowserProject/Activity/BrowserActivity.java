@@ -151,6 +151,8 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private Handler mHandler;
 
+    public  static boolean firstLaunch = false;
+
     private static String TAG = "UltimateBrowserProject";
 
     private static void logt(String msg) {
@@ -197,6 +199,22 @@ public class BrowserActivity extends Activity implements BrowserController {
             filePathCallback.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, intent));
     }
 
+    public void prepareFirstLaunch() {
+        Logging.logd("\nPreparing first launch\n");
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String lang,
+                langS = Resources.getSystem().getConfiguration().locale.getLanguage();
+        Logging.logd("Language found: " + langS);
+        switch( BrowserLanguages.valueOf(langS) ) {
+            case de: lang = BrowserUnit.INTRODUCTION_DE;    break;
+            case en: lang = BrowserUnit.INTRODUCTION_EN;    break;
+            default: lang = BrowserUnit.INTRODUCTION_EN;    break;
+        }
+        addAlbum("Introduction", BrowserUnit.BASE_URL + lang, true, null);
+        showAlbum(BrowserContainer.get(0), false, false, false);
+        sp.edit().putBoolean(getString(R.string.sp_first), false).apply();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         logd("DEBUG ENABLED");
@@ -229,6 +247,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         logd("Loading preferences...");
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
+        firstLaunch = sp.getBoolean(getString(R.string.sp_first), true);
         setFullscreen(fullscreen);
         restore = sp.getBoolean(getString(R.string.sp_restore_tabs), true);
         anchor = Integer.valueOf(sp.getString(getString(R.string.sp_anchor), "1"));
@@ -282,9 +301,11 @@ public class BrowserActivity extends Activity implements BrowserController {
         dispatchIntent(getIntent());
 
         logd("Starting browser init");
-        if (restore) openSavedTabs();
-        else pinAlbums(null);   // maybe put addAlbum(title, url, true, null) here?
-
+        if(firstLaunch) prepareFirstLaunch();
+        else {
+            if (restore) openSavedTabs();
+            else pinAlbums(null);
+        }
 
 
     }
@@ -370,19 +391,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             Log.d("", "Path is " + filePath);
             updateAlbum(filePath);
         } else {
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-            if (sp.getBoolean(getString(R.string.sp_first), true)) {
-                String lang,
-                       langS = Resources.getSystem().getConfiguration().locale.getLanguage();
-                logt("Language found: " + langS);
-                switch( BrowserLanguages.valueOf(langS) ) {
-                    case de: lang = BrowserUnit.INTRODUCTION_DE;    break;
-                    case en: lang = BrowserUnit.INTRODUCTION_EN;    break;
-                    default: lang = BrowserUnit.INTRODUCTION_EN;    break;
-                }
-                pinAlbums(BrowserUnit.BASE_URL + lang);
-                sp.edit().putBoolean(getString(R.string.sp_first), false).apply();
-            }
+
         }
     }
 

@@ -24,6 +24,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
+import org.xdevs23.debugUtils.DebugTestException;
 import org.xdevs23.debugUtils.Logging;
 import org.xdevs23.debugUtils.StackTraceParser;
 
@@ -417,6 +418,9 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         }
         Logging.logd("Loading url " + finalUrl);
         thisWebView.setMinimumHeight(ViewUnit.getWindowHeight(context) - ViewUnit.goh(context));
+
+        DebugTestException.printActualStack();
+
         super.loadUrl(finalUrl);
         if (browserController != null && foreground)
             browserController.updateBookmarks();
