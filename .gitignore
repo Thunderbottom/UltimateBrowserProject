@@ -32,6 +32,7 @@ proguard/
 
 # Custom key store for building without original keystore
 Custom.jks
+Custom2.jks
 
 # Script for debugging
 debugapp.sh
