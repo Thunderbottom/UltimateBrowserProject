@@ -230,6 +230,29 @@ public class BrowserActivity extends Activity implements BrowserController {
         return staticWindow;
     }
 
+    public static void updateBarsColor(int color) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            int mColor = 0;
+            float[] hsvc = new float[3];
+            Color.colorToHSV(color, hsvc);
+            hsvc[2] *= 0.78;
+            mColor = Color.HSVToColor(hsvc);
+            if (anchor == 0)
+                getStaticWindow().setStatusBarColor(mColor);
+            else
+                getStaticWindow().setNavigationBarColor(mColor);
+        }
+    }
+
+    public static void resetBarsColor() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getStaticWindow().setStatusBarColor(ContextCompat.getColor(getContext(),
+                    R.color.background_darker));
+            getStaticWindow().setNavigationBarColor(ContextCompat.getColor(getContext(),
+                    R.color.background_darker));
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         logd("DEBUG ENABLED");
@@ -259,12 +282,31 @@ public class BrowserActivity extends Activity implements BrowserController {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(),
-                    R.color.background_dark));
             staticWindow = window;
+            resetBarsColor();
         }
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
+
+
+        final View activityRootView = getWindow().getDecorView().findViewById(android.R.id.content);
+        activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            boolean isOpened = false;
+            @Override
+            public void onGlobalLayout() {
+                if(anchor == 1) {
+                    int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
+                    if (heightDiff > 100) { // 99% of the time the height diff will be due to a keyboard.
+                        if (!isOpened) {
+                            omnibox.animate().translationY((-heightDiff)+ViewUnit.getStatusBarHeight(getContext()))
+                                    .setDuration(24);
+                        }
+                        isOpened = true;
+                    } else if (isOpened) {
+                        omnibox.animate().translationY(0).setDuration(24);
+                        isOpened = false;
+                    }
+                }
+            }
+        });
 
         logd("Loading preferences...");
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);

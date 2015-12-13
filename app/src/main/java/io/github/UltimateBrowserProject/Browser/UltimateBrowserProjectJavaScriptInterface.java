@@ -98,23 +98,17 @@ public class UltimateBrowserProjectJavaScriptInterface {
         headColor = color;
     }
 
+    @SuppressWarnings("ResourceType")
     public void tint() {
         if(headColor.length() > 0) {
             Logging.logd("Applying color");
             applyColor(headColor);
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                //noinspection ResourceType
-                BrowserActivity.getStaticWindow().setStatusBarColor(Color.parseColor(headColor));
-            }
+            BrowserActivity.updateBarsColor(Color.parseColor(headColor));
             Logging.logd("Applied");
         } else {
             Logging.logd("No theme color, applying default.");
             applyDefaultColor();
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                //noinspection ResourceType
-                BrowserActivity.getStaticWindow().setStatusBarColor(ContextCompat.getColor(BrowserActivity.getContext(),
-                        R.color.background_dark));
-            }
+            BrowserActivity.resetBarsColor();
         }
     }
 }

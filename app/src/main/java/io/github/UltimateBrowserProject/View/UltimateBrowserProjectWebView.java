@@ -179,7 +179,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
         setOnTouchListener(new OnTouchListener() {
             int oh = ViewUnit.goh(context),
-                ym1 = 0, ym2 = 0, lastM = 0, cpo = 0, cpwo = oh, lagf = 0;
+                    ym1 = 0, ym2 = 0, lastM = 0, cpo = 0, cpwo = oh, lagf = 0;
+
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (view != null && !view.hasFocus())
@@ -192,37 +193,37 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
                 if (action == MotionEvent.ACTION_DOWN) {
                     Logging.logd("MotionEvent.ACTION_DOWN");
-                    ym1 = (int)y1;
+                    ym1 = (int) y1;
                 } else if (action == MotionEvent.ACTION_UP) {
                     Logging.logd("MotionEvent.ACTION_UP");
                     assert view != null;
                     boolean moveUp = (BrowserActivity.anchor == 0 ? (-cpo >= oh / 2) : (cpo == 0));
-                    ym1   = 0;
-                    ym2   = 0;
+                    ym1 = 0;
+                    ym2 = 0;
                     lastM = 0;
-                    lagf  = 0;
-                    if((cpo <= 0 && cpo != -oh) ||
-                       (cpo == 0 && cpwo == oh)) {
-                        cpo  =  0;
-                        cpwo =  oh;
+                    lagf = 0;
+                    if ((cpo <= 0 && cpo != -oh) ||
+                            (cpo == 0 && cpwo == oh)) {
+                        cpo = 0;
+                        cpwo = oh;
                     } else {
-                        cpo  =  -oh;
-                        cpwo =  0;
+                        cpo = -oh;
+                        cpwo = 0;
                     }
 
                     BrowserActivity.omnibox.animate()
-                            .translationY((moveUp ? (BrowserActivity.anchor == 0 ? -oh : 0 ) :
-                                                    (BrowserActivity.anchor == 0 ?   0 : oh)))
+                            .translationY((moveUp ? (BrowserActivity.anchor == 0 ? -oh : 0) :
+                                    (BrowserActivity.anchor == 0 ? 0 : oh)))
                             .setDuration(480);
                     view.animate()
-                            .translationY((moveUp ? (BrowserActivity.anchor == 0 ?   0  : 0 ) :
-                                                    (BrowserActivity.anchor == 0 ?   oh : 0)))
+                            .translationY((moveUp ? (BrowserActivity.anchor == 0 ? 0 : 0) :
+                                    (BrowserActivity.anchor == 0 ? oh : 0)))
                             .setDuration(60);
 
                 } else if (action == MotionEvent.ACTION_MOVE) {
                     assert view != null;
                     boolean glitchfix = (lastM == 0);
-                    lastM = (int)motionEvent.getY();
+                    lastM = (int) motionEvent.getY();
                     ym2 = oh - (lastM - ym1);
 
                     if (BrowserActivity.anchor == 0) {
@@ -233,12 +234,12 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                         cpwo = oh - cpo;
                     }
 
-                    if      (cpwo < 0  ) cpwo =  0;
-                    else if (cpwo > oh ) cpwo = oh;
-                    if      (cpo  > 0  ) cpo  =  0;
-                    else if (cpo  < -oh) cpo  = -oh;
-                    if(!glitchfix) {
-                        if(BrowserActivity.anchor == 0) {
+                    if (cpwo < 0) cpwo = 0;
+                    else if (cpwo > oh) cpwo = oh;
+                    if (cpo > 0) cpo = 0;
+                    else if (cpo < -oh) cpo = -oh;
+                    if (!glitchfix) {
+                        if (BrowserActivity.anchor == 0) {
                             BrowserActivity.omnibox.animate()
                                     .translationY(cpo)
                                     .setDuration(0);
@@ -260,14 +261,14 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         userAgentOriginal = webSettings.getUserAgentString();
 
         webSettings.setAllowContentAccess(true);
-        webSettings.setAllowFileAccess   (true);
+        webSettings.setAllowFileAccess(true);
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
 
         webSettings.setAppCacheEnabled(true);
         webSettings.setAppCachePath(context.getCacheDir().toString());
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        webSettings.setDatabaseEnabled  (true);
+        webSettings.setDatabaseEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setGeolocationDatabasePath(context.getFilesDir().toString());
 
@@ -566,4 +567,5 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
         return (int) (dp * metrics.density + 0.5f);
     }
+
 }
