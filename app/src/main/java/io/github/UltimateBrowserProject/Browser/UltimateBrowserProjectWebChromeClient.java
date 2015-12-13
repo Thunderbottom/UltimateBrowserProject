@@ -41,8 +41,6 @@ public class UltimateBrowserProjectWebChromeClient extends WebChromeClient {
         ultimateBrowserProjectWebView.update(progress);
         if(! (progress < BrowserUnit.PROGRESS_MAX)) {
             UltimateBrowserProjectJavaScriptInterface.evaluateGetColorJS(view);
-        } else {
-            ultimateBrowserProjectWebView.jsInterface.reapplyColor();
         }
     }
 

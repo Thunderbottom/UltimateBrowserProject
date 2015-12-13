@@ -407,7 +407,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
         // Handle introduction html version
         String finalUrl = url;
-        if ( url.contains(BrowserUnit.INTRODUCTION_PREFIX) && (!url.contains("?version=")) ) {
+        if ( url.contains(BrowserUnit.INTRODUCTION_PREFIX) && !(url.contains("?version=")) ) {
             try {
                 finalUrl += "?version=" + this.context.getPackageManager().getPackageInfo(
                         this.context.getPackageName(), 0

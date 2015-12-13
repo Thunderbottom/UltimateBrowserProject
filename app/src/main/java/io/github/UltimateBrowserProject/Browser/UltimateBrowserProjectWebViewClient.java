@@ -113,9 +113,8 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
 
-        ultimateBrowserProjectWebView.getSettings().setLoadsImagesAutomatically( 
-            (!ultimateBrowserProjectWebView.getSettings().getLoadsImagesAutomatically()) );
-
+        ultimateBrowserProjectWebView.getSettings().setLoadsImagesAutomatically(
+                (!ultimateBrowserProjectWebView.getSettings().getLoadsImagesAutomatically()));
 
         if (view.getTitle() == null || view.getTitle().isEmpty())
              ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);

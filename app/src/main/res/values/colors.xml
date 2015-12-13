@@ -31,7 +31,7 @@
     <color name="white">#FFFFFF</color>
     <color name="transparent">@android:color/transparent</color>
 
-    <color name="hover_transparent">#12444444</color>
+    <color name="hover_transparent">#24444444</color>
 
     <color name="text">#212121</color>
     <color name="text_secondary">#727272</color>
