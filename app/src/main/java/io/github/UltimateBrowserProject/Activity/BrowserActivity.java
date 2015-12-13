@@ -287,27 +287,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
 
 
-        final View activityRootView = getWindow().getDecorView().findViewById(android.R.id.content);
-        activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            boolean isOpened = false;
-            @Override
-            public void onGlobalLayout() {
-                if(anchor == 1) {
-                    int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
-                    if (heightDiff > 100) { // 99% of the time the height diff will be due to a keyboard.
-                        if (!isOpened) {
-                            omnibox.animate().translationY((-heightDiff)+ViewUnit.getStatusBarHeight(getContext()))
-                                    .setDuration(24);
-                        }
-                        isOpened = true;
-                    } else if (isOpened) {
-                        omnibox.animate().translationY(0).setDuration(24);
-                        isOpened = false;
-                    }
-                }
-            }
-        });
-
         logd("Loading preferences...");
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
@@ -318,6 +297,24 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         logd("Appliying layout...");
         setContentView(R.layout.main_top);
+
+        final View activityRootView = getWindow().getDecorView().findViewById(R.id.main_view);
+        activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (anchor == 1) {
+                    int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
+                    if (heightDiff > 100) {
+                        omnibox.animate().translationY((-heightDiff)+ViewUnit.getStatusBarHeight(getContext()))
+                                .setDuration(0);
+                        Logging.logd("Keyboard is shown.");
+                    } else {
+                        omnibox.animate().translationY(0).setDuration(0);
+                        Logging.logd("Keyboard is not shown.");
+                    }
+                }
+            }
+        });
 
         logd("Checking for update");
         new Changelog(this, R.xml.changelog).showWhatsNew();
