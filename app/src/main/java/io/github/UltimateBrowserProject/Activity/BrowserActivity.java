@@ -13,6 +13,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -46,6 +47,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -194,6 +196,8 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private static Context staticContext = null;
 
+    private static Window staticWindow = null;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -211,9 +215,19 @@ public class BrowserActivity extends Activity implements BrowserController {
             case en: lang = BrowserUnit.INTRODUCTION_EN;    break;
             default: lang = BrowserUnit.INTRODUCTION_EN;    break;
         }
-        addAlbum("Introduction", BrowserUnit.BASE_URL + lang, true, null);
+        try {
+            addAlbum("Introduction", BrowserUnit.BASE_URL + lang + "?version=" + getApplicationContext().getPackageManager().getPackageInfo(
+                    getApplicationContext().getPackageName(), 0
+            ).versionName, true, null);
+        } catch (PackageManager.NameNotFoundException e) {
+            StackTraceParser.logStackTrace(e);
+        }
         showAlbum(BrowserContainer.get(0), false, false, false);
         sp.edit().putBoolean(getString(R.string.sp_first), false).apply();
+    }
+
+    public static Window getStaticWindow() {
+        return staticWindow;
     }
 
     @Override
@@ -241,6 +255,13 @@ public class BrowserActivity extends Activity implements BrowserController {
                     getResources().getColor(R.color.background_dark)
             );
             setTaskDescription(description);
+
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(),
+                    R.color.background_dark));
+            staticWindow = window;
         }
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
@@ -429,7 +450,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     @Override
     public void onDestroy() {
         logd("Destroying...");
-    //    ViewServer.get(this).removeWindow(this);
+
         Intent toHolderService = new Intent(this, HolderService.class);
         IntentUnit.setClear(true);
         stopService(toHolderService);
@@ -603,6 +624,10 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         });
 
+    }
+
+    public static CoordinatorLayout getContentFrame() {
+        return contentFrame;
     }
 
     public static Context getContext() {

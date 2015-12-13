@@ -120,10 +120,11 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
              ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
         else ultimateBrowserProjectWebView.update(view.getTitle(), url);
 
+        ultimateBrowserProjectWebView.jsInterface.startTinting(view);
+
         if (ultimateBrowserProjectWebView.isForeground())
              ultimateBrowserProjectWebView.invalidate();
         else ultimateBrowserProjectWebView.postInvalidate();
-
 
     }
 

@@ -40,7 +40,7 @@ public class UltimateBrowserProjectWebChromeClient extends WebChromeClient {
         super.onProgressChanged(view, progress);
         ultimateBrowserProjectWebView.update(progress);
         if(! (progress < BrowserUnit.PROGRESS_MAX)) {
-            UltimateBrowserProjectJavaScriptInterface.evaluateGetColorJS(view);
+            ultimateBrowserProjectWebView.jsInterface.startTinting(view);
         }
     }
 
@@ -48,7 +48,8 @@ public class UltimateBrowserProjectWebChromeClient extends WebChromeClient {
     public void onReceivedTitle(WebView view, String title) {
         super.onReceivedTitle(view, title);
         ultimateBrowserProjectWebView.update(title, view.getUrl());
-        UltimateBrowserProjectJavaScriptInterface.evaluateGetColorJS(view);
+        ultimateBrowserProjectWebView.jsInterface.startTinting(view);
+
     }
 
     @Deprecated

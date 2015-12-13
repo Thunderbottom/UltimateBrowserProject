@@ -7,6 +7,7 @@ import android.webkit.WebView;
 
 import org.xdevs23.debugUtils.DebugTestException;
 import org.xdevs23.debugUtils.Logging;
+import org.xdevs23.debugUtils.StackTraceParser;
 
 import io.github.UltimateBrowserProject.Activity.BrowserActivity;
 import io.github.UltimateBrowserProject.R;
@@ -14,6 +15,11 @@ import io.github.UltimateBrowserProject.R;
 public class UltimateBrowserProjectJavaScriptInterface {
 
     public String headColor = "";
+
+    public void startTinting(WebView view) {
+        evaluateGetColorJS(view);
+        tint();
+    }
 
     public static void evaluateGetColorJS(WebView view) {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -33,16 +39,37 @@ public class UltimateBrowserProjectJavaScriptInterface {
 
     }
 
+    @SuppressWarnings("ResourceType")
     public void applyColor() {
+        Logging.logd("Alternative: setting bg color...");
         BrowserActivity.omnibox.setBackgroundResource(0);
-        //noinspection ResourceType
         BrowserActivity.omnibox.setBackgroundColor(Color.parseColor(headColor));
+        if(BrowserActivity.omnibox.getBackground() == null) {
+            Logging.logd("Background is still null O_O");
+            BrowserActivity.getContentFrame().setBackgroundColor(Color.parseColor(headColor));
+            BrowserActivity.omnibox.setBackgroundResource(0);
+            if(BrowserActivity.getContentFrame().getBackground() == null) {
+                Logging.logd("Oh no... Let's give up -.-, set default color!");
+                applyDefaultColor();
+            }
+        }
     }
 
-    private void applyColor(String color) {
-        if(color.equals(headColor)) return;
-        BrowserActivity.omnibox.setBackgroundResource(0);
-        BrowserActivity.omnibox.setBackgroundColor(Color.parseColor(color));
+    public void applyColor(String color) {
+        try {
+            Logging.logd("Setting bg color...");
+            BrowserActivity.omnibox.setBackgroundResource(0);
+            BrowserActivity.omnibox.setBackgroundColor(Color.parseColor(color));
+            if (BrowserActivity.omnibox.getBackground() == null) {
+                Logging.logd("Background is null o_O");
+                applyColor();
+            }
+            Logging.logd("bgcolor set");
+        } catch(Exception ex) {
+            StackTraceParser.logStackTrace(ex);
+        } finally {
+            Logging.logd("Reached end of method (applyColor)");
+        }
     }
 
     public void reapplyColor() {
@@ -56,6 +83,7 @@ public class UltimateBrowserProjectJavaScriptInterface {
     public void applyDefaultColor() {
         BrowserActivity.omnibox.setBackgroundResource(R.color.background_dark);
         BrowserActivity.omnibox.setBackgroundColor(ContextCompat.getColor(BrowserActivity.getContext(), R.color.background_dark));
+        BrowserActivity.getContentFrame().setBackgroundColor(Color.WHITE);
     }
 
     @android.webkit.JavascriptInterface
@@ -65,14 +93,28 @@ public class UltimateBrowserProjectJavaScriptInterface {
 
     @android.webkit.JavascriptInterface
     public void postHeadColor(String color) {
-        headColor = color.toUpperCase().replace(" ", "");
-        Logging.logd("Posted head color: '" + headColor + "'");
+        color = color.toUpperCase().replace(" ", "");
+        Logging.logd("Posted head color: '" + color + "'");
+        headColor = color;
+    }
+
+    public void tint() {
         if(headColor.length() > 0) {
             Logging.logd("Applying color");
-            applyColor(color);
+            applyColor(headColor);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                //noinspection ResourceType
+                BrowserActivity.getStaticWindow().setStatusBarColor(Color.parseColor(headColor));
+            }
+            Logging.logd("Applied");
         } else {
             Logging.logd("No theme color, applying default.");
             applyDefaultColor();
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                //noinspection ResourceType
+                BrowserActivity.getStaticWindow().setStatusBarColor(ContextCompat.getColor(BrowserActivity.getContext(),
+                        R.color.background_dark));
+            }
         }
     }
 }

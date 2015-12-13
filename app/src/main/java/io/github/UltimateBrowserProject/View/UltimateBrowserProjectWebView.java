@@ -405,21 +405,10 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
         webViewClient.updateWhite(adBlock.isWhite(url));
 
-        // Handle introduction html version
-        String finalUrl = url;
-        if ( url.contains(BrowserUnit.INTRODUCTION_PREFIX) && !(url.contains("?version=")) ) {
-            try {
-                finalUrl += "?version=" + this.context.getPackageManager().getPackageInfo(
-                        this.context.getPackageName(), 0
-                ).versionName;
-            } catch (PackageManager.NameNotFoundException e) {
-                Logging.logd("Exception occured: " + StackTraceParser.parse(e));
-            }
-        }
-        Logging.logd("Loading url " + finalUrl);
+        Logging.logd("Loading url " + url);
         thisWebView.setMinimumHeight(ViewUnit.getWindowHeight(context) - ViewUnit.goh(context));
 
-        super.loadUrl(finalUrl);
+        super.loadUrl(url);
         if (browserController != null && foreground)
             browserController.updateBookmarks();
 
