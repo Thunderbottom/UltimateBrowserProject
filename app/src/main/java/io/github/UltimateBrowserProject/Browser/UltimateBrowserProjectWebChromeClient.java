@@ -1,18 +1,13 @@
 package io.github.UltimateBrowserProject.Browser;
 
 import android.net.Uri;
-import android.os.Build;
 import android.os.Message;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-import org.xdevs23.debugUtils.Logging;
-
-import io.github.UltimateBrowserProject.Activity.BrowserActivity;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 

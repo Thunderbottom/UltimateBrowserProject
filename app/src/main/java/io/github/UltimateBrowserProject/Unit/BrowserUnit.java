@@ -19,6 +19,8 @@ import android.webkit.ValueCallback;
 import android.webkit.WebIconDatabase;
 import android.webkit.WebViewDatabase;
 
+import org.xdevs23.debugUtils.StackTraceParser;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -241,6 +243,9 @@ public class BrowserUnit {
         if (name == null || name.trim().isEmpty())
             name = String.valueOf(System.currentTimeMillis());
 
+
+        dir.mkdirs();
+
         name = name.trim();
 
         int count = 0;
@@ -250,6 +255,9 @@ public class BrowserUnit {
             file = new File(dir, name + "." + count + SUFFIX_PNG);
         }
 
+        // Problem for Android 5.0+
+        // EACCES: No permission...
+        // How to fix it?!
         try {
             FileOutputStream stream = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -258,6 +266,7 @@ public class BrowserUnit {
             context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
             return file.getAbsolutePath();
         } catch (Exception e) {
+            StackTraceParser.logStackTrace(e);
             return null;
         }
     }

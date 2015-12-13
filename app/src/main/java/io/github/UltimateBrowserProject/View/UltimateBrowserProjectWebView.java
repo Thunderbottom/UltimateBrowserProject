@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.ColorMatrix;
@@ -25,7 +24,6 @@ import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
 import org.xdevs23.debugUtils.Logging;
-import org.xdevs23.debugUtils.StackTraceParser;
 
 import java.net.URISyntaxException;
 

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
+import org.xdevs23.debugUtils.StackTraceParser;
+
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
@@ -49,6 +51,7 @@ public class ScreenshotTask extends AsyncTask<Void, Void, Boolean> {
             path = BrowserUnit.screenshot(context, bitmap, title);
         } catch (Exception e) {
             path = null;
+            StackTraceParser.logStackTrace(e);
         }
         return (path != null && !path.isEmpty());
     }

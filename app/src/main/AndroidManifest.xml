@@ -5,9 +5,6 @@
           android:versionCode="39"
           android:versionName="@string/app_version">
 
-    <!-- SDK -->
-    <uses-sdk android:minSdkVersion="16" />
-
     <!-- Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
