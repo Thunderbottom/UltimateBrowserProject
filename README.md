@@ -54,14 +54,17 @@ For a list of current features provided by the application and many more, Please
 * Portuguese (PT-BR) by [fviz](https://github.com/fviz).
 * Dutch (NL) by [lucaslampe](https://github.com/lucaslampe) and [Menubalk](http://forum.xda-developers.com/member.php?u=6151583).
 * French (FR) by [nalmada](https://github.com/nalmada).
-* Polish (PL) by [Bartti](https://github.com/Bartti) and [Veacue](http://forum.xda-developers.com/member.php?u=5759069) and [Toa](http://forum.xda-developers.com/member.php?u=6170529).
-* Turkish (TR) by [cagdassalur](https://github.com/cagdassalur).
+* Polish (PL) by [Bartti](https://github.com/Bartti), [Veacue](http://forum.xda-developers.com/member.php?u=5759069), [Toa](http://forum.xda-developers.com/member.php?u=6170529), [malware1-2](https://github.com/malware1-2).
+* Turkish (TR) by [cagdassalur](https://github.com/cagdassalur), [ademalp](https://github.com/ademalp).
 * Finnish (FI) by [Tapetti](http://forum.xda-developers.com/member.php?u=6778883).
 * Japanese (JP) by [takahirom](https://github.com/takahirom).
 * Greek (EL) by [dancer_69](http://forum.xda-developers.com/member.php?u=390873).
 * Italian (IT) by [davimount](https://github.com/davimount).
 * Traditional Chinese (TW) by [louis383](http://forum.xda-developers.com/member.php?u=6709293).
 * German (DE) by [Simao](https://github.com/xdevs23).
+* English (EN) by [RECOL](https://github.com/Recol).
+* Spanish (ES) by [JCint](https://github.com/JCint), [krachenko](https://github.com/krachenko).
+* Bangla (BD) by [polob666](https://github.com/pollob666).
 
 ### Materialized icon by - [davimount](https://github.com/davimount)
 
