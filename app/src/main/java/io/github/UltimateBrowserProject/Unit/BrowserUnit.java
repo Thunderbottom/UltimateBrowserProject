@@ -74,8 +74,10 @@ public class BrowserUnit {
     public static final String SEARCH_ENGINE_BING       = "http://www.bing.com/search?q=";
     public static final String SEARCH_ENGINE_BAIDU      = "http://www.baidu.com/s?wd=";
 
-    // Chrome desktop 41.0.2228.0
-    public static final String  UA_DESKTOP = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+    // Chrome desktop 49.0.2587.3 dev
+    // (latest linux/debian Google Chrome Dev version available on December 15, 2015)
+    // Now you can decide... I prefer using android version 4.4.4 in UA, but you can use any other version as well.
+    public static final String UA_DESKTOP = "Mozilla/5.0 (Linux; U; Android 4.4.4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2587.3 Mobile Safari/537.36";
     public static final String  URL_ENCODING        = "UTF-8",
                                 URL_ABOUT_BLANK     = "about:blank",
                                 URL_SCHEME_ABOUT    = "about:",
@@ -84,7 +86,9 @@ public class BrowserUnit {
                                 URL_SCHEME_FTP      = "ftp://",
                                 URL_SCHEME_HTTP     = "http://",
                                 URL_SCHEME_HTTPS    = "https://",
-                                URL_SCHEME_INTENT   = "intent://";
+                                URL_SCHEME_INTENT   = "intent://",
+                                URL_SCHEME_JSCRIPT  = "javascript:"
+                                        ;
 
     public static final String  URL_PREFIX_GOOGLE_PLAY = "www.google.com/url?q=",
                                 URL_SUFFIX_GOOGLE_PLAY = "&sa",
@@ -103,14 +107,14 @@ public class BrowserUnit {
             return true;
         }
 
-        String regex = "^((ftp|http|https|intent)?://)"                      // support scheme
-                + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" // ftp的user@
-                + "(([0-9]{1,3}\\.){3}[0-9]{1,3}"                            // IP形式的URL -> 199.194.52.184
-                + "|"                                                        // 允许IP和DOMAIN（域名）
-                + "([0-9a-z_!~*'()-]+\\.)*"                                  // 域名 -> www.
-                + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\\."                    // 二级域名
+        String regex = "^((ftp|http|https|intent)?://)"                      // support scheme (how about javascript:?)
+                + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" // ftp.user@
+                + "(([0-9]{1,3}\\.){3}[0-9]{1,3}"                            // IP -> 199.194.52.184
+                + "|"                                                        // IP DOMAIN
+                + "([0-9a-z_!~*'()-]+\\.)*"                                  // -> www.
+                + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\\."                    //
                 + "[a-z]{2,6})"                                              // first level domain -> .com or .museum
-                + "(:[0-9]{1,4})?"                                           // 端口 -> :80
+                + "(:[0-9]{1,4})?"                                           // Port -> :80
                 + "((/?)|"                                                   // a slash isn't required if there is no file name
                 + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
         Pattern pattern = Pattern.compile(regex);
@@ -131,7 +135,8 @@ public class BrowserUnit {
         }
 
         if (isURL(query)) {
-            if (query.startsWith(URL_SCHEME_ABOUT) || query.startsWith(URL_SCHEME_MAIL_TO))
+            if (query.startsWith(URL_SCHEME_ABOUT) || query.startsWith(URL_SCHEME_MAIL_TO)
+                    || query.startsWith(URL_SCHEME_JSCRIPT))
                 return query;
 
 
@@ -144,7 +149,9 @@ public class BrowserUnit {
 
         try {
             query = URLEncoder.encode(query, URL_ENCODING);
-        } catch (UnsupportedEncodingException u) {}
+        } catch (UnsupportedEncodingException u) {
+
+        }
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String custom = sp.getString(context.getString(R.string.sp_search_engine_custom), SEARCH_ENGINE_GOOGLE);

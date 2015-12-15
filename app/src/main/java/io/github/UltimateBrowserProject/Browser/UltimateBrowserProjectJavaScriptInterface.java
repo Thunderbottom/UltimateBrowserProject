@@ -59,6 +59,7 @@ public class UltimateBrowserProjectJavaScriptInterface {
             Logging.logd("Setting bg color...");
             BrowserActivity.omnibox.setBackgroundResource(0);
             BrowserActivity.omnibox.setBackgroundColor(Color.parseColor(color));
+            BrowserActivity.updateOverflowColor(Color.parseColor(color));
             if (BrowserActivity.omnibox.getBackground() == null) {
                 Logging.logd("Background is null o_O");
                 applyColor();
@@ -83,6 +84,7 @@ public class UltimateBrowserProjectJavaScriptInterface {
         BrowserActivity.omnibox.setBackgroundResource(R.color.background_dark);
         BrowserActivity.omnibox.setBackgroundColor(ContextCompat.getColor(BrowserActivity.getContext(), R.color.background_dark));
         BrowserActivity.getContentFrame().setBackgroundColor(Color.WHITE);
+        BrowserActivity.updateOverflowColor(ContextCompat.getColor(BrowserActivity.getContext(), R.color.background_dark));
     }
 
     @android.webkit.JavascriptInterface

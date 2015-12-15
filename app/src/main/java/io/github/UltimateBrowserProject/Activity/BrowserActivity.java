@@ -20,6 +20,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -137,8 +138,8 @@ public class BrowserActivity extends Activity implements BrowserController {
     private AutoCompleteTextView inputBox;
     private ImageButton omniboxBookmark,
                         omniboxRefresh,
-                        omniboxForward,
-                        omniboxOverflow;
+                        omniboxForward;
+    private static ImageButton omniboxOverflow = null;
     private ProgressBar progressBar;
 
     private RelativeLayout searchPanel;
@@ -233,6 +234,18 @@ public class BrowserActivity extends Activity implements BrowserController {
         showAlbum(BrowserContainer.get(0), false, false, false);
         sp.edit().putBoolean(getString(R.string.sp_first), false).apply();
     }
+
+    public static void updateOverflowColor(int color) {
+        int mColor = 0;
+        float[] hsvc = new float[3];
+        Color.colorToHSV(color, hsvc);
+        hsvc[1] = 0f;
+        if(hsvc[2] > 0.72) hsvc[2] = 0.0f;
+        else               hsvc[2] = 1.0f;
+        mColor = Color.HSVToColor(hsvc);
+        omniboxOverflow.setColorFilter(mColor, PorterDuff.Mode.MULTIPLY);
+    }
+
 
     public static Window getStaticWindow() {
         return staticWindow;
