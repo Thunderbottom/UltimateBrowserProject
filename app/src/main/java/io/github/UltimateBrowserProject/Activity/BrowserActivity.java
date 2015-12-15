@@ -210,7 +210,15 @@ public class BrowserActivity extends Activity implements BrowserController {
         String lang,
                 langS = Resources.getSystem().getConfiguration().locale.getLanguage();
         Logging.logd("Language found: " + langS);
-        switch( BrowserLanguages.valueOf(langS) ) {
+
+        BrowserLanguages languages;
+        try {
+            languages = BrowserLanguages.valueOf(langS);
+        } catch (IllegalArgumentException e){
+            languages = BrowserLanguages.en;
+        }
+
+        switch(languages) {
             case de: lang = BrowserUnit.INTRODUCTION_DE;    break;
             case en: lang = BrowserUnit.INTRODUCTION_EN;    break;
             default: lang = BrowserUnit.INTRODUCTION_EN;    break;
