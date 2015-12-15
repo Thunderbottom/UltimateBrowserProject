@@ -16,8 +16,10 @@ public class UltimateBrowserProjectJavaScriptInterface {
     public String headColor = "";
 
     public void startTinting(WebView view) {
-        evaluateGetColorJS(view);
-        tint();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            evaluateGetColorJS(view);
+            tint();
+        }
     }
 
     public static void evaluateGetColorJS(WebView view) {
