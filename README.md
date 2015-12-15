@@ -1,6 +1,6 @@
 ![Launcher Icon](/Artworks/UBP Banner.png)
 
-[![Owner](https://img.shields.io/badge/owner-Thunderbottom-orange.svg)](http://github.com/Thunderbottom)    [![GitHub version](https://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/Thunderbottom/UltimateBrowserProject.svg)](https://travis-ci.org/Thunderbottom/UltimateBrowserProject)     ![Custom Badge](https://img.shields.io/badge/Active%20Developers-Takahirom%2C%20xdevs23%2C%20Thunderbottom-brightgreen.svg)
+[![Owner](https://img.shields.io/badge/Owners-Takahirom%2C%20xdevs23%2C%20Thunderbottom-orange.svg)](http://github.com/Thunderbottom)    [![GitHub version](https://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/Thunderbottom/UltimateBrowserProject.svg)](https://travis-ci.org/Thunderbottom/UltimateBrowserProject)     ![Custom Badge](https://img.shields.io/badge/Active%20Developers-Takahirom%2C%20xdevs23%2C%20Thunderbottom-brightgreen.svg)
 ===
 Open source, lightweight Android Browser.
 
