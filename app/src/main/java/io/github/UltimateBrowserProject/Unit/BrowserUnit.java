@@ -239,7 +239,13 @@ public class BrowserUnit {
         if (bitmap == null) return null;
 
 
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File dir;
+        // Fix of takahirom
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dir = context.getExternalMediaDirs()[0];
+        } else {
+            dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        }
         if (name == null || name.trim().isEmpty())
             name = String.valueOf(System.currentTimeMillis());
 
@@ -255,9 +261,6 @@ public class BrowserUnit {
             file = new File(dir, name + "." + count + SUFFIX_PNG);
         }
 
-        // Problem for Android 5.0+
-        // EACCES: No permission...
-        // How to fix it?!
         try {
             FileOutputStream stream = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
