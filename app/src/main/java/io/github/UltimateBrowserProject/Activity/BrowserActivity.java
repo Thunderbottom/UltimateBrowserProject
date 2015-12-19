@@ -122,7 +122,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     private static final int DOUBLE_TAPS_QUIT_DEFAULT = 1800;
 
     private SwitcherPanel switcherPanel;
-    private boolean fullscreen;
+    public static boolean fullscreen;
     public static int anchor;
     private float dimen156dp, dimen144dp, dimen117dp, dimen108dp, dimen48dp;
 
@@ -274,6 +274,39 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
     }
 
+    private void setOmniCustomLayoutMargins(int marginLeft,
+                                            int marginTop,
+                                            int marginRight,
+                                            int marginBottom,
+                                            boolean subtractOwnHeightTop,
+                                            boolean subtractOwnHeightBottom) {
+        logd("Applying omnibox layout options...");
+        CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) omnibox.getLayoutParams();
+
+        p.height = ViewUnit.getOmniboxHeight(getApplicationContext());
+
+        if(subtractOwnHeightBottom) marginBottom -= p.height;
+        if(subtractOwnHeightTop)    marginTop    -= p.height;
+
+        p.setMargins(   marginLeft,
+                        marginTop,
+                        marginRight,
+                        marginBottom);
+
+
+        logd("Setting layout params...");
+        omnibox.setLayoutParams(p);
+
+    }
+
+    private void setOmniCustomLayoutMargins() {
+        if(anchor == 0) {
+            setOmniCustomLayoutMargins(0, 0, 0, ViewUnit.getAdjustedWindowHeight(getApplicationContext()), false, true);
+        } else {
+            setOmniCustomLayoutMargins(0, ViewUnit.getAdjustedWindowHeight(getApplicationContext()), 0, 0, true, false);
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         logd("DEBUG ENABLED");
@@ -312,7 +345,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         fullscreen = sp.getBoolean(getString(R.string.sp_fullscreen), false);
         firstLaunch = sp.getBoolean(getString(R.string.sp_first), true);
-        setFullscreen(fullscreen);
         restore = sp.getBoolean(getString(R.string.sp_restore_tabs), true);
         anchor = Integer.valueOf(sp.getString(getString(R.string.sp_anchor), "1"));
 
@@ -326,7 +358,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 if (anchor == 1) {
                     int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
                     if (heightDiff > 100) {
-                        omnibox.animate().translationY((-heightDiff)+ViewUnit.getStatusBarHeight(getContext()))
+                        omnibox.animate().translationY((-heightDiff) + ViewUnit.getStatusBarHeight(getContext()))
                                 .setDuration(0);
                         Logging.logd("Keyboard is shown.");
                     } else {
@@ -1367,19 +1399,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         if (parent != contentFrame) {
             ((ViewGroup) parent).removeView(omnibox);
             contentFrame.addView(omnibox);
-
-            logd("Applying omnibox layout options...");
-            CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) omnibox.getLayoutParams();
-
-            p.height = ViewUnit.getOmniboxHeight(getApplicationContext());
-
-            if(anchor == 0)
-                p.setMargins(0, 0, 0, ViewUnit.getAdjustedWindowHeight(getApplicationContext()) - p.height);
-            else
-                p.setMargins(0, ViewUnit.getAdjustedWindowHeight(getApplicationContext()) - p.height, 0, 0);
-
-            logd("Setting layout params...");
-            omnibox.setLayoutParams(p);
+            setFullscreen(fullscreen);
         }
         omnibox.bringToFront();
     }
@@ -2375,10 +2395,20 @@ public class BrowserActivity extends Activity implements BrowserController {
         WindowManager.LayoutParams attrs = getWindow().getAttributes();
         if (fullscreen) {
             attrs.flags |=  WindowManager.LayoutParams.FLAG_FULLSCREEN;
+            if(anchor == 0) {
+                setOmniCustomLayoutMargins(0, 0, 0, ViewUnit.getWindowHeight(getApplicationContext()), false, true);
+            } else {
+                setOmniCustomLayoutMargins(0, ViewUnit.getWindowHeight(getApplicationContext()), 0, 0, true, false);
+            }
+            if(ubpWebView != null) ubpWebView.setWebViewCustomLayoutParams();
         } else {
             attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
+            setOmniCustomLayoutMargins();
+            if(ubpWebView != null) ubpWebView.setWebViewCustomLayoutParams();
         }
+
         getWindow().setAttributes(attrs);
+
     }
 
     public static final String EXTRA_SNACKBAR_TITLE = "EXTRA_SNACKBAR_TITLE";

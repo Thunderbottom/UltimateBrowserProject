@@ -59,6 +59,9 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     private int animTime;
     private float y1;
 
+
+    public boolean isInitialized = false;
+
     @SuppressWarnings("unused")
     String url;
 
@@ -124,33 +127,45 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         initAlbum();
     }
 
+    public void setWebViewCustomLayoutParams(boolean iInit) {
+        if( iInit ) {
+            RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            int oh = ViewUnit.goh(context);
+            if (BrowserActivity.anchor == 0) {
+                p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                p.addRule(RelativeLayout.BELOW, R.id.main_omnibox);
+                p.setMargins(0, 0, 0, (BrowserActivity.fullscreen ?
+                        -(ViewUnit.getStatusBarHeight(context)) : 0));
+            } else {
+                p.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+                p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                p.setMargins(0, 0, 0, -oh
+                        - (BrowserActivity.fullscreen ? ViewUnit.getStatusBarHeight(context) : 0));
+            }
+
+            p.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            p.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+            this.setLayoutParams(p);
+
+            this.setMinimumHeight(ViewUnit.getWindowHeight(context) + (BrowserActivity.fullscreen ?
+                    ViewUnit.getStatusBarHeight(context) : 0));
+            this.setMinimumWidth(ViewUnit.getWindowWidth(context));
+        }
+    }
+
+    public void setWebViewCustomLayoutParams() {
+        setWebViewCustomLayoutParams(isInitialized);
+    }
+
     @SuppressWarnings("deprecation")
     @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
     private synchronized void initWebView() {
         thisWebView = this;
 
-        RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        int oh = ViewUnit.goh(context);
-        if(BrowserActivity.anchor == 0) {
-            p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            p.addRule(RelativeLayout.BELOW, R.id.main_omnibox);
-            p.setMargins(0, 0, 0, 0);
-        } else {
-            p.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-            p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            p.setMargins(0, 0, 0, -oh);
-        }
-
-        p.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-        p.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-
-
-        this.setLayoutParams(p);
-
-        this.setMinimumHeight(ViewUnit.getWindowHeight(context));
-        this.setMinimumWidth(ViewUnit.getWindowWidth(context));
+        setWebViewCustomLayoutParams(true);
 
         setAlwaysDrawnWithCacheEnabled(true);
         setAnimationCacheEnabled(true);
@@ -252,6 +267,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                 return false;
             }
         });
+
+        isInitialized = true;
     }
 
     private synchronized void initWebSettings() {
@@ -405,7 +422,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
         webViewClient.updateWhite(adBlock.isWhite(url));
 
         Logging.logd("Loading url " + url);
-        thisWebView.setMinimumHeight(ViewUnit.getWindowHeight(context) - ViewUnit.goh(context));
+
+        setWebViewCustomLayoutParams();
 
         super.loadUrl(url);
         if (browserController != null && foreground)
