@@ -129,36 +129,30 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     }
 
     public void setWebViewCustomLayoutParams(boolean iInit) {
-        try {
-            if (iInit) {
-                Logging.logd("Setting WebView custom layout params...");
-                RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (iInit) {
+            Logging.logd("Setting WebView custom layout params...");
+            RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
 
-                int oh = ViewUnit.goh(context);
-                if (BrowserActivity.anchor == 0) {
-                    p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                    p.addRule(RelativeLayout.BELOW, R.id.main_omnibox);
-                    p.setMargins(0, 0, 0, (BrowserActivity.fullscreen ?
-                            -(ViewUnit.getStatusBarHeight(context)) : 0));
-                } else {
-                    p.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-                    p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                    p.setMargins(0, 0, 0, -oh
-                            - (BrowserActivity.fullscreen ? ViewUnit.getStatusBarHeight(context) : 0));
-                }
-
-                p.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-                p.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-
-                this.setLayoutParams(p);
-
-                this.setMinimumHeight(ViewUnit.getWindowHeight(context) + (BrowserActivity.fullscreen ?
-                        ViewUnit.getStatusBarHeight(context) : 0));
-                this.setMinimumWidth(ViewUnit.getWindowWidth(context));
+            int oh = ViewUnit.goh(context);
+            p.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+            p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            if (BrowserActivity.anchor == 0) {
+                p.setMargins(0, 0, 0, (BrowserActivity.fullscreen ?
+                        -(ViewUnit.getStatusBarHeight(context)) : 0));
+            } else {
+                p.setMargins(0, 0, 0, -oh
+                        - (BrowserActivity.fullscreen ? ViewUnit.getStatusBarHeight(context) : 0));
             }
-        } catch(Exception ex) {
-            StackTraceParser.logStackTrace(ex);
+
+            p.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            p.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+            this.setLayoutParams(p);
+
+            this.setMinimumHeight(ViewUnit.getWindowHeight(context) + (BrowserActivity.fullscreen ?
+                    ViewUnit.getStatusBarHeight(context) : 0));
+            this.setMinimumWidth(ViewUnit.getWindowWidth(context));
         }
     }
 

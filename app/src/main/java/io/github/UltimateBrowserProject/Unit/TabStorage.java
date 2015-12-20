@@ -1,7 +1,6 @@
 package io.github.UltimateBrowserProject.Unit;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TabStorage {
 

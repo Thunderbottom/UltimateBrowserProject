@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import io.github.UltimateBrowserProject.Activity.BrowserActivity;
-import io.github.UltimateBrowserProject.Browser.AlbumController;
 import io.github.UltimateBrowserProject.Browser.BrowserContainer;
 import io.github.UltimateBrowserProject.Unit.TabStorage;
 

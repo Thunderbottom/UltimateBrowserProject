@@ -113,7 +113,6 @@ import io.github.UltimateBrowserProject.View.GridItem;
 import io.github.UltimateBrowserProject.View.RecordAdapter;
 import io.github.UltimateBrowserProject.View.SwipeToBoundListener;
 import io.github.UltimateBrowserProject.View.SwitcherPanel;
-import io.github.UltimateBrowserProject.View.TabSwitcher;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectRelativeLayout;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
@@ -383,19 +382,23 @@ public class BrowserActivity extends Activity implements BrowserController {
         staticView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                if (anchor == 1) {
-                    int heightDiff = staticView.getRootView().getHeight() - staticView.getHeight();
-                    if (heightDiff > 100) {
-                        omnibox.animate().translationY((-heightDiff) +
-                                        (fullscreen ? 0 : ViewUnit.getStatusBarHeight(getContext()))
-                        )
-                                .setDuration(0);
-                        inputBox.requestFocus();
-                        Logging.logd("Keyboard is shown.");
-                    } else {
-                        omnibox.animate().translationY(0).setDuration(0);
-                        Logging.logd("Keyboard is not shown.");
+                try {
+                    if (anchor == 1) {
+                        int heightDiff = staticView.getRootView().getHeight() - staticView.getHeight();
+                        if (heightDiff > 100) {
+                            omnibox.animate().translationY((-heightDiff) +
+                                            (fullscreen ? 0 : ViewUnit.getStatusBarHeight(getContext()))
+                            )
+                                    .setDuration(0);
+                            inputBox.requestFocus();
+                            Logging.logd("Keyboard is shown.");
+                        } else {
+                            omnibox.animate().translationY(0).setDuration(0);
+                            Logging.logd("Keyboard is not shown.");
+                        }
                     }
+                } catch (Exception ex) {
+                    StackTraceParser.logStackTrace(ex);
                 }
             }
         });
@@ -418,7 +421,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         logd("Initializing search panel...");
         initSearchPanel();
         relayoutOK = (Button) findViewById(R.id.main_relayout_ok);
-        contentFrame = (RelativeLayout) findViewById(R.id.root_view);
+        contentFrame = insideMainView;
 
 
         new AdBlock(this); // For AdBlock cold boot
@@ -934,7 +937,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                         if(ym - event.getY() >= ViewUnit.goh(getContext()))
                             switcherPanel.expanded();
                         else switcherPanel.collapsed();
-                        insideMainView.animate().setDuration(320).translationY(80);
                     }
                     ym = 0;
                 }
@@ -1342,8 +1344,8 @@ public class BrowserActivity extends Activity implements BrowserController {
 
             int index = BrowserContainer.size() - 1;
             currentAlbumController = BrowserContainer.get(index);
-            contentFrame.removeAllViews();
-            contentFrame.addView((View) currentAlbumController);
+            insideMainView.removeAllViews();
+            insideMainView.addView((View) currentAlbumController);
             currentAlbumController.activate();
 
             updateOmnibox();
@@ -1362,7 +1364,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             webView.setAlbumTitle(getString(R.string.album_untitled));
             setBound(webView);
             ubpWebView = webView;
-            contentFrame.addView(webView);
+            insideMainView.addView(webView);
             webView.loadUrl(url);
 
             BrowserContainer.add(webView);
@@ -1476,10 +1478,10 @@ public class BrowserActivity extends Activity implements BrowserController {
         int index = switcherContainer.indexOfChild(currentAlbumController.getAlbumView());
         currentAlbumController.deactivate();
         switcherContainer.removeView(currentAlbumController.getAlbumView());
-        contentFrame.removeView(layout);
+        insideMainView.removeView(layout);
 
         switcherContainer.addView(layout.getAlbumView(), index, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        contentFrame.addView(layout);
+        insideMainView.addView(layout);
         BrowserContainer.set(layout, index);
         BrowserContainer.set(layout, index);
         currentAlbumController = layout;
@@ -1508,10 +1510,10 @@ public class BrowserActivity extends Activity implements BrowserController {
             int index = switcherContainer.indexOfChild(currentAlbumController.getAlbumView());
             currentAlbumController.deactivate();
             switcherContainer.removeView(currentAlbumController.getAlbumView());
-            contentFrame.removeView(webView);
+            insideMainView.removeView(webView);
 
             switcherContainer.addView(webView.getAlbumView(), index, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            contentFrame.addView(webView);
+            insideMainView.addView(webView);
             BrowserContainer.set(webView, index);
             currentAlbumController = webView;
             webView.activate();

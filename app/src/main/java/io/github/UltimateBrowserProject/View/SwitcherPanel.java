@@ -1,27 +1,17 @@
 package io.github.UltimateBrowserProject.View;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ViewDragHelper;
+import android.graphics.Color;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
 import android.widget.RelativeLayout;
 
 import org.xdevs23.debugUtils.Logging;
-import org.xdevs23.debugUtils.StackTraceParser;
 
 import io.github.UltimateBrowserProject.Activity.BrowserActivity;
 import io.github.UltimateBrowserProject.R;
-import io.github.UltimateBrowserProject.Unit.ViewUnit;
 
 public class SwitcherPanel extends ViewGroup {
     private View switcherView;
@@ -157,9 +147,6 @@ public class SwitcherPanel extends ViewGroup {
     public void expanded() {
         if(rootView == null) return;
         Logging.logd("Expanding switcher panel");
-        switcherView = rootView.findViewById(R.id.switcher_view);
-        mainView = (RelativeLayout) rootView.findViewById(R.id.main_view);
-        omnibox  = (RelativeLayout) rootView.findViewById(R.id.main_omnibox);
         expand();
     }
 

@@ -15,7 +15,6 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.text.method.PasswordTransformationMethod;
@@ -28,7 +27,6 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import org.xdevs23.debugUtils.StackTraceParser;
 
@@ -88,28 +86,7 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
              ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
         else ultimateBrowserProjectWebView.update(view.getTitle(), url);
 
-        try {
-            RelativeLayout.LayoutParams pw = (RelativeLayout.LayoutParams) ultimateBrowserProjectWebView.getLayoutParams();
-
-            int oh = ViewUnit.goh(context);
-            if (BrowserActivity.anchor == 0) {
-                pw.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                pw.addRule(RelativeLayout.BELOW, R.id.main_omnibox);
-                pw.setMargins(0, 0, 0, (BrowserActivity.fullscreen ?
-                        -(ViewUnit.getStatusBarHeight(context)) : 0));
-            } else {
-                pw.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-                pw.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                pw.setMargins(0, 0, 0, -oh
-                        - (BrowserActivity.fullscreen ? ViewUnit.getStatusBarHeight(context) : 0));
-            }
-            pw.height = (BrowserActivity.fullscreen ? ViewUnit.getWindowHeight(context) :
-                    ViewUnit.getAdjustedWindowHeight(context));
-            ultimateBrowserProjectWebView.setLayoutParams(pw);
-        } catch(Exception ex) {
-            StackTraceParser.logStackTrace(ex);
-        }
-
+        ultimateBrowserProjectWebView.setWebViewCustomLayoutParams();
 
         if(BrowserActivity.anchor == 0) ultimateBrowserProjectWebView.animate().translationY(ViewUnit.goh(context));
         if(BrowserActivity.anchor == 0) BrowserActivity.omnibox.animate().translationY(0);
