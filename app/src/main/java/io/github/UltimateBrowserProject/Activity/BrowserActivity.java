@@ -31,7 +31,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -114,6 +113,7 @@ import io.github.UltimateBrowserProject.View.GridItem;
 import io.github.UltimateBrowserProject.View.RecordAdapter;
 import io.github.UltimateBrowserProject.View.SwipeToBoundListener;
 import io.github.UltimateBrowserProject.View.SwitcherPanel;
+import io.github.UltimateBrowserProject.View.TabSwitcher;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectRelativeLayout;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
@@ -121,13 +121,13 @@ import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 public class BrowserActivity extends Activity implements BrowserController {
     private static final int DOUBLE_TAPS_QUIT_DEFAULT = 1800;
 
-    private SwitcherPanel switcherPanel;
+    private static SwitcherPanel switcherPanel;
     public static boolean fullscreen;
     public static int anchor;
     private float dimen156dp, dimen144dp, dimen117dp, dimen108dp, dimen48dp;
 
     private HorizontalScrollView switcherScroller;
-    private LinearLayout switcherContainer;
+    private static RelativeLayout switcherContainer;
     private ImageButton switcherSetting,
                         switcherBookmarks,
                         switcherHistory,
@@ -149,7 +149,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                         searchCancel;
 
     private Button relayoutOK;
-    private static CoordinatorLayout contentFrame = null;
+    private static RelativeLayout contentFrame = null, insideMainView = null;
 
     private static UltimateBrowserProjectWebView ubpWebView = null;
 
@@ -198,6 +198,8 @@ public class BrowserActivity extends Activity implements BrowserController {
     private static Context staticContext = null;
 
     private static Window staticWindow = null;
+
+    private static View staticView = null;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -281,12 +283,13 @@ public class BrowserActivity extends Activity implements BrowserController {
                                             boolean subtractOwnHeightTop,
                                             boolean subtractOwnHeightBottom) {
         logd("Applying omnibox layout options...");
-        CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) omnibox.getLayoutParams();
+
+        RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) omnibox.getLayoutParams();
 
         p.height = ViewUnit.getOmniboxHeight(getApplicationContext());
 
-        if(subtractOwnHeightBottom) marginBottom -= p.height;
-        if(subtractOwnHeightTop)    marginTop    -= p.height;
+        if (subtractOwnHeightBottom) marginBottom -= p.height;
+        if (subtractOwnHeightTop)    marginTop    -= p.height;
 
         p.setMargins(   marginLeft,
                         marginTop,
@@ -296,6 +299,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         logd("Setting layout params...");
         omnibox.setLayoutParams(p);
+
 
     }
 
@@ -315,6 +319,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 @Override
                 public void uncaughtException(Thread thread, Throwable ex) {
                     StackTraceParser.logStackTrace(ex);
+                    if(thread.isInterrupted())thread.run();
                 }
             });
         }
@@ -351,34 +356,14 @@ public class BrowserActivity extends Activity implements BrowserController {
         logd("Appliying layout...");
         setContentView(R.layout.main_top);
 
-        final View activityRootView = getWindow().getDecorView().findViewById(R.id.main_view);
-        activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                if (anchor == 1) {
-                    int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
-                    if (heightDiff > 100) {
-                        omnibox.animate().translationY((-heightDiff) + ViewUnit.getStatusBarHeight(getContext()))
-                                .setDuration(0);
-                        Logging.logd("Keyboard is shown.");
-                    } else {
-                        omnibox.animate().translationY(0).setDuration(0);
-                        Logging.logd("Keyboard is not shown.");
-                    }
-                }
-            }
-        });
-
-        logd("Checking for update");
-        new Changelog(this, R.xml.changelog).showWhatsNew();
-        mHandler = new Handler();
-        checkUpdate.start();
-
+        staticView = getWindow().getDecorView().findViewById(R.id.root_view);
 
         shortAnimTime  = getResources().getInteger(android.R.integer.config_shortAnimTime);
         mediumAnimTime = getResources().getInteger(android.R.integer.config_mediumAnimTime);
         longAnimTime   = getResources().getInteger(android.R.integer.config_longAnimTime);
-        switcherPanel  = (SwitcherPanel) findViewById(R.id.switcher_panel);
+        insideMainView = (RelativeLayout) findViewById(R.id.main_view);
+        switcherPanel  = (SwitcherPanel)  findViewById(R.id.switcher_panel);
+        switcherPanel.setRootView(staticView);
         switcherPanel.setStatusListener(new SwitcherPanel.StatusListener() {
             @Override
             public void onFling() {
@@ -395,6 +380,31 @@ public class BrowserActivity extends Activity implements BrowserController {
         });
 
 
+        staticView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (anchor == 1) {
+                    int heightDiff = staticView.getRootView().getHeight() - staticView.getHeight();
+                    if (heightDiff > 100) {
+                        omnibox.animate().translationY((-heightDiff) +
+                                        (fullscreen ? 0 : ViewUnit.getStatusBarHeight(getContext()))
+                        )
+                                .setDuration(0);
+                        inputBox.requestFocus();
+                        Logging.logd("Keyboard is shown.");
+                    } else {
+                        omnibox.animate().translationY(0).setDuration(0);
+                        Logging.logd("Keyboard is not shown.");
+                    }
+                }
+            }
+        });
+
+        logd("Checking for update");
+        new Changelog(this, R.xml.changelog).showWhatsNew();
+        mHandler = new Handler();
+        checkUpdate.start();
+
         dimen156dp = getResources().getDimensionPixelSize(R.dimen.layout_width_156dp);
         dimen144dp = getResources().getDimensionPixelSize(R.dimen.layout_width_144dp);
         dimen117dp = getResources().getDimensionPixelSize(R.dimen.layout_height_117dp);
@@ -408,7 +418,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         logd("Initializing search panel...");
         initSearchPanel();
         relayoutOK = (Button) findViewById(R.id.main_relayout_ok);
-        contentFrame = (CoordinatorLayout) findViewById(R.id.main_content);
+        contentFrame = (RelativeLayout) findViewById(R.id.root_view);
 
 
         new AdBlock(this); // For AdBlock cold boot
@@ -423,6 +433,16 @@ public class BrowserActivity extends Activity implements BrowserController {
 
 
     }
+
+    public static UltimateBrowserProjectWebView getUbpWebView() {
+        return ubpWebView;
+    }
+
+    public static View getStaticView() { return staticView; }
+
+    public static SwitcherPanel getSwitcherPanel() { return switcherPanel; }
+
+    public static RelativeLayout getSwitcherContainer() { return switcherContainer; }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -588,7 +608,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         super.onConfigurationChanged(newConfig);
 
         float coverHeight = ViewUnit.getWindowHeight(this) - ViewUnit.getStatusBarHeight(this) - dimen108dp - dimen48dp;
-        switcherPanel.setCoverHeight(coverHeight);
         switcherPanel.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -648,7 +667,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     private void initSwitcherView() {
         switcherScroller  = (HorizontalScrollView)  findViewById(R.id.switcher_scroller);
-        switcherContainer = (LinearLayout)          findViewById(R.id.switcher_container);
+        switcherContainer = (RelativeLayout)        findViewById(R.id.switcher_container);
         switcherSetting   = (ImageButton)           findViewById(R.id.switcher_setting);
         switcherBookmarks = (ImageButton)           findViewById(R.id.switcher_bookmarks);
         switcherHistory   = (ImageButton)           findViewById(R.id.switcher_history);
@@ -718,7 +737,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     }
 
-    public static CoordinatorLayout getContentFrame() {
+    public static RelativeLayout getContentFrame() {
         return contentFrame;
     }
 
@@ -893,10 +912,45 @@ public class BrowserActivity extends Activity implements BrowserController {
                             return;
                         }
                         initBHList(layout, true);
-                    } else UltimateBrowserProjectToast.show(BrowserActivity.this, R.string.toast_cannot_forward);
+                    } else
+                        UltimateBrowserProjectToast.show(BrowserActivity.this, R.string.toast_cannot_forward);
                 }
             }
         });
+
+        View.OnTouchListener switcherPanelCEOnTouchListener = new View.OnTouchListener() {
+            int ym = 0;
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    ym = (int) event.getY();
+                } else if(event.getAction() == MotionEvent.ACTION_UP){
+                    if(anchor == 0) {
+                        if(event.getY() - ym >= ViewUnit.goh(getContext()))
+                            switcherPanel.expanded();
+                        else switcherPanel.collapsed();
+
+                    } else {
+                        if(ym - event.getY() >= ViewUnit.goh(getContext()))
+                            switcherPanel.expanded();
+                        else switcherPanel.collapsed();
+                        insideMainView.animate().setDuration(320).translationY(80);
+                    }
+                    ym = 0;
+                }
+
+                return false;
+            }
+        };
+
+        omnibox.setOnTouchListener(switcherPanelCEOnTouchListener);
+        inputBox.setOnTouchListener(switcherPanelCEOnTouchListener);
+
+        // set onTouchListener for all childs of omnibox in order to get a working switcherpanel
+        for( int i = 0; i < omnibox.getChildCount(); i++ ) {
+            Logging.logd(i);
+            omnibox.getChildAt(i).setOnTouchListener(switcherPanelCEOnTouchListener);
+        }
 
         omnibox.setBackgroundResource(R.color.background_dark);
     }
@@ -1383,18 +1437,20 @@ public class BrowserActivity extends Activity implements BrowserController {
         currentAlbumController.activate();
         switcherScroller.smoothScrollTo(currentAlbumController.getAlbumView().getLeft(), 0);
         updateOmnibox();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (expand) {
-                    switcherPanel.expanded();
-                }
+        try {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (expand) {
+                        switcherPanel.expanded();
+                    }
 
-                if (capture) {
-                    currentAlbumController.setAlbumCover(ViewUnit.capture(((View) currentAlbumController), dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
+                    if (capture) {
+                        currentAlbumController.setAlbumCover(ViewUnit.capture(((View) currentAlbumController), dimen144dp, dimen108dp, false, Bitmap.Config.RGB_565));
+                    }
                 }
-            }
-        }, shortAnimTime);
+            }, shortAnimTime);
+        } catch(Exception ex) {}
         ViewParent parent = omnibox.getParent();
         if (parent != contentFrame) {
             ((ViewGroup) parent).removeView(omnibox);
@@ -1551,24 +1607,28 @@ public class BrowserActivity extends Activity implements BrowserController {
     private void updateOmnibox() {
         logd("Updating omnibox");
 
-        if (currentAlbumController == null)
-            return;
+        try {
+            if (currentAlbumController == null)
+                return;
 
-        if (currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
-            updateProgress(BrowserUnit.PROGRESS_MAX);
-            updateBookmarks();
-            updateInputBox(null);
-        } else if (currentAlbumController instanceof UltimateBrowserProjectWebView) {
-            UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
-            updateProgress(UltimateBrowserProjectWebView.getProgress());
-            updateBookmarks();
-            if (UltimateBrowserProjectWebView.getUrl() == null && UltimateBrowserProjectWebView.getOriginalUrl() == null) {
+            if (currentAlbumController instanceof UltimateBrowserProjectRelativeLayout) {
+                updateProgress(BrowserUnit.PROGRESS_MAX);
+                updateBookmarks();
                 updateInputBox(null);
-            } else if (UltimateBrowserProjectWebView.getUrl() != null) {
-                updateInputBox(UltimateBrowserProjectWebView.getUrl());
-            } else {
-                updateInputBox(UltimateBrowserProjectWebView.getOriginalUrl());
+            } else if (currentAlbumController instanceof UltimateBrowserProjectWebView) {
+                UltimateBrowserProjectWebView UltimateBrowserProjectWebView = (UltimateBrowserProjectWebView) currentAlbumController;
+                updateProgress(UltimateBrowserProjectWebView.getProgress());
+                updateBookmarks();
+                if (UltimateBrowserProjectWebView.getUrl() == null && UltimateBrowserProjectWebView.getOriginalUrl() == null) {
+                    updateInputBox(null);
+                } else if (UltimateBrowserProjectWebView.getUrl() != null) {
+                    updateInputBox(UltimateBrowserProjectWebView.getUrl());
+                } else {
+                    updateInputBox(UltimateBrowserProjectWebView.getOriginalUrl());
+                }
             }
+        } catch(NullPointerException ex) {
+            StackTraceParser.logStackTrace(ex);
         }
     }
 

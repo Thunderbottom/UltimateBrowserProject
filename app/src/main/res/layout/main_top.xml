@@ -1,104 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<io.github.UltimateBrowserProject.View.SwitcherPanel
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/zeroPadding"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"
+    android:alwaysDrawnWithCache="true">
+
+
+    <io.github.UltimateBrowserProject.View.SwitcherPanel
         android:id="@+id/switcher_panel"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-    <LinearLayout android:id="@+id/switcher_view"
-                  android:orientation="vertical"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:background="@color/background_dark">
+        <RelativeLayout android:id="@+id/switcher_view"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:background="@color/background_dark">
 
-        <FrameLayout android:id="@+id/switcher_header"
-                     android:layout_width="match_parent"
-                     android:layout_height="@dimen/layout_height_48dp"
-                     android:minHeight="@dimen/layout_height_48dp">
+            <FrameLayout android:id="@+id/switcher_header"
+                         android:layout_width="match_parent"
+                         android:layout_height="@dimen/layout_height_48dp"
+                         android:minHeight="@dimen/layout_height_48dp">
 
-            <ImageButton android:id="@+id/switcher_setting"
-                         android:contentDescription="@null"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_gravity="center|left"
-                         android:gravity="center"
-                         android:layout_margin="@dimen/layout_margin_8dp"
-                         android:src="@drawable/setting_selector"
-                         android:background="@color/transparent">
-            </ImageButton>
-
-            <LinearLayout android:orientation="horizontal"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="center|right">
-
-                <ImageButton android:id="@+id/switcher_bookmarks"
+                <ImageButton android:id="@+id/switcher_setting"
                              android:contentDescription="@null"
                              android:layout_width="wrap_content"
                              android:layout_height="wrap_content"
+                             android:layout_gravity="center|left"
+                             android:gravity="center"
                              android:layout_margin="@dimen/layout_margin_8dp"
-                             android:src="@drawable/bookmark_selector_light"
+                             android:src="@drawable/setting_selector"
                              android:background="@color/transparent">
                 </ImageButton>
 
-                <ImageButton android:id="@+id/switcher_print"
-                             android:contentDescription="@null"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_margin="@dimen/layout_margin_8dp"
-                             android:src="@drawable/print_selector"
-                             android:background="@color/transparent">
-                </ImageButton>
+                <RelativeLayout android:orientation="horizontal"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center|right">
 
-                <ImageButton android:id="@+id/switcher_history"
-                             android:contentDescription="@null"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_margin="@dimen/layout_margin_8dp"
-                             android:src="@drawable/history_selector"
-                             android:background="@color/transparent">
-                </ImageButton>
+                    <ImageButton android:id="@+id/switcher_bookmarks"
+                                 android:contentDescription="@null"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_margin="@dimen/layout_margin_8dp"
+                                 android:src="@drawable/bookmark_selector_light"
+                                 android:background="@color/transparent">
+                    </ImageButton>
 
-                <ImageButton android:id="@+id/switcher_add"
-                             android:contentDescription="@null"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_margin="@dimen/layout_margin_8dp"
-                             android:src="@drawable/add_selector"
-                             android:background="@color/transparent">
-                </ImageButton>
+                    <ImageButton android:id="@+id/switcher_print"
+                                 android:contentDescription="@null"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_margin="@dimen/layout_margin_8dp"
+                                 android:src="@drawable/print_selector"
+                                 android:background="@color/transparent">
+                    </ImageButton>
+
+                    <ImageButton android:id="@+id/switcher_history"
+                                 android:contentDescription="@null"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_margin="@dimen/layout_margin_8dp"
+                                 android:src="@drawable/history_selector"
+                                 android:background="@color/transparent">
+                    </ImageButton>
+
+                    <ImageButton android:id="@+id/switcher_add"
+                                 android:contentDescription="@null"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_margin="@dimen/layout_margin_8dp"
+                                 android:src="@drawable/add_selector"
+                                 android:background="@color/transparent">
+                    </ImageButton>
 
 
-            </LinearLayout>
+                </RelativeLayout>
 
-        </FrameLayout>
+            </FrameLayout>
 
-        <HorizontalScrollView android:id="@+id/switcher_scroller"
-                              android:layout_width="match_parent"
-                              android:layout_height="match_parent"
-                              android:scrollbars="none">
+            <HorizontalScrollView android:id="@+id/switcher_scroller"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:scrollbars="none">
 
-            <LinearLayout android:id="@+id/switcher_container"
-                          android:orientation="horizontal"
-                          android:layout_width="wrap_content"
-                          android:layout_height="match_parent">
-            </LinearLayout>
+                <RelativeLayout android:id="@+id/switcher_container"
+                              android:orientation="horizontal"
+                              android:layout_width="wrap_content"
+                              android:layout_height="match_parent">
+                </RelativeLayout>
 
-        </HorizontalScrollView>
+            </HorizontalScrollView>
 
-    </LinearLayout>
+        </RelativeLayout>
 
-    <LinearLayout android:id="@+id/main_view"
-                  android:orientation="vertical"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@color/background_dark">
+    </io.github.UltimateBrowserProject.View.SwitcherPanel>
 
-        <RelativeLayout android:id="@+id/main_omnibox"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/layout_height_48dp"
-                        android:minHeight="@dimen/layout_height_48dp">
+    <RelativeLayout
+        android:id="@+id/main_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/main_omnibox"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_height_48dp"
+            android:minHeight="@dimen/layout_height_48dp">
 
             <RelativeLayout android:id="@+id/main_omnibox_tinyseperator"
                             android:layout_width="match_parent"
@@ -206,21 +222,23 @@
 
         </RelativeLayout>
 
-        <RelativeLayout android:id="@+id/main_search_panel"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/layout_height_48dp"
-                        android:minHeight="@dimen/layout_height_48dp"
-                        android:background="@color/background_dark"
-                        android:visibility="gone">
+        <RelativeLayout
+            android:id="@+id/main_search_panel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_height_48dp"
+            android:minHeight="@dimen/layout_height_48dp"
+            android:background="@color/background_dark"
+            android:visibility="gone">
 
-            <LinearLayout android:id="@+id/main_search_left"
-                          android:orientation="horizontal"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_centerInParent="true"
-                          android:layout_alignParentLeft="true"
-                          android:layout_marginLeft="@dimen/layout_margin_8dp"
-                          android:layout_marginRight="@dimen/layout_margin_8dp">
+            <RelativeLayout
+                android:id="@+id/main_search_left"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/layout_margin_8dp"
+                android:layout_marginRight="@dimen/layout_margin_8dp">
 
                 <ImageButton android:id="@+id/main_search_up"
                              android:contentDescription="@null"
@@ -240,7 +258,7 @@
                              android:background="@color/transparent">
                 </ImageButton>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <ImageButton android:id="@+id/main_search_cancel"
                          android:contentDescription="@null"
@@ -287,13 +305,7 @@
                 android:visibility="gone">
         </Button>
 
-        <android.support.design.widget.CoordinatorLayout android:id="@+id/main_content"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:background="@color/white">
-        </android.support.design.widget.CoordinatorLayout>
+    </RelativeLayout>
 
-    </LinearLayout>
 
-</io.github.UltimateBrowserProject.View.SwitcherPanel>
-
+</RelativeLayout>

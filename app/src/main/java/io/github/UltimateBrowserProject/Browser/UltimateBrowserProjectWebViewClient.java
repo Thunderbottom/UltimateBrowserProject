@@ -82,29 +82,37 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        if(ultimateBrowserProjectWebView.getLayoutParams() instanceof RelativeLayout.LayoutParams) {
-            RelativeLayout.LayoutParams pw = (RelativeLayout.LayoutParams) ultimateBrowserProjectWebView.getLayoutParams();
-
-            pw.setMargins(0, 0, 0, 0);
-            pw.height = ViewUnit.getAdjustedWindowHeight(context);
-            ultimateBrowserProjectWebView.setLayoutParams(pw);
-        } else {
-            CoordinatorLayout.LayoutParams pw = (CoordinatorLayout.LayoutParams) ultimateBrowserProjectWebView.getLayoutParams();
-
-            pw.setMargins(0, 0, 0, 0);
-            pw.height = ViewUnit.getAdjustedWindowHeight(context);
-            ultimateBrowserProjectWebView.setLayoutParams(pw);
-        }
-
-        if(BrowserActivity.anchor == 0)ultimateBrowserProjectWebView.animate().translationY(ViewUnit.goh(context));
-
         super.onPageStarted(view, url, favicon);
 
         if (view.getTitle() == null || view.getTitle().isEmpty())
              ultimateBrowserProjectWebView.update(context.getString(R.string.album_untitled), url);
         else ultimateBrowserProjectWebView.update(view.getTitle(), url);
 
-        
+        try {
+            RelativeLayout.LayoutParams pw = (RelativeLayout.LayoutParams) ultimateBrowserProjectWebView.getLayoutParams();
+
+            int oh = ViewUnit.goh(context);
+            if (BrowserActivity.anchor == 0) {
+                pw.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                pw.addRule(RelativeLayout.BELOW, R.id.main_omnibox);
+                pw.setMargins(0, 0, 0, (BrowserActivity.fullscreen ?
+                        -(ViewUnit.getStatusBarHeight(context)) : 0));
+            } else {
+                pw.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+                pw.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                pw.setMargins(0, 0, 0, -oh
+                        - (BrowserActivity.fullscreen ? ViewUnit.getStatusBarHeight(context) : 0));
+            }
+            pw.height = (BrowserActivity.fullscreen ? ViewUnit.getWindowHeight(context) :
+                    ViewUnit.getAdjustedWindowHeight(context));
+            ultimateBrowserProjectWebView.setLayoutParams(pw);
+        } catch(Exception ex) {
+            StackTraceParser.logStackTrace(ex);
+        }
+
+
+        if(BrowserActivity.anchor == 0) ultimateBrowserProjectWebView.animate().translationY(ViewUnit.goh(context));
+        if(BrowserActivity.anchor == 0) BrowserActivity.omnibox.animate().translationY(0);
     }
 
     @Override

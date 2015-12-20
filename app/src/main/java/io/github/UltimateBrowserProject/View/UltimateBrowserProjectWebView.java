@@ -24,6 +24,7 @@ import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
 import org.xdevs23.debugUtils.Logging;
+import org.xdevs23.debugUtils.StackTraceParser;
 
 import java.net.URISyntaxException;
 
@@ -128,31 +129,36 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     }
 
     public void setWebViewCustomLayoutParams(boolean iInit) {
-        if( iInit ) {
-            RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
+        try {
+            if (iInit) {
+                Logging.logd("Setting WebView custom layout params...");
+                RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
 
-            int oh = ViewUnit.goh(context);
-            if (BrowserActivity.anchor == 0) {
-                p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                p.addRule(RelativeLayout.BELOW, R.id.main_omnibox);
-                p.setMargins(0, 0, 0, (BrowserActivity.fullscreen ?
-                        -(ViewUnit.getStatusBarHeight(context)) : 0));
-            } else {
-                p.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-                p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                p.setMargins(0, 0, 0, -oh
-                        - (BrowserActivity.fullscreen ? ViewUnit.getStatusBarHeight(context) : 0));
+                int oh = ViewUnit.goh(context);
+                if (BrowserActivity.anchor == 0) {
+                    p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    p.addRule(RelativeLayout.BELOW, R.id.main_omnibox);
+                    p.setMargins(0, 0, 0, (BrowserActivity.fullscreen ?
+                            -(ViewUnit.getStatusBarHeight(context)) : 0));
+                } else {
+                    p.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+                    p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    p.setMargins(0, 0, 0, -oh
+                            - (BrowserActivity.fullscreen ? ViewUnit.getStatusBarHeight(context) : 0));
+                }
+
+                p.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                p.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+                this.setLayoutParams(p);
+
+                this.setMinimumHeight(ViewUnit.getWindowHeight(context) + (BrowserActivity.fullscreen ?
+                        ViewUnit.getStatusBarHeight(context) : 0));
+                this.setMinimumWidth(ViewUnit.getWindowWidth(context));
             }
-
-            p.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            p.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-
-            this.setLayoutParams(p);
-
-            this.setMinimumHeight(ViewUnit.getWindowHeight(context) + (BrowserActivity.fullscreen ?
-                    ViewUnit.getStatusBarHeight(context) : 0));
-            this.setMinimumWidth(ViewUnit.getWindowWidth(context));
+        } catch(Exception ex) {
+            StackTraceParser.logStackTrace(ex);
         }
     }
 
@@ -206,6 +212,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
                 if (action == MotionEvent.ACTION_DOWN) {
                     Logging.logd("MotionEvent.ACTION_DOWN");
+                    if(BrowserActivity.getSwitcherPanel().getStatus() == SwitcherPanel.Status.EXPANDED)
+                        BrowserActivity.getSwitcherPanel().collapsed();
                     ym1 = (int) y1;
                 } else if (action == MotionEvent.ACTION_UP) {
                     Logging.logd("MotionEvent.ACTION_UP");
@@ -394,7 +402,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     @Override
     public synchronized void loadUrl(String url) {
 
-        if (url == null || url.trim().isEmpty()) {
+        if (url == null || url.length() == 0) {
             UltimateBrowserProjectToast.show(context, R.string.toast_load_error);
             return;
         }

@@ -51,4 +51,7 @@
     <dimen name="radius_2dp">2dp</dimen>
     <dimen name="radius_1dp">1dp</dimen>
 
+    <!-- No padding -->
+    <dimen name="zeroPadding">0dp</dimen>
+
 </resources>
