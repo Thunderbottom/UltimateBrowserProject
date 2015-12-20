@@ -141,8 +141,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                 p.setMargins(0, 0, 0, (BrowserActivity.fullscreen ?
                         -(ViewUnit.getStatusBarHeight(context)) : 0));
             } else {
-                p.setMargins(0, 0, 0, -oh
-                        - (BrowserActivity.fullscreen ? ViewUnit.getStatusBarHeight(context) : 0));
+                p.setMargins(0, 0, 0,
+                        (BrowserActivity.fullscreen ? -(ViewUnit.getStatusBarHeight(context)) : 0));
             }
 
             p.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
@@ -150,7 +150,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
             this.setLayoutParams(p);
 
-            this.setMinimumHeight(ViewUnit.getWindowHeight(context) + (BrowserActivity.fullscreen ?
+            this.setMinimumHeight(ViewUnit.getAdjustedWindowHeight(context) + (BrowserActivity.fullscreen ?
                     ViewUnit.getStatusBarHeight(context) : 0));
             this.setMinimumWidth(ViewUnit.getWindowWidth(context));
         }

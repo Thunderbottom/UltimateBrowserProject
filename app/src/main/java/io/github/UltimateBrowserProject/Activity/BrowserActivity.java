@@ -518,7 +518,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             Log.d("", "Uri is " + uri);
             if (uri != null && "content".equals(uri.getScheme())) {
                 Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Images.ImageColumns.DATA }, null, null, null);
-                cursor.moveToFirst();       // may produce NullPointerException
+                cursor.moveToFirst();
                 filePath = cursor.getString(0);
                 cursor.close();
             } else {
