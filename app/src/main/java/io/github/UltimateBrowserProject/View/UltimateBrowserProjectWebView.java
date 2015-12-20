@@ -24,7 +24,6 @@ import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
 import org.xdevs23.debugUtils.Logging;
-import org.xdevs23.debugUtils.StackTraceParser;
 
 import java.net.URISyntaxException;
 
@@ -148,10 +147,14 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             p.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             p.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
-            this.setLayoutParams(p);
-
             this.setMinimumHeight(ViewUnit.getAdjustedWindowHeight(context) + (BrowserActivity.fullscreen ?
                     ViewUnit.getStatusBarHeight(context) : 0));
+
+            p.height = this.getMinimumHeight();
+
+            this.setLayoutParams(p);
+
+
             this.setMinimumWidth(ViewUnit.getWindowWidth(context));
         }
     }

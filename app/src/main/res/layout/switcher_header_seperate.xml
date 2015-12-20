@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/switcher_header"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/layout_height_48dp"
+    android:minHeight="@dimen/layout_height_48dp">
+
+    <ImageButton android:id="@+id/switcher_setting"
+                 android:contentDescription="@null"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center|left"
+                 android:gravity="center"
+                 android:layout_margin="@dimen/layout_margin_8dp"
+                 android:src="@drawable/setting_selector"
+                 android:background="@color/transparent">
+    </ImageButton>
+
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|right">
+
+        <ImageButton android:id="@+id/switcher_bookmarks"
+                     android:contentDescription="@null"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="@dimen/layout_margin_8dp"
+                     android:src="@drawable/bookmark_selector_light"
+                     android:background="@color/transparent">
+        </ImageButton>
+
+        <ImageButton android:id="@+id/switcher_print"
+                     android:contentDescription="@null"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="@dimen/layout_margin_8dp"
+                     android:src="@drawable/print_selector"
+                     android:background="@color/transparent">
+        </ImageButton>
+
+        <ImageButton android:id="@+id/switcher_history"
+                     android:contentDescription="@null"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="@dimen/layout_margin_8dp"
+                     android:src="@drawable/history_selector"
+                     android:background="@color/transparent">
+        </ImageButton>
+
+        <ImageButton android:id="@+id/switcher_add"
+                     android:contentDescription="@null"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="@dimen/layout_margin_8dp"
+                     android:src="@drawable/add_selector"
+                     android:background="@color/transparent">
+        </ImageButton>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

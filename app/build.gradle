@@ -60,4 +60,5 @@ dependencies {
 
     // Ripple effect library (traex)
     compile 'com.github.traex.rippleeffect:library:1.3'
+
 }

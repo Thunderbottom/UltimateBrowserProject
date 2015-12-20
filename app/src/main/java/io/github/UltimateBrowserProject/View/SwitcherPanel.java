@@ -2,10 +2,10 @@ package io.github.UltimateBrowserProject.View;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import org.xdevs23.debugUtils.Logging;
@@ -104,7 +104,7 @@ public class SwitcherPanel extends ViewGroup {
 
         if(rootView == null) return;
 
-        switcherView = (RelativeLayout) rootView.findViewById(R.id.switcher_view);
+     //   switcherView = (LinearLayout) rootView.findViewById(R.id.switcher_view);
         mainView     = (RelativeLayout) rootView.findViewById(R.id.main_view);
         omnibox      = (RelativeLayout) rootView.findViewById(R.id.main_omnibox);
 
@@ -121,21 +121,6 @@ public class SwitcherPanel extends ViewGroup {
     protected void onLayout(boolean change, int l, int t, int r, int b) {
         int paddingLeft = getPaddingLeft();
         int paddingTop = getPaddingTop();
-
-
-        for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
-            LayoutParams layoutParams = (LayoutParams) child.getLayoutParams();
-
-            int top = paddingTop;
-
-            int height = child.getMeasuredHeight();
-            int bottom = top + height;
-            int left = paddingLeft;
-            int right = left + child.getMeasuredWidth();
-
-            child.layout(left, top, right, bottom);
-        }
 
     }
 
@@ -157,10 +142,6 @@ public class SwitcherPanel extends ViewGroup {
     }
 
     public void expand() {
-        switcherView.animate()
-                .setDuration(TabSwitcher.DEFAULT_ANIMATION_DURATION)
-                .translationY(dimen108dp
-                        * (BrowserActivity.anchor == 0 ? 1 : -1));
         BrowserActivity.getContentFrame()
                 .animate()
                 .setDuration(TabSwitcher.DEFAULT_ANIMATION_DURATION)

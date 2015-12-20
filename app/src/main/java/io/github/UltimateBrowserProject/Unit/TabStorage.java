@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class TabStorage {
 
+    private int currentTab = 0;
+
     public class Tab {
         public String
                 url     = "",
@@ -117,4 +119,19 @@ public class TabStorage {
         return allTabs;
     }
 
+    public Tab getCurrentTab() {
+        return getTabByIndex(currentTab);
+    }
+
+    public void updateCurrentTab(int index) {
+        currentTab = index;
+    }
+
+    public void setNextCurrentTab() {
+        currentTab++;
+    }
+
+    public void setPreviousCurrentTab() {
+        currentTab--;
+    }
 }
