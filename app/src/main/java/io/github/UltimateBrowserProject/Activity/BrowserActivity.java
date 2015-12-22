@@ -663,6 +663,10 @@ public class BrowserActivity extends Activity implements BrowserController {
         switcherHeader = new FrameLayout(BrowserActivity.getContext());
         View.inflate(BrowserActivity.getContext(), R.layout.switcher_header_seperate, switcherHeader);
 
+        switcherContainer = new LinearLayout(getContext());
+
+        switcherContainer.setBackground(null);
+
         switcherSetting   = (ImageButton) switcherHeader.findViewById(R.id.switcher_setting);
         switcherBookmarks = (ImageButton) switcherHeader.findViewById(R.id.switcher_bookmarks);
         switcherHistory   = (ImageButton) switcherHeader.findViewById(R.id.switcher_history);
@@ -773,7 +777,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             @Override
             public boolean canSwipe() {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(BrowserActivity.this);
-                return sp.getBoolean(getString(R.string.sp_omnibox_control), true);
+                return (!isKeyboardShowing) && sp.getBoolean(getString(R.string.sp_omnibox_control), true);
             }
 
             @Override
@@ -1223,7 +1227,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         albumView.setVisibility(View.INVISIBLE);
 
         BrowserContainer.add(holder);
-     //   switcherContainer.addView(albumView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        switcherContainer.addView(albumView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.album_slide_in_up);
         animation.setAnimationListener(new Animation.AnimationListener() {
@@ -1260,8 +1264,10 @@ public class BrowserActivity extends Activity implements BrowserController {
         if (currentAlbumController != null && (currentAlbumController instanceof UltimateBrowserProjectWebView) && resultMsg != null) {
             int index = BrowserContainer.indexOf(currentAlbumController) + 1;
             BrowserContainer.add(webView, index);
+            switcherContainer.addView(albumView, index, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
         } else {
             BrowserContainer.add(webView);
+            switcherContainer.addView(albumView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         }
 
         if (!foreground) {
@@ -1318,6 +1324,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             } else if (controller instanceof UltimateBrowserProjectRelativeLayout) {
                 ((UltimateBrowserProjectRelativeLayout) controller).setBrowserController(this);
             }
+            switcherContainer.addView(controller.getAlbumView(), LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
             controller.getAlbumView().setVisibility(View.VISIBLE);
             controller.deactivate();
         }
@@ -1359,6 +1366,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             BrowserContainer.add(webView);
             final View albumView = webView.getAlbumView();
             albumView.setVisibility(View.VISIBLE);
+            switcherContainer.addView(albumView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             contentFrame.removeAllViews();
 
 
@@ -1463,10 +1471,10 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         int index = switcherContainer.indexOfChild(currentAlbumController.getAlbumView());
         currentAlbumController.deactivate();
-    //    switcherContainer.removeView(currentAlbumController.getAlbumView());
+        switcherContainer.removeView(currentAlbumController.getAlbumView());
         insideMainView.removeView(layout);
 
-    //    switcherContainer.addView(layout.getAlbumView(), index, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        switcherContainer.addView(layout.getAlbumView(), index, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         insideMainView.addView(layout);
         BrowserContainer.set(layout, index);
         BrowserContainer.set(layout, index);
@@ -1481,7 +1489,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         if (currentAlbumController == null)
             return;
 
-
         if (currentAlbumController instanceof UltimateBrowserProjectWebView) {
             ((UltimateBrowserProjectWebView) currentAlbumController).loadUrl(url);
             updateOmnibox();
@@ -1495,7 +1502,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
             int index = switcherContainer.indexOfChild(currentAlbumController.getAlbumView());
             currentAlbumController.deactivate();
-        //    switcherContainer.removeView(currentAlbumController.getAlbumView());
+            switcherContainer.removeView(currentAlbumController.getAlbumView());
             insideMainView.removeView(webView);
 
             switcherContainer.addView(webView.getAlbumView(), index, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -1516,17 +1523,17 @@ public class BrowserActivity extends Activity implements BrowserController {
     public synchronized void removeAlbum(AlbumController controller) {
         logd("Removing album...");
         if (currentAlbumController == null || BrowserContainer.size() <= 1) {
-        //    switcherContainer.removeView(controller.getAlbumView());
+            switcherContainer.removeView(controller.getAlbumView());
             BrowserContainer.remove(controller);
             addAlbum(BrowserUnit.FLAG_HOME);
             return;
         }
         BrowserContainer.get(BrowserContainer.indexOf(controller)).getUrl();
         if (controller != currentAlbumController) {
-        //    switcherContainer.removeView(controller.getAlbumView());
+            switcherContainer.removeView(controller.getAlbumView());
             BrowserContainer.remove(controller);
         } else {
-        //    switcherContainer.removeView(controller.getAlbumView());
+            switcherContainer.removeView(controller.getAlbumView());
             int index = BrowserContainer.indexOf(controller);
             BrowserContainer.remove(controller);
             if (index >= BrowserContainer.size()) {

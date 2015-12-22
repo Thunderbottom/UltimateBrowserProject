@@ -4,12 +4,14 @@ import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.Browser;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import org.xdevs23.debugUtils.Logging;
@@ -94,7 +96,8 @@ public class TabSwitcher extends RelativeLayout {
 
         if(!isCollapsed()) return;
 
-        int omniBgColor = BrowserActivity.omnibox.getSolidColor();
+        ColorDrawable omniBgDrawable = (ColorDrawable) BrowserActivity.omnibox.getBackground();
+        int omniBgColor = omniBgDrawable.getColor();
         float[] omniBgHSV = new float[3];
         Color.colorToHSV(omniBgColor, omniBgHSV);
         omniBgHSV[2] *= 0.48;
@@ -103,9 +106,25 @@ public class TabSwitcher extends RelativeLayout {
         this.setBackgroundColor(newSwitcherColor);
 
 
-        View albumsView = BrowserActivity.currentAlbumController.getAlbumView();
+        LinearLayout albumsViewLayout = BrowserActivity.getSwitcherContainer();
 
-        this.addView(albumsView);
+        RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        p.setMargins(
+                (int) ViewUnit.dp2px(BrowserActivity.getContext(),  8),
+                (int) ViewUnit.dp2px(BrowserActivity.getContext(), 48),
+                (int) ViewUnit.dp2px(BrowserActivity.getContext(),  8),
+                (int) ViewUnit.dp2px(BrowserActivity.getContext(),  2)
+        );
+
+        albumsViewLayout.setLayoutParams(p);
+
+        View albumsView = (View) albumsViewLayout;
+
+        this.addView(BrowserActivity.getSwitcherContainer());
 
         this.addView(BrowserActivity.switcherHeader);
 
@@ -157,7 +176,7 @@ public class TabSwitcher extends RelativeLayout {
                 .scaleY(
                         0
                 )
-                .translationY(this.getHeight() / 2)
+                .translationY(this.getHeight() / (BrowserActivity.anchor == 0 ? -2 : 2))
                 .setListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {

@@ -7,21 +7,22 @@
     android:layout_height="@dimen/layout_height_48dp"
     android:minHeight="@dimen/layout_height_48dp">
 
-    <ImageButton android:id="@+id/switcher_setting"
-                 android:contentDescription="@null"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_gravity="center|left"
-                 android:gravity="center"
-                 android:layout_margin="@dimen/layout_margin_8dp"
-                 android:src="@drawable/setting_selector"
-                 android:background="@color/transparent">
-    </ImageButton>
-
     <RelativeLayout android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|right">
+
+        <ImageButton android:id="@+id/switcher_setting"
+                     android:contentDescription="@null"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center|left"
+                     android:gravity="center"
+                     android:layout_margin="@dimen/layout_margin_8dp"
+                     android:src="@drawable/setting_selector"
+                     android:layout_alignParentLeft="true"
+                     android:background="@color/transparent">
+        </ImageButton>
 
         <ImageButton android:id="@+id/switcher_bookmarks"
                      android:contentDescription="@null"
@@ -29,7 +30,7 @@
                      android:layout_height="wrap_content"
                      android:layout_margin="@dimen/layout_margin_8dp"
                      android:src="@drawable/bookmark_selector_light"
-                     android:layout_alignParentLeft="true"
+                     android:layout_toRightOf="@id/switcher_setting"
                      android:background="@color/transparent">
         </ImageButton>
 
@@ -39,7 +40,7 @@
                      android:layout_height="wrap_content"
                      android:layout_margin="@dimen/layout_margin_8dp"
                      android:src="@drawable/print_selector"
-                     android:layout_alignLeft="@id/switcher_bookmarks"
+                     android:layout_toRightOf="@id/switcher_bookmarks"
                      android:background="@color/transparent">
         </ImageButton>
 
@@ -49,7 +50,7 @@
                      android:layout_height="wrap_content"
                      android:layout_margin="@dimen/layout_margin_8dp"
                      android:src="@drawable/history_selector"
-                     android:layout_alignLeft="@id/switcher_print"
+                     android:layout_centerHorizontal="true"
                      android:background="@color/transparent">
         </ImageButton>
 
@@ -59,7 +60,7 @@
                      android:layout_height="wrap_content"
                      android:layout_margin="@dimen/layout_margin_8dp"
                      android:src="@drawable/add_selector"
-                     android:layout_alignLeft="@id/switcher_history"
+                     android:layout_alignParentRight="true"
                      android:background="@color/transparent">
         </ImageButton>
 
