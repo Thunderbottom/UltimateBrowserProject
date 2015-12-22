@@ -1,5 +1,6 @@
 package io.github.UltimateBrowserProject.View;
 
+import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -19,7 +20,10 @@ import io.github.UltimateBrowserProject.Unit.ViewUnit;
 public class TabSwitcher extends RelativeLayout {
 
     public static final int
+            SHORTER_ANIMATION_DURATION  = 240,
             DEFAULT_ANIMATION_DURATION  = 320,
+            LONGER_ANIMATION_DURATION   = 480,
+
             DEFAULT_LAYOUT_HEIGHT       = 200
             ;
 
@@ -95,7 +99,7 @@ public class TabSwitcher extends RelativeLayout {
                 );
         BrowserActivity.getContentFrame()
                 .animate()
-                .setDuration(DEFAULT_ANIMATION_DURATION)
+                .setDuration(LONGER_ANIMATION_DURATION)
                 .translationY(ViewUnit.dp2px(BrowserActivity.getContext(),
                         DEFAULT_LAYOUT_HEIGHT)
                         * (BrowserActivity.anchor == 0 ? 1 : -1));
@@ -108,8 +112,31 @@ public class TabSwitcher extends RelativeLayout {
                 .scaleY(
                         0
                 );
-        BrowserActivity.getContentFrame().animate().setDuration(TabSwitcher.DEFAULT_ANIMATION_DURATION).translationY(0);
-        this.removeAllViews();
+
+        final TabSwitcher thisSwitcher = this;
+
+        BrowserActivity.getContentFrame().animate().setDuration(TabSwitcher.LONGER_ANIMATION_DURATION).translationY(0)
+        .setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                thisSwitcher.removeAllViews();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                thisSwitcher.removeAllViews();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
 
         setSwitcherState(SwitcherState.COLLAPSED);
     }
