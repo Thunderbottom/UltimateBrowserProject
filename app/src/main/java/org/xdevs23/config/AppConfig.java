@@ -14,11 +14,11 @@ public final class AppConfig {
 						  String.valueOf(Version.minor)    + dot +
 						  String.valueOf(Version.build) /* + dot +
 						  String.valueOf( Version.revision )  */,
-			 mainDevUrl = "http://balzathor.github.io/",
+			 mainDevUrl = "http://Thunderbottom.github.io/",
 			 updateRoot = mainDevUrl + "update/",
 			 myDataRoot = Environment.getDataDirectory() + "data/io.github.UltimateBrowserProject//",
 			 debugTag   = appName,
-			 dbgVer     = "debug"
+			 dbgVer     = "betarelease"
 	;
 	
 	public static class Version {

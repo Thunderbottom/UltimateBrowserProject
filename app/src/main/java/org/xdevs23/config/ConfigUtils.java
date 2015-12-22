@@ -40,6 +40,7 @@ public class ConfigUtils {
 
     public static boolean isDebuggable() {
         String debuggers = ".*(debug|dbg|rc|pre|alpha|beta).*";
-        return ( ((Matcher)( Pattern.compile(debuggers).matcher(AppConfig.dbgVer) )) .matches() );
+        return (!AppConfig.dbgVer.contains("release")) &&
+                ( ((Matcher)( Pattern.compile(debuggers).matcher(AppConfig.dbgVer) )) .matches() );
     }
 }
