@@ -121,7 +121,9 @@ import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 public class BrowserActivity extends Activity implements BrowserController {
     private static final int DOUBLE_TAPS_QUIT_DEFAULT = 1800;
 
+    @Deprecated
     private static SwitcherPanel switcherPanel;
+
     public static boolean fullscreen;
     public static int anchor;
     private float dimen156dp, dimen144dp, dimen117dp, dimen108dp, dimen48dp;
@@ -453,7 +455,10 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     public static View getStaticView() { return staticView; }
 
+    @Deprecated
     public static SwitcherPanel getSwitcherPanel() { return switcherPanel; }
+
+    public static TabSwitcher getTabSwitcher() { return tabSwitcher; }
 
     public static LinearLayout getSwitcherContainer() { return switcherContainer; }
 

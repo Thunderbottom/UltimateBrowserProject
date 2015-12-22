@@ -209,8 +209,8 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
 
                 if (action == MotionEvent.ACTION_DOWN) {
                     Logging.logd("MotionEvent.ACTION_DOWN");
-                    if(BrowserActivity.getSwitcherPanel().getStatus() == SwitcherPanel.Status.EXPANDED)
-                        BrowserActivity.getSwitcherPanel().collapsed();
+                    if(BrowserActivity.getTabSwitcher().getSwitcherState() == TabSwitcher.SwitcherState.EXPANDED)
+                        BrowserActivity.getTabSwitcher().collapse();
                     ym1 = (int) y1;
                 } else if (action == MotionEvent.ACTION_UP) {
                     Logging.logd("MotionEvent.ACTION_UP");

@@ -29,6 +29,7 @@
                      android:layout_height="wrap_content"
                      android:layout_margin="@dimen/layout_margin_8dp"
                      android:src="@drawable/bookmark_selector_light"
+                     android:layout_alignParentLeft="true"
                      android:background="@color/transparent">
         </ImageButton>
 
@@ -38,6 +39,7 @@
                      android:layout_height="wrap_content"
                      android:layout_margin="@dimen/layout_margin_8dp"
                      android:src="@drawable/print_selector"
+                     android:layout_alignLeft="@id/switcher_bookmarks"
                      android:background="@color/transparent">
         </ImageButton>
 
@@ -47,6 +49,7 @@
                      android:layout_height="wrap_content"
                      android:layout_margin="@dimen/layout_margin_8dp"
                      android:src="@drawable/history_selector"
+                     android:layout_alignLeft="@id/switcher_print"
                      android:background="@color/transparent">
         </ImageButton>
 
@@ -56,6 +59,7 @@
                      android:layout_height="wrap_content"
                      android:layout_margin="@dimen/layout_margin_8dp"
                      android:src="@drawable/add_selector"
+                     android:layout_alignLeft="@id/switcher_history"
                      android:background="@color/transparent">
         </ImageButton>
 

@@ -3,12 +3,16 @@ package io.github.UltimateBrowserProject.View;
 import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.Browser;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+
+import org.xdevs23.debugUtils.Logging;
 
 import io.github.UltimateBrowserProject.Activity.BrowserActivity;
 import io.github.UltimateBrowserProject.Browser.AlbumController;
@@ -86,6 +90,19 @@ public class TabSwitcher extends RelativeLayout {
 
 
     public void expand() {
+        Logging.logd("Expanding TabSwitcher");
+
+        if(!isCollapsed()) return;
+
+        int omniBgColor = BrowserActivity.omnibox.getSolidColor();
+        float[] omniBgHSV = new float[3];
+        Color.colorToHSV(omniBgColor, omniBgHSV);
+        omniBgHSV[2] *= 0.48;
+        int newSwitcherColor = Color.HSVToColor(omniBgHSV);
+
+        this.setBackgroundColor(newSwitcherColor);
+
+
         View albumsView = BrowserActivity.currentAlbumController.getAlbumView();
 
         this.addView(albumsView);
@@ -96,49 +113,84 @@ public class TabSwitcher extends RelativeLayout {
                 .setDuration(animationDuration)
                 .scaleY(
                         1
-                );
+                )
+                .translationY(0)
+                .setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        setSwitcherState(SwitcherState.EXPANDED);
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
         BrowserActivity.getContentFrame()
                 .animate()
-                .setDuration(LONGER_ANIMATION_DURATION)
+                .setDuration(DEFAULT_ANIMATION_DURATION)
                 .translationY(ViewUnit.dp2px(BrowserActivity.getContext(),
                         DEFAULT_LAYOUT_HEIGHT)
                         * (BrowserActivity.anchor == 0 ? 1 : -1));
-        setSwitcherState(SwitcherState.EXPANDED);
+
     }
 
     public void collapse() {
+        Logging.logd("Collapsing TabSwitcher");
+
+        if(!isExpanded()) return;
+
+        final TabSwitcher thisSwitcher = this;
+
         this.animate()
                 .setDuration(animationDuration)
                 .scaleY(
                         0
-                );
+                )
+                .translationY(this.getHeight() / 2)
+                .setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
 
-        final TabSwitcher thisSwitcher = this;
+                    }
 
-        BrowserActivity.getContentFrame().animate().setDuration(TabSwitcher.LONGER_ANIMATION_DURATION).translationY(0)
-        .setListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        thisSwitcher.removeAllViews();
+                        setSwitcherState(SwitcherState.COLLAPSED);
+                    }
 
-            }
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
 
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                thisSwitcher.removeAllViews();
-            }
+                    }
 
-            @Override
-            public void onAnimationCancel(Animator animation) {
-                thisSwitcher.removeAllViews();
-            }
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
 
-            @Override
-            public void onAnimationRepeat(Animator animation) {
+                    }
+                });
 
-            }
-        });
+        BrowserActivity.getContentFrame().animate().setDuration(TabSwitcher.DEFAULT_ANIMATION_DURATION).translationY(0);
 
-        setSwitcherState(SwitcherState.COLLAPSED);
+    }
+
+    public boolean isCollapsed() {
+        return (getSwitcherState() == SwitcherState.COLLAPSED);
+    }
+
+    public boolean isExpanded() {
+        return (getSwitcherState() == SwitcherState.EXPANDED);
     }
 
     public TabStorage getTabStorage() {
