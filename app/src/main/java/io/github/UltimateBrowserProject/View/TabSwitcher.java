@@ -90,8 +90,8 @@ public class TabSwitcher extends RelativeLayout {
 
         this.animate()
                 .setDuration(animationDuration)
-                .translationY(
-                        this.getHeight() * (BrowserActivity.anchor == 0 ? 1 : -1)
+                .scaleY(
+                        1
                 );
         BrowserActivity.getContentFrame()
                 .animate()
@@ -105,7 +105,7 @@ public class TabSwitcher extends RelativeLayout {
     public void collapse() {
         this.animate()
                 .setDuration(animationDuration)
-                .translationY(
+                .scaleY(
                         0
                 );
         BrowserActivity.getContentFrame().animate().setDuration(TabSwitcher.DEFAULT_ANIMATION_DURATION).translationY(0);

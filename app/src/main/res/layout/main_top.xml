@@ -12,14 +12,14 @@
     android:layout_alignParentEnd="true"
     android:layout_alignParentRight="true"
     android:layout_alignParentBottom="true"
-    android:alwaysDrawnWithCache="true">
+    android:alwaysDrawnWithCache="true"
+    android:background="@color/white">
 
 
     <RelativeLayout
         android:id="@+id/main_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/main_omnibox"
