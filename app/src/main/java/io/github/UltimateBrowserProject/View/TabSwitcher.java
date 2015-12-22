@@ -5,21 +5,16 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.provider.Browser;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import org.xdevs23.debugUtils.Logging;
 
 import io.github.UltimateBrowserProject.Activity.BrowserActivity;
-import io.github.UltimateBrowserProject.Browser.AlbumController;
-import io.github.UltimateBrowserProject.Browser.BrowserContainer;
-import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.TabStorage;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
 
@@ -95,6 +90,11 @@ public class TabSwitcher extends RelativeLayout {
         Logging.logd("Expanding TabSwitcher");
 
         if(!isCollapsed()) return;
+
+        this.removeAllViews();
+
+        try { ((ViewGroup)BrowserActivity.getSwitcherContainer().getParent())
+                .removeView(BrowserActivity.getSwitcherContainer()); } catch(Exception ex) {}
 
         ColorDrawable omniBgDrawable = (ColorDrawable) BrowserActivity.omnibox.getBackground();
         int omniBgColor = omniBgDrawable.getColor();

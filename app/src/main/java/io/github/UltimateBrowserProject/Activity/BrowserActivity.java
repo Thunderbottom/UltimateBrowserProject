@@ -213,6 +213,9 @@ public class BrowserActivity extends Activity implements BrowserController {
 
     public void prepareFirstLaunch() {
         Logging.logd("\nPreparing first launch\n");
+
+        anchor = 1;
+
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         String lang,
                 langS = Resources.getSystem().getConfiguration().locale.getLanguage();
@@ -239,6 +242,8 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
         showAlbum(BrowserContainer.get(0), false, false, false);
         sp.edit().putBoolean(getString(R.string.sp_first), false).apply();
+
+        setOmniCustomLayoutMargins();
     }
 
     public static void updateOverflowColor(int color) {
@@ -1422,9 +1427,9 @@ public class BrowserActivity extends Activity implements BrowserController {
             });
             rv.startAnimation(fadeOut);
         } else {
-            if (currentAlbumController != null) {
+            if (currentAlbumController != null)
                 currentAlbumController.deactivate();
-            }
+
             contentFrame.removeView((View) controller);
             contentFrame.addView((View) controller);
             setBound((View) controller);
