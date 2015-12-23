@@ -15,8 +15,6 @@ import android.webkit.WebViewClient;
 import org.xdevs23.debugUtils.StackTraceParser;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 
 import io.github.UltimateBrowserProject.R;

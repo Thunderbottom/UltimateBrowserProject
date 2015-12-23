@@ -27,7 +27,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
@@ -73,7 +72,6 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import org.askerov.dynamicgrid.DynamicGridView;
-import org.xdevs23.config.AppConfig;
 import org.xdevs23.config.ConfigUtils;
 import org.xdevs23.debugUtils.Logging;
 import org.xdevs23.debugUtils.StackTraceParser;
@@ -1148,10 +1146,12 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -1261,7 +1261,8 @@ public class BrowserActivity extends Activity implements BrowserController {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.album_slide_in_up);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onAnimationRepeat(Animation animation) {}
+            public void onAnimationRepeat(Animation animation) {
+            }
 
             @Override
             public void onAnimationStart(Animation animation) {
@@ -2191,9 +2192,9 @@ public class BrowserActivity extends Activity implements BrowserController {
                             Collections.sort(gridList, new Comparator<GridItem>() {
                                 @Override
                                 public int compare(GridItem first, GridItem second) {
-                                    if (first.getOrdinal() < second.getOrdinal())      return -1;
-                                    else if (first.getOrdinal() > second.getOrdinal()) return  1;
-                                    else                                               return  0;
+                                    if (first.getOrdinal() < second.getOrdinal()) return -1;
+                                    else if (first.getOrdinal() > second.getOrdinal()) return 1;
+                                    else return 0;
 
                                 }
                             });
