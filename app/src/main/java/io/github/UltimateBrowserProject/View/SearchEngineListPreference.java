@@ -1,9 +1,11 @@
 package io.github.UltimateBrowserProject.View;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
@@ -20,6 +22,7 @@ import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 
 public class SearchEngineListPreference extends ListPreference {
+
     public SearchEngineListPreference(Context context) {
         super(context);
     }
@@ -28,12 +31,12 @@ public class SearchEngineListPreference extends ListPreference {
         super(context, attrs);
     }
 
-    @SuppressWarnings("New API")
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public SearchEngineListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    @SuppressWarnings("New API")
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public SearchEngineListPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -106,4 +109,5 @@ public class SearchEngineListPreference extends ListPreference {
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
+
 }

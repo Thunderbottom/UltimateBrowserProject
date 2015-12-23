@@ -15,6 +15,7 @@ import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class NotificationUnit {
+
     public static final int HOLDER_ID = 0x65536;
 
     public static Notification.Builder getHBuilder(Context context) {
@@ -50,4 +51,5 @@ public class NotificationUnit {
 
         return builder;
     }
+
 }

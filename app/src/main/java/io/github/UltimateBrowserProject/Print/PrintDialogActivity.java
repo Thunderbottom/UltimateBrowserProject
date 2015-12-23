@@ -12,6 +12,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import org.xdevs23.debugUtils.StackTraceParser;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,9 +22,11 @@ import java.io.InputStream;
 import io.github.UltimateBrowserProject.R;
 
 public class PrintDialogActivity extends Activity {
-    private static final String PRINT_DIALOG_URL = "https://www.google.com/cloudprint/dialog.html";
-    private static final String JS_INTERFACE = "AndroidPrintDialog";
-    private static final String CONTENT_TRANSFER_ENCODING = "base64";
+
+    private static final String
+            PRINT_DIALOG_URL = "https://www.google.com/cloudprint/dialog.html",
+            JS_INTERFACE = "AndroidPrintDialog",
+            CONTENT_TRANSFER_ENCODING = "base64";
 
     private static final String ZXING_URL = "http://zxing.appspot.com";
     private static final int ZXING_SCAN_REQUEST = 65743;
@@ -83,18 +87,15 @@ public class PrintDialogActivity extends Activity {
         }
 
         @JavascriptInterface
-        public String getContent()
-        {
-            try
-            {
+        public String getContent() {
+            try {
                 ContentResolver contentResolver = getContentResolver();
                 InputStream is = contentResolver.openInputStream(cloudPrintIntent.getData());
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
                 byte[] buffer = new byte[4096];
                 int n = is.read(buffer);
-                while (n >= 0)
-                {
+                while (n >= 0) {
                     baos.write(buffer, 0, n);
                     n = is.read(buffer);
                 }
@@ -102,31 +103,20 @@ public class PrintDialogActivity extends Activity {
                 baos.flush();
 
                 return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
-            }
-            catch (FileNotFoundException e)
-            {
-                e.printStackTrace();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
+            } catch (Exception ex) {
+                StackTraceParser.logStackTrace(ex);
             }
             return "";
         }
 
         @JavascriptInterface
-        public String getEncoding()
-        {
+        public String getEncoding() {
             return CONTENT_TRANSFER_ENCODING;
         }
 
         @JavascriptInterface
-        public void onPostMessage(String message)
-        {
-            if (message.startsWith(CLOSE_POST_MESSAGE_NAME))
-            {
-                finish();
-            }
+        public void onPostMessage(String message) {
+            if (message.startsWith(CLOSE_POST_MESSAGE_NAME)) finish();
         }
     }
 

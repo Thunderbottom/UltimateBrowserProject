@@ -26,19 +26,19 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sp.getString(getString(R.string.sp_theme), "0").equals("0")) {
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("0"))
             this.setTheme(R.style.SettingActivityTheme);
-        } else {
+        else
             this.setTheme(R.style.SettingActivityThemeDark);
-        }
+
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fragment = new SettingFragment();
         getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
-        }
+
     }
 
     @Override

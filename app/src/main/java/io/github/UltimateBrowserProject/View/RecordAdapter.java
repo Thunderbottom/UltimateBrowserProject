@@ -15,6 +15,7 @@ import io.github.UltimateBrowserProject.Database.Record;
 import io.github.UltimateBrowserProject.R;
 
 public class RecordAdapter extends ArrayAdapter<Record> {
+
     private Context context;
     private int layoutResId;
     private List<Record> list;
@@ -44,9 +45,9 @@ public class RecordAdapter extends ArrayAdapter<Record> {
             holder.time = (RelativeTimeTextView) view.findViewById(R.id.record_item_time);
             holder.url = (TextView) view.findViewById(R.id.record_item_url);
             view.setTag(holder);
-        } else {
+        } else
             holder = (Holder) view.getTag();
-        }
+
 
         Record record = list.get(position);
         holder.title.setText(record.getTitle());
@@ -55,4 +56,5 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 
         return view;
     }
+
 }

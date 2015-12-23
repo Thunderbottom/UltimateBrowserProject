@@ -12,6 +12,7 @@ import java.net.URL;
 import io.github.UltimateBrowserProject.Activity.ReadabilityActivity;
 
 public class ReadabilityTask extends AsyncTask<Void, Void, Boolean> {
+
     private String query = null;
     private JSONObject result = null;
 
@@ -40,9 +41,9 @@ public class ReadabilityTask extends AsyncTask<Void, Void, Boolean> {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder builder = new StringBuilder();
                 String line;
-                while ((line = reader.readLine()) != null) {
+                while ((line = reader.readLine()) != null)
                     builder.append(line);
-                }
+
                 reader.close();
                 connection.disconnect();
 

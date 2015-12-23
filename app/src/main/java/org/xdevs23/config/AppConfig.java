@@ -13,7 +13,7 @@ public final class AppConfig {
 			versionName = String.valueOf(Version.major)    + dot +
 						  String.valueOf(Version.minor)    + dot +
 						  String.valueOf(Version.build) /* + dot +
-						  String.valueOf( Version.revision )  */,
+						  String.valueOf(Version.revision)  */,
 			 mainDevUrl = "http://Thunderbottom.github.io/",
 			 updateRoot = mainDevUrl + "update/",
 			 myDataRoot = Environment.getDataDirectory() + "data/io.github.UltimateBrowserProject//",
@@ -43,6 +43,5 @@ public final class AppConfig {
 				useRev = false;
 		
 	}
-
 
 }

@@ -33,8 +33,9 @@ public class ClearActivity extends AppCompatActivity {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
 
         super.onCreate(savedInstanceState);
+
         try { getSupportActionBar().setDisplayHomeAsUpEnabled(true); }
-        catch (NullPointerException ex) {/* Oops, NullPointerException*/}
+        catch (NullPointerException ex) {/* */}
 
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new ClearFragment()).commit();
@@ -77,6 +78,7 @@ public class ClearActivity extends AppCompatActivity {
                 clearFormData   = sp.getBoolean(context.getString(R.string.sp_clear_form_data), false),
                 clearHistory    = sp.getBoolean(context.getString(R.string.sp_clear_history),    true),
                 clearPasswords  = sp.getBoolean(context.getString(R.string.sp_clear_passwords), false);
+
         if (clearBookmarks) BrowserUnit.clearBookmarks (context);
         if (clearCache)     BrowserUnit.clearCache     (context);
         if (clearCookie)    BrowserUnit.clearCookie    (context);

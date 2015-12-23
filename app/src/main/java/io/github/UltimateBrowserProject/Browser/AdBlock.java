@@ -17,6 +17,7 @@ import java.util.Set;
 import io.github.UltimateBrowserProject.Database.RecordAction;
 
 public class AdBlock {
+
     private static final String FILE = "hosts.txt";
     private static final Set<String> hosts = new HashSet<>();
     private static final List<String> whitelist = new ArrayList<>();
@@ -33,7 +34,7 @@ public class AdBlock {
                     while ((line = reader.readLine()) != null) {
                         hosts.add(line.toLowerCase(locale));
                     }
-                } catch (IOException i) {}
+                } catch (IOException i) {/* */}
             }
         });
         thread.start();
@@ -75,9 +76,7 @@ public class AdBlock {
     }
 
     public boolean isWhite(String url) {
-        for (String domain : whitelist) {
-            if (url.contains(domain)) return true;
-        }
+        for (String domain : whitelist) if (url.contains(domain)) return true;
 
         return false;
     }

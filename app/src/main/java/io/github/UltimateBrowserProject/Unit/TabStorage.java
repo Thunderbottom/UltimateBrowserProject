@@ -29,9 +29,11 @@ public class TabStorage {
         public TabNotFoundException()               { super(); }
         public TabNotFoundException(String message) { super(message); }
         public TabNotFoundException(String urlOrTitle, boolean isUrl) {
-            this("Tab with " +
+            this(
+                    "Tab with " +
                     (isUrl ? "URL" : "title") + " \""
-                    + urlOrTitle + "\" not found.");
+                    + urlOrTitle + "\" not found."
+            );
         }
     }
 
@@ -95,9 +97,9 @@ public class TabStorage {
     }
 
     public Tab getTabByTitle(String title) throws TabNotFoundException {
-        for ( int i = 0; i < tabs.size(); i++ ) {
+        for ( int i = 0; i < tabs.size(); i++ )
             if(tabs.get(i).title.equals(title)) return tabs.get(i);
-        }
+
         throw new TabNotFoundException(title, false);
     }
 

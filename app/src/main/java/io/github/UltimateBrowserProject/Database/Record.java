@@ -1,6 +1,7 @@
 package io.github.UltimateBrowserProject.Database;
 
 public class Record {
+
     private String title;
     public String getTitle() {
         return title;
@@ -36,4 +37,5 @@ public class Record {
         this.url = url;
         this.time = time;
     }
+
 }

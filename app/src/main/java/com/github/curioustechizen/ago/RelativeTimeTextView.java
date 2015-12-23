@@ -22,9 +22,7 @@ import io.github.UltimateBrowserProject.R;
 public class RelativeTimeTextView extends TextView {
 
     private long mReferenceTime;
-    private String mText;
-    private String mPrefix;
-    private String mSuffix;
+    private String mText, mPrefix, mSuffix;
     private Handler mHandler = new Handler();
     private UpdateTimeRunnable mUpdateTimeTask;
     private boolean isUpdateTaskRunning = false;
@@ -268,4 +266,5 @@ public class RelativeTimeTextView extends TextView {
         }
 
     }
+    
 }

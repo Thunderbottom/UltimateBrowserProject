@@ -43,4 +43,5 @@ public class ConfigUtils {
         return (!AppConfig.dbgVer.contains("release")) &&
                 ( ((Matcher)( Pattern.compile(debuggers).matcher(AppConfig.dbgVer) )) .matches() );
     }
+
 }

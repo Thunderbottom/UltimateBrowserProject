@@ -23,14 +23,15 @@ import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 
 public class CompleteAdapter extends BaseAdapter implements Filterable {
+
     private final Handler mainTreadHandler;
 
     private class CompleteFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence prefix) {
-            if (prefix == null) {
+            if (prefix == null)
                 return new FilterResults();
-            }
+
 
             final List<CompleteItem> tempResultList = new ArrayList<>();
             tempResultList.clear();
@@ -48,13 +49,9 @@ public class CompleteAdapter extends BaseAdapter implements Filterable {
             Collections.sort(tempResultList, new Comparator<CompleteItem>() {
                 @Override
                 public int compare(CompleteItem first, CompleteItem second) {
-                    if (first.getIndex() < second.getIndex()) {
-                        return -1;
-                    } else if (first.getIndex() > second.getIndex()) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    if (first.getIndex() < second.getIndex()) return -1;
+                    else if (first.getIndex() > second.getIndex()) return 1;
+                    else return 0;
                 }
             });
 
@@ -194,12 +191,13 @@ public class CompleteAdapter extends BaseAdapter implements Filterable {
 
         CompleteItem item = resultList.get(position);
         holder.titleView.setText(item.getTitle());
-        if (item.getURL() != null) {
+        if (item.getURL() != null)
             holder.urlView.setText(Html.fromHtml(BrowserUnit.urlWrapper(item.getURL())), TextView.BufferType.SPANNABLE);
-        } else {
+        else
             holder.urlView.setText(item.getURL());
-        }
+
 
         return view;
     }
+
 }

@@ -8,6 +8,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 public interface BrowserController {
+    
     void updateAutoComplete();
 
     void updateBookmarks();

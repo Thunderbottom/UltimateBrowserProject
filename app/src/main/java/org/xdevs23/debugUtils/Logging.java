@@ -2,10 +2,12 @@ package org.xdevs23.debugUtils;
 
 import android.util.Log;
 
+import org.xdevs23.config.AppConfig;
 import org.xdevs23.config.ConfigUtils;
 
 public class Logging {
-    static String TAG = "UltimateBrowserProject";
+
+    static String TAG = AppConfig.debugTag;
 
     /**
      * Deprecated. Use <code>ConfigUtils.isDebuggable()</code> instead.

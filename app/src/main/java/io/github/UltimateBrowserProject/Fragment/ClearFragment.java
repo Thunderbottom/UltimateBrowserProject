@@ -7,6 +7,7 @@ import android.preference.PreferenceFragment;
 import io.github.UltimateBrowserProject.R;
 
 public class ClearFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,4 +29,5 @@ public class ClearFragment extends PreferenceFragment implements SharedPreferenc
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sp, String key) {}
+
 }

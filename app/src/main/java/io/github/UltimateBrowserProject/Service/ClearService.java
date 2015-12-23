@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import io.github.UltimateBrowserProject.Activity.ClearActivity;
 
 public class ClearService extends Service {
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -16,8 +17,9 @@ public class ClearService extends Service {
 
     @Override
     public void onDestroy() {
-        System.exit(0); // For remove all WebView thread
+        System.exit(0);
     }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         clear();
@@ -29,4 +31,5 @@ public class ClearService extends Service {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         ClearActivity.clear(sp, this.getApplicationContext());
     }
+
 }

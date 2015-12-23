@@ -6,6 +6,7 @@ import java.util.List;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class BrowserContainer {
+
     private static List<AlbumController> list = new LinkedList<>();
 
     public static AlbumController get(int index) {
@@ -16,22 +17,16 @@ public class BrowserContainer {
         if (list.get(index) instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) list.get(index)).destroy();
 
-
         list.set(index, controller);
     }
 
-    public synchronized static void add(AlbumController controller) {
-        list.add(controller);
-    }
+    public synchronized static void add(AlbumController controller) { list.add(controller); }
 
-    public synchronized static void add(AlbumController controller, int index) {
-        list.add(index, controller);
-    }
+    public synchronized static void add(AlbumController controller, int index) { list.add(index, controller); }
 
     public synchronized static void remove(int index) {
         if (list.get(index) instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) list.get(index)).destroy();
-
 
         list.remove(index);
     }
@@ -39,7 +34,6 @@ public class BrowserContainer {
     public synchronized static void remove(AlbumController controller) {
         if (controller instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) controller).destroy();
-
 
         list.remove(controller);
     }

@@ -44,40 +44,51 @@ import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 
 public class BrowserUnit {
-    public static final int PROGRESS_MAX = 100;
-    public static final int PROGRESS_MIN = 0;
-    public static final String SUFFIX_HTML = ".html";
-    public static final String SUFFIX_PNG = ".png";
-    public static final String SUFFIX_TXT = ".txt";
 
-    public static final int FLAG_BOOKMARKS = 0x100;
-    public static final int FLAG_HISTORY = 0x101;
-    public static final int FLAG_HOME = 0x102;
-    public static final int FLAG_UltimateBrowserProject = 0x103;
+    public static final int
+            PROGRESS_MAX = 100,
+            PROGRESS_MIN = 0;
 
-    public static final String MIME_TYPE_TEXT_HTML = "text/html";
-    public static final String MIME_TYPE_TEXT_PLAIN = "text/plain";
-    public static final String MIME_TYPE_IMAGE = "image/*";
+    public static final String
+            SUFFIX_HTML = ".html",
+            SUFFIX_PNG  = ".png",
+            SUFFIX_TXT  = ".txt"
+                    ;
 
-    public static final String BASE_URL = "file:///android_asset/";
-    public static final String BOOKMARK_TYPE = "<DT><A HREF=\"{url}\" ADD_DATE=\"{time}\">{title}</A>";
-    public static final String BOOKMARK_TITLE = "{title}";
-    public static final String BOOKMARK_URL = "{url}";
-    public static final String BOOKMARK_TIME = "{time}";
-    public static final String INTRODUCTION_PREFIX = "UltimateBrowserProject_introduction_",
-                               INTRODUCTION_EN = INTRODUCTION_PREFIX + "en" + SUFFIX_HTML,
-                               INTRODUCTION_DE = INTRODUCTION_PREFIX + "de" + SUFFIX_HTML;
+    public static final int
+            FLAG_BOOKMARKS = 0x100,
+            FLAG_HISTORY   = 0x101,
+            FLAG_HOME = 0x102,
+            FLAG_UltimateBrowserProject = 0x103
+                    ;
 
-    public static final String SEARCH_ENGINE_GOOGLE     = "https://www.google.com/search?q=";
-    public static final String SEARCH_ENGINE_DUCKDUCKGO = "https://duckduckgo.com/?q=";
-    public static final String SEARCH_ENGINE_STARTPAGE  = "https://startpage.com/do/search?query=";
-    public static final String SEARCH_ENGINE_BING       = "http://www.bing.com/search?q=";
-    public static final String SEARCH_ENGINE_BAIDU      = "http://www.baidu.com/s?wd=";
+    public static final String
+            MIME_TYPE_TEXT_HTML  = "text/html",
+            MIME_TYPE_TEXT_PLAIN = "text/plain",
+            MIME_TYPE_IMAGE      = "image/*";
 
-    // Chrome desktop 49.0.2587.3 dev
-    // (latest linux/debian Google Chrome Dev version available on December 15, 2015)
-    // Now you can decide... I prefer using android version 4.4.4 in UA, but you can use any other version as well.
-    public static final String UA_DESKTOP = "Mozilla/5.0 (Linux; U; Android 4.4.4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2587.3 Mobile Safari/537.36";
+    public static final String
+            BASE_URL = "file:///android_asset/",
+            BOOKMARK_TYPE = "<DT><A HREF=\"{url}\" ADD_DATE=\"{time}\">{title}</A>",
+            BOOKMARK_TITLE = "{title}",
+            BOOKMARK_URL = "{url}",
+            BOOKMARK_TIME = "{time}";
+
+    public static final String
+            INTRODUCTION_PREFIX = "UltimateBrowserProject_introduction_",
+            INTRODUCTION_EN = INTRODUCTION_PREFIX + "en" + SUFFIX_HTML,
+            INTRODUCTION_DE = INTRODUCTION_PREFIX + "de" + SUFFIX_HTML;
+
+    public static final String
+            SEARCH_ENGINE_GOOGLE     = "https://www.google.com/search?q=",
+            SEARCH_ENGINE_DUCKDUCKGO = "https://duckduckgo.com/?q=",
+            SEARCH_ENGINE_STARTPAGE  = "https://startpage.com/do/search?query=",
+            SEARCH_ENGINE_BING       = "http://www.bing.com/search?q=",
+            SEARCH_ENGINE_BAIDU      = "http://www.baidu.com/s?wd=";
+
+    // Chrome desktop 49.0.2593.0 dev
+    // (latest linux/debian Google Chrome Dev version available on December 23, 2015)
+    public static final String  UA_DESKTOP = "Mozilla/5.0 (Linux; U; Android 5.0.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2593.0 Mobile Safari/537.36";
     public static final String  URL_ENCODING        = "UTF-8",
                                 URL_ABOUT_BLANK     = "about:blank",
                                 URL_SCHEME_ABOUT    = "about:",
@@ -103,9 +114,9 @@ public class BrowserUnit {
         url = url.toLowerCase(Locale.getDefault());
         if (url.startsWith(URL_ABOUT_BLANK)
                 || url.startsWith(URL_SCHEME_MAIL_TO)
-                || url.startsWith(URL_SCHEME_FILE)) {
+                || url.startsWith(URL_SCHEME_FILE))
             return true;
-        }
+
 
         String regex = "^((ftp|http|https|intent)?://)"                      // support scheme (how about javascript:?)
                 + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" // ftp.user@
@@ -117,6 +128,7 @@ public class BrowserUnit {
                 + "(:[0-9]{1,4})?"                                           // Port -> :80
                 + "((/?)|"                                                   // a slash isn't required if there is no file name
                 + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(url).matches();
     }
@@ -139,37 +151,32 @@ public class BrowserUnit {
                     || query.startsWith(URL_SCHEME_JSCRIPT))
                 return query;
 
-
             if (!query.contains("://"))
                 query = URL_SCHEME_HTTP + query;
-
 
             return query;
         }
 
         try {
             query = URLEncoder.encode(query, URL_ENCODING);
-        } catch (UnsupportedEncodingException u) {
-
-        }
+        } catch (UnsupportedEncodingException u) {/* */}
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String custom = sp.getString(context.getString(R.string.sp_search_engine_custom), SEARCH_ENGINE_GOOGLE);
         final int i = Integer.valueOf(sp.getString(context.getString(R.string.sp_search_engine), "0"));
         switch (i) {
-            case 0: return SEARCH_ENGINE_GOOGLE + query;
-            case 1: return SEARCH_ENGINE_DUCKDUCKGO + query;
-            case 2: return SEARCH_ENGINE_STARTPAGE + query;
-            case 3: return SEARCH_ENGINE_BING + query;
-            case 4: return SEARCH_ENGINE_BAIDU + query;
-            case 5: return custom + query;
-            default:return SEARCH_ENGINE_GOOGLE + query;
+            case 0:  return SEARCH_ENGINE_GOOGLE + query;
+            case 1:  return SEARCH_ENGINE_DUCKDUCKGO + query;
+            case 2:  return SEARCH_ENGINE_STARTPAGE + query;
+            case 3:  return SEARCH_ENGINE_BING + query;
+            case 4:  return SEARCH_ENGINE_BAIDU + query;
+            case 5:  return custom + query;
+            default: return SEARCH_ENGINE_GOOGLE + query;
         }
     }
 
     public static String urlWrapper(String url) {
         if (url == null) return null;
-
 
         String green500 = "<font color=\"#4CAF50\">{content}</font>";
         String gray500  = "<font color=\"#9E9E9E\">{content}</font>";
@@ -248,11 +255,11 @@ public class BrowserUnit {
 
         File dir;
         // Fix of takahirom
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             dir = context.getExternalMediaDirs()[0];
-        } else {
+        else
             dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        }
+
         if (name == null || name.trim().isEmpty())
             name = String.valueOf(System.currentTimeMillis());
 
@@ -352,22 +359,22 @@ public class BrowserUnit {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (!((line.startsWith("<dt><a ") && line.endsWith("</a>")) || (line.startsWith("<DT><A ") && line.endsWith("</A>")))) {
+                if (!((line.startsWith("<dt><a ") && line.endsWith("</a>")) || (line.startsWith("<DT><A ") && line.endsWith("</A>"))))
                     continue;
-                }
+
                 String title = getBookmarkTitle(line);
                 String url = getBookmarkURL(line);
-                if (title.trim().isEmpty() || url.trim().isEmpty()) {
+                if (title.trim().isEmpty() || url.trim().isEmpty())
                     continue;
-                }
+
 
                 Record record = new Record();
                 record.setTitle(title);
                 record.setURL(url);
                 record.setTime(System.currentTimeMillis());
-                if (!action.checkBookmark(record)) {
+                if (!action.checkBookmark(record))
                     list.add(record);
-                }
+
             }
             reader.close();
 
@@ -378,11 +385,11 @@ public class BrowserUnit {
                 }
             });
 
-            for (Record record : list) {
+            for (Record record : list)
                 action.addBookmark(record);
-            }
+
             action.close();
-        } catch (Exception e) {}
+        } catch (Exception e) {/* */}
 
         return list.size();
     }
@@ -407,7 +414,7 @@ public class BrowserUnit {
             }
             reader.close();
             action.close();
-        } catch (Exception e) {}
+        } catch (Exception e) {/* */}
 
         return count;
     }
@@ -422,9 +429,9 @@ public class BrowserUnit {
     public static boolean clearCache(Context context) {
         try {
             File dir = context.getCacheDir();
-            if ( dir != null && dir.isDirectory() ) {
+            if ( dir != null && dir.isDirectory() )
                 deleteDir(dir);
-            }
+
 
             return true;
         } catch (Exception exception) {
@@ -475,9 +482,9 @@ public class BrowserUnit {
             String[] children = dir.list();
             for (String aChildren : children) {
                 boolean success = deleteDir(new File(dir, aChildren));
-                if (!success) {
+                if (!success)
                     return false;
-                }
+
             }
         }
 
@@ -496,4 +503,5 @@ public class BrowserUnit {
         }
         return "";
     }
+
 }

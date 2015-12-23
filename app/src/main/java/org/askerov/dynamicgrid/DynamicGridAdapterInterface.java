@@ -4,9 +4,7 @@ package org.askerov.dynamicgrid;
  * Author: alex askerov
  * Date: 18/07/14
  * Time: 23:44
- */
-
-/**
+ *
  * Any adapter used with DynamicGridView must implement DynamicGridAdapterInterface.
  * Adapter implementation also must has stable items id.
  * See {@link org.askerov.dynamicgrid.AbstractDynamicGridAdapter} for stable id implementation example.

@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import io.github.UltimateBrowserProject.Unit.RecordUnit;
 
 public class RecordHelper extends SQLiteOpenHelper {
+    
     private static final String DATABASE_NAME = "UltimateBrowserProject3.db";
     private static final int DATABASE_VERSION = 1;
 

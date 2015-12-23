@@ -85,7 +85,6 @@ public class TabSwitcher extends RelativeLayout {
         this.animationDuration = animationDuration;
     }
 
-
     public void expand() {
         Logging.logd("Expanding TabSwitcher");
 

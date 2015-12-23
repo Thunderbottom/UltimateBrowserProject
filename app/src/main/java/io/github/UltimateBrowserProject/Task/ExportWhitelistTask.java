@@ -9,6 +9,7 @@ import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 
 public class ExportWhitelistTask extends AsyncTask<Void, Void, Boolean> {
+
     private Context context;
     private ProgressDialog dialog;
     private String path;
@@ -31,9 +32,9 @@ public class ExportWhitelistTask extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... params) {
         path = BrowserUnit.exportWhitelist(context);
 
-        if (isCancelled()) {
+        if (isCancelled())
             return false;
-        }
+
         return path != null && !path.isEmpty();
     }
 
@@ -42,10 +43,11 @@ public class ExportWhitelistTask extends AsyncTask<Void, Void, Boolean> {
         dialog.hide();
         dialog.dismiss();
 
-        if (result) {
+        if (result)
             UltimateBrowserProjectToast.show(context, context.getString(R.string.toast_export_whitelist_successful) + path);
-        } else {
+        else
             UltimateBrowserProjectToast.show(context, R.string.toast_export_whitelist_failed);
-        }
+
     }
+
 }

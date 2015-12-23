@@ -14,6 +14,7 @@ import io.github.UltimateBrowserProject.Browser.AdBlock;
 import io.github.UltimateBrowserProject.R;
 
 public class WhitelistAdapter extends ArrayAdapter<String> {
+
     private Context context;
     private int layoutResId;
     private List<String> list;
@@ -41,9 +42,9 @@ public class WhitelistAdapter extends ArrayAdapter<String> {
             holder.domain = (TextView) view.findViewById(R.id.whitelist_item_domain);
             holder.cancel = (ImageButton) view.findViewById(R.id.whitelist_item_cancel);
             view.setTag(holder);
-        } else {
+        } else
             holder = (Holder) view.getTag();
-        }
+
 
         holder.domain.setText(list.get(position));
         holder.cancel.setOnClickListener(new View.OnClickListener() {
@@ -59,4 +60,5 @@ public class WhitelistAdapter extends ArrayAdapter<String> {
 
         return view;
     }
+
 }

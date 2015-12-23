@@ -24,6 +24,7 @@ import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 import io.github.UltimateBrowserProject.View.WhitelistAdapter;
 
 public class WhitelistActivity extends AppCompatActivity {
+
     private WhitelistAdapter adapter;
     private List<String> list;
 
@@ -77,6 +78,7 @@ public class WhitelistActivity extends AppCompatActivity {
                 }
             }
         });
+
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
 

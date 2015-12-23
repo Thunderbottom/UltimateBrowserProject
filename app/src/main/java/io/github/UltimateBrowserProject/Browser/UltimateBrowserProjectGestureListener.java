@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class UltimateBrowserProjectGestureListener extends GestureDetector.SimpleOnGestureListener {
+
     private UltimateBrowserProjectWebView webView;
     private boolean longPress = true;
 
@@ -16,9 +17,7 @@ public class UltimateBrowserProjectGestureListener extends GestureDetector.Simpl
 
     @Override
     public void onLongPress(MotionEvent e) {
-        if (longPress) {
-            webView.onLongPress();
-        }
+        if (longPress) webView.onLongPress();
     }
 
     @Override
@@ -31,4 +30,5 @@ public class UltimateBrowserProjectGestureListener extends GestureDetector.Simpl
     public void onShowPress(MotionEvent e) {
         longPress = true;
     }
+
 }

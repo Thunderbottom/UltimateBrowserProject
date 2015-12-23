@@ -12,6 +12,7 @@ import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 
 public class ImportWhitelistTask extends AsyncTask<Void, Void, Boolean> {
+
     private SettingFragment fragment;
     private Context context;
     private ProgressDialog dialog;
@@ -38,9 +39,9 @@ public class ImportWhitelistTask extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... params) {
         count = BrowserUnit.importWhitelist(context, file);
 
-        if (isCancelled()) {
+        if (isCancelled())
             return false;
-        }
+
         return count >= 0;
     }
 
@@ -52,8 +53,8 @@ public class ImportWhitelistTask extends AsyncTask<Void, Void, Boolean> {
         if (result) {
             fragment.setDBChange(true);
             UltimateBrowserProjectToast.show(context, context.getString(R.string.toast_import_whitelist_successful) + count);
-        } else {
+        } else
             UltimateBrowserProjectToast.show(context, R.string.toast_import_whitelist_failed);
-        }
     }
+
 }

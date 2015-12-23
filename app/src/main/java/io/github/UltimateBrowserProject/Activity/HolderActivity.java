@@ -41,6 +41,7 @@ public class HolderActivity extends Activity {
             finish();
             return;
         }
+
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
 
@@ -61,6 +62,7 @@ public class HolderActivity extends Activity {
                 HolderActivity.this.finish();
             }
         };
+
         timer = new Timer();
         timer.schedule(task, TIMER_SCHEDULE_DEFAULT);
     }
@@ -94,7 +96,6 @@ public class HolderActivity extends Activity {
     public void onDestroy() {
         if (timer != null) timer.cancel();
 
-
         if (background)
             UltimateBrowserProjectToast.show(this, R.string.toast_load_in_background);
 
@@ -103,6 +104,7 @@ public class HolderActivity extends Activity {
         second = null;
         timer  = null;
         background = false;
+
         super.onDestroy();
     }
 
@@ -144,6 +146,7 @@ public class HolderActivity extends Activity {
                     case 2: IntentUnit.share(HolderActivity.this, first.getTitle(), first.getURL()); break;
                     default:                                                                         break;
                 }
+
                 dialog.hide();
                 dialog.dismiss();
                 finish();

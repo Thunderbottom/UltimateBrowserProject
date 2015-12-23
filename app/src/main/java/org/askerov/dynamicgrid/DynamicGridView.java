@@ -40,6 +40,7 @@ import io.github.UltimateBrowserProject.R;
  * Time: 12:31 PM
  */
 public class DynamicGridView extends GridView {
+
     private static final int INVALID_ID = -1;
 
     private static final int MOVE_DURATION = 300;
@@ -1147,5 +1148,6 @@ public class DynamicGridView extends GridView {
             return transitions;
         }
     }
+
 }
 

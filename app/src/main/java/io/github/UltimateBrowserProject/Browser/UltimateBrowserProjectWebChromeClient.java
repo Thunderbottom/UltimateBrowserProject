@@ -1,6 +1,7 @@
 package io.github.UltimateBrowserProject.Browser;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Message;
 import android.view.View;
 import android.webkit.GeolocationPermissions;
@@ -12,6 +13,7 @@ import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class UltimateBrowserProjectWebChromeClient extends WebChromeClient {
+
     private UltimateBrowserProjectWebView ultimateBrowserProjectWebView;
 
     public UltimateBrowserProjectWebChromeClient(UltimateBrowserProjectWebView UltimateBrowserProjectWebView) {
@@ -99,4 +101,5 @@ public class UltimateBrowserProjectWebChromeClient extends WebChromeClient {
     public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
         super.onGeolocationPermissionsShowPrompt(origin, callback);
     }
+
 }

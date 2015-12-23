@@ -14,13 +14,13 @@ import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class ScreenshotTask extends AsyncTask<Void, Void, Boolean> {
+
     private Context context;
     private ProgressDialog dialog;
     private UltimateBrowserProjectWebView webView;
     private int windowWidth;
     private float contentHeight;
-    private String title;
-    private String path;
+    private String title, path;
 
     public ScreenshotTask(Context context, UltimateBrowserProjectWebView webView) {
         this.context = context;
@@ -66,4 +66,5 @@ public class ScreenshotTask extends AsyncTask<Void, Void, Boolean> {
         else UltimateBrowserProjectToast.show(context, R.string.toast_screenshot_failed);
 
     }
+
 }

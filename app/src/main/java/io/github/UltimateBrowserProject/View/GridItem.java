@@ -1,6 +1,7 @@
 package io.github.UltimateBrowserProject.View;
 
 public class GridItem {
+
     private String title;
     public String getTitle() {
         return title;
@@ -46,4 +47,5 @@ public class GridItem {
         this.filename = filename;
         this.ordinal = ordinal;
     }
+
 }

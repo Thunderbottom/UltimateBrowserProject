@@ -10,6 +10,7 @@ import java.util.List;
  * Time: 10:14 PM
  */
 public class DynamicGridUtils {
+
     /**
      * Delete item in <code>list</code> from position <code>indexFrom</code> and insert it to <code>indexTwo</code>
      *
@@ -43,4 +44,5 @@ public class DynamicGridUtils {
     public static float getViewY(View view) {
         return Math.abs((view.getBottom() - view.getTop()) / 2);
     }
+
 }

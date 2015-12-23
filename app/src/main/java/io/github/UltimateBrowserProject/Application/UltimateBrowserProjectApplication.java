@@ -8,8 +8,6 @@ import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 
 
-
-
 public class UltimateBrowserProjectApplication extends Application {
 
     @Override
@@ -17,4 +15,5 @@ public class UltimateBrowserProjectApplication extends Application {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
     }
+
 }

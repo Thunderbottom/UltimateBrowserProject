@@ -11,6 +11,7 @@ import java.util.List;
  * Time: 10:49 PM
  */
 public abstract class BaseDynamicGridAdapter extends AbstractDynamicGridAdapter {
+
     private Context mContext;
 
     private ArrayList<Object> mItems = new ArrayList<Object>();
@@ -111,4 +112,5 @@ public abstract class BaseDynamicGridAdapter extends AbstractDynamicGridAdapter 
     protected Context getContext() {
         return mContext;
     }
+
 }

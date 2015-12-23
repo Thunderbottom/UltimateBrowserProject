@@ -32,26 +32,29 @@ import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 
 public class SettingFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final String LICENSE_TITLE = "LICENSE_TITLE";
-    private static final String LICENSE_CONTENT = "LICENSE_CONTENT";
-    private static final String LICENSE_AUTHOR = "LICENSE_AUTHOR";
-    private static final String LICENSE_URL = "LICENSE_URL";
 
-    private ListPreference searchEngine;
-    private ListPreference notiPriority;
-    private ListPreference theme;
-    private ListPreference tabPosition;
-    private ListPreference volumeControl;
-    private ListPreference userAgent;
-    private ListPreference rendering;
+    private static final String
+            LICENSE_TITLE   = "LICENSE_TITLE",
+            LICENSE_CONTENT = "LICENSE_CONTENT",
+            LICENSE_AUTHOR  = "LICENSE_AUTHOR",
+            LICENSE_URL     = "LICENSE_URL";
 
-    private String[] seEntries;
-    private String[] npEntries;
-    private String[] tEntries;
-    private String[] tpEntries;
-    private String[] vcEntries;
-    private String[] ucEntries;
-    private String[] rdEntries;
+    private ListPreference
+            searchEngine,
+            notiPriority,
+            theme,
+            tabPosition,
+            volumeControl,
+            userAgent,
+            rendering;
+
+    private String[] seEntries,
+                     npEntries,
+                      tEntries,
+                     tpEntries,
+                     vcEntries,
+                     ucEntries,
+                     rdEntries;
 
     private boolean spChange = false;
     public boolean isSPChange() {
@@ -187,9 +190,9 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
         spChange = true;
         if (key.equals(getString(R.string.sp_search_engine))) {
             int num = Integer.valueOf(sp.getString(key, "0"));
-            if (0 <= num && num <= 4) {
+            if (0 <= num && num <= 4)
                 searchEngine.setSummary(seEntries[num]);
-            } else {
+            else {
                 searchEngine.setValue("5");
                 searchEngine.setSummary(R.string.setting_summary_search_engine_custom);
             }
@@ -209,9 +212,9 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
             volumeControl.setSummary(summary);
         } else if (key.equals(getString(R.string.sp_user_agent))) {
             int num = Integer.valueOf(sp.getString(key, "0"));
-            if (0 <= num && num <= 1) {
+            if (0 <= num && num <= 1)
                 userAgent.setSummary(ucEntries[num]);
-            } else {
+            else {
                 userAgent.setValue("2");
                 userAgent.setSummary(R.string.setting_summary_user_agent_custom);
             }
@@ -263,6 +266,7 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
                 alertDialog.dismiss();
             }
         });
+
         adapter.notifyDataSetChanged();
 
         alertDialog.show();

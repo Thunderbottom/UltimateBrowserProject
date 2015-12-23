@@ -16,6 +16,7 @@ import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
 
 public class GridAdapter extends BaseDynamicGridAdapter {
+
     private static class Holder {
         TextView title;
         ImageView cover;
@@ -45,9 +46,9 @@ public class GridAdapter extends BaseDynamicGridAdapter {
             holder.title = (TextView) view.findViewById(R.id.grid_item_title);
             holder.cover = (ImageView) view.findViewById(R.id.grid_item_cover);
             view.setTag(holder);
-        } else {
+        } else
             holder = (Holder) view.getTag();
-        }
+
 
         GridItem item = list.get(position);
         holder.title.setText(item.getTitle());
@@ -56,4 +57,5 @@ public class GridAdapter extends BaseDynamicGridAdapter {
 
         return view;
     }
+
 }

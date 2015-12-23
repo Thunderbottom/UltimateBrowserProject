@@ -45,15 +45,13 @@ public class UltimateBrowserProjectJavaScriptInterface {
         Logging.logd("Alternative: setting bg color...");
         BrowserActivity.omnibox.setBackgroundResource(0);
         BrowserActivity.omnibox.setBackgroundColor(Color.parseColor(headColor));
+
         if(BrowserActivity.omnibox.getBackground() == null) {
-            Logging.logd("Background is still null O_O");
             BrowserActivity.getContentFrame().setBackgroundColor(Color.parseColor(headColor));
             BrowserActivity.omnibox.setBackgroundResource(0);
-            if(BrowserActivity.getContentFrame().getBackground() == null) {
-                Logging.logd("Oh no... Let's give up -.-, set default color!");
-                applyDefaultColor();
-            }
+            if(BrowserActivity.getContentFrame().getBackground() == null) applyDefaultColor();
         }
+
     }
 
     public void applyColor(String color) {
@@ -69,8 +67,6 @@ public class UltimateBrowserProjectJavaScriptInterface {
             Logging.logd("bgcolor set");
         } catch(Exception ex) {
             StackTraceParser.logStackTrace(ex);
-        } finally {
-            Logging.logd("Reached end of method (applyColor)");
         }
     }
 
@@ -114,4 +110,5 @@ public class UltimateBrowserProjectJavaScriptInterface {
             BrowserActivity.resetBarsColor();
         }
     }
+
 }

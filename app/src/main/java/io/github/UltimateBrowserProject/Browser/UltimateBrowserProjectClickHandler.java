@@ -6,6 +6,7 @@ import android.os.Message;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class UltimateBrowserProjectClickHandler extends Handler {
+
     private UltimateBrowserProjectWebView webView;
 
     public UltimateBrowserProjectClickHandler(UltimateBrowserProjectWebView webView) {
@@ -18,4 +19,5 @@ public class UltimateBrowserProjectClickHandler extends Handler {
         super.handleMessage(message);
         webView.getBrowserController().onLongPress(message.getData().getString("url"));
     }
+
 }

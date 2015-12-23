@@ -11,6 +11,7 @@ import io.github.UltimateBrowserProject.Browser.BrowserController;
 import io.github.UltimateBrowserProject.R;
 
 public class UltimateBrowserProjectRelativeLayout extends RelativeLayout implements AlbumController {
+
     private Context context;
     private Album album;
     private int flag = 0;
@@ -87,4 +88,5 @@ public class UltimateBrowserProjectRelativeLayout extends RelativeLayout impleme
     public void deactivate() {
         album.deactivate();
     }
+
 }

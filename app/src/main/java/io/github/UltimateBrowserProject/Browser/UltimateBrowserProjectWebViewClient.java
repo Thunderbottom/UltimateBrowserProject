@@ -44,6 +44,7 @@ import io.github.UltimateBrowserProject.Unit.ViewUnit;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class UltimateBrowserProjectWebViewClient extends WebViewClient {
+
     private UltimateBrowserProjectWebView ultimateBrowserProjectWebView;
     private Context context;
 
@@ -241,9 +242,7 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     @Override
     public void onFormResubmission(WebView view, @NonNull final Message dontResend, final Message resend) {
         Context holder = IntentUnit.getContext();
-        if (holder == null || !(holder instanceof Activity)) {
-            return;
-        }
+        if (holder == null || !(holder instanceof Activity)) return;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(holder);
         builder.setCancelable(false);
@@ -268,9 +267,9 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
     @Override
     public void onReceivedSslError(WebView view, @NonNull final SslErrorHandler handler, SslError error) {
         Context holder = IntentUnit.getContext();
-                if (holder == null || !(holder instanceof Activity)) {
-                    return;
-                }
+
+        if (holder == null || !(holder instanceof Activity)) return;
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(holder);
         builder.setCancelable(false);
@@ -304,10 +303,12 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
         builder.setTitle(R.string.dialog_title_sign_in);
 
         LinearLayout signInLayout = (LinearLayout) LayoutInflater.from(holder).inflate(R.layout.dialog_sign_in, null, false);
+
         final com.rey.material.widget.EditText userEdit
                 = (com.rey.material.widget.EditText) signInLayout.findViewById(R.id.dialog_sign_in_username);
         final com.rey.material.widget.EditText passEdit
                 = (com.rey.material.widget.EditText) signInLayout.findViewById(R.id.dialog_sign_in_password);
+
         passEdit.setTypeface(Typeface.DEFAULT);
         passEdit.setTransformationMethod(new PasswordTransformationMethod());
         builder.setView(signInLayout);
@@ -330,4 +331,5 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
 
         builder.create().show();
     }
+
 }

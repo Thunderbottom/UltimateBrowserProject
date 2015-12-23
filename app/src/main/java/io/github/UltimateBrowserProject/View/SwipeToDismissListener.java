@@ -10,6 +10,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
 public class SwipeToDismissListener implements View.OnTouchListener {
+
     public interface DismissCallback {
         boolean canDismiss(Object token);
         void onDismiss(View view, Object token);
@@ -19,16 +20,12 @@ public class SwipeToDismissListener implements View.OnTouchListener {
     private Object token;
     private DismissCallback callback;
 
-    private int viewHeight = 1;
-    private int slop;
-    private int minFlingVelocity;
-    private int maxFlingVelocity;
+    private int viewHeight = 1, slop, minFlingVelocity, maxFlingVelocity, swipingSlop;
     private long animTime;
 
-    private float downY;
-    private float translationY;
+    private float downY, translationY;
     private boolean swiping;
-    private int swipingSlop;
+
     private VelocityTracker velocityTracker;
 
     public SwipeToDismissListener(View view, Object token, DismissCallback callback) {
@@ -46,9 +43,9 @@ public class SwipeToDismissListener implements View.OnTouchListener {
     @Override
     public boolean onTouch(View view, MotionEvent event) {
         event.offsetLocation(0, translationY);
-        if (viewHeight < 2) {
+        if (viewHeight < 2)
             viewHeight = this.view.getHeight();
-        }
+
 
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN: {
@@ -60,9 +57,9 @@ public class SwipeToDismissListener implements View.OnTouchListener {
 
                 return false;
             } case MotionEvent.ACTION_UP: {
-                if (velocityTracker == null) {
+                if (velocityTracker == null)
                     break;
-                }
+
 
                 velocityTracker.addMovement(event);
                 velocityTracker.computeCurrentVelocity(1000);
@@ -106,9 +103,9 @@ public class SwipeToDismissListener implements View.OnTouchListener {
                 velocityTracker = null;
                 break;
             } case MotionEvent.ACTION_CANCEL: {
-                if (velocityTracker == null) {
+                if (velocityTracker == null)
                     break;
-                }
+
 
                 this.view.animate()
                         .translationY(0f)
@@ -123,9 +120,9 @@ public class SwipeToDismissListener implements View.OnTouchListener {
 
                 break;
             } case MotionEvent.ACTION_MOVE: {
-                if (velocityTracker == null) {
+                if (velocityTracker == null)
                     break;
-                }
+
                 velocityTracker.addMovement(event);
 
                 float deltaY = event.getRawY() - downY;
@@ -179,4 +176,5 @@ public class SwipeToDismissListener implements View.OnTouchListener {
         });
         animator.start();
     }
+
 }

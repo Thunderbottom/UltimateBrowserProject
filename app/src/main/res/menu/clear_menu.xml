@@ -9,6 +9,5 @@
           android:icon="@drawable/ic_action_done_all"
           app:showAsAction="always">
     </item>
-    <!--  Removed 'android:showAsAction="always"' - Not recommended -->
 
 </menu>

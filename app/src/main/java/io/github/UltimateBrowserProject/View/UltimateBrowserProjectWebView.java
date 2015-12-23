@@ -45,6 +45,7 @@ import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
 
 public class UltimateBrowserProjectWebView extends WebView implements AlbumController {
+
     private static final float[] NEGATIVE_COLOR = {
             -1.0f, 0, 0, 0, 255, // Red
             0, -1.0f, 0, 0, 255, // Green
@@ -216,11 +217,11 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                     Logging.logd("MotionEvent.ACTION_UP");
                     assert view != null;
                     boolean moveUp = (BrowserActivity.anchor == 0 ? (-cpo >= oh / 2) : (cpo == 0));
-                    ym1 = 0;
-                    ym2 = 0;
+                    ym1   = 0;
+                    ym2   = 0;
                     lastM = 0;
-                    lagf = 0;
-                    if ((cpo <= 0 && cpo != -oh) ||
+                    lagf  = 0;
+                    if (    (cpo <= 0 && cpo != -oh) ||
                             (cpo == 0 && cpwo == oh)) {
                         cpo = 0;
                         cpwo = oh;
@@ -252,10 +253,11 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                         cpwo = oh - cpo;
                     }
 
-                    if (cpwo < 0) cpwo = 0;
-                    else if (cpwo > oh) cpwo = oh;
-                    if (cpo > 0) cpo = 0;
-                    else if (cpo < -oh) cpo = -oh;
+                    if      (cpwo <   0) cpwo =   0;
+                    else if (cpwo >  oh) cpwo =  oh;
+                    if      (cpo  >   0) cpo  =   0;
+                    else if (cpo  < -oh) cpo  = -oh;
+
                     if (!glitchfix) {
                         if (BrowserActivity.anchor == 0) {
                             BrowserActivity.omnibox.animate()

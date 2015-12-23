@@ -16,9 +16,9 @@ import android.view.View;
 import org.xdevs23.debugUtils.Logging;
 
 public class ViewUnit {
+
     public static boolean respectAdjustHeight = true,
                           disableAdjusting    = true;
-    private static int adjustHeightMultiplier = 1;
 
 
     public static void bound(Context context, View view, boolean isFullScreen) { // Don't need this?!
@@ -27,7 +27,7 @@ public class ViewUnit {
             int windowHeight = getWindowHeight(context);
             int adjustHeight = 0;
             if (!isFullScreen && respectAdjustHeight)
-                adjustHeight += getStatusBarHeight(context) * adjustHeightMultiplier;
+                adjustHeight += getStatusBarHeight(context);
 
 
             int widthSpec = View.MeasureSpec.makeMeasureSpec(windowWidth, View.MeasureSpec.EXACTLY);
@@ -63,6 +63,7 @@ public class ViewUnit {
             left = view.getScrollX();
             top = view.getScrollY();
         }
+
         int status = canvas.save();
         canvas.translate(-left, -top);
 
@@ -154,4 +155,5 @@ public class ViewUnit {
     public static int goh(Context c) {
         return getOmniboxHeight(c);
     }
+
 }

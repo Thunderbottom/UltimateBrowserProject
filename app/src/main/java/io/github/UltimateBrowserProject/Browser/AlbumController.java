@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.view.View;
 
 public interface AlbumController {
+
     int getFlag();
 
     void setFlag(int flag);
@@ -23,4 +24,5 @@ public interface AlbumController {
     void activate();
 
     void deactivate();
+
 }

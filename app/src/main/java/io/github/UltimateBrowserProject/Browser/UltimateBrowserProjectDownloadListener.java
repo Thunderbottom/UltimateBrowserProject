@@ -12,6 +12,7 @@ import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 
 public class UltimateBrowserProjectDownloadListener implements DownloadListener {
+
     private Context context;
 
     public UltimateBrowserProjectDownloadListener(Context context) {
@@ -43,4 +44,5 @@ public class UltimateBrowserProjectDownloadListener implements DownloadListener 
         builder.setNegativeButton(R.string.dialog_button_negative, null);
         builder.create().show();
     }
+
 }

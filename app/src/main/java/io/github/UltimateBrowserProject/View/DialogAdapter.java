@@ -12,6 +12,7 @@ import java.util.List;
 import io.github.UltimateBrowserProject.R;
 
 public class DialogAdapter extends ArrayAdapter<String> {
+
     private Context context;
     private int layoutResId;
     private List<String> list;
@@ -37,12 +38,13 @@ public class DialogAdapter extends ArrayAdapter<String> {
             holder = new Holder();
             holder.textView = (TextView) view.findViewById(R.id.dialog_text_item);
             view.setTag(holder);
-        } else {
+        } else
             holder = (Holder) view.getTag();
-        }
+
 
         holder.textView.setText(list.get(position));
 
         return view;
     }
+
 }

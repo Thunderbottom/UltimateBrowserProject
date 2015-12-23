@@ -5,16 +5,18 @@ import android.content.Intent;
 import android.net.MailTo;
 
 public class IntentUnit {
-    public static final String OPEN = "OPEN";
-    public static final String URL = "URL";
+
+    public static final String OPEN = "OPEN", URL = "URL";
 
     public static final int REQUEST_BOOKMARKS = 0x100,
                             REQUEST_FILE_16 = 0x101,
                             REQUEST_FILE_21 = 0x102,
                             REQUEST_WHITELIST = 0x103,
                             REQUEST_CLEAR = 0x104;
-    public static final String INTENT_TYPE_TEXT_PLAIN = "text/plain";
-    public static final String INTENT_TYPE_MESSAGE_RFC822 = "message/rfc822";
+
+    public static final String
+            INTENT_TYPE_TEXT_PLAIN = "text/plain",
+            INTENT_TYPE_MESSAGE_RFC822 = "message/rfc822";
 
     public static Intent getEmailIntent(MailTo mailTo) {
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -66,4 +68,5 @@ public class IntentUnit {
     public static void   setSPChange(boolean b) {
         spChange = b;
     }
+
 }

@@ -12,6 +12,7 @@ import io.github.UltimateBrowserProject.Browser.BrowserController;
 import io.github.UltimateBrowserProject.R;
 
 public class Album {
+
     private Context context;
 
     private View albumView;
@@ -99,4 +100,5 @@ public class Album {
     public void deactivate() {
         albumView.setBackgroundResource(R.drawable.album_shape_dark);
     }
+
 }

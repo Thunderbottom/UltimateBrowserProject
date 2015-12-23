@@ -17,6 +17,7 @@ import java.util.List;
  */
 
 public abstract class AbstractDynamicGridAdapter extends BaseAdapter implements DynamicGridAdapterInterface {
+
     public static final int INVALID_ID = -1;
 
     private int nextStableId = 0;

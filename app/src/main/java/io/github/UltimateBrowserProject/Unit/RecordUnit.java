@@ -3,6 +3,7 @@ package io.github.UltimateBrowserProject.Unit;
 import io.github.UltimateBrowserProject.Database.Record;
 
 public class RecordUnit {
+
     public static final String
 
             TABLE_BOOKMARKS = "BOOKMARKS",
@@ -56,10 +57,7 @@ public class RecordUnit {
                     ;
 
     private static Record holder;
-    public  static Record getHolder() {
-        return holder;
-    }
-    public synchronized static void setHolder(Record record) {
-        holder = record;
-    }
+    public  static Record getHolder() { return holder; }
+    public synchronized static void setHolder(Record record) { holder = record; }
+
 }

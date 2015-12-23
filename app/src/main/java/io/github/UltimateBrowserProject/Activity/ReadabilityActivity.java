@@ -45,33 +45,39 @@ public class ReadabilityActivity extends AppCompatActivity {
             + "</style>\n";
 
     private static final String HEADER_BACKGROUND = "{background}";
-    private static final String DIV = "<div>";
-    private static final String DIV_CLASS_TYPO = "<div class=\"typo typo-selection\">";
-    private static final String COLOR_WHITE  = "#FFFFFF",
-                                COLOR_YELLOW = "#F5F5DC";
+    private static final String
+            DIV = "<div>",
+            DIV_CLASS_TYPO = "<div class=\"typo typo-selection\">",
 
-    private static final String REQUEST = "https://www.readability.com/api/content/v1/parser?url={url}&token={token}",
-                                REQUEST_URL     = "{url}",
-                                REQUEST_TOKEN   = "{token}";
+            COLOR_WHITE  = "#FFFFFF",
+            COLOR_YELLOW = "#F5F5DC",
+
+            REQUEST = "https://www.readability.com/api/content/v1/parser?url={url}&token={token}",
+            REQUEST_URL     = "{url}",
+            REQUEST_TOKEN   = "{token}"
+                    ;
+
+
 
     private static final int RESULT_SUCCESSFUL = 0x100,
                              RESULT_FAILED     = 0x101;
 
-    private static final String RESULT_CONTENT        = "content",
-                                RESULT_DOMAIN         = "domain",
-                                RESULT_AUTHOR         = "author",
-                                RESULT_URL            = "url",
-                                RESULT_SHORT_URL      = "short_url",
-                                RESULT_TITLE          = "title",
-                                RESULT_EXCERPT        = "excerpt",
-                                RESULT_DIRECTION      = "direction",
-                                RESULT_WORD_COUNT     = "word_count",
-                                RESULT_TOTAL_PAGES    = "total_pages",
-                                RESULT_DATE_PUBLISHED = "date_published",
-                                RESULT_DEK            = "dek",
-                                RESULT_LEAD_IMAGE_URL = "lead_image_url",
-                                RESULT_NEXT_PAGE_ID   = "next_page_id",
-                                RESULT_RENDERED_PAGES = "rendered_pages";
+    private static final String
+            RESULT_CONTENT        = "content",
+            RESULT_DOMAIN         = "domain",
+            RESULT_AUTHOR         = "author",
+            RESULT_URL            = "url",
+            RESULT_SHORT_URL      = "short_url",
+            RESULT_TITLE          = "title",
+            RESULT_EXCERPT        = "excerpt",
+            RESULT_DIRECTION      = "direction",
+            RESULT_WORD_COUNT     = "word_count",
+            RESULT_TOTAL_PAGES    = "total_pages",
+            RESULT_DATE_PUBLISHED = "date_published",
+            RESULT_DEK            = "dek",
+            RESULT_LEAD_IMAGE_URL = "lead_image_url",
+            RESULT_NEXT_PAGE_ID   = "next_page_id",
+            RESULT_RENDERED_PAGES = "rendered_pages";
 
     private ProgressBar progressBar;
     private WebView webView;
@@ -80,6 +86,7 @@ public class ReadabilityActivity extends AppCompatActivity {
     private SharedPreferences sp;
     private String query = null;
     private JSONObject result = null;
+
     public void setResult(JSONObject result) {
         this.result = result;
     }
@@ -97,11 +104,11 @@ public class ReadabilityActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sp.getString(getString(R.string.sp_theme), "0").equals("0")) {
+        if (sp.getString(getString(R.string.sp_theme), "0").equals("0"))
             this.setTheme(R.style.ReadabilityActivityTheme);
-        } else {
+        else
             this.setTheme(R.style.ReadabilityActivityThemeDark);
-        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.readability);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -117,13 +124,14 @@ public class ReadabilityActivity extends AppCompatActivity {
 
         String token = sp.getString(getString(R.string.sp_readability_token), null);
         Intent intent = getIntent();
-        if (intent == null || !intent.hasExtra(IntentUnit.URL) || token == null || token.trim().isEmpty()) {
+        if (intent == null || !intent.hasExtra(IntentUnit.URL) || token == null || token.trim().isEmpty())
             showLoadError();
-        } else {
+        else {
             String url = intent.getStringExtra(IntentUnit.URL);
             query = REQUEST.replace(REQUEST_URL, url).replace(REQUEST_TOKEN, token);
             new ReadabilityTask(this, query).execute();
         }
+
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_900));
         }
@@ -191,6 +199,7 @@ public class ReadabilityActivity extends AppCompatActivity {
 
         webView.setBackground(null);
         webView.getRootView().setBackground(null);
+
         int color = sp.getInt(getString(R.string.sp_readability_background), getResources().getColor(R.color.white));
         webView.setBackgroundColor(color);
 

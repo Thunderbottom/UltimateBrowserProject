@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.widget.Toast;
 
 public class UltimateBrowserProjectToast {
+
     private static Toast toast;
     private static Handler handler = new Handler();
     private static Runnable runnable = new Runnable() {
@@ -20,12 +21,13 @@ public class UltimateBrowserProjectToast {
 
     public static void show(Context context, String text) {
         handler.removeCallbacks(runnable);
-        if (toast != null) {
+        if (toast != null)
             toast.setText(text);
-        } else {
+        else
             toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-        }
+
         handler.postDelayed(runnable, 2000);
         toast.show();
     }
+
 }

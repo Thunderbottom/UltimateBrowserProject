@@ -9,6 +9,5 @@
           android:icon="@drawable/ic_action_background"
           app:showAsAction="ifRoom">
     </item>
-    <!--  Removed 'android:showAsAction="ifRoom"' - Not recommended -->
 
 </menu>

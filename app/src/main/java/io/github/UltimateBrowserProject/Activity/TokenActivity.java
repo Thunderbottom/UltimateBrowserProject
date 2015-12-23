@@ -18,6 +18,7 @@ import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectToast;
 
 public class TokenActivity extends AppCompatActivity {
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);

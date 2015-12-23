@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Changelog {
+
     private static final String RELEASE_TAG           = "release",
                                 CHANGE_TAG            = "change",
 
@@ -44,7 +45,7 @@ public class Changelog {
 
     private static final SimpleDateFormat mDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public enum ChangeType {EMPTY, BUG, NEW, IMPROVEMENT}
+    public enum ChangeType { EMPTY, BUG, NEW, IMPROVEMENT }
 
     private final Context mContext;
     private final int mChangelogResourceId;
@@ -150,12 +151,6 @@ public class Changelog {
                 }
 
                 xmlResourceParser.next();
-
-                /*String change = xmlResourceParser.getText();
-                change = change.replace("[b]", "<b>").replace("[/b]", "</b>")
-                .replace("[i]", "<i>").replace("[/i]", "</i>").replace("[u]", "<u>")
-                .replace("[/u]", "</u>").replace("[s]", "<s>").replace("[/s]", "</s>");
-                */
 
                 StringBuilder change = new StringBuilder(xmlResourceParser.getText());
                 List<String> tags
@@ -451,18 +446,11 @@ public class Changelog {
         public Changelog create() {
             Changelog changelog = new Changelog(mContext, mChangelogResourceId);
 
-            if(mTitle != null)          changelog.mTitle = mTitle;
-
-
-            if(mReleaseColor != null)   changelog.mReleaseColor = mReleaseColor;
-
-            if(mReleasePrefix != null)  changelog.mReleasePrefix = mReleasePrefix;
-
-
-            if(mReleaseDateColor != null) changelog.mReleaseDateColor = mReleaseDateColor;
-
-
-            if(mStyle != null)          changelog.mStyle = mStyle;
+            if(mTitle               != null) changelog.mTitle            = mTitle;
+            if(mReleaseColor        != null) changelog.mReleaseColor     = mReleaseColor;
+            if(mReleasePrefix       != null) changelog.mReleasePrefix    = mReleasePrefix;
+            if(mReleaseDateColor    != null) changelog.mReleaseDateColor = mReleaseDateColor;
+            if(mStyle               != null) changelog.mStyle            = mStyle;
 
             if(mButtonText != null && mOnClickListener != null) {
                 changelog.mButtonText = mButtonText;

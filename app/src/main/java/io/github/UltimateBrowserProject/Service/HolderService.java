@@ -25,6 +25,7 @@ import io.github.UltimateBrowserProject.View.UltimateBrowserProjectContextWrappe
 import io.github.UltimateBrowserProject.View.UltimateBrowserProjectWebView;
 
 public class HolderService extends Service implements BrowserController {
+
     @Override
     public void updateAutoComplete() {}
 
@@ -111,4 +112,5 @@ public class HolderService extends Service implements BrowserController {
         Notification notification = NotificationUnit.getHBuilder(this).build();
         startForeground(NotificationUnit.HOLDER_ID, notification);
     }
+
 }

@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import io.github.UltimateBrowserProject.R;
 
 public class UltimateBrowserProjectContextWrapper extends ContextWrapper {
+
     private Context context;
 
     public UltimateBrowserProjectContextWrapper(Context context) {
@@ -19,4 +20,5 @@ public class UltimateBrowserProjectContextWrapper extends ContextWrapper {
     public Resources.Theme getTheme() {
         return context.getTheme();
     }
+
 }

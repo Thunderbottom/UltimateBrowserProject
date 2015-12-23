@@ -11,6 +11,7 @@ import android.view.ViewConfiguration;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
 
 public class SwipeToBoundListener implements View.OnTouchListener {
+
     public interface BoundCallback {
         boolean canSwipe();
         void onSwipe();
@@ -20,16 +21,13 @@ public class SwipeToBoundListener implements View.OnTouchListener {
     private View view;
     private BoundCallback callback;
 
-    private int targetWidth = 1;
-    private int slop;
+    private int targetWidth = 1, slop, swipingSlop;
     private long animTime;
 
-    private float downX;
-    private float translationX;
-    private boolean swiping;
-    private boolean swipingLeft;
-    private boolean canSwitch;
-    private int swipingSlop;
+    private float downX, translationX;
+
+    private boolean swiping, swipingLeft, canSwitch;
+
     private VelocityTracker velocityTracker;
 
     public SwipeToBoundListener(View view, BoundCallback callback) {
@@ -46,14 +44,14 @@ public class SwipeToBoundListener implements View.OnTouchListener {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (!callback.canSwipe()) {
+        if (!callback.canSwipe())
             return false;
-        }
+
 
         event.offsetLocation(translationX, 0);
-        if (targetWidth < 2) {
+        if (targetWidth < 2)
             targetWidth = view.getWidth();
-        }
+
 
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN: {
@@ -64,9 +62,9 @@ public class SwipeToBoundListener implements View.OnTouchListener {
 
                 return false;
             } case MotionEvent.ACTION_UP: {
-                if (velocityTracker == null) {
+                if (velocityTracker == null)
                     break;
-                }
+
 
                 velocityTracker.addMovement(event);
                 velocityTracker.computeCurrentVelocity(1000);
@@ -142,4 +140,5 @@ public class SwipeToBoundListener implements View.OnTouchListener {
 
         return false;
     }
+
 }
