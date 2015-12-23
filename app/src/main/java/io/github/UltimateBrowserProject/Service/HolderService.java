@@ -10,6 +10,7 @@ import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import io.github.UltimateBrowserProject.Browser.AlbumController;
 import io.github.UltimateBrowserProject.Browser.BrowserContainer;
@@ -71,20 +72,26 @@ public class HolderService extends Service implements BrowserController {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        UltimateBrowserProjectWebView webView = new UltimateBrowserProjectWebView(new UltimateBrowserProjectContextWrapper(this));
-        webView.setBrowserController(this);
-        webView.setFlag(BrowserUnit.FLAG_UltimateBrowserProject);
-        webView.setAlbumCover(null);
-        webView.setAlbumTitle(getString(R.string.album_untitled));
-        ViewUnit.bound(this, webView, false);
+        try {
+            UltimateBrowserProjectWebView webView = new UltimateBrowserProjectWebView(new UltimateBrowserProjectContextWrapper(this));
+            webView.setBrowserController(this);
+            webView.setFlag(BrowserUnit.FLAG_UltimateBrowserProject);
+            webView.setAlbumCover(null);
+            webView.setAlbumTitle(getString(R.string.album_untitled));
+            ViewUnit.bound(this, webView, false);
 
-        webView.loadUrl(RecordUnit.getHolder().getURL());
-        webView.deactivate();
+            webView.loadUrl(RecordUnit.getHolder().getURL());
+            webView.deactivate();
 
-        BrowserContainer.add(webView);
-        updateNotification();
+            BrowserContainer.add(webView);
+            updateNotification();
 
-        return START_STICKY;
+            return START_STICKY;
+        } catch(Exception ex) {
+            Toast.makeText(getApplicationContext(), "Failed to load in background", Toast.LENGTH_SHORT)
+                .show();
+            return START_NOT_STICKY;
+        }
     }
 
     @Override
