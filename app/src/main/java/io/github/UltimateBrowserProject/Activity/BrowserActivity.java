@@ -285,6 +285,18 @@ public class BrowserActivity extends Activity implements BrowserController {
         }
     }
 
+    private void applyOmniAlignments() {
+        RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) omnibox.getLayoutParams();
+
+        if(anchor == 0) p.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        else            p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+
+        p.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        p.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+        omnibox.setLayoutParams(p);
+    }
+
     private void setOmniCustomLayoutMargins(int marginLeft,
                                             int marginTop,
                                             int marginRight,
@@ -309,15 +321,11 @@ public class BrowserActivity extends Activity implements BrowserController {
         logd("Setting layout params...");
         omnibox.setLayoutParams(p);
 
-
+        applyOmniAlignments();
     }
 
     private void setOmniCustomLayoutMargins() {
-        if(anchor == 0) {
-            setOmniCustomLayoutMargins(0, 0, 0, ViewUnit.getAdjustedWindowHeight(getApplicationContext()), false, true);
-        } else {
-            setOmniCustomLayoutMargins(0, ViewUnit.getAdjustedWindowHeight(getApplicationContext()), 0, 0, true, false);
-        }
+        setOmniCustomLayoutMargins(0, 0, 0, 0, false, false);
     }
 
     @Override
@@ -379,12 +387,10 @@ public class BrowserActivity extends Activity implements BrowserController {
                     if (anchor == 1) {
                         int heightDiff = staticView.getRootView().getHeight() - staticView.getHeight();
                         if (heightDiff > 100) {
-                            omnibox.animate().translationY((-heightDiff) +
-                                            (fullscreen ? 0 : ViewUnit.getStatusBarHeight(getContext()))
-                            )
-                                    .setDuration(0);
+                            // We don't need this anymore :D
                             isKeyboardShowing = true;
                             inputBox.requestFocus();
+                            tabSwitcher.collapse(); // Collapse if keyboard is showing
                             Logging.logd("Keyboard is shown.");
                         } else {
                             omnibox.animate().translationY(0).setDuration(0);
