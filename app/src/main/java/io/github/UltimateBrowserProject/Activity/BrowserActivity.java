@@ -991,7 +991,7 @@ public class BrowserActivity extends Activity implements BrowserController {
     private Thread checkUpdate = new Thread() {
         public void run() {
             try {
-                String newVer = DownloadUtils.downloadString("https://raw.githubusercontent.com/Thunderbottom/UltimateBrowserProject/master/Update-test.txt");
+                String newVer = DownloadUtils.downloadString("https://raw.githubusercontent.com/Thunderbottom/UltimateBrowserProject/master/Update.txt");
                 newVersionAv = newVer;
                 if(Integer.parseInt(newVer.replace(".", "")) > getContext().getPackageManager().getPackageInfo(
                         getApplicationContext().getPackageName(), 0
