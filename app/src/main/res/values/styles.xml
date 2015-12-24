@@ -119,6 +119,26 @@
     </style>
 
 
+    <style name="ProgressView_MainStyle_Circular" parent="Material.Drawable.CircularProgress">
+        <item name="cpd_strokeColor">@color/materialIndigo</item>
+        <item name="cpd_strokeSize">4dp</item>
+        <item name="cpd_strokeSecondaryColor">#86C2FF</item>
+        <item name="cpd_transformDuration">1200</item>
+    </style>
+
+    <style name="ProgressView_MainStyle_Horiz" parent="Material.Drawable.LinearProgress">
+        <item name="lpd_strokeColor">@color/material_deep_teal_500</item>
+        <item name="lpd_strokeSecondaryColor">@color/transBlue</item>
+    </style>
+
+    <style name="ProgressView_MainStyle_Horiz_Determinate" parent="Material.Drawable.LinearProgress.Determinate">
+        <item name="lpd_strokeColor">@color/material_deep_teal_500</item>
+        <item name="lpd_strokeSecondaryColor">@color/transBlue</item>
+    </style>
+
+    <color name="transBlue">#481652FF</color>
+
+
     <style name="Theme.Dialog" parent="@android:style/Theme.Dialog"/>
 
     <style name="AlertDialogStyleDark" parent="@style/Theme.AppCompat.Dialog.Alert">

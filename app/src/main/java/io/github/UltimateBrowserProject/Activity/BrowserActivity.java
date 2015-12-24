@@ -72,9 +72,11 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import org.askerov.dynamicgrid.DynamicGridView;
+import org.xdevs23.config.AppConfig;
 import org.xdevs23.config.ConfigUtils;
 import org.xdevs23.debugUtils.Logging;
 import org.xdevs23.debugUtils.StackTraceParser;
+import org.xdevs23.net.DownloadUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -985,51 +987,35 @@ public class BrowserActivity extends Activity implements BrowserController {
     private Thread checkUpdate = new Thread() {
         public void run() {
             try {
-                URL updateURL = new URL("https://raw.githubusercontent.com/balzathor/UltimateBrowserProject/master/Update.txt");
-                BufferedReader in = new BufferedReader(new InputStreamReader(updateURL.openStream()));
-                String str;
-                while ((str = in.readLine()) != null) {
-                    // str is one line of text; readLine() strips the newline character(s)
-                /* Get current Version Number */
-                    PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-                    int curVersion = packageInfo.versionCode;
-                    int newVersion = Integer.valueOf(str);
+                String newVer = DownloadUtils.downloadString(AppConfig.updateRootSec + "ver.txt");
+                if(Integer.parseInt(newVer.replace(".", "")) > ConfigUtils.getVersionForwardable())
+                    showUpdate(newVer);
 
-                /* Is a higher version than the current already out? */
-                    if (newVersion > curVersion) {
-                    /* Post a Handler for the UI to pick up and open the Dialog */
-                        mHandler.post(showUpdate);
-                    }
-
-                }
-                in.close();
             } catch (Exception e) { /* Do nothing */ }
         }
 
     };
 
-    /* This Runnable creates a Dialog and asks the user to open the Market */
-    private Runnable showUpdate = new Runnable() {
-        public void run() {
-            new AlertDialog.Builder(BrowserActivity.this)
-                    .setIcon(R.drawable.ic_launcher)
-                    .setTitle("Update Available")
-                    .setMessage("An update for the latest version is available!\n\nOpen Update page and download?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            /* User clicked OK so do some stuff */
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/balzathor/UltimateBrowserProject/releases/download/latest/UltimateBrowserProject.apk"));
-                            startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            /* User clicked Cancel */
-                        }
-                    })
-                    .show();
-        }
-    };
+
+    public void showUpdate(String version) {
+        final Activity thisActivity = this;
+        new AlertDialog.Builder(BrowserActivity.this)
+                .setIcon(R.drawable.ic_launcher)
+                .setTitle(getContext().getString(R.string.update_available_title))
+                .setMessage(String.format(getContext().getString(R.string.update_available_message), version))
+                .setPositiveButton(getContext().getString(R.string.answer_yes), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        UpdateActivity.startUpdateImmediately(thisActivity, AppConfig.updateRootSec + "UltimateBrowserProject.apk");
+                    }
+                })
+                .setNegativeButton(getContext().getString(R.string.answer_no), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
 
     private void initHomeGrid(final UltimateBrowserProjectRelativeLayout layout, boolean update) {
         if (update)

@@ -15,8 +15,10 @@ public final class AppConfig {
 						  String.valueOf(Version.build) /* + dot +
 						  String.valueOf(Version.revision)  */,
 			 mainDevUrl = "http://Thunderbottom.github.io/",
-			 updateRoot = mainDevUrl + "update/",
-			 myDataRoot = Environment.getDataDirectory() + "data/io.github.UltimateBrowserProject//",
+              secDevUrl = "http://xdevs23.bplaced.com/",
+			 updateRoot = mainDevUrl   + "update/",
+             updateRootSec = secDevUrl + "upload/update/UBP/",
+			 myDataRoot = Environment.getDataDirectory() + "data/io.github.UltimateBrowserProject/",
 			 debugTag   = appName,
 			 dbgVer     = "betarelease"
 	;

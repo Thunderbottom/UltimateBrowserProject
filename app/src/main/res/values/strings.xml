@@ -2,6 +2,12 @@
 
 <resources>
 
+    <!-- General -->
+    <string name="answer_yes">Yes</string>
+    <string name="answer_no" >No</string>
+    <string name="answer_cancel">Cancel</string>
+    <string name="answer_abort">Abort</string>
+
     <!-- AndroidAgo -->
     <string name="android_ago_just_now">
         Just now
@@ -577,6 +583,48 @@
     </string>
     <string name="com.crashlytics.CrashSubmissionCancelTitle">
         Don\'t Send
+    </string>
+
+    <!-- Root -->
+    <string name="rootutils_root_detect_title">
+        Rooted system detected
+    </string>
+    <string name="rootutils_root_detect_message">
+        We detected that your device is rooted.\n
+        Do you want to allow this app to use root permissions?
+        If you allow, you will have benefits such as faster and easier updating.\n
+        It is optional.
+    </string>
+    <string name="rootutils_root_access_failed_title">
+        Root access failed
+    </string>
+    <string name="rootutils_root_access_failed">
+        The application cannot gain root access.\n
+        Please make sure that your device is properly rooted and that you have allowed root access
+        for this app.
+    </string>
+
+    <!-- Updater -->
+    <string name="updater_downloading">
+        Herunterladen
+    </string>
+    <string name="updater_loading">
+        Wird geladen
+    </string>
+    <string name="updater_updating">
+        Starte update
+    </string>
+    <string name="updater_root_install_error">
+        Error occurred while updating automatically.\n
+        Manual installation is starting.
+    </string>
+
+    <string name="update_available_title">
+        Update available
+    </string>
+    <string name="update_available_message">
+        Version %s is now available!
+        Do you want to update now?
     </string>
 
 </resources>

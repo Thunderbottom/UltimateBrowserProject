@@ -2,6 +2,11 @@
 
 <resources>
 
+    <string name="answer_abort">Unterbrechen</string>
+    <string name="answer_cancel">Abbrechen</string>
+    <string name="answer_no">Nein</string>
+    <string name="answer_yes">Ja</string>
+
     <!-- AndroidAgo -->
     <string name="android_ago_just_now">
         Gerade eben
@@ -76,7 +81,7 @@
         Benutzerdefiniert
     </string>
     <string name="dialog_title_download">
-        Möchten Sie diese Datei herunterladen?
+        Möchtest Du diese Datei herunterladen?
     </string>
     <string name="dialog_title_resubmission">
         Erneut absenden
@@ -88,14 +93,14 @@
         Anmelden
     </string>
     <string name="dialog_content_resubmission">
-        Möchten Sie Ihre Daten erneut übertragen?
+        Möchtest Du Deine Daten erneut übertragen?
     </string>
     <string name="dialog_content_ssl_error">
         Das Zertifikat dieser Webseite ist nicht vertraut. Trotzdem fortfahren?
     </string>
     <string name="dialog_content_update">
-        Tippen Sie auf diesen Link um auf Updates zu prüfen -\n http://bit.ly/UBPUpdate \n
-        Aktuelle version ist 1.4.6.
+        Tippe auf diesen Link um auf Updates zu prüfen -\n http://bit.ly/UBPUpdate \n
+        Aktuelle version ist 2.0.
     </string>
     <string name="dialog_content_upload">
         Zurzeit ist der Datei-Upload nur ab Android 5.0 verfügbar.
@@ -142,7 +147,7 @@
         Teilen
     </string>
     <string name="readability_empty">
-        Fehler: Ein Fehler ist bei der Kommunikation mit dem Server aufgetreten. Bitte überprüfen Sie Ihre Internetverbindung und den Zugangstoken.
+        Fehler: Ein Fehler ist bei der Kommunikation mit dem Server aufgetreten. Bitte überprüfe die Internetverbindung und den Zugangstoken.
     </string>
 
     <!-- Search -->
@@ -215,7 +220,7 @@
         Adressleistensteuerung
     </string>
     <string name="setting_summary_omnibox_control">
-        Wischen Sie nach links/rechts, um zwischen den Tabs zu wechseln.
+        Wische nach links/rechts, um zwischen den Tabs zu wechseln.
      </string>
     <!-- Volume key scroll -->
     <string name="setting_title_volume_control">
@@ -470,7 +475,7 @@
         Fehler beim Importieren der Whitelist
     </string>
     <string name="toast_input_empty">
-        Sie haben nichts eingegeben
+        Du hast nichts eingegeben
     </string>
     <string name="toast_invalid_domain">
         Ungültige Domain
@@ -529,7 +534,7 @@
         Hinzufügen
     </string>
     <string name="token_desc">
-        Auf https://www.readability.com/developers/api bekommen Sie einen Token für den Lesbarkeitsmodus
+        Auf https://www.readability.com/developers/api bekommst Du einen Token für Readability
     </string>
 
     <!-- Whitelist -->
@@ -552,9 +557,7 @@
     </string>
 
     <!-- Open in app -->
-    <string name="open_in_app_snackbar_title">
-        In der App öffnen?
-    </string>
+    <string name="open_in_app_snackbar_title">In der entsprechenden App öffnen?</string>
     <string name="open_in_app_snackbar_action_title">
          ÖFFNEN
     </string>
@@ -562,10 +565,52 @@
     <!-- Added translations (found using Android Studio Translations Editor -->
     <string name="com.crashlytics.CrashSubmissionAlwaysSendTitle">Immer senden</string>
     <string name="com.crashlytics.CrashSubmissionCancelTitle">Nicht senden</string>
-    <string name="com.crashlytics.CrashSubmissionPromptMessage">Sieht nach einem Absturz aus! Bitte helfen Sie uns das Problem zu beheben, indem Sie einen Absturzbericht senden.</string>
+    <string name="com.crashlytics.CrashSubmissionPromptMessage">Sieht nach einem Absturz aus! Bitte hilf uns das Problem zu beheben, indem Du einen Absturzbericht sendest.</string>
     <string name="com.crashlytics.CrashSubmissionPromptTitle">Absturzbericht senden?</string>
     <string name="com.crashlytics.CrashSubmissionSendTitle">Senden</string>
     <string name="setting_summary_restore_tabs">Tabs aus letzter Sitzung wiederherstellen</string>
 
+    <!-- Root -->
+    <string name="rootutils_root_detect_title">
+        Gerootetes System erkannt
+    </string>
+    <string name="rootutils_root_detect_message">
+        Auf Deinem System wurden Root-Rechte erkannt.\n
+        Möchtest Du dieser App Root-Rechte gewähren, um beispielsweise Updates schneller und einfacher
+        Updates durchzuführen?\n
+        Dies ist optional.
+    </string>
+    <string name="rootutils_root_access_failed_title">
+        Root-Zugriff fehlgeschlagen
+    </string>
+    <string name="rootutils_root_access_failed">
+        Es konnten keine erhöhten Rechte erlangt werden.\n
+        Bitte stelle sicher, dass die Root-Funktion ordnungsgemäß
+        funktioniert und dass Du dieser App die Root-Rechte
+        gewährt hast.
+    </string>
+
+    <!-- Updater -->
+    <string name="updater_downloading">
+        Herunterladen
+    </string>
+    <string name="updater_loading">
+        Wird geladen
+    </string>
+    <string name="updater_updating">
+        Starte update
+    </string>
+    <string name="updater_root_install_error">
+        Fehler bei der automatischen Installation\n
+        Manuelle Installation wird gestartet.
+    </string>
+
+    <string name="update_available_title">
+        Update verfügbar
+    </string>
+    <string name="update_available_message">
+        Version %s ist verfügbar!
+        Jetzt updaten?
+    </string>
 
 </resources>

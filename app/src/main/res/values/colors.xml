@@ -39,4 +39,10 @@
     <color name="hint">#B8B8B8</color>
     <color name="dividers">#DADADA</color>
 
+    <color name="materialMain">#607D8B</color>
+    <color name="materialDBlue">#ff607d8b</color>
+    <color name="materialIndigo">#ff3f51b5</color>
+
+    <color name="UpdaterDark">#ff1f3195</color>
+
 </resources>

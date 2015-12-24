@@ -555,5 +555,20 @@
     <string name="com.crashlytics.CrashSubmissionPromptMessage"></string>
     <string name="com.crashlytics.CrashSubmissionPromptTitle">Enviar reportagem?</string>
     <string name="com.crashlytics.CrashSubmissionSendTitle">Enviar</string>
+    <string name="answer_abort">Parar</string>
+    <string name="answer_cancel">Cancelar</string>
+    <string name="answer_no">Não</string>
+    <string name="answer_yes">Sim</string>
+
+    <!-- Updater -->
+    <string name="updater_downloading">
+        Descargando
+    </string>
+    <string name="updater_loading">
+        Carregando
+    </string>
+    <string name="updater_updating">
+        Iniciar atualização
+    </string>
 
 </resources>

@@ -272,5 +272,7 @@
     <string name="title_activity_intro">
         Intro
     </string>
+    <string name="answer_yes">Oui</string>
+    <string name="answer_no"></string>
 
 </resources>

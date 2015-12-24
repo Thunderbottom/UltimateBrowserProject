@@ -38,6 +38,18 @@ public class ConfigUtils {
 
 	}
 
+    public static int getVersionForwardable() {
+        return (
+                Integer.parseInt(
+                        (new StringBuilder())
+                                .append(Version.major)
+                                .append(Version.minor)
+                                .append(Version.build)
+                        //      .append(Version.revision)
+                        .toString()
+        ));
+    }
+
     public static boolean isDebuggable() {
         String debuggers = ".*(debug|dbg|rc|pre|alpha|beta).*";
         return (!AppConfig.dbgVer.contains("release")) &&

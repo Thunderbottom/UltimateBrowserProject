@@ -571,5 +571,6 @@
     <string name="com.crashlytics.CrashSubmissionCancelTitle">
         No enviar
     </string>
-    
+    <string name="answer_no"></string>
+
 </resources>
