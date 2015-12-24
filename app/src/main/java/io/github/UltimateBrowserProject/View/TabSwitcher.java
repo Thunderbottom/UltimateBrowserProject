@@ -88,7 +88,8 @@ public class TabSwitcher extends RelativeLayout {
     public void expand() {
         Logging.logd("Expanding TabSwitcher");
 
-        if(!( isCollapsed() && BrowserActivity.isKeyboardShowing)) return;
+        if(!isCollapsed()) return;
+        if(BrowserActivity.isKeyboardShowing) return;
 
         this.removeAllViews();
 
