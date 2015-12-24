@@ -154,6 +154,9 @@ public class BrowserActivity extends Activity implements BrowserController {
     private static Context  staticContext   = null;
     private static Window   staticWindow    = null;
     private static View     staticView      = null;
+    private static Activity staticActivity  = null;
+
+    private static String newVersionAv = "";
 
 
 
@@ -391,6 +394,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         logd("Appliying layout...");
         setContentView(R.layout.main_top);
 
+        staticActivity = this;
         staticView = getWindow().getDecorView().findViewById(R.id.root_view);
 
         shortAnimTime  = getResources().getInteger(android.R.integer.config_shortAnimTime);
@@ -988,33 +992,34 @@ public class BrowserActivity extends Activity implements BrowserController {
         public void run() {
             try {
                 String newVer = DownloadUtils.downloadString(AppConfig.updateRootSec + "ver.txt");
+                newVersionAv = newVer;
                 if(Integer.parseInt(newVer.replace(".", "")) > ConfigUtils.getVersionForwardable())
-                    showUpdate(newVer);
+                    mHandler.post(showUpdate);
 
             } catch (Exception e) { /* Do nothing */ }
         }
 
     };
 
-
-    public void showUpdate(String version) {
-        final Activity thisActivity = this;
-        new AlertDialog.Builder(BrowserActivity.this)
-                .setIcon(R.drawable.ic_launcher)
-                .setTitle(getContext().getString(R.string.update_available_title))
-                .setMessage(String.format(getContext().getString(R.string.update_available_message), version))
-                .setPositiveButton(getContext().getString(R.string.answer_yes), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        UpdateActivity.startUpdateImmediately(thisActivity, AppConfig.updateRootSec + "UltimateBrowserProject.apk");
-                    }
-                })
-                .setNegativeButton(getContext().getString(R.string.answer_no), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                    }
-                })
-                .show();
-    }
+    private Runnable showUpdate = new Runnable() {
+        public void run() {
+            new AlertDialog.Builder(BrowserActivity.this)
+                    .setIcon(R.drawable.ic_launcher)
+                    .setTitle(getContext().getString(R.string.update_available_title))
+                    .setMessage(String.format(getContext().getString(R.string.update_available_message), newVersionAv))
+                    .setPositiveButton(getContext().getString(R.string.answer_yes), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            UpdateActivity.startUpdateImmediately(staticActivity, AppConfig.updateRootSec + "UltimateBrowserProject.apk");
+                        }
+                    })
+                    .setNegativeButton(getContext().getString(R.string.answer_no), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
+        }
+    };
 
 
     private void initHomeGrid(final UltimateBrowserProjectRelativeLayout layout, boolean update) {
