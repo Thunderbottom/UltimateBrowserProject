@@ -145,4 +145,13 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="AppTheme" parent="@style/AppBaseTheme" />
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="XquidTheme">
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:background">#ffffffff</item>
+    </style>
+
 </resources>

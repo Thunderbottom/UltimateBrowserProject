@@ -70,6 +70,19 @@
             </meta-data>
         </activity>
 
+        <!-- UpdateActivity -->
+        <activity
+            android:name=".Activity.UpdateActivity"
+            android:label="Updater"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".Activity.SettingActivity"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.SettingActivity" />
+        </activity>
+
         <!-- ReadabilityActivity -->
         <activity android:name=".Activity.ReadabilityActivity"
                   android:label="@string/readability_label"
@@ -99,8 +112,6 @@
                   android:label="@string/token_label"
                   android:theme="@style/TokenActivityTheme">
         </activity>
-
-        <activity android:name=".Intro.SecondLayoutIntro"/>
 
         <!-- ClearActivity -->
         <activity android:name=".Activity.ClearActivity"
