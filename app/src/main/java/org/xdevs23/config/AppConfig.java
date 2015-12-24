@@ -2,8 +2,6 @@ package org.xdevs23.config;
 
 import android.os.Environment;
 
-import io.github.UltimateBrowserProject.Activity.BrowserActivity;
-
 @SuppressWarnings("unused")
 public final class AppConfig {
 	

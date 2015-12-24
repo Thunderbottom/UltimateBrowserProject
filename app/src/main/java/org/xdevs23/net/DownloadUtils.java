@@ -6,8 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import io.github.UltimateBrowserProject.Activity.UpdateActivity;
-
 import org.xdevs23.config.AppConfig;
 import org.xdevs23.debugUtils.StackTraceParser;
 
@@ -22,6 +20,8 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
+import io.github.UltimateBrowserProject.Activity.UpdateActivity;
 
 
 public class DownloadUtils {

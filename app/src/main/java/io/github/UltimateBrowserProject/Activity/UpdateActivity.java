@@ -13,7 +13,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,8 +26,6 @@ import android.widget.Toast;
 
 import com.rey.material.widget.ProgressView;
 
-import io.github.UltimateBrowserProject.R;
-
 import org.xdevs23.config.AppConfig;
 import org.xdevs23.debugUtils.Logging;
 import org.xdevs23.net.DownloadUtils;
@@ -38,6 +35,8 @@ import org.xdevs23.ui.dialog.templates.NegativeButtonCancel;
 import org.xdevs23.ui.utils.BarColors;
 
 import java.io.File;
+
+import io.github.UltimateBrowserProject.R;
 
 @SuppressWarnings("unused")
 public class UpdateActivity extends AppCompatActivity {

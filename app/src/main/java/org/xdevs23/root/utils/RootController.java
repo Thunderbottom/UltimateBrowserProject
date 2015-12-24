@@ -1,8 +1,5 @@
 package org.xdevs23.root.utils;
 
-import android.util.Log;
-
-import org.xdevs23.config.AppConfig;
 import org.xdevs23.debugUtils.Logging;
 
 import java.io.ByteArrayOutputStream;
