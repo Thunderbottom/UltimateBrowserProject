@@ -24,6 +24,7 @@ import java.util.Map;
 
 import io.github.UltimateBrowserProject.Activity.ClearActivity;
 import io.github.UltimateBrowserProject.Activity.TokenActivity;
+import io.github.UltimateBrowserProject.Activity.UpdateActivity;
 import io.github.UltimateBrowserProject.Activity.WhitelistActivity;
 import io.github.UltimateBrowserProject.R;
 import io.github.UltimateBrowserProject.Task.ExportBookmarksTask;
@@ -177,7 +178,7 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
                 UltimateBrowserProjectToast.show(getActivity(), R.string.toast_emoji);
                 break;
             case R.string.setting_title_update:
-                showUpdateDialog();
+                startActivity(new Intent(getActivity().getApplicationContext(), UpdateActivity.class));
                 break;
             default:
                 break;
