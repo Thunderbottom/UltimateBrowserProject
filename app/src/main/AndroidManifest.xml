@@ -2,7 +2,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="io.github.UltimateBrowserProject"
-          android:versionCode="2015122401"
+          android:versionCode="2015122402"
           android:versionName="@string/app_version">
 
     <!-- Permission -->

@@ -22,7 +22,7 @@ public final class AppConfig {
              updateRootSec = secDevUrl + "upload/update/UBP/",
 			 myDataRoot = Environment.getDataDirectory() + "data/io.github.UltimateBrowserProject/",
 			 debugTag   = appName,
-			 dbgVer     = "dbg"
+			 dbgVer     = "betarelease"
 	;
 	
 	public static class Version {
