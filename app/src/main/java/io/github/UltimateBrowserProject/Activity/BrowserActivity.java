@@ -1009,7 +1009,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     .setMessage(String.format(getContext().getString(R.string.update_available_message), newVersionAv))
                     .setPositiveButton(getContext().getString(R.string.answer_yes), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            UpdateActivity.startUpdateImmediately(staticActivity, AppConfig.updateRootSec + "UltimateBrowserProject.apk");
+                            UpdateActivity.startUpdateImmediately(staticActivity, "https://github.com/Thunderbottom/UltimateBrowserProject/raw/master/update/UltimateBrowserProject.apk");
                         }
                     })
                     .setNegativeButton(getContext().getString(R.string.answer_no), new DialogInterface.OnClickListener() {
