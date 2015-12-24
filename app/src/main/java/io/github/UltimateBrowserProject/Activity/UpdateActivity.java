@@ -164,10 +164,10 @@ public class UpdateActivity extends AppCompatActivity {
 		try {
             String endR = "";
 			if(enableRoot) endR = RootController.runCommand(
-                    "am force-stop org.xdevs23.schportal8 && " +
+                    "am force-stop io.github.UltimateBrowserProject && " +
                     "pm install -r " + updatedApk + " && " +
-					"am start -n org.xdevs23.schportal8/org.xdevs23.schportal8.MainActivity && " +
-					"am start -n org.xdevs23.schportal8/org.xdevs23.schportal8.UpdateActivity && exit");
+					"am start -n io.github.UltimateBrowserProject/.Activity.BrowserActivity && " +
+					"am start -n io.github.UltimateBrowserProject/.Activity.UpdateActivity && exit");
 			else startNRUpdateInstallation();
 
             if(endR.length() > 0 && endR.toLowerCase().contains("failed")) {

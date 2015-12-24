@@ -2,6 +2,8 @@ package org.xdevs23.config;
 
 import android.os.Environment;
 
+import io.github.UltimateBrowserProject.Activity.BrowserActivity;
+
 @SuppressWarnings("unused")
 public final class AppConfig {
 	
@@ -36,7 +38,7 @@ public final class AppConfig {
 		public static int
 				major     =  2   ,
 				minor     =  0   ,
-				build     =  0 /*,
+				build     =  1 /*,
 		    	revision  =  0  */
 		;
 		
