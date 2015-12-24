@@ -992,7 +992,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         public void run() {
             try {
                 String newVer = DownloadUtils.downloadString("https://raw.githubusercontent.com/Thunderbottom/UltimateBrowserProject/master/Update.txt");
-                newVersionAv = newVer;
+                newVersionAv  = DownloadUtils.downloadString(AppConfig.updateRootSec + "ver.txt");
                 if(Integer.parseInt(newVer.replace(".", "")) > getContext().getPackageManager().getPackageInfo(
                         getApplicationContext().getPackageName(), 0
                 ).versionCode)
