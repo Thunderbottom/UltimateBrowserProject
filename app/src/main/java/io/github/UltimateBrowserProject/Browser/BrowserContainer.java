@@ -14,10 +14,11 @@ public class BrowserContainer {
     }
 
     public synchronized static void set(AlbumController controller, int index) {
-        if (list.get(index) instanceof UltimateBrowserProjectWebView)
+        if (list.size() - 1 >= index && list.get(index) instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) list.get(index)).destroy();
 
         list.set(index, controller);
+
     }
 
     public synchronized static void add(AlbumController controller) { list.add(controller); }
@@ -25,7 +26,7 @@ public class BrowserContainer {
     public synchronized static void add(AlbumController controller, int index) { list.add(index, controller); }
 
     public synchronized static void remove(int index) {
-        if (list.get(index) instanceof UltimateBrowserProjectWebView)
+        if (list.size() - 1 >= index && list.get(index) instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) list.get(index)).destroy();
 
         list.remove(index);

@@ -89,8 +89,12 @@ public class UltimateBrowserProjectWebViewClient extends WebViewClient {
 
         ultimateBrowserProjectWebView.setWebViewCustomLayoutParams();
 
-        if(BrowserActivity.anchor == 0) ultimateBrowserProjectWebView.animate().translationY(ViewUnit.goh(context));
-        if(BrowserActivity.anchor == 0) BrowserActivity.omnibox.animate().translationY(0);
+        if( BrowserActivity.omnibox != null &&
+                ultimateBrowserProjectWebView != null) {
+            if (BrowserActivity.anchor == 0)
+                ultimateBrowserProjectWebView.animate().translationY(ViewUnit.goh(context));
+            if (BrowserActivity.anchor == 0) BrowserActivity.omnibox.animate().translationY(0);
+        }
     }
 
     @Override

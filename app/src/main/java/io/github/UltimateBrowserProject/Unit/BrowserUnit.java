@@ -237,6 +237,7 @@ public class BrowserUnit {
     }
 
     public static void downloadCache(Context context, String url, String contentDisposition, String mimeType) {
+        if(url.contains(INTRODUCTION_PREFIX)) return;
         DownloadManager.Request requestCache = new DownloadManager.Request(Uri.parse(url));
         String filename = URLUtil.guessFileName(url, contentDisposition, mimeType); // Maybe unexpected filename.
 

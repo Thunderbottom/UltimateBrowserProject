@@ -1289,6 +1289,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         tabSwitcher.getTabStorage().addTab(url);
         tabSwitcher.getTabStorage().getCurrentTab().setTitle(title);
+        tabSwitcher.collapse();
 
         final View albumView = webView.getAlbumView();
         if (currentAlbumController != null && (currentAlbumController instanceof UltimateBrowserProjectWebView) && resultMsg != null) {
@@ -1347,10 +1348,17 @@ public class BrowserActivity extends Activity implements BrowserController {
         tabSwitcher.getTabStorage().clearAll();
 
         for (AlbumController controller : BrowserContainer.list()) {
-            if (controller instanceof UltimateBrowserProjectWebView)
-                ((UltimateBrowserProjectWebView) controller).setBrowserController(this);
-            else if (controller instanceof UltimateBrowserProjectRelativeLayout)
-                ((UltimateBrowserProjectRelativeLayout) controller).setBrowserController(this);
+            try {
+                if (controller instanceof UltimateBrowserProjectWebView)
+                    ((UltimateBrowserProjectWebView) controller).setBrowserController(this);
+                else if (controller instanceof UltimateBrowserProjectRelativeLayout)
+                    ((UltimateBrowserProjectRelativeLayout) controller).setBrowserController(this);
+            } catch(IllegalStateException ex) {
+                Toast.makeText(getContext(),
+                        "Error occured while pinning albums. " +
+                                "Are you using an Xposed module which can cause this?",
+                        Toast.LENGTH_LONG);
+            }
 
             switcherContainer.addView(controller.getAlbumView(), LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
             controller.getAlbumView().setVisibility(View.VISIBLE);
