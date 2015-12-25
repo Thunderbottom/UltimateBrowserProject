@@ -402,7 +402,7 @@
     </string>
     <!-- Contact -->
     <string name="setting_title_update">
-        Check for Updates
+        Updater
     </string>
 
     <!-- Toast -->
@@ -606,17 +606,38 @@
 
     <!-- Updater -->
     <string name="updater_downloading">
-        Herunterladen
+        Downloading
     </string>
     <string name="updater_loading">
-        Wird geladen
+        Loading
     </string>
     <string name="updater_updating">
-        Starte update
+        Starting update
     </string>
     <string name="updater_root_install_error">
         Error occurred while updating automatically.\n
         Manual installation is starting.
+    </string>
+    <string name="updater_button_update_now">
+        Update
+    </string>
+    <string name="updater_awaiting_loading">
+        Loading...
+    </string>
+    <string name="updater_prefix_actual_version">
+        Actual version: %s
+    </string>
+    <string name="updater_prefix_latest_version">
+        Latest version: %s
+    </string>
+    <string name="updater_msg_latest_installed">
+        You already have the latest version installed.
+    </string>
+    <string name="updater_msg_new_version">
+        An update is available.
+    </string>
+    <string name="updater_prefix_changelog_for">
+        Changelog for %s
     </string>
 
     <string name="update_available_title">

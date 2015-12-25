@@ -204,7 +204,7 @@
     <!-- License -->
     <string name="setting_title_license">Licence</string>
     <!-- Contact -->
-    <string name="setting_title_update">Recherche de mises à jour</string>
+    <string name="setting_title_update">Mises à jour</string>
 
     <!-- Toast -->
     <string name="toast_add_bookmark_successful">Ajouté avec succès aux marque-pages</string>

@@ -101,6 +101,7 @@ import io.github.UltimateBrowserProject.Service.HolderService;
 import io.github.UltimateBrowserProject.Task.ScreenshotTask;
 import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
+import io.github.UltimateBrowserProject.Unit.UpdateUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
 import io.github.UltimateBrowserProject.View.CompleteAdapter;
 import io.github.UltimateBrowserProject.View.DialogAdapter;
@@ -987,9 +988,9 @@ public class BrowserActivity extends Activity implements BrowserController {
     private Thread checkUpdate = new Thread() {
         public void run() {
             try {
-                String newVer = DownloadUtils.downloadString("https://raw.githubusercontent.com/Thunderbottom/UltimateBrowserProject/master/Update.txt");
-                newVersionAv  = DownloadUtils.downloadString(AppConfig.updateRootSec + "ver.txt");
-                if(Integer.parseInt(newVer.replace(".", "")) > getContext().getPackageManager().getPackageInfo(
+                String newVer = DownloadUtils.downloadString(UpdateUnit.URL_VERSION_CODE);
+                newVersionAv  = DownloadUtils.downloadString(UpdateUnit.URL_VERSION_NAME);
+                if(Integer.parseInt(newVer) > getContext().getPackageManager().getPackageInfo(
                         getApplicationContext().getPackageName(), 0
                 ).versionCode)
                     mHandler.post(showUpdate);
@@ -1007,7 +1008,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                     .setMessage(String.format(getContext().getString(R.string.update_available_message), newVersionAv))
                     .setPositiveButton(getContext().getString(R.string.answer_yes), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            UpdateActivity.startUpdateImmediately(staticActivity, "https://github.com/Thunderbottom/UltimateBrowserProject/raw/master/update/UltimateBrowserProject.apk");
+                            UpdateActivity.startUpdateImmediately(staticActivity, UpdateUnit.URL_APK);
                         }
                     })
                     .setNegativeButton(getContext().getString(R.string.answer_no), new DialogInterface.OnClickListener() {

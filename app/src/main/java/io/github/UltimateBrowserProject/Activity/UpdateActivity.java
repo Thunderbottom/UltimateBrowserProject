@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,6 +16,7 @@ import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -37,6 +39,7 @@ import org.xdevs23.ui.utils.BarColors;
 import java.io.File;
 
 import io.github.UltimateBrowserProject.R;
+import io.github.UltimateBrowserProject.Unit.UpdateUnit;
 
 @SuppressWarnings("unused")
 public class UpdateActivity extends AppCompatActivity {
@@ -75,6 +78,8 @@ public class UpdateActivity extends AppCompatActivity {
 	private static       String updatedApk;
 	private static		 String updApkData = Environment.getDataDirectory() 
 										+ "/data/io.github.UltimateBrowserProject/files/mobile/UltimateBrowserProject.apk";
+
+    private static       int    latestVersionCode = 0;
 	
 	public static ProgressView updateBar;
 	public static TextView     updateStatus;
@@ -201,60 +206,43 @@ public class UpdateActivity extends AppCompatActivity {
             updatedApk = (getApplicationContext().getExternalCacheDir() + "/spa-update.apk")
                     .replace("//", "/");
 
-            logt("Loading URL " + updaterUrl);
-
             updateBar = (ProgressView) findViewById(R.id.updateProgressBar);
             updateBar.setVisibility(View.VISIBLE);
 
             updateStatus = (TextView) findViewById(R.id.updateStatus);
 
-            myWebView = (WebView) findViewById(R.id.wVUpdate);
-            myWebView.setWebViewClient(new WebViewClient() {
+            TextView currentVersionTv = (TextView) findViewById(R.id.updaterAppVersion);
+            TextView newVersionTv     = (TextView) findViewById(R.id.updaterNewAppVersion);
+            com.rey.material.widget.Button updaterButton =
+                    (com.rey.material.widget.Button) findViewById(R.id.updaterUpdateAppButton);
 
-                @SuppressWarnings("deprecation")
+            updaterButton.setVisibility(View.INVISIBLE);
+
+            try {
+                currentVersionTv.setText(String.format(getString(R.string.updater_prefix_actual_version),
+                        getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+
+
+                latestVersionCode = Integer.parseInt(
+                        DownloadUtils.downloadString(UpdateUnit.URL_VERSION_CODE)
+                );
+
+                newVersionTv.setText(DownloadUtils.downloadString(UpdateUnit.URL_VERSION_NAME));
+
+                if(latestVersionCode > getPackageManager().getPackageInfo(
+                        getPackageName(), 0).versionCode
+                ) updaterButton.setVisibility(View.VISIBLE);
+
+            } catch(PackageManager.NameNotFoundException e) {/* */}
+
+            updaterButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                    myWebView.loadUrl("file:///android_asset/error.html");
+                public void onClick(View view) {
+                    startOverallInstallation(UpdateUnit.URL_APK);
                 }
-
-                @TargetApi(android.os.Build.VERSION_CODES.M)
-                @Override
-                public void onReceivedError(WebView view, WebResourceRequest req, WebResourceError rerr) {
-                    onReceivedError(view, rerr.getErrorCode(), rerr.getDescription().toString(), req.getUrl().toString());
-                }
-
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    if (url.contains(".apk")) {
-                        startOverallInstallation(url);
-                        return true;
-                    }
-                    else if ( url.startsWith("basichandler://loadurl") ) { view.loadUrl(updaterUrl); return true; }
-                    else 	{ view.loadUrl(url);
-                        return true; }
-                }
-
             });
-
-
-            myWebView.setWebChromeClient(new WebChromeClient() {
-
-                @Override
-                public void onProgressChanged(WebView view, int progress) {
-
-                    if(progress < 100)	{ updateBar.start();
-                        UpdateStatus.setStatus(UpdateStatus.loading); }
-
-                    else  				{ updateBar.stop();
-                        UpdateStatus.setStatus(UpdateStatus.none); }
-
-                }
-
-            });
-
-            myWebView.getSettings().setJavaScriptEnabled(true);
-            myWebView.loadUrl(updaterUrl);
             webloaded = true;
+            if(readyToInstallUrl.length() > 0) startOverallInstallation(readyToInstallUrl);
         }
     }
 

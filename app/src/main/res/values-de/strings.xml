@@ -398,7 +398,7 @@
     </string>
     <!-- Contact -->
     <string name="setting_title_update">
-        Prüfe auf Updates
+        Updater
     </string>
 
     <!-- Toast -->
@@ -603,6 +603,27 @@
     <string name="updater_root_install_error">
         Fehler bei der automatischen Installation\n
         Manuelle Installation wird gestartet.
+    </string>
+    <string name="updater_button_update_now">
+        Update
+    </string>
+    <string name="updater_awaiting_loading">
+        Wird geladen...
+    </string>
+    <string name="updater_prefix_actual_version">
+        Installierte Version: %s
+    </string>
+    <string name="updater_prefix_latest_version">
+        Neueste Version: %s
+    </string>
+    <string name="updater_msg_latest_installed">
+        Die neueste Version ist bereits installiert.
+    </string>
+    <string name="updater_msg_new_version">
+        Ein Update ist verfügbar.
+    </string>
+    <string name="updater_prefix_changelog_for">
+        Neues in der Version %s
     </string>
 
     <string name="update_available_title">
