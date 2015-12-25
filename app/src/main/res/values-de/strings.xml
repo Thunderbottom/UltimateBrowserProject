@@ -622,17 +622,17 @@
     <string name="updater_msg_new_version">
         Ein Update ist verfügbar.
     </string>
-    <string name="updater_prefix_changelog_for">
+    <string name="updater_prefix_changelog_for" formatted="false">
         Neues in der Version %s
     </string>
-    <string name="updater_mask_changelog_inner">
+    <string name="updater_mask_changelog_inner" formatted="false">
         Version-Code %s, veröffentlicht am %s.%s.%s\n\n%s
     </string>
 
     <string name="update_available_title">
         Update verfügbar
     </string>
-    <string name="update_available_message">
+    <string name="update_available_message" formatted="false">
         Version %s ist verfügbar!
         Jetzt updaten?
     </string>

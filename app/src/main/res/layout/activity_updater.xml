@@ -77,26 +77,6 @@
                 style="@style/Button_MainStyle_Flatted"
                 app:rd_style="@style/Material.Drawable.Ripple.Wave" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/updaterChangelogTitle"
-                android:layout_below="@id/updateProgressBar"
-                android:layout_marginTop="24dp"
-                android:textColor="@color/material_blue_400"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/updaterChangelog"
-                android:layout_below="@id/updaterChangelogTitle"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="8dp"
-                android:layout_alignLeft="@id/updaterChangelogTitle"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:text="@string/updater_awaiting_loading" />
 
             <com.rey.material.widget.ProgressView
                 android:id="@+id/updateProgressBar"
@@ -118,10 +98,31 @@
                 android:layout_above="@+id/updateProgressBar"
                 android:layout_alignRight="@id/updateProgressBar"
                 android:gravity="right"
-                android:textAlignment="right"
                 android:text=""
                 android:textSize="12sp"
                 android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/updaterChangelogTitle"
+                android:layout_below="@id/updateProgressBar"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/materialIndigo"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/updaterChangelog"
+                android:layout_below="@id/updaterChangelogTitle"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="8dp"
+                android:layout_alignLeft="@id/updaterChangelogTitle"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/updater_awaiting_loading" />
+
 
         </RelativeLayout>
 
