@@ -231,6 +231,10 @@ public class UpdateActivity extends AppCompatActivity {
                         DownloadUtils.downloadString(UpdateUnit.URL_VERSION_CODE)
                 );
 
+                if(latestVersionCode < 2015060901) latestVersionCode = Integer.parseInt(
+                        DownloadUtils.downloadString(UpdateUnit.URL_RAW_UBP_GITHUB_REPO + "/update/PREV.txt")
+                );
+
                 latestVersionName = DownloadUtils.downloadString(UpdateUnit.URL_VERSION_NAME);
 
                 newVersionTv.setText(String.format(getString(R.string.updater_prefix_latest_version),
