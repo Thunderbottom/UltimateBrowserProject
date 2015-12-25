@@ -9,6 +9,8 @@ public class UpdateUnit {
             URL_VERSION_CODE            = URL_RAW_UBP_GITHUB_REPO + "/Update.txt",
             URL_VERSION_NAME            = URL_RAW_UBP_GITHUB_REPO + "/update/version.txt",
 
+            URL_CHANGELOG               = URL_RAW_UBP_GITHUB_REPO + "/update/changelog.txt",
+
             URL_APK                     = URL_RAW_UBP_GITHUB_REPO + "/update/UltimateBrowserProject.apk",
 
             _EMPTY                      = ""    // Ignore this

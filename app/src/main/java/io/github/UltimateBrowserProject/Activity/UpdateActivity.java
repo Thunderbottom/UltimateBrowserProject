@@ -80,6 +80,8 @@ public class UpdateActivity extends AppCompatActivity {
 										+ "/data/io.github.UltimateBrowserProject/files/mobile/UltimateBrowserProject.apk";
 
     private static       int    latestVersionCode = 0;
+
+    private static       String latestVersionName = "";
 	
 	public static ProgressView updateBar;
 	public static TextView     updateStatus;
@@ -213,6 +215,8 @@ public class UpdateActivity extends AppCompatActivity {
 
             TextView currentVersionTv = (TextView) findViewById(R.id.updaterAppVersion);
             TextView newVersionTv     = (TextView) findViewById(R.id.updaterNewAppVersion);
+            TextView changelogTitle   = (TextView) findViewById(R.id.updaterChangelogTitle);
+            TextView changelogTv      = (TextView) findViewById(R.id.updaterChangelog);
             com.rey.material.widget.Button updaterButton =
                     (com.rey.material.widget.Button) findViewById(R.id.updaterUpdateAppButton);
 
@@ -227,7 +231,11 @@ public class UpdateActivity extends AppCompatActivity {
                         DownloadUtils.downloadString(UpdateUnit.URL_VERSION_CODE)
                 );
 
-                newVersionTv.setText(DownloadUtils.downloadString(UpdateUnit.URL_VERSION_NAME));
+                latestVersionName = DownloadUtils.downloadString(UpdateUnit.URL_VERSION_NAME);
+
+                newVersionTv.setText(String.format(getString(R.string.updater_prefix_latest_version),
+                        latestVersionName
+                ));
 
                 if(latestVersionCode > getPackageManager().getPackageInfo(
                         getPackageName(), 0).versionCode
@@ -235,12 +243,33 @@ public class UpdateActivity extends AppCompatActivity {
 
             } catch(PackageManager.NameNotFoundException e) {/* */}
 
+            changelogTitle.setText(String.format(getString(R.string.updater_prefix_changelog_for),
+                    latestVersionName));
+
+            changelogTv.setText(
+
+                    String.format(
+
+                            getString(R.string.updater_mask_changelog_inner),
+
+                            latestVersionCode,
+                            String.valueOf(latestVersionCode).substring(0, 4),
+                            String.valueOf(latestVersionCode).substring(4, 6),
+                            String.valueOf(latestVersionCode).substring(6, 8),
+
+                            DownloadUtils.downloadString(UpdateUnit.URL_CHANGELOG)
+
+                    )
+
+            );
+
             updaterButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     startOverallInstallation(UpdateUnit.URL_APK);
                 }
             });
+
             webloaded = true;
             if(readyToInstallUrl.length() > 0) startOverallInstallation(readyToInstallUrl);
         }

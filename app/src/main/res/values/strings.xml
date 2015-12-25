@@ -639,6 +639,9 @@
     <string name="updater_prefix_changelog_for">
         Changelog for %s
     </string>
+    <string name="updater_mask_changelog_inner">
+        Version code %s, released on %s/%s/%s\n\n%s
+    </string>
 
     <string name="update_available_title">
         Update available
