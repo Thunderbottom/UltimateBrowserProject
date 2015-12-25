@@ -233,16 +233,16 @@ public class DownloadUtils {
 		      } catch ( Exception e ) {
 		    	  logt("Error: " + e.getMessage());
 		      }
-			return new String();
+			return "";
 		}
 		
 		@Override
 	    protected void onProgressUpdate(String... progress) {
 	
 			long pr = Long.parseLong(progress[0]);
-			long pd = (long) Math.round((double)( (   pr * 100  ) / lengthOfFile)); 
+			long pd = (long) (Math.round((double)( (   pr * 100  ) / lengthOfFile)));
 			
-			logt(String.valueOf((long)pd));
+			logt(String.valueOf((int)pd));
 			
 			UpdateActivity.updateProgress((int) pd);
 	    }

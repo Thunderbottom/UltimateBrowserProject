@@ -193,7 +193,8 @@ public class UpdateActivity extends AppCompatActivity {
 	}
 	
 	public static void updateProgress(int progress) {
-		updateBar.setProgress(progress);
+		updateBar.setProgress((float)progress / 100);
+        updateBar.refreshDrawableState();
 	}
 	
 	public static void endProgress() {
@@ -257,9 +258,9 @@ public class UpdateActivity extends AppCompatActivity {
                             getString(R.string.updater_mask_changelog_inner),
 
                             latestVersionCode,
-                            String.valueOf(latestVersionCode).substring(0, 4),
-                            String.valueOf(latestVersionCode).substring(4, 6),
                             String.valueOf(latestVersionCode).substring(6, 8),
+                            String.valueOf(latestVersionCode).substring(4, 6),
+                            String.valueOf(latestVersionCode).substring(0, 4),
 
                             DownloadUtils.downloadString(UpdateUnit.URL_CHANGELOG)
 

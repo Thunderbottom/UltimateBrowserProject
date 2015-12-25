@@ -32,6 +32,10 @@
     <color name="white">#FFFFFF</color>
     <color name="transparent">@android:color/transparent</color>
 
+    <color name="semi_transparent">#A0FFFFFF</color>
+
+    <color name="ripple_transparent">#8AFFFFFF</color>
+
     <color name="hover_transparent">#24444444</color>
 
     <color name="text">#212121</color>

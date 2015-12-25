@@ -118,6 +118,12 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Button_ColorStyle_Flatted" parent="Base.Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:colorBackground">@color/blue_600</item>
+        <item name="android:background">@color/blue_600</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 
     <style name="ProgressView_MainStyle_Circular" parent="Material.Drawable.CircularProgress">
         <item name="cpd_strokeColor">@color/materialIndigo</item>
@@ -136,6 +142,10 @@
         <item name="lpd_strokeSecondaryColor">@color/transBlue</item>
     </style>
 
+    <style name="Ripple_Light" parent="Material.Drawable.Ripple.Wave.Light">
+        <item name="rd_rippleColor">@color/ripple_transparent</item>
+    </style>
+
     <color name="transBlue">#481652FF</color>
 
 
@@ -147,7 +157,9 @@
 
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar" />
     <style name="AppTheme" parent="@style/AppBaseTheme" />
-    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
 
     <style name="XquidTheme">
         <item name="android:textColor">#ff000000</item>

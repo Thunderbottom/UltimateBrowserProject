@@ -10,6 +10,8 @@
     android:paddingLeft="@dimen/zeroPadding"
     android:paddingRight="@dimen/zeroPadding"
     android:paddingTop="@dimen/zeroPadding"
+    android:windowContentOverlay="@null"
+    android:windowNoTitle="true"
     tools:context="io.github.UltimateBrowserProject.Activity.UpdateActivity" >
 
     <android.support.v7.widget.Toolbar
@@ -24,7 +26,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/updaterToolbar"
+        android:padding="@dimen/zeroPadding">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -39,10 +46,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="32dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="32dp"
                 android:textSize="24sp"
                 android:fontFamily="sans-serif-light"
-                android:textColor="@color/materialIndigo" />
+                android:textColor="@color/blue_600" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,14 +75,18 @@
 
             <com.rey.material.widget.Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/updaterUpdateAppButton"
                 android:layout_below="@id/updaterNewAppVersion"
                 android:layout_alignLeft="@+id/UpdaterAppName"
                 android:layout_alignStart="@+id/UpdaterAppName"
+                android:paddingLeft="36dp"
+                android:paddingRight="36dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/updater_button_update_now"
-                style="@style/Button_MainStyle_Flatted"
-                app:rd_style="@style/Material.Drawable.Ripple.Wave" />
+                android:textColor="@color/white"
+                style="@style/Button_ColorStyle_Flatted"
+                app:rd_style="@style/Ripple_Light" />
 
 
             <com.rey.material.widget.ProgressView
@@ -87,7 +98,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="32dp"
                 android:layout_below="@id/updaterUpdateAppButton"
-                app:pv_autostart="true"
+                app:pv_autostart="false"
                 app:pv_circular="false"
                 app:pv_progressStyle="@style/ProgressView_MainStyle_Horiz" />
 
@@ -100,15 +111,16 @@
                 android:gravity="right"
                 android:text=""
                 android:textSize="12sp"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/updaterChangelogTitle"
                 android:layout_below="@id/updateProgressBar"
-                android:layout_marginTop="24dp"
-                android:textColor="@color/materialIndigo"
+                android:layout_marginTop="16dp"
+                android:layout_alignLeft="@id/updaterNewAppVersion"
+                android:textColor="@color/blue_600"
                 android:textSize="20sp" />
 
             <TextView
@@ -119,6 +131,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="8dp"
                 android:layout_alignLeft="@id/updaterChangelogTitle"
+                android:layout_marginRight="32dp"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:text="@string/updater_awaiting_loading" />
