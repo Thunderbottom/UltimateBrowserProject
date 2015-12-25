@@ -133,8 +133,8 @@
     </style>
 
     <style name="ProgressView_MainStyle_Horiz" parent="Material.Drawable.LinearProgress">
-        <item name="lpd_strokeColor">@color/material_deep_teal_500</item>
-        <item name="lpd_strokeSecondaryColor">@color/transBlue</item>
+        <item name="lpd_strokeColor">@color/blue_600</item>
+        <item name="lpd_strokeSecondaryColor">@color/blue_200</item>
     </style>
 
     <style name="ProgressView_MainStyle_Horiz_Determinate" parent="Material.Drawable.LinearProgress.Determinate">

@@ -69,7 +69,12 @@ public class DownloadUtils {
 		progressUpdateBar = setIt ?  pb
 								  :  null;
 	}
-	
+
+    /**
+     * Set the progress bar to control
+     * @param id Id of the progressbar
+     * @param context Actual context
+     */
 	public  static void setProgressBar( int id, Context context ) {
 		View view = new View(context);
 		progressUpdateBar = (ProgressBar) view.findViewById(id);
@@ -136,7 +141,8 @@ public class DownloadUtils {
 			try {
 				uro = new URL(dUrl[0]);
 			} catch (MalformedURLException e) {
-			}
+			    /* */
+            }
 
 			try {
 			    InputStream is = null;
@@ -198,7 +204,6 @@ public class DownloadUtils {
 	            logt("Preparing download for " + doUrl);
 	            InputStream input = new BufferedInputStream(url.openStream(),
 	                    										defaultBuf);
-	            
 	            
 	
 	            logt("Making needed directories...");
