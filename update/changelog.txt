@@ -1,1 +1,1 @@
-⚫ Added updater (including root support)\n⚫ Bugfixes and improvements
+⚫ Added updater (including root support)⚫ Bugfixes and improvements
