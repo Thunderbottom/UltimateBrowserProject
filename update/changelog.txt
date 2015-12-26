@@ -1,1 +1,2 @@
-...add here...
+⚫ Added updater (including root support)
+⚫ Bugfixes and improvements
