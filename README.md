@@ -1,4 +1,4 @@
-<sub align="center">Help [@xdevs23](https://github.com/xdevs23/) build a great browser! Check out [Cornowser](https://github.com/xdevs23/Cornowser/). It is based on Chrome with a GREAT HTML5TEST Score</sub>
+<sub align="center">Help [@xdevs23](https://github.com/xdevs23/) build a great browser! Check out [Cornowser](https://github.com/xdevs23/Cornowser/). It is based on Chromium with a GREAT HTML5TEST Score</sub>
 
 ![Launcher Icon](/Artworks/UBP Banner.png)
 
