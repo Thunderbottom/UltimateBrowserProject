@@ -1,4 +1,4 @@
-## This project is now BEERWARE and most likely dead. So you can use the code from here or you can also help [@xdevs23](https://github.com/xdevs23/) instead, to build a great browser! Check out [Cornowser](https://github.com/xdevs23/Cornowser/). It is based on Chromium with a GREAT HTML5TEST Score
+## This project is now [BEERWARE](https://github.com/Thunderbottom/UltimateBrowserProject#license) and most likely dead. So you can use the code from here or you can also help [@xdevs23](https://github.com/xdevs23/) instead, to build a great browser! Check out [Cornowser](https://github.com/xdevs23/Cornowser/). It is based on Chromium with a GREAT HTML5TEST Score
 
 ![Launcher Icon](/Artworks/UBP Banner.png)
 
