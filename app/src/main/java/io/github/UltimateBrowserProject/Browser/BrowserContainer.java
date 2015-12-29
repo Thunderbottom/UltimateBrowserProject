@@ -1,5 +1,7 @@
 package io.github.UltimateBrowserProject.Browser;
 
+import org.xdevs23.debugUtils.Logging;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class BrowserContainer {
     public synchronized static void set(AlbumController controller, int index) {
         if (list.size() - 1 >= index && list.get(index) instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) list.get(index)).destroy();
+        else Logging.logd("Something is wrong in BrowserContainer.set()");
 
         list.set(index, controller);
 
@@ -28,6 +31,7 @@ public class BrowserContainer {
     public synchronized static void remove(int index) {
         if (list.size() - 1 >= index && list.get(index) instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) list.get(index)).destroy();
+        else Logging.logd("Something is wrong in BrowserContainer.remove()");
 
         list.remove(index);
     }
@@ -35,6 +39,7 @@ public class BrowserContainer {
     public synchronized static void remove(AlbumController controller) {
         if (controller instanceof UltimateBrowserProjectWebView)
             ((UltimateBrowserProjectWebView) controller).destroy();
+        else Logging.logd("Something is wrong in BrowserContainer.remove() 2");
 
         list.remove(controller);
     }
@@ -52,11 +57,11 @@ public class BrowserContainer {
     }
 
     public synchronized static void clear() {
-        for (AlbumController albumController : list) {
+        for (AlbumController albumController : list)
             if (albumController instanceof UltimateBrowserProjectWebView)
                 ((UltimateBrowserProjectWebView) albumController).destroy();
-            
-        }
+            else Logging.logd("Something is wrong in BrowserContainer.clear()");
+
 
         list.clear();
     }

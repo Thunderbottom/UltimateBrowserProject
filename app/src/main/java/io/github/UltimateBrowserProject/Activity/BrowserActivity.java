@@ -1265,6 +1265,8 @@ public class BrowserActivity extends Activity implements BrowserController {
             }
         });
         albumView.startAnimation(animation);
+
+        tabSwitcher.collapse();
     }
 
     private synchronized void addAlbum(String title, final String url, final boolean foreground, final Message resultMsg) {
@@ -1279,7 +1281,10 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         tabSwitcher.getTabStorage().addTab(url);
         tabSwitcher.getTabStorage().getCurrentTab().setTitle(title);
-        tabSwitcher.collapse();
+
+        if(foreground) {
+            tabSwitcher.collapse();
+        }
 
         final View albumView = webView.getAlbumView();
         if (currentAlbumController != null && (currentAlbumController instanceof UltimateBrowserProjectWebView) && resultMsg != null) {
@@ -1347,7 +1352,7 @@ public class BrowserActivity extends Activity implements BrowserController {
                 Toast.makeText(getContext(),
                         "Error occured while pinning albums. " +
                                 "Are you using an Xposed module which can cause this?",
-                        Toast.LENGTH_LONG);
+                        Toast.LENGTH_LONG).show();
             }
 
             switcherContainer.addView(controller.getAlbumView(), LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -1421,7 +1426,6 @@ public class BrowserActivity extends Activity implements BrowserController {
     public synchronized void showAlbum(AlbumController controller, boolean anim, final boolean expand, final boolean capture) {
         logd("Showing album...");
         if (controller == null || controller == currentAlbumController) {
-            if (ViewCompat.isAttachedToWindow(tabSwitcher)) tabSwitcher.expand();
             return;
         }
 
@@ -1559,6 +1563,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         if (controller != currentAlbumController) {
             switcherContainer.removeView(controller.getAlbumView());
             BrowserContainer.remove(controller);
+            showAlbum(BrowserContainer.get(BrowserContainer.size() - 1), false, false, false);
         } else {
             switcherContainer.removeView(controller.getAlbumView());
             int index = BrowserContainer.indexOf(controller);
