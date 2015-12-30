@@ -1,8 +1,8 @@
 ## This project is now [BEERWARE](https://github.com/Thunderbottom/UltimateBrowserProject#license) and most likely dead. So you can use the code from here or you can also help [@xdevs23](https://github.com/xdevs23/) instead, to build a great browser! Check out [Cornowser](https://github.com/xdevs23/Cornowser/). It is based on Chromium with a GREAT HTML5TEST Score
 
-![Launcher Icon](/Artworks/UBP Banner.png)
+![Banner](/Artworks/UBP Banner.png)
 
-[![Owner](https://img.shields.io/badge/Owners-Takahirom%2C%20xdevs23%2C%20Thunderbottom-orange.svg)](http://github.com/Thunderbottom/UltimateBrowserProject)    [![GitHub version](https://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/Thunderbottom/UltimateBrowserProject.svg)](https://travis-ci.org/Thunderbottom/UltimateBrowserProject)     ![Custom Badge](https://img.shields.io/badge/Active%20Developers-Takahirom%2C%20xdevs23%2C%20Thunderbottom-brightgreen.svg)
+[![Owner](https://img.shields.io/badge/Owners-Takahirom%2C%20xdevs23%2C%20Thunderbottom-orange.svg)](http://github.com/Thunderbottom/UltimateBrowserProject)    [![GitHub version](https://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject.svg)](http://badge.fury.io/gh/Thunderbottom%2FUltimateBrowserProject)     [![Build Status](https://travis-ci.org/Thunderbottom/UltimateBrowserProject.svg)](https://travis-ci.org/Thunderbottom/UltimateBrowserProject)     ![Custom Badge](https://img.shields.io/badge/Active%20Developers-Project%20has%20been%20discontinued-brightgreen.svg)
 ===
 
 ## Downloads - 
@@ -35,7 +35,7 @@
 
 ```
 UltimateBrowserProject
-Copyright (C) 2015  Thunderbottom
+Copyright (C) 2015 Thunderbottom
 
 "THE BEER-WARE LICENSE" (Revision 42):
 
