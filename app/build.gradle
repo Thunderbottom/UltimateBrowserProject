@@ -20,6 +20,9 @@ android {
 
     defaultConfig {
         applicationId "io.github.UltimateBrowserProject"
+        //noinspection HighAppVersionCode
+        versionCode 2017031801
+        versionName "3.0.0"
         minSdkVersion 16
         targetSdkVersion 25
     }
