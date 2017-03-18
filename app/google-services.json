@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "398947401037",
+    "firebase_url": "https://ubproject-7fcbf.firebaseio.com",
+    "project_id": "ubproject-7fcbf",
+    "storage_bucket": "ubproject-7fcbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398947401037:android:210b508dda01efcf",
+        "android_client_info": {
+          "package_name": "io.github.UltimateBrowserProject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398947401037-7t3eb01u5mm7phfd3iap0c8rhageamdu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWt5aIIUy1dvywUvxFWwvMRGHGIX0ec-k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
