@@ -1,5 +1,6 @@
 package io.github.UltimateBrowserProject.View;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -14,11 +15,13 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.provider.Browser;
 import android.util.DisplayMetrics;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
@@ -44,6 +47,10 @@ import io.github.UltimateBrowserProject.Unit.BrowserUnit;
 import io.github.UltimateBrowserProject.Unit.IntentUnit;
 import io.github.UltimateBrowserProject.Unit.ViewUnit;
 
+import static io.github.UltimateBrowserProject.Activity.BrowserActivity.anchor;
+import static io.github.UltimateBrowserProject.Activity.BrowserActivity.getTabSwitcher;
+import static io.github.UltimateBrowserProject.Activity.BrowserActivity.omnibox;
+
 public class UltimateBrowserProjectWebView extends WebView implements AlbumController {
 
     private static final float[] NEGATIVE_COLOR = {
@@ -52,6 +59,16 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             0, 0, -1.0f, 0, 255, // Blue
             0, 0, 0, 1.0f, 0     // Alpha
     };
+
+    public static final int
+            DEFAULT_ANIMATION_DURATION = 420
+            ;
+
+    public static int
+            oh   = 0,
+            cy   = 0,
+            ny   = 0,
+            opos = 0;
 
     private Context context;
     private int flag = BrowserUnit.FLAG_UltimateBrowserProject;
@@ -134,7 +151,7 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
             RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
 
-            int oh = ViewUnit.goh(context);
+            oh = ViewUnit.goh(context);
             p.addRule(RelativeLayout.ALIGN_PARENT_TOP);
             p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
             if (BrowserActivity.anchor == 0) {
@@ -163,6 +180,74 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
     public void setWebViewCustomLayoutParams() {
         setWebViewCustomLayoutParams(isInitialized);
     }
+
+    public static boolean isBottom() {
+        return anchor == 1;
+    }
+
+    public static boolean isTop() {
+        return !isBottom();
+    }
+
+    public static int getOmniboxPositionInt() {
+        return anchor;
+    }
+
+    protected static ViewPropertyAnimator omniboxAnimate() {
+        return omnibox.animate().setDuration(DEFAULT_ANIMATION_DURATION);
+    }
+
+    protected static ViewPropertyAnimator webAnimate() {
+        return BrowserActivity.getUbpWebView().animate().setDuration(DEFAULT_ANIMATION_DURATION);
+    }
+
+    public static void moveOmni(int posY) {
+        if(isBottom()) return;
+        float mov = (float) posY;
+        omnibox.bringToFront();
+        omnibox.setTranslationY(mov);
+        BrowserActivity.getUbpWebView().setTranslationY(
+                mov + omnibox.getHeight()
+        );
+    }
+
+    public static void animateOmni(int posY) {
+        float mov = (float) posY;
+        if(mov > 0) omnibox.bringToFront();
+        if(posY == 0 && isTop()) opos = 0; cy = 0; ny = 0;
+        omniboxAnimate().translationY(mov + (isBottom() ? oh : 0))
+                // This listener is to fix glitches
+                .setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        omnibox.bringToFront();
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        omnibox.bringToFront();
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        // Not necessary
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+                        // Not necessary
+                    }
+                });
+        if(isTop())
+            BrowserActivity.getUbpWebView()
+                    .setTranslationY((mov + omnibox.getHeight()));
+    }
+
+    public static void resetOmni() {
+        omnibox.bringToFront();
+        animateOmni(isBottom() ? -oh : 0);
+    }
+
 
     @SuppressWarnings("deprecation")
     @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
@@ -208,66 +293,30 @@ public class UltimateBrowserProjectWebView extends WebView implements AlbumContr
                 int action = motionEvent.getAction();
                 y1 = motionEvent.getY();
 
-                if (action == MotionEvent.ACTION_DOWN) {
-                    Logging.logd("MotionEvent.ACTION_DOWN");
-                    if(BrowserActivity.getTabSwitcher().getSwitcherState() == TabSwitcher.SwitcherState.EXPANDED)
-                        BrowserActivity.getTabSwitcher().collapse();
-                    ym1 = (int) y1;
-                } else if (action == MotionEvent.ACTION_UP) {
-                    Logging.logd("MotionEvent.ACTION_UP");
-                    assert view != null;
-                    boolean moveUp = (BrowserActivity.anchor == 0 ? (-cpo >= oh / 2) : (cpo == 0));
-                    ym1   = 0;
-                    ym2   = 0;
-                    lastM = 0;
-                    lagf  = 0;
-                    if (    (cpo <= 0 && cpo != -oh) ||
-                            (cpo == 0 && cpwo == oh)) {
-                        cpo = 0;
-                        cpwo = oh;
-                    } else {
-                        cpo = -oh;
-                        cpwo = 0;
-                    }
-
-                    BrowserActivity.omnibox.animate()
-                            .translationY((moveUp ? (BrowserActivity.anchor == 0 ? -oh : 0) :
-                                    (BrowserActivity.anchor == 0 ? 0 : oh)))
-                            .setDuration(480);
-                    view.animate()
-                            .translationY((moveUp ? (BrowserActivity.anchor == 0 ? 0 : 0) :
-                                    (BrowserActivity.anchor == 0 ? oh : 0)))
-                            .setDuration(60);
-
-                } else if (action == MotionEvent.ACTION_MOVE) {
-                    assert view != null;
-                    boolean glitchfix = (lastM == 0);
-                    lastM = (int) motionEvent.getY();
-                    ym2 = oh - (lastM - ym1);
-
-                    if (BrowserActivity.anchor == 0) {
-                        cpo -= ym2 - oh;
-                        cpwo = cpo + oh;
-                    } else {
-                        cpo += oh - ym2;
-                        cpwo = oh - cpo;
-                    }
-
-                    if      (cpwo <   0) cpwo =   0;
-                    else if (cpwo >  oh) cpwo =  oh;
-                    if      (cpo  >   0) cpo  =   0;
-                    else if (cpo  < -oh) cpo  = -oh;
-
-                    if (!glitchfix) {
-                        if (BrowserActivity.anchor == 0) {
-                            BrowserActivity.omnibox.animate()
-                                    .translationY(cpo)
-                                    .setDuration(0);
-                            view.animate()
-                                    .translationY(cpo + oh)
-                                    .setDuration(0);
+                switch(motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        getTabSwitcher().collapse();
+                        if(-opos <= oh / 2) cy = (int)motionEvent.getRawY();
+                        else cy = (int)motionEvent.getRawY() - opos;
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if(-opos > oh / 2) {
+                            animateOmni( (isBottom() ? 0 : -oh) );
+                            opos =       (isBottom() ? 0 : -oh)  ;
+                        } else {
+                            animateOmni( (isBottom() ? -oh : 0) );
+                            opos =       (isBottom() ? -oh : 0)  ;
                         }
-                    }
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        ny = ((int)motionEvent.getRawY()) - cy;
+                        opos = ny;
+                        if(opos > 0  ) opos = 0;
+                        if(opos < -oh) opos = -oh;
+
+                        moveOmni(opos);
+                        break;
+                    default: break;
                 }
 
                 gestureDetector.onTouchEvent(motionEvent);

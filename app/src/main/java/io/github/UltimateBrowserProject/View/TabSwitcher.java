@@ -122,14 +122,15 @@ public class TabSwitcher extends RelativeLayout {
 
         albumsViewLayout.setLayoutParams(p);
 
-        View albumsView = (View) albumsViewLayout;
+        addView(BrowserActivity.getSwitcherContainer());
 
-        this.addView(BrowserActivity.getSwitcherContainer());
+        addView(BrowserActivity.switcherHeader);
 
-        this.addView(BrowserActivity.switcherHeader);
+        bringToFront();
 
-        this.animate()
+        animate()
                 .setDuration(animationDuration)
+                .alpha(1f)
                 .scaleY(
                         1
                 )
@@ -137,7 +138,7 @@ public class TabSwitcher extends RelativeLayout {
                 .setListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
-
+                        bringToFront();
                     }
 
                     @Override

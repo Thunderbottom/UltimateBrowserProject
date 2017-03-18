@@ -248,7 +248,7 @@ public class BrowserActivity extends Activity implements BrowserController {
 
         switch(browserLang) {
             case de: lang = BrowserUnit.INTRODUCTION_DE;    break;
-            case en: lang = BrowserUnit.INTRODUCTION_EN;    break;
+            case en:
             default: lang = BrowserUnit.INTRODUCTION_EN;    break;
         }
         try {
@@ -323,22 +323,6 @@ public class BrowserActivity extends Activity implements BrowserController {
                                             boolean subtractOwnHeightBottom) {
         logd("Applying omnibox layout options...");
 
-        RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) omnibox.getLayoutParams();
-
-        p.height = ViewUnit.getOmniboxHeight(getApplicationContext());
-
-        if (subtractOwnHeightBottom) marginBottom -= p.height;
-        if (subtractOwnHeightTop)    marginTop    -= p.height;
-
-        p.setMargins(   marginLeft,
-                        marginTop,
-                        marginRight,
-                        marginBottom);
-
-
-        logd("Setting layout params...");
-        omnibox.setLayoutParams(p);
-
         applyOmniAlignments();
     }
 
@@ -399,29 +383,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         longAnimTime   = getResources().getInteger(android.R.integer.config_longAnimTime);
         insideMainView = (RelativeLayout) findViewById(R.id.main_view);
 
-        staticView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                try {
-                    if (anchor == 1) {
-                        int heightDiff = staticView.getRootView().getHeight() - staticView.getHeight();
-                        if (heightDiff > 100) {
-                            isKeyboardShowing = true;
-                            inputBox.requestFocus();
-                            tabSwitcher.collapse();
-                            Logging.logd("Keyboard is shown.");
-                        } else {
-                            omnibox.animate().translationY(0).setDuration(0);
-                            isKeyboardShowing = false;
-                            Logging.logd("Keyboard is not shown.");
-                        }
-                    }
-                } catch (Exception ex) {
-                    StackTraceParser.logStackTrace(ex);
-                }
-            }
-        });
-
         logd("Checking for update");
         new Changelog(this, R.xml.changelog).showWhatsNew();
         mHandler = new Handler();
@@ -444,8 +405,6 @@ public class BrowserActivity extends Activity implements BrowserController {
         relayoutOK = (Button) findViewById(R.id.main_relayout_ok);
         contentFrame = insideMainView;
 
-
-
         new AdBlock(this); // For AdBlock cold boot
         dispatchIntent(getIntent());
 
@@ -455,7 +414,6 @@ public class BrowserActivity extends Activity implements BrowserController {
             if (restore) openSavedTabs();
             else pinAlbums(null);
         }
-
 
     }
 
@@ -1484,6 +1442,7 @@ public class BrowserActivity extends Activity implements BrowserController {
             setFullscreen(fullscreen);
         }
         omnibox.bringToFront();
+        ubpWebView = (UltimateBrowserProjectWebView) currentAlbumController;
     }
 
     private synchronized void updateAlbum() {

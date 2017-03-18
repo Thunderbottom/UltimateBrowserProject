@@ -149,7 +149,7 @@ public class ViewUnit {
     }
 
     public static int getOmniboxHeight(Context context) {
-        return densityPixelsToPixels(context, 48);
+        return (int)dp2px(context, 48);
     }
 
     public static int goh(Context c) {
