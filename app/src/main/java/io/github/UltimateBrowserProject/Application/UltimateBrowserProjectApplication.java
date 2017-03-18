@@ -2,6 +2,8 @@ package io.github.UltimateBrowserProject.Application;
 
 import android.app.Application;
 
+import com.google.firebase.crash.FirebaseCrash;
+
 public class UltimateBrowserProjectApplication extends Application {
 
     @Override

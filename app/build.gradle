@@ -55,4 +55,6 @@ dependencies {
     // Ripple effect library (traex)
     compile 'com.github.traex.rippleeffect:library:1.3'
 
+    // Firebase crash analytics
+    compile 'com.google.firebase:firebase-crash:10.2.0'
 }
