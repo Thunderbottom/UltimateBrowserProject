@@ -1233,6 +1233,7 @@ public class BrowserActivity extends Activity implements BrowserController {
         webView.setAlbumTitle(title);
         setBound(webView);
         webView.setUrl(url);
+        ubpWebView = webView;
 
         tabSwitcher.getTabStorage().addTab(url);
         tabSwitcher.getTabStorage().getCurrentTab().setTitle(title);
@@ -1439,7 +1440,6 @@ public class BrowserActivity extends Activity implements BrowserController {
             setFullscreen(fullscreen);
         }
         omnibox.bringToFront();
-        ubpWebView = (UltimateBrowserProjectWebView) currentAlbumController;
     }
 
     private synchronized void updateAlbum() {
